@@ -1,0 +1,159 @@
+/* *******************************************************************
+ *		loots.zsc
+ *
+ *		Loot Spawners
+ *
+ *		As long as you attribute it to me in some
+ *		way I don't mind people using this. Considering how much
+ *		some people have caused an uproar over the lack of proper
+ *		examples and the like.
+ *
+ *		Copyright Sanya K. C. Waffles 2013-2017
+ *
+ * ****************************************************************** */
+
+// Loot Spawner
+Class DD_LootAmmoSpawnTiny : DD_Spawner
+{
+	vector3 spawnerpos, spawnervel;
+	double spawnang;
+	int dropval;
+	Class<Inventory> droploot;
+	
+	void A_SpawnLootsInit(int manual = -1)
+	{
+		static const Class<Inventory> LootDropStr[] = {
+			"DD_DroppedPistolBullets",	// 0
+			"DD_DroppedShells",			// 1
+			"DD_DroppedAmmoBelt",		// 2
+			"DD_DroppedAmmoRocket",		// 3
+			"DD_DroppedAmmoDespairum", 	// 4
+			"DD_DroppedAmmoTrollBlood",	// 5
+			"DD_DroppedHealth",			// 6
+			"DD_DroppedShieldShard"		// 7
+		};
+		
+		spawnerpos.x = Random[EnemyLootDrop](-2,  2);
+		spawnerpos.y = Random[EnemyLootDrop](-2,  2);
+		spawnerpos.z = Random[EnemyLootDrop](-2,  2);
+		
+		spawnervel.x = Random[EnemyLootDrop](46 ,50);
+		spawnervel.y = Random[EnemyLootDrop](-2, 10);
+		spawnervel.z = Random[EnemyLootDrop](-2, 10);
+		
+		spawnang = FRandom[LootSpawnAng](0.0,359.9);
+		
+		if (manual == -1 || manual > 7)
+		{
+			dropval = Random[EnemyLootDrop](0, 4);
+		}
+		else
+		{
+			dropval = manual;
+		}
+		
+		droploot = LootDropStr[dropval];
+	}
+	
+	void A_DropLoot(Class<Inventory> luwut = "DD_DroppedHealth")
+	{
+		double sx = (random[LootFx]() - 128) / 16.;
+		double sy = (random[LootFx]() - 128) / 16.;
+		
+		Actor mo = Spawn(luwut, Vec2OffsetZ(sx, sy, floorz + 1), ALLOW_REPLACE);
+		if (mo != null)
+		{
+			mo.Vel.X = (random[LootFx]() - 128) / 1024.f;
+			mo.Vel.Y = (random[LootFx]() - 128) / 1024.f;
+			//  mo.Floorclip = 6;
+		}
+	}
+	
+	States
+	{
+		Spawn:
+			TNT1 A 0 NoDelay
+			{
+				A_SpawnLootsInit();
+				A_DropLoot(droploot);
+				
+				// A_SpawnItemEx(droploot, spawnerpos.x, spawnerpos.y, spawnerpos.z, spawnervel.x, spawnervel.y, spawnervel.z, spawnang, DDFL_AMMOFLAGSFX);
+			}
+			Stop;
+	}
+}
+
+// Loot Spawner
+Class DD_LootAmmoSpawnSmall : DD_LootAmmoSpawnTiny
+{
+	States
+	{
+		Spawn:
+			TNT1 A 0 NoDelay
+			{				
+				A_SpawnLootsInit();
+				
+				A_DropLoot(droploot);
+				A_DropLoot(droploot);
+			}
+			Stop;
+	}
+}
+// Loot Spawner
+Class DD_LootAmmoSpawnLarge : DD_LootAmmoSpawnSmall
+{
+	States
+	{
+		Spawn:
+			TNT1 A 0 NoDelay
+			{
+				int i;
+				
+				for (i = 0; i < 4; i++)
+				{
+					A_SpawnLootsInit();
+					
+					A_DropLoot(droploot);
+					A_DropLoot(droploot);
+					//  A_DropLoot(droploot);
+					
+					dropval = Random[LootFx](0, 4);
+				}
+				
+				if (target != null)
+				{
+					if (target.player)
+						return;
+					
+					if (target.CountInv("DD_TrollBloodDevice") && Random[EnemyLootDrop](0, 255) < 127)
+					{
+						A_SpawnLootsInit(5);
+						
+						A_DropLoot(droploot);
+						A_DropLoot(droploot);
+					}
+					
+					if (target.health <= 67 && Random[EnemyLootDrop](0, 255) < 127)
+					{
+						A_SpawnLootsInit(6);
+						
+						A_DropLoot(droploot);
+						A_DropLoot(droploot);
+						
+						if (target.health <= 33)
+						{
+							A_DropLoot(droploot);
+							A_DropLoot(droploot);
+						}
+						
+						A_SpawnLootsInit(7);
+						
+						A_DropLoot(droploot);
+						A_DropLoot(droploot);
+					}
+				}
+			
+			}
+			Stop;
+	}
+}

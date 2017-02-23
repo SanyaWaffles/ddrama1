@@ -1,0 +1,148 @@
+/* *******************************************************************
+ *		barfbag.zsc
+ *
+ *		Barfbag Grunt and projectile
+ *
+ *		As long as you attribute it to me in some
+ *		way I don't mind people using this. Considering how much
+ *		some people have caused an uproar over the lack of proper
+ *		examples and the like.
+ *
+ *		Copyright Sanya K. C. Waffles 2013-2017
+ *
+ * ****************************************************************** */
+
+// Green puke ball spat out by the 'Barfbags'
+Class DD_BarfBall : DD_ProjectileActor
+{
+	Default
+	{
+		Radius 6;
+		Height 8;
+		Speed 10;
+		FastSpeed 18;
+		Damage 2;
+		DeathSound "barfbag/shotx";
+	}
+
+	States
+	{
+		Spawn:
+			BBAL ABABAB 4;
+			Goto SpawnFallA;
+		
+		SpawnFallA:
+			BBAL A 4
+			{
+				A_SetGravity(0.3);
+				A_Gravity();
+			}
+			BBAL B 4 A_Gravity;
+			BBAL A 4
+			{
+				A_SetGravity(0.6);
+				A_Gravity();
+			}
+			BBAL B 4 A_Gravity;
+			Loop;
+		
+		Death:
+			BBAL CDE 6;
+			Stop;
+	}
+}
+
+Class DD_BarfBag : DD_Enemy
+{
+	Default
+	{
+		//$Title "Barfbag"
+		//$Sprite BARFA0
+		
+		Health 70;
+		Mass 200;
+		PainChance 200;
+		Height 52;
+		Radius 20;
+		Speed 8;
+		Species "Feline";
+		BloodColor "00 aa 00";
+		Translation "16:31=49:62";
+		SeeSound "barfbag/sight";
+		PainSound "barfbag/pain";
+		DeathSound "barfbag/death";
+		ActiveSound "barfbag/active";
+		Obituary "$DD_OB_BARFBAG";
+	}
+	
+	States
+	{
+		Spawn:
+			BARF A 10 A_DDramaLook;
+			Loop;
+		
+		See:
+			BARF BCDCBCD 3 A_DDramaChase;
+			Loop;
+		
+		Missile:
+			BARF C 4 A_FaceTarget;
+			BARF E 6 Bright
+			{
+				A_FaceTarget();
+				A_PlaySound("barfbag/attack", CHAN_BODY);
+				A_SpawnProjectile("DD_BarfBall", 36);
+			}
+			BARF F 4;
+			BARF C 2;
+			Goto See;
+			
+		Pain:
+			BARF C 3;
+			BARF C 3 A_Pain;
+			Goto See;
+		
+		Death:
+			BARF G 5 A_ScreamAndUnblock;
+			BARF H 5;
+			BARF I -1 A_DDGivePlayerOneLiner;
+			Stop;
+		
+		
+		Death.Shou:
+		Death.Rocket:
+		Death.Extreme:
+		Death.Expand:
+			BARF J 1
+			{
+				A_PlaySound("generic/expanding", CHAN_BODY);
+				A_SetScale(0.14);
+			}
+			BARF K 3 A_SetScale(0.16);
+			BARF L 2 A_SetScale(0.18);
+			BAR1 D 5
+			{
+				A_XScream();
+				A_GiveToTarget("DD_VOX_SnarkEnemies", 1);
+				A_SpawnItemEx("DD_LudicrousGibsBarfbagFx", flags:DDFL_AMMOFLAGSFX);
+				
+				A_DDSpawnAmmoLoot(false);
+			}
+			BAR1 FGHI 5;
+			Stop;
+		
+		Raise:
+			BARF I 3 A_SetScale(0.12);
+			BARF CICIC 3;
+			Goto See;
+			
+		Crush:
+			GIBY A 1
+			{
+				A_PlaySound("misc/crushed1", CHAN_BODY);
+				A_SpawnItemEx("DD_LudicrousGibsBarfbagFx", flags:DDFL_AMMOFLAGSFX);
+			}
+			GIBY A -1;
+			Stop;
+	}
+}

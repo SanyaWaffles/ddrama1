@@ -1,0 +1,472 @@
+//$GZDB_SKIP
+
+object DD_SmokeyTrail
+{
+    frame SMKF { light DD_SMKYBEAR }
+}
+
+// -------------------
+// -- Bullet Puffs  --
+// -------------------
+flickerlight DD_BPUFF1
+{
+    color 0.5 0.5 0.0
+    size 4
+    secondarySize 6
+    chance 0.8
+}
+
+flickerlight DD_BPUFF2
+{
+    color 0.5 0.5 0.0
+    size 2
+    secondarySize 3
+    chance 0.8
+}
+
+object DD_BulletPuff
+{
+    frame PUFFA { light DD_BPUFF1 }
+    frame PUFFB { light DD_BPUFF2 }
+}
+
+// -----------------
+// -- Expand Puff --
+// -----------------
+pulselight DD_EXPANDERPUFF
+{
+    color 1.0 0.6 0.0
+    size 48
+    secondarySize 54
+    interval 0.4
+}
+
+object DD_HemoExpandSpark
+{
+	frame TBL2 { light DD_EXPANDERPUFF }
+}
+
+// --------------------
+// -- Sonic Pen Puff --
+// --------------------
+flickerlight2 DD_SONICPENLITE
+{
+    color 0.4 0.6 0.9
+    size 32
+    secondarySize 48
+    interval 1
+}
+
+object DD_SonicPuff
+{
+	frame TNT1A { light DD_SONICPENLITE }
+}
+
+// -------------------
+// -- Rocket Trail  --
+// -------------------
+flickerlight DD_RTRAIL
+{
+    color 0.5 0.5 0.0
+    size 3
+    secondarySize 5
+    chance 0.8
+}
+
+object DD_RocketTrail
+{
+	frame SMKF { light DD_RTRAIL }
+}
+
+// -------------------
+// -- Fired Rocket  --
+// -------------------
+pointlight DD_ROCKET_A
+{
+    color 1.0 0.7 0.0
+    size 56
+}
+
+flickerlight DD_ROCKET_X1
+{
+    color 1.0 0.7 0.0
+    size 64
+    secondarySize 72
+    chance 0.3
+}
+
+flickerlight DD_ROCKET_X2
+{
+    color 0.5 0.1 0.0
+    size 80
+    secondarySize 88
+    chance 0.3
+}
+
+flickerlight DD_ROCKET_X3
+{
+    color 0.3 0.0 0.0
+    size 96
+    secondarySize 104
+    chance 0.3
+}
+
+flickerlight DD_ROCKET_X4
+{
+    color 0.2 0.2 0.0
+    size 72
+    secondarySize 96
+    chance 0.3
+}
+
+object DD_FiredRocket
+{
+    frame MISLA { light DD_ROCKET_A }
+
+    frame BOOMA { light DD_ROCKET_X1 }
+    frame BOOMB { light DD_ROCKET_X2 }
+    frame BOOMC { light DD_ROCKET_X3 }
+    frame BOOMD { light DD_ROCKET_X4 }
+}
+
+// -------------------------
+// -- Seeker Rocket Trail --
+// -------------------------
+flickerlight DD_RTRAIL_2
+{
+    color 0.2 0.2 0.0
+    size 2
+    secondarySize 4
+    chance 0.8
+}
+
+object DD_RocketTrail2
+{
+	frame SMKF { light DD_RTRAIL_2 }
+}
+
+// -------------------
+// -- Seeker Rocket --
+// -------------------
+pointlight DD_ROCKET_B
+{
+    color 1.0 0.7 0.0
+    size 44
+}
+
+flickerlight DD_ROCKET_X5
+{
+    color 1.0 0.7 0.0
+    size 48
+    secondarySize 56
+    chance 0.3
+}
+
+flickerlight DD_ROCKET_X6
+{
+    color 0.5 0.1 0.0
+    size 72
+    secondarySize 80
+    chance 0.3
+}
+
+flickerlight DD_ROCKET_X7
+{
+    color 0.3 0.0 0.0
+    size 72
+    secondarySize 88
+    chance 0.3
+}
+
+flickerlight DD_ROCKET_X8
+{
+    color 0.2 0.2 0.0
+    size 56
+    secondarySize 64
+    chance 0.3
+}
+
+object DD_FiredRocketSeeker
+{
+    frame MISLA { light DD_ROCKET_A }
+
+    frame BOOMA { light DD_ROCKET_X5 }
+    frame BOOMB { light DD_ROCKET_X6 }
+    frame BOOMC { light DD_ROCKET_X7 }
+    frame BOOMD { light DD_ROCKET_X8 }
+}
+
+// ----------------------
+// -- Despair Plasma ----
+// ----------------------
+pointlight DD_DESPAIRBALL
+{
+    color 0.9 0.3 0.6
+    size 56
+}
+
+flickerlight DD_DESPAIR_X1
+{
+    color 0.9 0.3 0.6
+    size 64
+    secondarySize 72
+    chance 0.4
+}
+
+flickerlight DD_DESPAIR_X2
+{
+    color 1.0 0.3 0.7
+    size 80
+    secondarySize 88
+    chance 0.4
+}
+
+flickerlight DD_DESPAIR_X3
+{
+	color 0.8 0.1 0.6
+    size 64
+    secondarySize 72
+    chance 0.4
+}
+
+flickerlight DD_DESPAIR_X4
+{
+    color 0.2 0.0 0.2
+    size 8
+    secondarySize 16
+    chance 0.4
+}
+
+object DD_DespairPlasmaBall
+{
+	frame PLSPA { light DD_DESPAIRBALL }
+	frame PLSPB { light DD_DESPAIRBALL }
+	frame PLSPC { light DD_DESPAIRBALL }
+	frame PLSPD { light DD_DESPAIRBALL }
+
+    frame PLSPE { light DD_DESPAIR_X1 }
+    frame PLSPF { light DD_DESPAIR_X2 }
+    frame PLSPG { light DD_DESPAIR_X3 }
+    frame PLSPH { light DD_DESPAIR_X3 }
+    frame PLSPI { light DD_DESPAIR_X4 }
+}
+
+object DD_DespairPlasmaBallV2
+{
+	frame PLSPA { light DD_DESPAIRBALL }
+	frame PLSPB { light DD_DESPAIRBALL }
+	frame PLSPC { light DD_DESPAIRBALL }
+	frame PLSPD { light DD_DESPAIRBALL }
+
+    frame PLSPE { light DD_DESPAIR_X1 }
+    frame PLSPF { light DD_DESPAIR_X2 }
+    frame PLSPG { light DD_DESPAIR_X3 }
+    frame PLSPH { light DD_DESPAIR_X3 }
+    frame PLSPI { light DD_DESPAIR_X4 }
+}
+
+object DD_HellaJeffBall
+{
+	frame PLSPA { light DD_DESPAIRBALL }
+	frame PLSPB { light DD_DESPAIRBALL }
+	frame PLSPC { light DD_DESPAIRBALL }
+	frame PLSPD { light DD_DESPAIRBALL }
+
+    frame PLSPE { light DD_DESPAIR_X1 }
+    frame PLSPF { light DD_DESPAIR_X2 }
+    frame PLSPG { light DD_DESPAIR_X3 }
+    frame PLSPH { light DD_DESPAIR_X3 }
+    frame PLSPI { light DD_DESPAIR_X4 }
+}
+
+object DD_MonoDespairBall
+{
+	frame PLSPA { light DD_DESPAIRBALL }
+	frame PLSPB { light DD_DESPAIRBALL }
+	frame PLSPC { light DD_DESPAIRBALL }
+	frame PLSPD { light DD_DESPAIRBALL }
+
+    frame PLSPE { light DD_DESPAIR_X1 }
+    frame PLSPF { light DD_DESPAIR_X2 }
+    frame PLSPG { light DD_DESPAIR_X3 }
+    frame PLSPH { light DD_DESPAIR_X3 }
+    frame PLSPI { light DD_DESPAIR_X4 }
+}
+
+pointlight DD_KOREZ
+{
+    color 0.3 0.5 0.7
+    size 56
+}
+
+flickerlight DD_KOREZ_X1
+{
+    color 0.3 0.5 0.7
+    size 64
+    secondarySize 72
+    chance 0.4
+}
+
+flickerlight DD_KOREZ_X2
+{
+    color 0.3 0.5 0.7
+    size 80
+    secondarySize 88
+    chance 0.4
+}
+
+object DD_KorezBall
+{
+	frame KOREA { light DD_KOREZ }
+
+    frame KOXPA { light DD_KOREZ_X1 }
+    frame KOXPB { light DD_KOREZ_X2 }
+}
+
+// -------------------
+// -- Shrinker Shot --
+// -------------------
+pointlight DD_SHRINKSHOT
+{
+    color 0.0 0.9 0.0
+    size 56
+}
+
+pulselight DD_SHRINKFLASH_FX
+{
+    color 0.0 0.9 0.0
+    size 64
+    secondarySize 66
+    interval 0.4
+    offset 0 32 0
+}
+
+pulselight DD_SHRINKFLASH_RV
+{
+    color 0.0 0.9 0.0
+    size 48
+    secondarySize 54
+    interval 0.4
+    offset 0 32 0
+}
+
+object DD_ShrinkShot
+{
+    frame TBL1A { light DD_SHRINKSHOT }
+}
+
+object DD_JunkoMorphShot
+{
+    frame TBL1A { light DD_SHRINKSHOT }
+}
+
+object DD_ShrinkFlash
+{
+    frame SRFX { light DD_SHRINKFLASH_FX }
+}
+
+object DD_UnShrinkFlash
+{
+    frame SRFX { light DD_SHRINKFLASH_RV }
+}
+
+
+flickerlight2 DD_SJWKAMEHA
+{
+    color 0.4 0.6 0.9
+    size 32
+    secondarySize 48
+    interval 1
+}
+
+object DD_CheckBall
+{
+    frame KAME { light DD_SJWKAMEHA }
+}
+
+// Bonzibuddy projectile
+object DD_BonziShot
+{
+    frame BNZEA { light DD_ROCKET_X5 }
+    frame BNZEB { light DD_ROCKET_X6 }
+    frame BNZEC { light DD_ROCKET_X7 }
+    frame BNZED { light DD_ROCKET_X8 }
+}
+
+flickerlight2 DD_DUDEBRONYBALL
+{
+    color 0.5 1.0 0.0
+    size 32
+    secondarySize 48
+    interval 1
+}
+
+flickerlight DD_DUDEBRONYBALL_X1
+{
+    color 0.5 1.0 0.0
+    size 72
+    secondarySize 80
+    chance 0.25
+}
+
+flickerlight DD_DUDEBRONYBALL_X2
+{
+    color 0.0 0.5 0.0
+    size 88
+    secondarySize 96
+    chance 0.25
+}
+
+flickerlight DD_DUDEBRONYBALL_X3
+{
+    color 0.0 0.4 0.0
+    size 104
+    secondarySize 112
+    chance 0.25
+}
+
+object DD_DudebronyBall
+{
+    frame BAL7A { light DD_DUDEBRONYBALL }
+
+	frame BAL7C { light DD_DUDEBRONYBALL_X1 }
+	frame BAL7D { light DD_DUDEBRONYBALL_X2 }
+}
+
+object DD_MonoFiredRocket
+{
+    frame MISLA { light DD_ROCKET_A }
+
+    frame MISLB { light DD_ROCKET_X1 }
+    frame MISLC { light DD_ROCKET_X2 }
+    frame MISLD { light DD_ROCKET_X3 }
+    frame MISLE { light DD_ROCKET_X4 }
+}
+
+object DD_MonobearBlazerFx
+{
+    frame FIREA { light DD_DESPAIR_X1 }
+    frame FIREB { light DD_DESPAIR_X2 }
+    frame FIREC { light DD_DESPAIR_X3 }
+    frame FIRED { light DD_DESPAIR_X4 }
+}
+
+object DD_ExplosionFX1
+{
+    frame BOOMA { light DD_ROCKET_X1 }
+    frame BOOMB { light DD_ROCKET_X2 }
+    frame BOOMC { light DD_ROCKET_X2 }
+    frame BOOMD { light DD_ROCKET_X3 }
+    frame BOOME { light DD_ROCKET_X3 }
+    frame BOOMF { light DD_ROCKET_X4 }
+}
+
+object DD_ExplosionSpot
+{
+    frame BOOMA { light DD_ROCKET_X5 }
+    frame BOOMB { light DD_ROCKET_X5 }
+    frame BOOMC { light DD_ROCKET_X6 }
+    frame BOOMD { light DD_ROCKET_X6 }
+    frame BOOME { light DD_ROCKET_X7 }
+    frame BOOMF { light DD_ROCKET_X8 }
+}

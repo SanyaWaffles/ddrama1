@@ -1,0 +1,30 @@
+// These display at random on the screen
+// when you pick up a christmas cracker.
+// Warning: Not responsible for smashed
+// monitors, computers, equipment and
+// egos for not thinking of these.
+
+[enu default]
+
+DD_CRACKERJOKE01	= "Q: What do hedgehogs eat?\nA: Prickled Onions.";
+DD_CRACKERJOKE02	= "Q: When is a piece of wood like a queen?\nA: When it's a ruler.";
+DD_CRACKERJOKE03	= "Q: How do you keep an idiot waiting?\nA: If you find out tell me.";
+DD_CRACKERJOKE04	= "Q: What did the sea say to the sand?\nA: Nothing, it just waved.";
+DD_CRACKERJOKE05	= "Q: What do you call a nice guy in Tumblria?\nA: Dead meat.";
+DD_CRACKERJOKE06	= "Q: What do you call an atheist visiting\nThe Westboro Baptist Church?\nA: Brave.";
+DD_CRACKERJOKE07	= "Q: Why was the choirboy smiling?\nA: He was in a tchpper mood.";
+DD_CRACKERJOKE08	= "Q: How do you make a hormone?\nA: You refuse to pay her.";
+DD_CRACKERJOKE09	= "Q: How do you prevent a bull from charging?\nA: Take away its MasterCard.";
+DD_CRACKERJOKE10	= "Q: How much coke did Charlie Sheen do?\nA: Enough to kill Two and a Half Men.";
+DD_CRACKERJOKE11	= "Q: What can run but not walk?\nA: Tavros for Prime Minister.";
+DD_CRACKERJOKE12	= "Q: What is the opposite of Christopher Walken?\nA: Christopher Reeve.";
+DD_CRACKERJOKE13	= "Q: Why did the wooden plank get\nangry at the drill?\nA: Because it kept boring him.";
+DD_CRACKERJOKE14	= "Q: What happens when Fukawa Touko\nsneezes in bed?\nA: A Late Night Syo.";
+DD_CRACKERJOKE15	= "Q: I got a restraining order, so you cannot\ncome within 300 yards!\nA: I'm shitting in your chimney!";
+DD_CRACKERJOKE16	= "Q: What does the person writing these jokes deserve?\nA: A knife to the throat!";
+DD_CRACKERJOKE17	= "(c)2017 Waffle Iron Studios Cracker Jokes(TM) Department.";
+DD_CRACKERJOKE18	= "#DownWithCis Ain't Funny.";
+DD_CRACKERJOKE19	= "#IceBearForPrimeMinister.";
+
+[ena eng enc eng eni enz]
+DD_CRACKERJOKE15	= "Q: I got a restraining order, so you cannot\ncome within 500 metres!\nA: I'm shitting in your chimney!";

@@ -1,0 +1,87 @@
+/* *******************************************************************
+ *		base_npc.zsc
+ *
+ *		Base strife-like NPC
+ *
+ *		As long as you attribute it to me in some
+ *		way I don't mind people using this. Considering how much
+ *		some people have caused an uproar over the lack of proper
+ *		examples and the like.
+ *
+ *		Copyright Sanya K. C. Waffles 2013-2017
+ *
+ * ****************************************************************** */
+
+// Non-Playable Character
+Class DD_NPC : DD_SwitchableDecoration
+{
+	Default
+	{
+		//$NotAngled
+		Height 56;
+		Radius 24;
+		Scale 0.2;
+	
+		+FloorClip
+	}
+	
+	bool spottedPlayer;
+	
+	int user_statetochange;
+	int laststate;
+	
+	virtual void A_NPCCallout()
+	{
+		if (!spottedPlayer)
+			PlayActiveSound();
+		
+		if (LookForPlayers(true))
+			A_NPCDeactivated();
+	}
+	
+	void A_NPCDeactivated()
+	{
+		spottedPlayer = true;
+		A_StopSound(CHAN_VOICE);
+	}
+	
+	override void Deactivate(actor activator)
+	{
+		A_NPCDeactivated();
+	}
+	
+	override void PostBeginPlay()
+	{
+		spottedPlayer = false;
+	}
+}
+
+// Hostage
+Class DD_Hostage : DD_NPC
+{
+	Default
+	{
+		//$Category "NPCs/Hostages"
+		//$Color 3
+	}
+}
+
+// Terrorist
+Class DD_Terrorist : DD_NPC
+{
+	Default
+	{
+		//$Category "NPCs/Terrorists"
+		//$Color 12
+	}
+}
+
+// Cutscene Misc
+Class DD_Cutscene : DD_NPC
+{
+	Default
+	{
+		//$Category "NPCs/Cutscenes"
+		//$Color 3
+	}
+}

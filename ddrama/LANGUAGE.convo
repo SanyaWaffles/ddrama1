@@ -1,0 +1,45 @@
+// Finale Strings
+
+[enu default]
+TXT_RESPONSE_YES_CORRECT = "Correct.";
+TXT_RESPONSE_YES_SAD = "I'm sorry, but it's true.";
+TXT_RESPONSE_YES_ANGRY = "Oh alright you dingle.";
+TXT_RESPONSE_YES_HOPEFUL = "It will be so!";
+TXT_RESPONSE_YES_COP = "Yes, Boredomdai Civil Defence SSA Sanya Waffles.";
+TXT_RESPONSE_NO = "No.";
+TXT_RESPONSE_NO_SAD = "... n..no.";
+TXT_RESPONSE_NO_ANGRY = "Absolutely not!";
+TXT_RESPONSE_NO_HOPEFUL = "Not if I have any say in it.";
+TXT_RESPONSE_UNSURE_01 = "I have no idea.";
+
+TXT_RESPONSE_THANKS_01 = "Thank you!";
+TXT_RESPONSE_THANKS_02 = "Wow! Thanks!";
+TXT_RESPONSE_THANKS_03 = "Thanks a bunch!";
+
+TXT_RESPONSE_FLEE = "Get out of here while you can, head eastward.";
+
+
+TXT_ICEBEAR_FREED_01 = "You found Ice Bear... are you the police?";
+TXT_ICEBEAR_FREED_02 = "Ice Bear thanks you. Have this bulk sport drink pack.\nIce Bear insists.";
+TXT_ICEBEAR_FREED_03 = "Ice Bear will help you find stuff in levels. If you find Ice Bear, expect award.";
+
+TXT_ICEBEAR2_FOUND = "Ice Bear ammo bag.";
+TXT_ICEBEAR3_FOUND = "Ice Bear bunch-o-rockets.";
+TXT_ICEBEAR4_FOUND = "Ice Bear [artifact not found].";
+TXT_ICEBEAR5_FOUND = "Ice Bear found this... but why does this exist.";
+TXT_ICEBEAR6_FOUND = "Ice Bear has 'pepper'.\nIce Bear suspects psychosis is induced when inhaled.";
+TXT_ICEBEAR7_FOUND = "Ice Bear put Russel Crowe in his place. Have all the goodies here.";
+
+TXT_GRADEA_FREED_01 = "Cheers mate for finding me. Here, have this\nweird card thing I found laying here.";
+TXT_GRADEA_FREED_02 = "By the by, if you see my friend Arginold,\ntell him to stop using\nthat 80s Motorola phone, if it weren't for him\nI'd not be stuck here!";
+
+TXT_CHORUSKID_FREED_01 = "I'm surprised no one found me sooner, I was screaming as loud as I could.\n... all my friends are dead... aren't they?";
+TXT_CHORUSKID_FREED_02 = "I... I'm scared... why did they do this?";
+TXT_CHORUSKID_RESPONSETO_01 = "I have no idea kiddo, some have even been mutated I think\n... but I'm gonna make these terrorists sorry they did it on my soil.";
+TXT_CHORUSKID_FREED_03 = "... thank you. I better head east, it seems the city has been taken over entirely.\nTake these pepper pots, they seem to really be some magical dust that makes you crazy\nbut maybe it might be handy for you.";
+
+TXT_KRISANA_FREED_01 = "Don't untie me just yet. I'm loving it!";
+TXT_KRISANA_RESPONSETO_01 = "Kris, not the time or the place. What's going on?";
+TXT_KRISANA_FREED_02 = "They took Amber and the others into the main city,\nI was a bit of a loudmouth so they put me in this store.";
+TXT_KRISANA_RESPONSETO_02 = "Anything you can tell me will be helpful.";
+TXT_KRISANA_FREED_03 = "There's hundreds of humanoid goons. I feel many had to be cloned, only way there could be so many.";

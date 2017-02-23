@@ -1,0 +1,237 @@
+/* *******************************************************************
+ *		base_enemy.zsc
+ *
+ *		Base Enemy and Boss Daytime Drama Classes
+ *
+ *		As long as you attribute it to me in some
+ *		way I don't mind people using this. Considering how much
+ *		some people have caused an uproar over the lack of proper
+ *		examples and the like.
+ *
+ *		Copyright Sanya K. C. Waffles 2013-2017
+ *
+ * ****************************************************************** */
+
+// Enemy Class Base
+Class DD_Enemy : DD_Actor
+{
+	Default
+	{
+		//$NotAngled
+		//$Category "Monsters"
+		//$Color 12
+		
+		Scale 0.12;
+		Mass 100;
+		Height 56;
+		Radius 22;
+		BloodColor "F0 50 9A";
+		BloodType "DD_Blood";	// Uses that Danganrompa style peptobismol blood
+		DamageFactor "LavaFloor", 0.125;
+		DamageFactor "RegularNukeSlime", 0.125;
+		DamageFactor "PeptoBloodSlime", 0.50;
+		DamageFactor "BurnPlayer", 0.0;
+		DamageFactor "Shou", 1.25;
+		
+		Monster;
+		+FloorClip
+		+DropOff
+	}
+	
+	int expandcount;	// Expand Count
+	
+	override void BeginPlay()
+	{
+		expandcount = 0;
+		Super.BeginPlay();	// hm,mm...
+	}
+	
+	/*	***********************************************
+	 *			A_DDGivePlayerOneLiner();
+	 *		Gives the player a token obbject
+	 *		that causes the player pawn to sound
+	 *		off a one liner.
+	 *	***********************************************/
+	action void A_DDGivePlayerOneLiner(int index = 0)
+	{
+		static const Class<Inventory> snarkobj[] =
+		{
+			"DD_VOX_SnarkEnemies",
+			"DD_VOX_SnarkEnemiesGibbed"
+		};
+		
+		// Check if the target is not null
+		if(target != null)
+		{
+			// Check if the target has health and is
+			// a player (we don't want to bother
+			// if another enemy killed this enemy...
+			if (target.health > 0 && target.player)
+			{
+				// do some bounds checking...
+				if (index < 0 || index > 2) index = 0;
+				
+				A_GiveToTarget(snarkobj[index], 1);
+			}
+		}
+	}
+	
+	/*	***********************************************
+	 *			A_DDSpawnAmmoLoot(bool spawnbig);
+	 *		Unblocks and makes a squishy noise(tm)
+	 * 		spawnbig - spawn the big variant
+	 *	***********************************************/
+	void A_DDSpawnAmmoLoot(bool spawnbig = false)
+	{
+		static const Class<Actor> loottospawn[] =
+		{
+			"DD_LootAmmoSpawnLarge",
+			"DD_LootAmmoSpawnSmall"
+		};
+		
+		A_SpawnItemEx(loottospawn[(int)(spawnbig)], zofs: 32, xvel: cos(pitch) * 20, yvel: tan(pitch) * 20, zvel: -sin(pitch) * 20, flags: DDFL_AMMOFLAGSFX);
+	}
+	
+	/*	***********************************************
+	 *			A_DDExtremeScreamAndUnblock();
+	 *		Unblocks and makes a squishy noise(tm)
+	 *	***********************************************/
+	void A_DDExtremeScreamAndUnblock()
+	{
+		A_NoBlocking();
+		A_XScream();
+	}
+	
+	/*	***********************************************
+	 *			A_DDramaLudicrousGibs();
+	 *	spawns an object that spawns a shitton of gibs
+	 *	***********************************************/
+	void A_DDramaLudicrousGibs()
+	{
+		A_SpawnItemEx("DD_LudicrousGibsFx", zofs: 32, xvel: cos(pitch) * 20, yvel: tan(pitch) * 20, zvel: -sin(pitch) * 20, flags: DDFL_AMMOFLAGSFX);		// Spawn Some nasty gibs
+	}
+	
+	/*	***********************************************
+	 *				A_DDXtremeDeath();
+	 *		function used when an enemy is 'gibbed'
+	 *	***********************************************/
+	void A_DDXtremeDeath()
+	{
+		A_DDExtremeScreamAndUnblock();
+		A_DDSpawnAmmoLoot(true);
+		A_DDramaLudicrousGibs();
+	}
+	
+	/*	***********************************************
+	 *				A_DDExpandStart();
+	 *	plays a sound effect on the body channel to
+	 *	indicate that the enemy is going big
+	 *	***********************************************/
+	void A_DDExpandStart()
+	{
+		A_PlaySound("generic/expanding", CHAN_BODY);
+	}
+	
+	/*	***********************************************
+	 *					A_ExpandDong();
+	 *	loops until expandcount is greater than the const
+	 *					DD_ENEMY_SCALECOUNT
+	 *	***********************************************/
+	state A_ExpandDong()
+	{
+		expandcount++;
+		
+		A_SetScale(Scale.X+0.01, Scale.Y+0.01);
+		
+		return (expandcount >= DD_ENEMY_SCALECOUNT) ? ResolveState("ExpandFinish") : ResolveState(null);
+	}
+	
+	/*	***********************************************
+	 *				A_ExpandDongFin();
+	 *	When the expanding is done, the enemy explodes
+	 *	into a bunch of bits (which in turn spawns loot)
+	 *	***********************************************/
+	void A_ExpandDongFin()
+	{
+		A_Explode(128, 144);
+		A_DDSpawnAmmoLoot(true);
+		A_DDramaLudicrousGibs();
+		A_DDGivePlayerOneLiner(1);
+	}
+	
+	/*	***********************************************
+	 *				A_Coccooninate();
+	 *	Spawns a coocoon (which in turn spawns loot)
+	 *	***********************************************/
+	void A_Coccooninate()
+	{
+		A_NoBlocking();
+		A_PlaySound("misc/cocoon", CHAN_BODY);
+		A_SpawnItemEx("DD_Cocoon", flags: DDFL_CHUNKFLAGS);
+		
+		A_DDGivePlayerOneLiner(1);
+	}
+	
+	void A_DDSquishSound()
+	{
+		A_PlaySound("misc/crushed1", CHAN_BODY);
+	}
+	
+	States
+	{
+		Death.Shou:
+		Death.Rocket:
+		Death.Extreme:
+			GIBW A 4 A_DDXtremeDeath;
+			GIBW BCD 4;
+			GIBW E 4 A_DDGivePlayerOneLiner(1);
+			GIBW F -1;
+			Stop;
+		
+		Death.Expand:
+			"####" "#" 1 A_DDExpandStart;
+		Death.ExpandLoop:
+			"####" "#" 3 A_ExpandDong;
+			Loop;
+			
+		ExpandFinish:
+			BAR1 D 5 Bright A_ExpandDongFin;
+			BAR1 E 5 Bright;
+			BAR1 FGHI 5 Bright;
+			Stop;
+		
+		Death.Webbing:
+			TNT1 A 1 A_Coccooninate;
+			Stop;
+		
+		Crush:
+			GIBX A -1 A_DDSquishSound;
+			Stop;
+	}
+}
+
+// Boss Class Base
+Class DD_Boss : DD_Enemy
+{
+	Default
+	{
+		Mass 1000;
+		DamageFactor "LavaFloor", 0.0;
+		DamageFactor "RegularNukeSlime", 0.0;
+		DamageFactor "PeptoBloodSlime", 0.3;
+		DamageFactor "Shou", 1.00;
+
+		+Boss
+		+DontGib
+		+BossDeath
+		+DontMorph
+		+NeverRespawn
+	}
+	
+	States
+	{
+		Raise:
+		Crush:
+			Stop;
+	}
+}

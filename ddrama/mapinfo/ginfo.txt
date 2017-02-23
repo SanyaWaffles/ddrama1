@@ -1,0 +1,50 @@
+// GameInfo Block
+gameinfo
+{
+	DimAmount = 0.1
+	TextScreenX = 2
+	TextScreenY = 2
+	GibFactor = 0.75
+
+	IntermissionCounter = false
+
+	PlayerClasses = "DD_Sanya"
+	BackpackType = "DD_Handbag"
+
+	BorderFlat = "FLESHY00"
+	MenuBackButton = "M_BACK"
+	PauseSign = "M_PAUSE"
+	TitlePage = "DRAMATTL"
+	CursorPic = "-"
+	InfoPage = "INFOP01", "INFOP02", "INFOP03", "INFOP04", "INFOP05", "INFOP06"
+	CreditPage = "INFOP06"
+
+	DimColor = "f0 50 9a"
+	DefaultBloodColor = "f0 50 9a"
+	DefaultBloodParticleColor = "f0 50 9a"
+
+	IntermissionMusic = "D_STATS"
+
+	// TitleMusic = "D_DRAMAT"
+	TitleMusic = ""
+	FinaleMusic = "D_VICTOR"
+
+	SkyFlatName = "FUNC_SKY"
+
+	ChatSound = "misc/chatdd"
+	QuitSound = "misc/quitdd"
+
+	MapArrow = "maparrows/ddarrow.txt"
+
+	menufontcolor_title = "White"
+	menufontcolor_label = "Brick"
+	menufontcolor_value = "LightBlue"
+	menufontcolor_action = "Green"
+	menufontcolor_highlight = "Gold"
+	menufontcolor_selection = "LightBlue"
+	
+	defaultconversationmenuclass = "DD_ConversationMenu"
+	
+	QuitMessages = "$DD_QUITMSG1", "$DD_QUITMSG2", "$DD_QUITMSG3", "$DD_QUITMSG4", "$DD_QUITMSG5", "$DD_QUITMSG6", "$DD_QUITMSG7"
+}
+// End GameInfo Block

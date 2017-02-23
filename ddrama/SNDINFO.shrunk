@@ -1,0 +1,39 @@
+// Shrunk Player Sounds
+$playersound	shrunk	male	*death		sounds/player/mini_dead1.ogg
+$playersound	shrunk	male	*xdeath		sounds/player/mini_dead2.ogg
+$playersound	shrunk	male	*gibbed		sounds/sfx/slop/gibslop2.ogg
+$playersound	shrunk	male	*pain100	sounds/player/mini_pain.ogg
+$playersounddup	shrunk	male	*pain75		*pain100
+$playersounddup	shrunk	male	*pain50		*pain100
+$playersounddup	shrunk	male	*pain25		*pain100
+$playersound	shrunk	male	*grunt		DSEMPTY
+$playersounddup	shrunk	male	*land		*grunt
+$playersounddup	shrunk	male	*jump		*grunt
+$playersounddup	shrunk	male	*fist		*grunt
+$playersounddup	shrunk	male	*usefail	*grunt
+
+$playersound	shrunk	female	*death		sounds/player/mini_dead1.ogg
+$playersound	shrunk	female	*xdeath		sounds/player/mini_dead2.ogg
+$playersound	shrunk	female	*gibbed		sounds/sfx/slop/gibslop2.ogg
+$playersound	shrunk	female	*pain100	sounds/player/mini_pain.ogg
+$playersounddup	shrunk	female	*pain75		*pain100
+$playersounddup	shrunk	female	*pain50		*pain100
+$playersounddup	shrunk	female	*pain25		*pain100
+$playersound	shrunk	female	*grunt		DSEMPTY
+$playersounddup	shrunk	female	*land		*grunt
+$playersounddup	shrunk	female	*jump		*grunt
+$playersounddup	shrunk	female	*fist		*grunt
+$playersounddup	shrunk	female	*usefail	*grunt
+
+$playersound	shrunk	other	*death		sounds/player/mini_dead1.ogg
+$playersound	shrunk	other	*xdeath		sounds/player/mini_dead2.ogg
+$playersound	shrunk	other	*gibbed		sounds/sfx/slop/gibslop2.ogg
+$playersound	shrunk	other	*pain100	sounds/player/mini_pain.ogg
+$playersounddup	shrunk	other	*pain75		*pain100
+$playersounddup	shrunk	other	*pain50		*pain100
+$playersounddup	shrunk	other	*pain25		*pain100
+$playersound	shrunk	other	*grunt		DSEMPTY
+$playersounddup	shrunk	other	*land		*grunt
+$playersounddup	shrunk	other	*jump		*grunt
+$playersounddup	shrunk	other	*fist		*grunt
+$playersounddup	shrunk	other	*usefail	*grunt

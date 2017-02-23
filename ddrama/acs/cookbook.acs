@@ -1,0 +1,1141 @@
+#library "cookbook"
+#include "zcommon.acs"
+
+// Waffle Iron Studios
+// Cookbook Library
+// (c) 2012-2015 Sanya K. Waffles
+
+// Libdefines
+#libdefine DUDEBRO_TVNUM		8					// Max. MRA Television Breakers
+#libdefine WEAPONS_TOTAL		7					// Number of weapons
+#libdefine AMMOS_TOTAL			(WEAPONS_TOTAL - 1)	// Only one weapon has no ammo
+#libdefine TICS_PER_SECOND		35					// Tics Per Second. Approx 34-35 tics per second
+#libdefine TICS_DELAY_MAIN		(TICS_PER_SECOND/7)	// Tics Per Second. Approx 34-35 tics per second
+#libdefine CB_HUDSIZE_W			800					// SetHudSize Virtual Width
+#libdefine CB_HUDSIZE_H			600					// SetHudSize Virtual Height
+#libdefine CB_HUD_ALIGNF_XL		0.2					// Alignment Fixed Point (X) - Top Right
+#libdefine CB_HUD_ALIGNF_X		0.4					// Alignment Fixed Point (X) - Centers box, aligns centre
+#libdefine CB_HUD_ALIGNF_Y		0.1					// Alignment Fixed Point (Y) - Aligns top of the box
+#libdefine CB_HUD_ALIGNF_YC		0.0					// Alignment Fixed Point (Y) - Aligns center of box
+#libdefine CB_HUD_X				(((CB_HUDSIZE_W/2)<<16) + CB_HUD_ALIGNF_X)		// Macro for default HUD X-axis def. pos
+#libdefine CB_HUD_KEY_Y			(((CB_HUDSIZE_W/2-10)<<16) + CB_HUD_ALIGNF_Y)	// Macro for default HUD Y-axis hint pos
+#libdefine CB_HUD_BOSSY			(((CB_HUDSIZE_H/10)<<16) + CB_HUD_ALIGNF_Y)		// Macro for default HUD Y-axis boss pos
+#libdefine CB_HUD_CRACKER_Y		(((CB_HUDSIZE_H/2+100)<<16) + CB_HUD_ALIGNF_YC)	// Macro for default HUD Y-axis cracker pos
+
+#libdefine CB_HUD_CRACKERHOLD	8.0					// Cracker Hold time (in fixed)
+#libdefine CB_HUD_HINTHOLD		8.0					// Hint Hold fime (in fixed)
+
+// IDs for HUDMessage - Lower IDs overlap higher IDs
+#libdefine HUDDISPID_EPOCH		500							// base ID for which other IDs are derived from
+#libdefine HUDDISPID_HINT		(HUDDISPID_EPOCH)			// Hint Message ID
+#libdefine HUDDISPID_MESG		(HUDDISPID_EPOCH - 20)		// Generic Message ID
+#libdefine HUDDISPID_BOSSBAR	(HUDDISPID_EPOCH - 50)		// Boss Bar ID
+#libdefine HUDDISPID_BOSSBAR2	(HUDDISPID_EPOCH - 51)		// Boss Bar ID (Alt)
+#libdefine HUDDISPID_ENDTALLY	(HUDDISPID_EPOCH - 60)		// End Tally
+#libdefine HUDDISPID_USEKEY		(HUDDISPID_EPOCH - 61)		// Press +use
+#libdefine HUDDISPID_CRACKER	(HUDDISPID_EPOCH + 100)		// The Cracker Joke ID
+
+// Aspect Ratio defines
+#libdefine ASPECT_4_3			(4.0/3)		//  4:3
+#libdefine ASPECT_5_4			1.25		//  5:4
+#libdefine ASPECT_16_9			(16.0/9)	// 16:9
+#libdefine ASPECT_16_10			1.6			// 16:10
+#libdefine DDFUNC_GLASS_FLAGS	BLOCKF_EVERYTHING | BLOCKF_USE | BLOCKF_HITSCAN
+#libdefine DDFUNC_GLASS_ACTFL	SPAC_Impact
+// End Libdefines
+
+// ==========================
+// Generic Cookbook funcs
+// ==========================
+
+// -------------------------->>>>
+// NOTES ON FIXED VALUE FRACTIONS
+// -------------------------->>>>
+// Fixed Values are used in ACS
+// instead of 'true' floating
+// point. This is because even
+// in 2015 Doom engines still
+// use 32-bit integers as
+// standard. These numbers are
+// little-endian, meaning the
+// right-most bits are the most
+// significant bit in memory.
+//
+// The first 16-bits RTL are
+// the fraction, the remaining
+// 16-bits are the value. This
+// means it's really stored as
+// a whole 32-bit integer in
+// memory. This is because
+// Doom used fixed-point as
+// Floating-Point units were
+// not exactly cheap in 1993,
+// thus not common.
+//
+// So any functions dealing with
+// fixed points use 'int' types
+// for both stack and argument
+// variables.
+// -------------------------->>>>
+
+// --------------------------
+// floor: rounds arg 'num'
+// down to the nearest number
+// without fixed-point value
+// arg0 -> int num: value to
+//					process
+// --------------------------
+function int floor(int num)
+{
+   return (num>>16);
+}
+
+// --------------------------
+// ceiling: rounds arg 'num'
+// up to the nearest number
+// without fixed-point value
+// arg0 -> int num: value to
+//					process
+// --------------------------
+function int ceiling(int num)
+{
+   return ((num>>16)+1);
+}
+
+// --------------------------
+// integer: returns integer
+// part of fixed value only
+// arg0 -> int num: value
+//		to trim
+// --------------------------
+function int integer(int num)
+{
+   return (num & 65535.0);
+}
+
+// --------------------------
+// frac: returns fraction
+// part of fixed value only
+// arg0 -> int num: value
+//		to trim
+// --------------------------
+function int frac(int num)
+{
+   return (num & 65535);
+}
+
+// --------------------------
+// abs: returns absolute
+// value. Basically if it's
+// negative, return positive
+// value.
+// arg0 -> int num: value
+//		to evaluate
+// --------------------------
+function int abs(int x)
+{
+    if (x < 0) return -x;
+	
+    return x;
+}
+
+// --------------------------
+// pctClamp: forces the value
+// given to stay within the
+// range of 0 to 100.
+// arg0 -> int x: value
+//		to clamp
+// --------------------------
+function int pctClamp(int x)
+{
+	if (x > 100) return 100;
+	
+	if (x < 0) return 0;
+	
+	return x;
+}
+
+// --------------------------
+// checknotzero: returns
+// true if the number is
+// a positive, non-zero
+// number. However, if
+// negative or zero, it
+// returns false.
+// arg0 -> int x: value
+//		to check
+// --------------------------
+function bool checknotzero(int x)
+{
+	if (x > 0) return true;
+	
+	return false;
+}
+
+// --------------------------
+// fround: returns a
+// rounded fixed-point
+// number. Calls floor.
+// arg0 -> int f: value
+//		to check
+// --------------------------
+function int fround(int f)
+{
+	return floor(f + 0.5);
+}
+
+// -------------------------->>>>
+// COOKBOOK INFO:
+// Some of the above funcs are
+// modified from existing ZDoom
+// ACS functions, with some cleanup.
+//
+// Any original or heavily modified
+// functions will have the func_*
+// prefix. The exception is the
+// GetAspectRatio function, because
+// I wanted to make it distinguishable
+// from the abs function
+// -------------------------->>>>
+
+function bool func_CheckStr(str _s)
+{
+	return !(StrLen(_s) <= 0);
+}
+
+int ctrMRATVs = 0;				// Dudebro TV counter
+global str 1:_playerDir[];		// Global per-player string array
+global str 2:_playerWeapon[];	// Player Weapon
+
+str DDSTR_CrackerItems[7] =
+{
+	"DD_DroppedPistolBullets",
+	"DD_DroppedShells",
+	"DD_RocketAmmo",
+	"DD_OliveBloodAmmo",
+	"DD_ChocolateBar",
+	"DD_SyoPepper",
+	"DD_AmmoBelt"
+};
+
+str DDSTR_BloodTypes[3] =
+{
+	"DD_OliveBloodAmmo",
+	"DD_BronzeBloodAmmo",
+	"DD_CobaltBloodAmmo"
+};
+
+str DDSTR_JunkoEnemies[6] =
+{
+	"DD_BarfBag",
+	"DD_SmokeyHead",
+	"DD_Dontreldemon",
+	"DD_BonziBuddy",
+	"DD_SweetBro",
+	"DD_BronyOfDespair"
+};
+
+str DDSTR_MailboxItems[22] =
+{
+	"DD_Shotgun",
+	"DD_Minigun",
+	"DD_RocketLauncher",
+	"DD_DespairiumRifle",
+	"DD_HemospectrumWeaponPickup",
+	"DD_Bullets",
+	"DD_Shells",
+	"DD_AmmoBelt",
+	"DD_RocketAmmo",
+	"DD_Despairium",
+	"DD_OliveBloodAmmo",
+	"DD_BronzeBloodAmmo",
+	"DD_CobaltBloodAmmo",
+	"DD_MultiBloodPak",
+	"DD_ChocolateBar",
+	"DD_SportDrink",
+	"DD_BulkSportDrinkPack",
+	"DD_SyoPepper",
+	"DD_GladSandals",
+	"DD_Handbag",
+	"DD_GreenJacket",
+	"DD_BlueJacket"
+};
+
+str DDSTR_Items[9] =
+{
+	"DD_AxxSpray",
+	"DD_BulkSportDrinkPack",
+	"DD_BrokenJPEG",
+	"DD_BouncySandals",
+	"DD_SyoPepper",
+	"DD_Antidepressant",
+	"DD_HeatSeekCard",
+	"DD_AirCompressor",
+	"DD_TrollbloodDevice"
+};
+
+str DDSTR_HintTokens[9] =
+{
+	"DD_HintToken_AxxGrenade",
+	"DD_HintToken_BulkPack",
+	"DD_HintToken_BrokenJPG",
+	"DD_HintToken_Shoes",
+	"DD_HintToken_Pepper",
+	"DD_HintToken_Pills",
+	"DD_HintToken_HeatSeekCard",
+	"DD_HintToken_AirCompressor",
+	"DD_HintToken_TrollDevice"
+};
+
+str DDSTR_HintStr2[9] =
+{
+	"throw Axx Dorito Grenades.\nThey smell worse than your bro's room.",
+	"use your bulk sports drink.\nWhat you don't use is left over!",
+	"use your Broken JPG power.\nYou become harder to hit and spot.",
+	"use your bouncing shoes.\nYou can get great altitude with them!",
+	"use the Jack and Jill pepper.\nIt will make ya go cray-cray!",
+	"use your Despair Repellant Pills.\nThey protect against despairium pools",
+	"toggle between\nheat seek and normal modes\non your missile launcher.",
+	"Air Compressor!\nDespairium Rifle now has\noverheat protection.",
+	"cycle between\nshrink, expand,\nand webbing mode."
+};
+
+str DDSTR_KeybindInfo[7] =
+{
+	"use DD_AxxSpray",
+	"use DD_BulkSportDrinkPack",
+	"use DD_BrokenJPEG",
+	"use DD_BouncySandals",
+	"use DD_SyoPepper",
+	"use DD_Antidepressant",
+	"+user1"
+};
+
+str DDSTR_GunsInfo[7] =
+{
+	"DD_SonicTabletpen",
+	"DD_Pistol",
+	"DD_Shotgun",
+	"DD_Minigun",
+	"DD_RocketLauncher",
+	"DD_DespairiumRifle",
+	"DD_TrollbloodDevice"
+};
+
+str DDSTR_AmmoInfo[6] =
+{
+	"DD_Bullets",
+	"DD_Shells",
+	"DD_AmmoBelt",
+	"DD_RocketAmmo",
+	"DD_Despairium",
+	"DD_TrollDeviceAmmo"
+};
+
+// Stop Music
+function void func_StopMusic(void)
+{
+	SetMusic("");
+}
+
+script "DDLib_StopMusic" (void)
+{
+	func_StopMusic();
+}
+
+// Set Boss Battle Music
+function void func_BossMusic(void)
+{
+	SetMusic("D_HELRO");
+}
+
+// Set Statistic Music
+function void func_InterMusic(void)
+{
+	SetMusic("D_STATS");
+}
+
+// Set Felix Music
+function void func_GameOverMusic(void)
+{
+	SetMusicVolume(1.5);
+	SetMusic("D_FLXOVR");
+}
+// Set Felix Music
+function void func_JeopardyMusic(void)
+{
+	SetMusicVolume(1.75);
+	SetMusic("D_JEOPTL");
+}
+
+// Resume default music
+function void func_DefaultMusic(void)
+{
+	SetMusic("*");
+}
+
+script "DDLib_Het" (int _seconds1, int _seconds2)
+{
+	func_StopMusic();
+	
+	while (_seconds1 > 0)
+	{
+		Delay(TICS_PER_SECOND);
+		
+		_seconds1--;
+	}
+	
+	GiveInventory("DD_VOX_RIPFelixHet", 1);
+	
+	if (_seconds2 <= 0)
+		_seconds2 = 1;
+	
+	Delay(TICS_PER_SECOND *_seconds2);
+	
+}
+
+script "DDLib_JeopardyGameOver" (void)
+{
+	func_StopMusic();
+	Delay(1);
+	func_JeopardyMusic();
+	Delay(TICS_PER_SECOND * 60);	// ???
+	func_StopMusic();
+	Delay(TICS_PER_SECOND * 2);	// ???
+}
+
+// Gather Christmas Cracker Joke
+// String for screen display
+function str func_GetJoke(void)
+{
+	int _r;
+	str _st1 = "DD_CRACKERJOKE";
+	str _rs;
+
+	_r = Random(1, 15);
+
+	if (_r <= 9)
+	{
+		_rs = StrParam(s:_st1, d:0, d:_r); 
+	}
+	else
+	{
+		_rs = StrParam(s:_st1, d:_r);
+	}
+	
+	return _rs;
+}
+
+function void func_getGunAtExit(void)
+{
+	int pn = PlayerNumber();
+	
+	if (pn >= 0)
+	{
+		_playerWeapon[pn] = StrParam(s:GetWeapon());
+		// Log(s:_playerWeapon[pn]);
+	}
+}
+
+function void func_setGunAtExit(void)
+{
+	int pn = PlayerNumber();
+	int wep;
+	
+	if (pn >= 0)
+	{
+		SetWeapon(_playerWeapon[pn]);
+	}
+	
+	_playerWeapon[pn] = StrParam(s:"");
+}
+
+function void func_clearHUDandGun(void)
+{
+	GiveInventory("DD_DisableHudToken", 1);
+	GiveInventory("DD_WeaponBlank", 1);
+	SetWeapon("DD_WeaponBlank");
+}
+
+function void func_resetHUDandGun(void)
+{
+	TakeInventory("DD_DisableHudToken", 255);
+	TakeInventory("DD_WeaponBlank", 255);
+}
+
+// Clear a message with _id
+function void func_Clear(int _id)
+{
+	if (_id > 0)
+	{
+		HudMessage(s:""; HUDMSG_PLAIN, _id, CR_UNTRANSLATED, 0.0, 0.0, 0);
+	}
+}
+
+// Clear a range of TIDs
+function void func_ClearRange(int _id1, int _id2)
+{
+    int _start_id = 0;
+    int _end_id = 0;
+
+	if (_id1 <= 0 || _id2 <= 0)
+	{
+		return;
+	}
+    if (_id1 < _id2)
+    {
+        _start_id = _id1;
+        _end_id = _id2;
+    }
+    else if (_id1 > _id2)
+    {
+        _end_id = _id1;
+        _start_id = _id2;
+    }
+    else
+	{
+		func_Clear(_id1);
+        return;
+	}
+    for (int _ctr = _start_id; _ctr < _end_id; _ctr++)
+    {
+        func_Clear(_ctr);
+    }
+}
+
+// Set font to BIGFONT
+function void func_SetFontToBig(void)
+{
+	SetFont("BIGFONT");
+}
+
+//Init Screen
+function void func_InitScreen(void)
+{
+	SetHudSize(CB_HUDSIZE_W, CB_HUDSIZE_H, false);	// Init Screen just in case.
+}
+
+// Break TV screen function
+function bool func_DDBreakTV(int _lid, int _portion)
+{
+	if (checknotzero(_lid))
+	{
+		if (_portion < 0 || _portion >= 3)
+		{
+			return false;
+		}
+		
+		SetLineTexture(_lid, SIDE_FRONT, _portion, "TVBROKEN");
+		
+		return true;
+	}
+	return false;
+}
+
+// Function for breaking glass
+function void func_GlassBreakLine(int _lid)
+{
+	Line_SetBlocking(_lid, 0, DDFUNC_GLASS_FLAGS);
+	
+	SetLineTexture(_lid, SIDE_FRONT, TEXTURE_MIDDLE, "-");
+	SetLineTexture(_lid, SIDE_BACK,  TEXTURE_MIDDLE, "-");
+	
+	SectorSound("misc/glassbreak", 192);
+}
+
+// Glass break function front script
+script 999 (int _lid)
+{
+	func_GlassBreakLine(_lid);
+}
+
+// Call from inside maps with breakable glass
+// in an "OPEN" script. It will set all the
+// lines (in a for/while loop) to be breakable.
+// This is because breakable glass has other properties than
+// vents...
+function void func_SetGlassLine(int _lid)
+{
+	SetLineActivation(_lid, DDFUNC_GLASS_ACTFL);
+	Line_SetBlocking(_lid, DDFUNC_GLASS_FLAGS, 0);
+	SetLineSpecial(_lid, ACS_Execute, 999, 0, _lid);
+}
+
+function bool func_CheckCSCVar(void)
+{
+	return GetCVar("dd_cutscene");
+}
+
+function void func_MuteHostage(int _hid)
+{
+	if(_hid > 0)
+	{
+		SetActorState(_hid, "Mute");
+	}
+}
+
+script "DDLib_MuteHostage" (int _hid)
+{
+	func_MuteHostage(_hid);
+}
+
+// Draw Dudebro Unicorn Duo HP bars
+function void func_DrawDudebroBar (int _bosshp1, int _bosshp2)
+{
+	int _bhp1 = pctClamp(_bosshp1);
+	int _bhp2 = pctClamp(_bosshp2);
+
+	if (_bhp1 > 0 || _bhp2 > 0)
+	{
+		func_SetFontToBig();
+		HudMessage(s:"\c[Green]Big Green:\t ", c:'%', d:_bhp1, s:"\n\c[Blue]Dude Dave:\t ", c:'%', d:_bhp2; HUDMSG_PLAIN, HUDDISPID_BOSSBAR, CR_UNTRANSLATED, CB_HUD_X, CB_HUD_BOSSY, 0);
+	}
+}
+
+// Draw Monokuma Health
+function void func_DrawMonokumaBar (int _bosshp)
+{
+	int _bhp = pctClamp(_bosshp);
+
+	if (_bhp > 0)
+	{
+		func_SetFontToBig();
+		HudMessage(s:"\c[Yellow]Monokuma:\t ", c:'%', d:_bhp; HUDMSG_PLAIN, HUDDISPID_BOSSBAR, CR_UNTRANSLATED, CB_HUD_X, CB_HUD_BOSSY, 0);
+	}
+}
+
+// Draw Monokuma Health
+function void func_DrawJunkoBar (int _bosshp)
+{
+	int _bhp = pctClamp(_bosshp);
+
+	if (_bhp > 0)
+	{
+		func_SetFontToBig();
+		HudMessage(s:"\c[Yellow]Junko:\t ", c:'%', d:_bhp; HUDMSG_PLAIN, HUDDISPID_BOSSBAR, CR_UNTRANSLATED, CB_HUD_X, CB_HUD_BOSSY, 0);
+	}
+}
+
+function void func_BrokenTVMsg (int _tvs)
+{
+	func_SetFontToBig();
+	
+	HudMessage(s:"Dudebro TVs Left: ", d:_tvs; HUDMSG_PLAIN, HUDDISPID_BOSSBAR, CR_ORANGE, CB_HUD_X, CB_HUD_BOSSY, 0);
+}
+
+// You can use Jack-N-Jill pepper to force
+// an unmorph of you, the player, if you
+// get grubbed somehow.
+function void func_SyoUnmorphCheck (void)
+{
+	if(CheckInventory("DD_SyoPepperPowerProtection"))
+	{
+		UnMorphActor(0, TRUE);
+		GiveInventory("DD_SyoUnMorphStart", 1);
+	}
+	else
+	{
+		if(CheckInventory("DD_IsProtectedSyo"))
+		{
+			GiveInventory("DD_SyoUnMorphDone", 1);
+		}
+	}
+}
+
+// Check if a key is pressed but not being constantly
+// held down
+function bool func_CheckButtonPressed(int button)
+{
+	return ((GetPlayerInput(-1, INPUT_BUTTONS) & button) && !((GetPlayerInput(-1, INPUT_OLDBUTTONS) & button)));
+}
+
+// Check if a key or button is being held down
+function bool func_CheckButtonHeld(int button)
+{
+	return !!(GetPlayerInput(-1, INPUT_BUTTONS) & button);
+}
+
+// Check if a key or button is NOT being held down
+function bool func_CheckButtonUp(int button)
+{
+	return !(GetPlayerInput(-1, INPUT_BUTTONS) & button);
+}
+
+#define DD_TICS_PILLTIME 175
+#define DD_TICS_SHOUTIME 180
+#define DD_TICS_JUMPTIME 105
+#define DD_TICS_JPEGTIME 135
+
+function void func_CheckPowerups(void)
+{
+	int _pillTime, _shouTime, _jumpTime, _jpegTime;
+	
+	_pillTime = GetActorPowerupTics(0, "DD_PowerZoloft");
+	_shouTime = GetActorPowerupTics(0, "DD_SyoPepperPowerStrength");
+	_jumpTime = GetActorPowerupTics(0, "DD_GladiatorSandalsBouncing");
+	_jpegTime = GetActorPowerupTics(0, "DD_PowerBrokenInvisibility");
+	
+	if ((_pillTime) > 0)
+	{
+		if ((_pillTime) == DD_TICS_PILLTIME)
+		{
+			Log(s:"Anti-Depressant Pills Are Wearing Off...");
+		}
+		
+		if ((_pillTime) < (TICS_PER_SECOND * 5) && ((_pillTime) % TICS_PER_SECOND) == 0)
+		{
+			GiveInventory("DD_VOX_Zoloft_Tick", 1);
+		}
+	}
+	
+	if ((_shouTime) > 0)
+	{
+		if ((_shouTime) == DD_TICS_SHOUTIME)
+		{
+			Log(s:"Genocider Jill Are Wearing Off...");
+		}
+		
+		if ((_shouTime) < (TICS_PER_SECOND * 5) && ((_shouTime) % TICS_PER_SECOND) == 0)
+		{
+			GiveInventory("DD_VOX_PepperSoundOff_Tick", 1);
+		}
+	}
+	
+	if ((_jumpTime) > 0)
+	{
+		if ((_jumpTime) == DD_TICS_JUMPTIME)
+		{
+			Log(s:"High-Jump Shoes Are Wearing Off...");
+		}
+		
+		if ((_jumpTime) < (TICS_PER_SECOND * 5) && ((_jumpTime) % TICS_PER_SECOND) == 0)
+		{
+			GiveInventory("DD_VOX_Shoes_Tick", 1);
+		}
+	}
+	
+	if ((_jpegTime) > 0)
+	{
+		if ((_jpegTime) == DD_TICS_JPEGTIME)
+		{
+			Log(s:"Broken JPEG Is Wearing Off...");
+		}
+		
+		if ((_jpegTime) < (TICS_PER_SECOND * 5) && ((_jpegTime) % TICS_PER_SECOND) == 0)
+		{
+			GiveInventory("DD_VOX_JPEG_Tick", 1);
+		}
+	}
+}
+
+function void func_ticdownoneliner(void)
+{
+	TakeInventory("DD_VOX_Counter", 1);
+}
+
+function bool func_CheckHintsEnabled(void)
+{
+	int uHint = GetCVar("dd_hudhints");
+
+	if(CheckInventory("DD_HintToken_Cheat") == 1)
+	{
+		return false;
+	}
+	
+	if((uHint == 1 && (GameSkill() < 2)) || (uHint == 2))
+	{
+		return true;
+	}
+	
+	return false;
+}
+
+function void func_PrintHint(str hint)
+{
+	if (CheckInventory("DD_HintToken_Cheat"))
+		return;
+	
+	func_Clear(HUDDISPID_CRACKER);
+	func_Clear(HUDDISPID_HINT);
+
+	func_SetFontToBig();
+	HudMessage(s:hint; HUDMSG_PLAIN, HUDDISPID_HINT, CR_UNTRANSLATED, CB_HUD_X, CB_HUD_KEY_Y, CB_HUD_HINTHOLD);
+}
+
+function str func_GetKey(int _in)
+{
+	return StrParam(k:DDSTR_KeybindInfo[_in]);
+}
+
+function str func_GetHint(int _in)
+{
+	if (_in >= 6)
+	{
+		if(_in == 6 || _in == 8)
+		{
+			return StrParam(s:"Press ", s:func_GetKey(6), s:" to ", s:DDSTR_HintStr2[_in]);
+		}
+		else if(_in == 7)
+		{
+			return StrParam(s:DDSTR_HintStr2[7]);
+		}
+	}
+	
+	return StrParam(s:"Press ", s:func_GetKey(_in), s:" to ", s:DDSTR_HintStr2[_in]);
+}
+
+function void func_ClearHint(void)
+{
+	int btn1 = GetPlayerInput(-1, INPUT_BUTTONS);
+	int btn2 = GetPlayerInput(-1, INPUT_OLDBUTTONS);
+
+	if (func_CheckButtonPressed(BT_USE) && func_CheckHintsEnabled())
+	{
+		func_Clear(HUDDISPID_HINT);
+	}
+}
+
+function void func_CheckHintItems(void)
+{
+	if(!func_CheckHintsEnabled())
+		return;
+	
+	for (int i = 0; i < 9; i++)
+	{
+		if((CheckInventory(DDSTR_HintTokens[i])))
+		{
+			continue;
+		}
+		if ((CheckInventory(DDSTR_Items[i]) > 0))
+		{
+			GiveInventory(DDSTR_HintTokens[i], 1);
+			func_PrintHint(func_GetHint(i));
+		}
+	}
+	
+	func_ClearHint();
+}
+
+function void func_SpawnItem(str _thing)
+{
+	if (func_CheckStr(_thing))
+	{
+		SpawnForced(_thing, GetActorX(0), GetActorY(0), ((GetActorZ(0) - GetActorFloorZ(0)) + 24.0));
+	}
+}
+
+function void func_CrackerCheck(void)
+{
+	if(CheckInventory("DD_Cracker"))
+	{
+		str joke = func_GetJoke();
+		func_SetFontToBig();
+		HudMessage(l:joke; HUDMSG_PLAIN, HUDDISPID_CRACKER, CR_UNTRANSLATED, CB_HUD_X, CB_HUD_CRACKER_Y, CB_HUD_CRACKERHOLD);
+		func_SpawnItem(DDSTR_CrackerItems[Random(0, 6)]);
+		TakeInventory("DD_Cracker", 255);
+	}
+}
+
+script "DDLib_Dudebro_TVBreakOnly" (int _lid)
+{
+	func_InitScreen();
+	func_DDBreakTV(_lid, TEXTURE_MIDDLE);
+}
+
+// Dudebrony BreakCounter
+// Break all the TVs
+// To annoy the Dudebronies of Despair
+script "DDLib_Dudebro_BreakCounter" (int _lid)
+{
+	func_InitScreen();
+	func_DDBreakTV(_lid, TEXTURE_MIDDLE);
+
+	ctrMRATVs++;
+
+	if ((ctrMRATVs == (DUDEBRO_TVNUM / 2)) && (GameSkill() >= 2))
+	{
+		SpawnSpot("DD_BronyOfDespair", 669);
+	}
+
+	if (ctrMRATVs >= DUDEBRO_TVNUM)
+	{
+		Door_Open(666, 64, 0);
+		ctrMRATVs = 0;
+		Delay(TICS_DELAY_MAIN);
+		Thing_Activate(667);
+		Thing_Activate(668);
+		SetActivatorToTarget(0);
+		Delay(1);
+	}
+}
+
+script "DDLib_Sub_E1BossRoom" (void)
+{
+	func_InitScreen();
+
+	int _TVcount = ThingCountName("DD_DudebroTVController", 0);
+
+	int _bosshp1 = -1;
+	int _bosshpcap1 = GetActorProperty(667, APROP_SpawnHealth);
+
+	int _bosshp2 = -1;
+	int _bosshpcap2 = GetActorProperty(668, APROP_SpawnHealth);
+
+	do
+	{
+		func_BrokenTVMsg(_TVcount);
+		Delay(TICS_DELAY_MAIN);
+		_TVcount = ThingCountName("DD_DudebroTVController", 0);
+	}
+	while(_TVcount > 0);
+
+	func_Clear(HUDDISPID_BOSSBAR);
+	func_Clear(HUDDISPID_BOSSBAR2);
+
+	_bosshp1 = GetActorProperty(667, APROP_Health);
+	_bosshp2 = GetActorProperty(668, APROP_Health);
+
+	do
+	{
+		func_DrawDudebroBar(((_bosshp1 * 100) / _bosshpcap1), ((_bosshp2 * 100) / _bosshpcap2));
+
+		Delay(TICS_DELAY_MAIN);
+
+		_bosshp1 = GetActorProperty(667, APROP_Health);
+		_bosshp2 = GetActorProperty(668, APROP_Health);
+	}
+	while(_bosshp1 > 0 || _bosshp2 > 0);
+
+	func_Clear(HUDDISPID_BOSSBAR);
+	func_Clear(HUDDISPID_BOSSBAR2);
+}
+
+script "DDLib_Sub_BossHPBar" (int _btid)
+{
+	func_InitScreen();
+
+	int _bosshp = -1;
+	int _bosshpcap = GetActorProperty(_btid, APROP_SpawnHealth);
+
+	if (_btid > 0)
+	{
+		_bosshp = GetActorProperty(_btid, APROP_Health);
+
+		do
+		{	
+			if (CheckActorClass(_btid, "DD_Monokuma"))
+			{
+				func_DrawMonokumaBar(((_bosshp * 100) / _bosshpcap));
+			}
+			
+			if (CheckActorClass(_btid, "DD_JunkoEnoshimaBoss"))
+			{
+				func_DrawJunkoBar(((_bosshp * 100) / _bosshpcap));
+			}
+			
+			Delay(TICS_DELAY_MAIN);
+			_bosshp = GetActorProperty(_btid, APROP_Health);
+		}
+		while(_bosshp > 0);
+
+		func_Clear(HUDDISPID_BOSSBAR);
+		func_Clear(HUDDISPID_BOSSBAR2);
+	}
+}
+
+// Fade into darkness
+function void func_FadeStart(void)
+{
+	FadeTo(0, 0, 0, 1.0, 0.0);
+}
+
+// Fade out from darkness
+function void func_FadeOutEnter(void)
+{
+	FadeTo(0, 0, 0, 0.0, 3.0);
+}
+
+// Just runs once per start
+script "DDLib_LevelStart" ENTER
+{
+	func_FadeStart();
+	Delay(1);
+	func_FadeOutEnter();
+}
+
+function void func_PlayerStatChecks(void)
+{
+	// func_CheckTrollAmmo();	// Check for available troll ammo
+	// func_ToggleAltFile();	// Check if alt-fire toggle key/button is pressed
+	func_CheckPowerups();	// Check if powerups are about to die
+	func_ticdownoneliner();
+	func_CrackerCheck();	// Check if the player has picked up a cracker.
+	func_CheckHintItems();	// Check for applicable hints
+}
+
+// Player Cycle Script
+// For each player in game
+// this script is looped, and
+// repeats every tic (approx 1/35th of a second).
+// =====================================================
+// The script will terminate when the activator player
+// dies. It's entirely script side. For MP games, use
+// RESPAWN and an ACS_NamedExecuteAlways("*Lib_Cycle", 0) call
+// to do it again
+script "DDLib_Cycle" ENTER net
+{
+	func_InitScreen();	// Init Screen just in case.
+
+	// While the activator-player is alive...
+	while((GetActorProperty(0, APROP_Health) > 0))
+	{
+		func_SyoUnmorphCheck();	// Check for Jack-N-Jill Pepper
+								// WE DO THIS FIRST AS
+								// IT CAN UNGRUB YOU
+		
+		/* // Do we have the heatseeker yet?
+		if(func_CheckForHeatSeek())
+		{
+			SetWeapon("DD_RocketLauncher");
+			GiveInventory("DD_HasHeatSeekCard", 1);
+			GiveInventory("DD_HeatSeekMode", 1);
+		}
+		
+		// Do we have the air compressor cooler yet?
+		if(func_CheckForAirComp())
+		{
+			SetWeapon("DD_DespairiumRifle");
+			GiveInventory("DD_HasAirCompressor", 1);
+		} */
+
+		func_PlayerStatChecks();
+
+		Delay(1);
+	}
+}
+
+function void func_SetPlayerImmune(void)
+{
+	SetPlayerProperty(1, 2, PROP_INVULNERABILITY);
+	SetPlayerProperty(1, 1, PROP_TOTALLYFROZEN);
+}
+
+function void func_UnSetPlayerImmune(void)
+{
+	SetPlayerProperty(1, 0, PROP_INVULNERABILITY);
+	SetPlayerProperty(1, 0, PROP_TOTALLYFROZEN);
+}
+
+// Start out dark
+function void func_FadeInEpStart(void)
+{
+	FadeTo(0, 0, 0, 1.0, 0.0);
+}
+
+#define FADETIME_EXIT_DEC 1.0
+#define FADETIME_EXIT_TICS (TICS_DELAY_MAIN)
+
+// Fade into darkness
+function void func_FadeInExit(void)
+{
+	FadeTo(0, 0, 0, 1.0, FADETIME_EXIT_DEC);
+}
+
+script "DDLib_EndMap" (int secret, int cameraTID) net
+{
+	func_InitScreen();
+	func_SetPlayerImmune();
+	
+	func_getGunAtExit();
+	Delay(1);
+	func_clearHUDandGun();
+	
+	func_InterMusic();
+	
+	do
+	{
+		func_SetFontToBig();
+		HudMessage(n:PRINTNAME_LEVELNAME, s:"\nCOMPLETE\n\nENEMIES KILLED: ", d:GetLevelInfo(LEVELINFO_KILLED_MONSTERS), s:" out of ", d:GetLevelInfo(LEVELINFO_TOTAL_MONSTERS), s:"\nSECRETS FOUND: ", d:GetLevelInfo(LEVELINFO_FOUND_SECRETS), s:" out of ", d:GetLevelInfo(LEVELINFO_TOTAL_SECRETS), s:"\n\n\nPress ", k:"+use", s:" to continue."; HUDMSG_PLAIN, HUDDISPID_ENDTALLY, CR_UNTRANSLATED, CB_HUD_X, CB_HUD_BOSSY, 0.0);
+		Delay(1);
+	}
+	while (!(func_CheckButtonPressed(BT_USE)));
+
+	func_Clear(HUDDISPID_ENDTALLY);
+	func_FadeInExit();
+	func_StopMusic();
+
+	Delay((TICS_PER_SECOND - 2) * 1);
+
+	func_UnSetPlayerImmune();
+	func_setGunAtExit();
+	Delay(1);
+	func_resetHUDandGun();
+	Delay(1);
+
+	if (secret)
+		Exit_Secret(0);
+	else
+		Exit_Normal(0);
+}
+
+// When a player dies, this is used to display a message.
+// In DDrama, it displays instructions to press a key to
+// restart from the last save. This can be edited to
+// do things like stats
+script "DDLib_PlayerDeath" DEATH net
+{
+	bool _dispmsg = false;
+
+	func_InitScreen();
+	func_SetFontToBig();
+
+	while(TRUE)
+	{
+		_dispmsg = ~_dispmsg;
+
+		if(_dispmsg)
+		{
+			HudMessage(s:"Press ", k:"+use", s:" to start\nfrom most recent save."; HUDMSG_PLAIN, HUDDISPID_USEKEY, CR_RED, CB_HUD_X, CB_HUD_CRACKER_Y, 0.0);
+		}
+		else
+		{
+			func_Clear(HUDDISPID_USEKEY);
+		}
+
+		Delay(TICS_PER_SECOND);
+	}
+}
+
+script "DDLib_PlayerRespawn" RESPAWN net
+{
+	ACS_NamedExecuteAlways("DDLib_Cycle", 0);
+}
+
+
+// A script "front" for breaking a
+// regular old TV set
+script "DDLib_BreakTVReg" (int _lid, int _tportion)
+{
+	if (_lid > 0)
+	{
+		func_DDBreakTV(_lid, _tportion);
+	}
+}
+
+// Spawns enemies at various points
+// in MAP10 (the final boss)
+script "DDLib_JunkoBossSpawn" (int _tid)
+{
+	int _r = Random(0, 5);
+
+	if (_r == 5)
+	{
+		if(Random(0, 256) % 2)
+		{
+			_r = Random(0, 4);
+		}
+	}
+
+	SpawnSpot(DDSTR_JunkoEnemies[_r], _tid, _tid+1);
+	SpawnSpot("TeleportFog", _tid);
+}

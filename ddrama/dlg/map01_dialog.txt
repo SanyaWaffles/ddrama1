@@ -1,0 +1,190 @@
+namespace = "ZDoom";
+
+Conversation
+{
+	Actor = "DD_IceBear";
+	ID = 1;
+
+	Page
+	{
+		Name = "Ice Bear";
+		Dialog = "You found Ice Bear... are you the police?";
+		Choice
+		{
+			Text = "Yes, Boredomdai Counterintel and Defence.\nSSA Ice Sanya.";
+			NextPage = 2;
+		}
+	}
+	Page
+	{
+		Name = "Ice Bear";
+		Dialog = "Ice Bear glad. Local police are in on this, don't trust them.\nIce Bear hid in fridge when he heard gunshots.";
+		Choice
+		{
+			Text = "I take it you are Ice Bear.";
+			NextPage = 3;
+		}
+	}
+	Page
+	{
+		Name = "Ice Bear";
+		Dialog = "Yes.";
+		Choice
+		{
+			Text = "You from around here?";
+			NextPage = 4;
+		}
+	}
+	Page
+	{
+		Name = "Ice Bear";
+		Dialog = "Ice Bear crossed into country at Cloudsdale-Tchpsor.\nLooking for work, Grizz and Panda are in Tumblria.";
+		Choice
+		{
+			Text = "If you help me, I'll see what I can pull with immigration.";
+			NextPage = 5;
+		}
+	}
+	Page
+	{
+		Name = "Ice Bear";
+		Dialog = "Ice Bear has this bulk pack of sport drink. It should help you stay hydrated.";
+		Choice
+		{
+			GiveItem = "DD_BulkSportDrinkPack";
+			Text = "This is a good start. Can you tell me anything else?";
+			NextPage = 6;
+		}
+	}
+	Page
+	{
+		Name = "Ice Bear";
+		Dialog = "Ice Bear thinks these are clones. Too much hivemind going on.";
+		Choice
+		{
+			Text = "That explains no differences then... must be well financed.";
+			NextPage = 7;
+		}
+	Page
+	{
+		Name = "Ice Bear";
+		Dialog = "Ice Bear will go ahead. Ice Bear will find goods and be in hiding.";
+		Choice
+		{
+			Text = "This is dangerous, you should head east.";
+			NextPage = 8;
+		}
+	}
+	Page
+	{
+		Name = "Ice Bear";
+		Dialog = "Ice Bear is good fighter - and transparent fur good for hiding.";
+		Choice
+		{
+			Text = "Okay... just don't get killed. My friends are in Tchspor at the TV station. I was late on the bus.";
+			NextPage = 9;
+		}
+	}
+	Page
+	{
+		Name = "Ice Bear";
+		Dialog = "Ice Bear is sorry for this.";
+		Choice
+		{
+			Text = "I don't need a another thing on my conscience... I can't help from here...";
+			NextPage = 10;
+		}
+	}
+	Page
+	{
+		Name = "Ice Bear";
+		Dialog = "You said your friends - your team are at the local TV station?";
+		Choice
+		{
+			Text = "Yes. My team is like family.";
+			NextPage = 11;
+		}
+	}
+	Page
+	{
+		Name = "Ice Bear";
+		Dialog = "You missed the big broadcast. The bear on TV called Monokuma. Looks robotic.";
+		Choice
+		{
+			Text = "Japanese name... anamatronic... shit... my cell isn't working Are cell phones down?.";
+			NextPage = 12;
+		}
+	}
+	Page
+	{
+		Name = "Ice Bear";
+		Dialog = "Ice Bear thinks so, so are landlines.";
+		Choice
+		{
+			Text = "Ice Bear - if you find a working phone, call number on this card and give them my badge number *scribble*.";
+			NextPage = 13;
+		}
+	}
+	Page
+	{
+		Name = "Ice Bear";
+		Dialog = "Ice Bear will try.";
+		Choice
+		{
+			Text = "Ask for an Astley Simile there, he's the only one there, tell him I deputized you and what occured.";
+			NextPage = 14;
+		}
+	}
+	Page
+	{
+		Name = "Ice Bear";
+		Dialog = "Ice Bear all ready mentioned you will try.";
+		Choice
+		{
+			Text = "And tell him the team is behind the lines and compromised.";
+			NextPage = 15;
+		}
+	}
+	Page
+	{
+		Name = "Ice Bear";
+		Dialog = "...Ice Bear all ready mentioned you will try.";
+		Choice
+		{
+			Text = "Goddamn it Ice bear just hear me out! If they die... g...g...";
+			NextPage = 16;
+		}
+	}
+	Page
+	{
+		Name = "Ice Bear";
+		Dialog = "... breathe with Ice Bear, you will get through this with Ice Bear.";
+		Choice
+		{
+			Text = "I was late... if I was earlier...";
+			NextPage = 17;
+		}
+	}
+	Page
+	{
+		Name = "Ice Bear";
+		Dialog = "You'd be captured too. Take this advantage. Make the terrorists pay.";
+		Choice
+		{
+			Text = "... I'm sorry I yelled at you... please don't...";
+			NextPage = 18;
+		}
+	}
+	Page
+	{
+		Name = "Ice Bear";
+		Dialog = "Ice Bear forgives - no sweat. Keep breathing... and fighting. Ice Bear will meet you ahead.";
+		Choice
+		{
+			Text = "Take Care of Yourself Ice Bear.";
+			special = 132;
+			arg0 = 2;
+			closedialog = true;
+		}
+	}
+}

@@ -1,0 +1,267 @@
+/* *******************************************************************
+ *		sanya_player.zsc
+ *
+ *		Sanya (Player) Pawn
+ *
+ *		As long as you attribute it to me in some
+ *		way I don't mind people using this. Considering how much
+ *		some people have caused an uproar over the lack of proper
+ *		examples and the like.
+ *
+ *		Copyright Sanya K. C. Waffles 2013-2017
+ *
+ * ****************************************************************** */
+
+Class DD_Sanya : DD_PlayerPawn
+{
+	Default
+	{
+		Speed 1;
+		Health 100;
+		Radius 16;
+		Height 56;
+		Mass 100;
+		PainChance 255;
+		
+		Player.MaxHealth 100;
+		
+		Player.DisplayName "Sanya";
+		Player.StartItem "DD_Pistol";
+		Player.StartItem "DD_SonicTabletpen";
+		Player.StartItem "DD_Bullets", 30;
+		Player.WeaponSlot 1, "DD_SonicTabletpen";
+		Player.WeaponSlot 2, "DD_Pistol";
+		Player.WeaponSlot 3, "DD_Shotgun";
+		Player.WeaponSlot 4, "DD_Minigun";
+		Player.WeaponSlot 5, "DD_RocketLauncher";
+		Player.WeaponSlot 6, "DD_DespairiumRifle";
+		Player.WeaponSlot 7, "DD_TrollbloodDevice";
+		
+		Player.ColorRange 48, 63;
+		Player.ColorSet 0, "Sanya", 	0xF0, 0xF7, 0xF3;
+		Player.ColorSet 1, "Yugi",		0xA0, 0xA7, 0xA3, 0x20, 0x2F, 0x56, 0x5F, 0x30, 0x3F, 0xA0, 0xAF;
+		Player.ColorSet 2, "Tamami", 	0x02, 0x0D, 0x07, 0x20, 0x2F, 0x40, 0x48, 0x01, 0x0C, 0xA0, 0xAB, 0x80, 0x8F, 0x80, 0x8A;
+		Player.ColorSet 3, "Scoots",	0x60, 0x6F, 0x64, 0x20, 0x2F, 0x71, 0x7E, 0x80, 0x8F, 0x80, 0x89, 0xA0, 0xAF, 0x70, 0x7F;
+		
+		Player.DamageScreenColor "F0509A", 0.20;
+		Player.DamageScreenColor "FFA500", 0.50, "Rocket";
+		Player.DamageScreenColor "F0509A", 0.30, "Despair";
+		Player.DamageScreenColor "F0509A", 0.70, "DespairSpores";
+		Player.DamageScreenColor "FF5800", 0.50, "Dorito";
+		Player.DamageScreenColor "FF5800", 0.66, "BurnPlayer";
+		Player.DamageScreenColor "CD7F32", 0.30, "Expand";
+		Player.DamageScreenColor "0047AB", 0.30, "Webbing";
+		
+		Player.ForwardMove 1, 1;
+		Player.SideMove 1, 1;
+		
+		Player.ViewHeight 47;
+		Player.AttackZOffset 12;
+		Player.JumpZ 10;
+		
+		Player.RunHealth 10;
+		
+		+NoSkin
+	}
+	
+	private bool DDFunc_GetUserOL()
+	{
+		return GetCvar("dd_snd_oneliners");
+	}
+	
+	void DDFunc_PlayerOneLiner()
+	{
+		if (!DDFunc_GetUserOL())
+			return;
+		
+		A_StopSound(CHAN_VOICE);
+		A_GiveInventory("DD_VOX_RIPInPeace");
+	}
+	
+	void DDFunc_PlayerOneLiner2()
+	{
+		if (!DDFunc_GetUserOL())
+			return;
+		
+		A_StopSound(CHAN_VOICE);
+		A_GiveInventory("DD_VOX_RIPInPeace2");
+	}
+	
+	void DDFunc_PlayerOneLiner3()
+	{
+		if (!DDFunc_GetUserOL())
+			return;
+			
+		A_StopSound(CHAN_VOICE);
+		A_GiveInventory("DD_VOX_RIPInPeaceForSure");
+	}
+	
+	void DDFunc_PlayerDies()
+	{
+		A_NoBlocking();
+		A_PlayerScream();
+		A_SetRoll((roll + (RandomPick[PlayerRIP](-22, -11, 11, 22))), SPF_INTERPOLATE);
+		A_SetPitch((pitch + (Random[PlayerRIP](1,5))), SPF_INTERPOLATE);
+	}
+	
+	void DDFunc_PlayerDiesXTreem()
+	{
+		A_NoBlocking();
+		A_XScream();
+		A_SetRoll((roll + (randompick[DDPLAYER_ROLL](-22, -11, 11, 22))), SPF_INTERPOLATE);
+		A_SetPitch((pitch + (random[DDPLAYER_PITCH](1,3))), SPF_INTERPOLATE);
+		A_DDSpawnLudicrousGibs();
+	}
+	
+	void A_DDPlayerDiesGoesBig()
+	{
+		DDFunc_PlayerDiesXTreem();
+		A_PlaySound("world/barrelx", CHAN_BODY);
+		A_Explode(128, 144);
+	}
+	
+	States
+	{
+		Spawn:
+			SNYA ABCDCB 6;
+			Loop;
+			
+		See:
+			SNYA EFGH 4;
+			Loop;
+			
+		Missile:
+			SNYA I 10;
+			Goto Spawn;
+			
+		Melee:
+			SNYA J 5 BRIGHT;
+			Goto Missile;
+			
+		Pain:
+			SNYA K 4;
+			SNYA K 4 A_Pain;
+			Goto Spawn;
+			
+		Death:
+			SNYA L 3 DDFunc_PlayerDies;
+			SNYA M 8 DDFunc_PlayerOneLiner;
+			SNYA N 5;
+			SNYA N -1;
+			Stop;
+			
+		XDeath:
+			GIBW A 5 DDFunc_PlayerDiesXTreem;
+			GIBW BC 4;
+			GIBW D 4 DDFunc_PlayerOneLiner2;
+			GIBW E 5;
+			GIBW F 5;
+			GIBW F -1;
+			Stop;
+			
+		Death.Expand:
+			SNYA K 4 A_DDExpandDongStart;
+			SNYA K 4
+			{
+				A_SetScale(Scale.X+0.04);
+				
+				expandloop++;
+				
+				if (expandloop >= DD_ENEMY_SCALECOUNT)
+				{
+					SetStateLabel("ExpandFinish");
+				}
+			}
+			Wait;
+			
+		ExpandFinish:
+			BAR1 D 5 BRIGHT
+			{
+				A_Explode(128, 144);
+				DDFunc_PlayerOneLiner3();
+				A_DDSpawnLudicrousGibs();
+			}
+			BAR1 E 5 BRIGHT;			
+			BAR1 FGH 5 BRIGHT;
+			BAR1 I 5 BRIGHT;
+			TNT1 A -1;
+			Stop;
+	}
+}
+
+Class DD_ShrunkenPlayer : DD_Sanya
+{
+	Default
+	{
+		Speed 1;
+		
+		Player.MaxHealth 100;
+		
+		Health 100;
+		Radius 14;
+		Height 24;
+		Mass 30;
+		Scale 0.12;
+		PainChance 255;
+		
+		DamageFactor "Normal", 1.1;
+		
+		Player.ForwardMove 0.96, 0.98;
+		Player.SideMove 0.96, 0.98;
+		Player.JumpZ 5;
+		Player.ViewHeight 20;
+		Player.DisplayName "Shrunken Sanya";
+		Player.SoundClass "shrunk";
+		Player.UseRange	34.0;
+		Player.MorphWeapon "DD_ShrunkenHands";
+
+		MeleeRange 18;
+
+		Translation "16:31=32:39";
+
+		+DontMorph
+		-PickUp
+	}
+	
+	state DDFunc_ShrunkCheck()
+	{
+		if (CheckMeleeRange())
+			return ResolveState("JustDie");
+		
+		return null;
+	}
+	
+	void DDFunc_ShrunkDeath()
+	{
+		A_SetScale(0.035);
+		A_NoBlocking();
+		A_PlaySound("generic/squashx");
+		
+		A_SpawnItemEx("DD_MeatChunkShrunk", 0, 0, 45, frandom[EnemyGibs](1,4.984375)*cos(Angle+90),
+					frandom[EnemyGibs](1,4.984375)*sin(Angle+90), 8, 90, DDFL_COINFLAGS);
+		A_SpawnItemEx("DD_MeatChunkShrunk", 0, 0, 45, frandom[EnemyGibs](1,4.984375)*cos(Angle-90),
+					frandom[EnemyGibs](1,4.984375)*sin(Angle-90), 8, 270, DDFL_COINFLAGS);
+		A_SpawnItemEx("DD_MeatChunkShrunk", 0, 0, 45, frandom[EnemyGibs](1,4.984375)*cos(Angle-90),
+					frandom[EnemyGibs](1,4.984375)*sin(Angle-90), 8, 270, DDFL_COINFLAGS);
+	}
+
+	States
+	{
+		Spawn:
+			GRUB AB 2 DDFunc_ShrunkCheck;
+			Loop;
+			
+		JustDie:
+			GRUB A 1 A_Die("Stomped");
+			Goto Death.Stomped;
+		
+		Death:
+		Death.Stomped:
+			GIBX A 1 DDFunc_ShrunkDeath();
+			GIBX A 2 A_SetScale(0.04);
+			GIBX A 3 A_SetScale(0.05);
+			GIBX A 35 A_SetScale(0.06);
+			GIBX A -1;
+			Stop;
+	}
+}

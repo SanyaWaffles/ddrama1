@@ -1,0 +1,315 @@
+DefaultListMenu
+{
+	Font "BIGFONT", "White"
+	Linespacing 26
+	Selector "M_DRMARW", -26, 0
+}
+
+OptionString Cursors
+{
+	"None", "Default"
+	"-", "System cursor"
+}
+
+OptionValue DD_CSOffOn
+{
+	0, "Off"
+	1, "On"
+}
+
+OptionValue Gender
+{
+	0, "$OPTVAL_MALE"
+	1, "$OPTVAL_FEMALE"
+	2, "$OPTVAL_OTHER"
+}
+
+OptionValue DDHints
+{
+	0, "Always Off"
+	1, "On Lower Difficulties"
+	2, "Always On"
+}
+
+OptionValue TextColors
+{
+	0.0, "\c[DarkRed]brick"
+	1.0, "\c[Tan]tan"
+	2.0, "\c[Gray]gray"
+	3.0, "\c[Green]green"
+	4.0, "\c[Brown]brown"
+	5.0, "\c[Gold]gold"
+	6.0, "\c[Red]red"
+	7.0, "\c[Blue]blue"
+	8.0, "\c[Orange]orange"
+	9.0, "\c[White]white"
+	10.0, "\c[Yellow]yellow"
+	11.0, "\cldefault"
+	12.0, "\c[Black]black"
+	13.0, "\c[Cobalt]cobalt"
+	14.0, "\c[DarkGreen]dark green"
+	15.0, "\c[Pepto]Pepto"
+	16.0, "\c[Purple]purple"
+	17.0, "\c[DarkGray]dark gray"
+}
+
+OptionValue PostProcessing
+{
+	0, "None"
+	1, "FXAA"
+}
+
+OptionValue MenuMouse
+{
+	0, "No"
+	1, "Yes"
+}
+
+OptionValue CHairOnOff
+{
+	0, "Off"
+	1, "On"
+}
+
+OptionValue VAOffOn
+{
+	0, "Off"
+	1, "On"
+}
+
+OptionMenu "DDSoundOptions"
+{
+	Title "SOUND OPTIONS"
+	Slider "Sounds volume",		"snd_sfxvolume", 0, 1, 0.05
+	Slider "Menu volume",		"snd_menuvolume", 0, 1, 0.05
+	Option "One Liners",		"dd_snd_oneliners", "VAOffOn"
+	StaticText " "
+	Slider "Music volume",		"snd_musicvolume", 0, 1, 0.05
+	Option "MIDI device",		"snd_mididevice", "MidiDevices"
+	StaticText " "
+	Slider "Sound channels",	"snd_channels", 8, 256, 8, 0
+	StaticText " "
+	
+	IfOption(FModEx)
+	{
+		IfOption(OpenAL)
+		{
+			Option "Sound backend",		"snd_backend", "SoundBackends"
+		}
+		else
+		{
+			Option "Sound backend",		"snd_backend", "SoundBackendsFModOnly"
+		}
+	}
+	else
+	{
+		IfOption(OpenAL)
+		{
+			Option "Sound backend",		"snd_backend", "SoundBackendsOpenALOnly"
+		}
+	}
+	
+	IfOption(FModEx)
+	{
+		Submenu "FMOD options",		"FMODSoundItems"
+	}
+	IfOption(OpenAL)
+	{
+		Submenu "OpenAL options",	"OpenALSoundItems"
+	}
+	
+	IfOption(Windows)
+	{
+		Option "Output system",		"snd_output", "SoundOutputsWindows"
+	}
+	
+	IfOption(Unix)
+	{
+		Option "Output system",		"snd_output", "SoundOutputsUnix"
+	}
+	
+	IfOption(Mac)
+	{
+		Option "Output system",		"snd_output", "SoundOutputsMac"
+	}
+	
+	StaticText " "
+	Command "Restart sound",	"snd_reset"
+
+	StaticText " "
+	Submenu "Advanced options",			"AdvSoundOptions"
+	Submenu "Module replayer options",	"ModReplayerOptions"
+}
+
+
+ListMenu "MainMenu"
+{
+	Position 96, 40
+	// StaticPatch 0, 0, "M_MAINBG"
+	TextItem "$MNU_DDRAMA_NEWGAME",		"n",	"PlayerclassMenu"
+	TextItem "$MNU_DDRAMA_SSTATES",		"s",	"DDramaGameFilesMenu"
+	TextItem "$MNU_DDRAMA_OPTIONS",		"o",	"DDramaOptionsMenu"
+	TextItem "$MNU_DDRAMA_README",		"h",	"ReadThisMenu"
+	TextItem "$MNU_DDRAMA_QUIT", 		"e",	"QuitMenu"
+}
+
+ListMenu "SkillMenu"
+{
+	Linespacing 26
+	Selector "M_DRMARW", -40, 0
+	Position 96, 58
+	// StaticPatch 0, 0, "M_SKBG"
+}
+
+ListMenu "DDramaGameFilesMenu"
+{
+	Position 110, 60
+	TextItem "$MNU_DDRAMA_LOADGAME", "l", "DDramaLoadGameMenu"
+	TextItem "$MNU_DDRAMA_SAVEGAME", "s", "DDramaSaveGameMenu"
+}
+
+ListMenu "DDramaLoadGameMenu"
+{
+	StaticTextCentered 160, -10, "$MNU_DDRAMA_LOADGAME"
+	// StaticPatchCentered 160, -10, "M_LGTTL"
+	Position 80, 54
+	Class "LoadMenu"	// uses its own implementation
+}
+
+ListMenu "DDramaSaveGameMenu"
+{
+	StaticTextCentered 160, -10, "$MNU_DDRAMA_SAVEGAME"
+	// StaticPatchCentered 160, -10, "M_SGTTL"
+	Position 80, 54
+	Class "SaveMenu"	// uses its own implementation
+}
+
+OptionMenu "DDramaMiscOptions"
+{
+	Title "Miscellaneous Options"
+	
+	Option "Enable autosaves",			"disableautosave",		"Autosave"
+	Slider "Number of autosaves",		"autosavecount",		1, 20, 1, 0
+}
+
+OptionMenu "CustomizeMouse"
+{
+	Title "MOUSE OPTIONS"
+
+	Option		"$MOUSEMNU_ENABLEMOUSE",		"use_mouse",		"YesNo"
+	Option		"$MOUSEMNU_MOUSEINMENU",		"freelook",			"OnOff"
+	Option		"$MOUSEMNU_INVERTMOUSE",		"invertmouse",		"OnOff"
+	StaticText 	""
+	Slider		"$MOUSEMNU_SENSITIVITY",		"mouse_sensitivity", 0.5, 2.5, 0.1
+	StaticText 	""
+	Option		"$MOUSEMNU_NOPRESCALE",			"m_noprescale",		"NoYes"
+	Option		"$MOUSEMNU_SMOOTHMOUSE",		"smooth_mouse",		"YesNo"
+}
+
+OptionMenu "CustomizeControls"
+{
+	Title "$MNU_DDRAMA_HPLAYERC"
+	ScrollTop 2
+	StaticTextSwitchable	"$MNU_DDRAMA_CCSW1", "$MNU_DDRAMA_CCSW2", "ControlMessage"
+	StaticText 	""
+	StaticText 	"$MNU_DDRAMA_MOVEM", 1
+	Control 	"$MNU_DDRAMA_USEOPEN",		"+use"
+	Control 	"$MNU_DDRAMA_FORWARD",		"+forward"
+	Control 	"$MNU_DDRAMA_BACKWARD",		"+back"
+	Control 	"$MNU_DDRAMA_STRAFEL",		"+moveleft"
+	Control 	"$MNU_DDRAMA_STRAFER",		"+moveright"
+	Control 	"$MNU_DDRAMA_JUMP",			"+jump"
+	Control 	"$MNU_DDRAMA_CROUCH",		"+crouch"
+	Control 	"$MNU_DDRAMA_RUN",			"+speed"
+	Control 	"$MNU_DDRAMA_STRAFE",		"+strafe"
+	Control 	"$MNU_DDRAMA_TURNL",		"+left"
+	Control 	"$MNU_DDRAMA_TURNR",		"+right"
+	Control 	"$MNU_DDRAMA_KBLU",			"+lookup"
+	Control 	"$MNU_DDRAMA_KBLD",			"+lookdown"
+	Control 	"$NNU_DDRAMA_CROUCHT",		"crouch"
+	Control 	"$MNU_DDRAMA_RUNT",			"toggle cl_run"
+	StaticText	""
+	StaticText  "$MNU_DDRAMA_COMBAT", 1
+	Control 	"$MNU_DDRAMA_ATTACK",		"+attack"
+	Control		"$MNU_DDRAMA_WEAPONT",		"+user1"
+	Control 	"$MNU_DDRAMA_WEAPCF",		"weapprev"
+	Control 	"$MNU_DDRAMA_WEAPCB",		"weapnext"
+	StaticText 	""
+	StaticText 	"$MNU_DDRAMA_INVENT", 1
+	Control 	"$MNU_DDRAMA_INVUSE",		"invuse"
+	Control 	"$MNU_DDRAMA_INVNEXT",		"invnext"
+	Control 	"$MNU_DDRAMA_INVPREV",		"invprev"
+	Control 	"$MNU_DDRAMA_QUERY",		"invquery"
+	StaticText 	""
+	Control 	"$MNU_DDRAMA_GRENADE",		"use DD_AxxSpray"
+	Control 	"$MNU_DDRAMA_BULKHP",		"use DD_BulkSportDrinkPack"
+	Control 	"$MNU_DDRAMA_JPGBOKE",		"use DD_BrokenJPEG"
+	Control 	"$MNU_DDRAMA_SHOES",		"use DD_BouncySandals"
+	Control 	"$MNU_DDRAMA_JNJPEPP",		"use DD_SyoPepper"
+	Control 	"$MNU_DDRAMA_CLARID",		"use DD_Antidepressant"
+	StaticText 	""
+	StaticText 	"$MNU_DDRAMA_HOTHER", 1
+	Control 	"$MNU_DDRAMA_AMAPT",		"togglemap"
+	Control 	"$MNU_DDRAMA_SSHOT",		"screenshot"
+	Control		"$MNU_DDRAMA_CONSOLET",		"toggleconsole"
+}
+
+ListMenu "DDInputMenu"
+{
+	StaticText 122, 0, "Options"
+	Position 94, 25
+	
+	TextItem "Controls",		"c", 	"CustomizeControls"
+	TextItem "Mouse",			"m",	"CustomizeMouse"
+	TextItem "Joypad",			"j",	"JoystickOptions"
+}
+
+OptionMenu "DDramaExpMenu"
+{
+	Title "EXPERIENCE  OPTIONS"
+
+	StaticText " "
+	Option "Show Hints",		"dd_hudhints",		"DDHints"
+	Option "Crosshair",			"crosshair",		"CHairOnOff"
+	
+	Slider "Autoaim",			"Autoaim",			0, 35, 1
+	Option "Scale text HUD",	"con_scaletext", 	"ScaleValues"
+	Option "Cutscenes",			"dd_cutscene", 		"DD_CSOffOn"
+}
+
+ListMenu "DDramaOptionsMenu"
+{
+	StaticText 122, 0, "Options"
+	Position 94, 25
+
+	TextItem "Input",		"i",	"DDInputMenu"
+	TextItem "Sound",		"s",	"DDSoundOptions"
+	TextItem "Experience",	"e",	"DDramaExpMenu"
+	TextItem "More...",		"a",	"DDAdvancedOptionsMenu"
+}
+
+OptionMenu "DDAdvancedOptionsMenu"
+{
+	Title "$OPTMNU_TITLE"
+	
+	//Submenu "$OPTMNU_CONTROLS",		"CustomizeControls"
+	//Submenu "$OPTMNU_MOUSE",			"MouseOptions"
+	//Submenu "$OPTMNU_JOYSTICK",		"JoystickOptions"
+	//StaticText " "
+	
+	Submenu "$OPTMNU_PLAYER",			"PlayerMenu"
+	
+	//Submenu "$OPTMNU_GAMEPLAY",		"GameplayOptions"
+	//Submenu "$OPTMNU_COMPATIBILITY",	"CompatibilityOptions"
+	
+	Submenu "$OPTMNU_AUTOMAP",			"AutomapOptions"
+	Submenu "$OPTMNU_HUD",				"HUDOptions"
+	Submenu "$OPTMNU_MISCELLANEOUS",	"MiscOptions"
+	Submenu "$OPTMNU_SOUND",			"SoundOptions"
+	Submenu "$OPTMNU_DISPLAY",			"VideoOptions"
+	Submenu "$OPTMNU_VIDEO",			"VideoModeMenu"
+	StaticText " "
+	SafeCommand "$OPTMNU_DEFAULTS",	"reset2defaults"
+	SafeCommand	"$OPTMNU_RESETTOSAVED",	"reset2saved"
+	Command "$OPTMNU_CONSOLE",			"menuconsole"
+}

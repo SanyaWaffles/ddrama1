@@ -1,0 +1,83 @@
+// Rest-In-Peace Sound Obituaries™
+epitaph/blank			DSEMPTY								// JIC We Need a null one.
+
+// Special Condition Ones
+epitaph/lowtax			sounds/player/rip/lowtax_loser.ogg	// Lowtax asking someone if he's a loser
+epitaph/deephurting		sounds/player/rip/deephurt.ogg		// MST3K DEEP HURTING
+epitaph/joelidiot		sounds/player/rip/joel_idiot.ogg	// Joel reimagining the ending to SMW64 Bootleg
+
+// Felix The Cat Game Over ones (yes, it's safe... though the game has gore why
+// the fuck would people complain if I stuck _THAT_ image in? To be honest people
+// are way too off put by things.
+
+// So I'm putting several alerts to let people know that yes, it is VERY safe.
+epitaph/felixsafe1		sounds/player/rip/felix/safe0.ogg	// Clerks - Albert States It's Safe
+epitaph/felixsafe2		sounds/player/rip/felix/safe1.ogg	// Official GS HQRIP stating it's safe
+epitaph/felixsafe3		sounds/player/rip/felix/safe2.ogg	// Clerks - Doctor states it's very safe
+
+epitaph/felixgameover	sounds/player/rip/felix/gameover.ogg	// GAME OVER MAN GAME OVER.vgz.exe.wtf
+
+// Randomise the safe sounds
+$random	epitaph/felixsafe
+{
+	epitaph/felixsafe1
+	epitaph/felixsafe1
+	epitaph/felixsafe1
+	epitaph/felixsafe2
+	epitaph/felixsafe2
+	epitaph/felixsafe2
+	epitaph/felixsafe2
+	epitaph/felixsafe2
+	epitaph/felixsafe2
+	epitaph/felixsafe3
+	epitaph/felixsafe3
+	epitaph/felixsafe1
+	epitaph/felixsafe1
+	epitaph/felixsafe3
+	epitaph/felixsafe3
+	epitaph/felixsafe3
+}
+
+// Non-special ones
+epitaph/abelincoln		sounds/player/rip/junkie_abe.ogg	// Junkie Abe Lincoln from TWNN
+epitaph/lulelah			sounds/player/rip/lulelah.ogg		// Backwards Halelujah
+epitaph/bradjones		sounds/player/rip/prettymuch.ogg	// Brad Jones channeling NelsonJ
+epitaph/youaredead		sounds/player/rip/you_are_dead.ogg	// Total Distortion You Are Dead
+epitaph/fatabbott		sounds/player/rip/abbott.ogg		// Fat Abbott Telling Rudy He Has No Class
+epitaph/pearlcreepy		sounds/player/rip/rly_are.ogg		// Pearl from SU being creepy
+epitaph/freshoats		sounds/player/rip/snort.ogg			// Fresh Oats
+epitaph/seconds			sounds/player/rip/seconds.ogg		// Seconds From Disaster!
+epitaph/dearsister		sounds/player/rip/dearsis.ogg		// Dear Sister...
+epitaph/jontronbone		sounds/player/rip/jontronbone.ogg	// JonTron Ain't Having Sad Trombone!
+epitaph/heavydead		sounds/player/rip/heavyded.ogg		// Heavy Dead
+epitaph/hellno			sounds/player/rip/hellno.ogg		// Aw Hell Naw
+epitaph/looneytunes		sounds/player/rip/looney.ogg		// Looney Tunes ending bit
+epitaph/lemongrab		sounds/player/rip/lemongrab.ogg		// Lemongrab triggered
+epitaph/neinneinnein	sounds/player/rip/nein.ogg			// Nein Nein Nein!
+epitaph/nelsonhaha		sounds/player/rip/nelsonhaha.ogg	// Nelson from the Simpsons Laughs
+epitaph/nogod			sounds/player/rip/nogod.ogg			// Steve Corell going NO GOD PLEASE NO
+epitaph/dotheflop		sounds/player/rip/dotheflop.ogg		// Everyone Do The Flop
+epitaph/failhorns		sounds/player/rip/failhorn.ogg		// The Price Is Right fail horns (safe)
+
+// Randomize these
+$random	epitaph/main
+{
+	epitaph/abelincoln
+	epitaph/lulelah
+	epitaph/bradjones
+	epitaph/youaredead
+	epitaph/fatabbott
+	epitaph/pearlcreepy
+	epitaph/freshoats
+	epitaph/seconds
+	epitaph/dearsister
+	epitaph/jontronbone
+	epitaph/hellno
+	epitaph/looneytunes
+	epitaph/lemongrab
+	epitaph/nelsonhaha
+	epitaph/neinneinnein
+	epitaph/nogod
+	epitaph/dotheflop
+	epitaph/failhorns
+}

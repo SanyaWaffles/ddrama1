@@ -1,0 +1,68 @@
+/* *******************************************************************
+ *		pow_broken_jpeg.zsc
+ *
+ *		Broken JPEG Artifact for Daytime Drama
+ *
+ *		As long as you attribute it to me in some
+ *		way I don't mind people using this. Considering how much
+ *		some people have caused an uproar over the lack of proper
+ *		examples and the like.
+ *
+ *		Copyright Sanya K. C. Waffles 2013-2017
+ *
+ * ****************************************************************** */
+
+// The Powerup Effect gained by the powerup class
+Class DD_PowerBrokenInvisibility : PowerInvisibility
+{
+	Default
+	{
+		Powerup.Mode "Translucent";
+		Powerup.Strength 75;
+		
+		+CantSeek
+		+Shadow
+	}
+}
+
+// Actual Pickup Object
+Class DD_BrokenJPEG : PowerupGiver
+{
+	Default
+	{
+		//$Sprite MJPGA0
+		//$Title "Broken JPEG"
+		//$Category "Powerups"
+		
+		Scale 0.12;
+		Radius 12;
+		Height 24;
+		RenderStyle "Translucent";
+		Inventory.Amount 1;
+		Inventory.MaxAmount 2;
+		Inventory.InterHubAmount 2;
+		Inventory.PickupMessage "$DD_GOTJPG";
+		Inventory.PickupSound "pickups/powerup";
+		Inventory.UseSound "sanyavox/brokenjpg";
+		Inventory.Icon "STICGH";
+		Powerup.Type "DD_PowerBrokenInvisibility";
+		Powerup.Duration -35;
+		Tag "$DD_TAGJPEG";
+
+		+Inventory.InvBar
+		-Inventory.AutoActivate
+		+VisibilityPulse
+	}
+
+	States
+	{
+		Spawn:
+			MJPG AB 2 Bright;
+			TNT1 A 2 Bright;
+			MJPG CDC 2 Bright;
+			TNT1 A 2 Bright;
+			MJPG B 2 Bright;
+			Loop;
+
+	}
+}

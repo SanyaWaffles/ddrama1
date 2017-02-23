@@ -1,0 +1,251 @@
+// -------------------------------------
+// ----------- Daytime Drama -----------
+// -------------------------------------
+
+// -------------------
+// -- Enemy Attacks --
+// -------------------
+
+flickerlight2 DD_SANYA_ATK
+{
+    color 1.0 0.8 0.2
+    size 48
+    secondarySize 56
+    interval 1
+    offset 0 44 0
+}
+
+/*
+object DD_Sanya
+{
+    frame SNYAJ { light DD_SANYA_ATK }
+}
+*/
+
+flickerlight2 DD_BEAR_ATK
+{
+    color 1.0 0.8 0.2
+    size 48
+    secondarySize 56
+    interval 1
+    offset 0 40 0
+}
+
+object DD_BuddyBear
+{
+    frame BEARF { light DD_BEAR_ATK }
+}
+
+object DD_Gumball
+{
+    frame GUMBF { light DD_BEAR_ATK }
+}
+
+object DD_LotsoBear
+{
+    frame LTSOG { light DD_BEAR_ATK }
+	frame LTSOH { light DD_BEAR_ATK }
+}
+
+/* object DD_Kumasister
+{
+    frame KMA1G { light DD_BEAR_ATK }
+	frame KMA2G { light DD_BEAR_ATK }
+	frame KMA3G { light DD_BEAR_ATK }
+} */
+
+flickerlight DD_SMKYBEAR
+{
+    color 1.0 0.3 0.0
+    size 56
+    secondarysize 64
+    chance 0.1
+}
+
+flickerlight DD_SMKYBEAR_X1
+{
+    color 0.8 0.3 0.0
+    size 72
+    secondarySize 80
+    chance 0.25
+}
+
+flickerlight DD_SMKYBEAR_X2
+{
+    color 0.6 0.2 0.0
+    size 88
+    secondarySize 96
+    chance 0.25
+}
+
+flickerlight DD_SMKYBEAR_X3
+{
+    color 0.4 0.1 0.0
+    size 104
+    secondarySize 112
+    chance 0.25
+}
+
+flickerlight DD_SMKYBEAR_X4
+{
+    color 0.2 0.0 0.0
+    size 112
+    secondarySize 120
+    chance 0.25
+}
+
+object DD_SmokeyHead
+{
+    frame SMKYA { light DD_SMKYBEAR }
+	frame SMKYB { light DD_SMKYBEAR }
+	frame SMKYC { light DD_SMKYBEAR }
+	frame SMKYD { light DD_SMKYBEAR }
+	frame SMKYE { light DD_SMKYBEAR }
+	frame SMKYF { light DD_SMKYBEAR }
+	frame SMKYG { light DD_SMKYBEAR }
+
+	frame SMKYH { light DD_SMKYBEAR_X1 }
+	frame SMKYI { light DD_SMKYBEAR_X2 }
+	frame SMKYJ { light DD_SMKYBEAR_X3 }
+	frame SMKYK { light DD_SMKYBEAR_X4 }
+}
+
+object DD_PurrmoidTracerFx
+{
+    frame KMSL { light DD_SMKYBEAR }
+}
+
+flickerlight2 DD_HJEFF_ATK
+{
+    color 0.9 0.3 0.6
+    size 48
+    secondarySize 56
+    interval 1
+    offset 0 40 0
+}
+
+object DD_HellaJeff
+{
+    frame HJEFG { light DD_HJEFF_ATK }
+}
+
+// -------------------
+// --  Props/Decor  --
+// -------------------
+
+flickerlight DD_PRFLAMES
+{
+    color 1.0 1.0 0.0
+    size 24
+    secondarySize 32
+    chance 0.3
+    offset 0 12 0
+}
+
+object DD_FireBase
+{
+    frame FLMS { light DD_PRFLAMES }
+}
+
+flickerlight DD_PRFLAMESTCN
+{
+    color 1.0 1.0 0.0
+    size 24
+    secondarySize 32
+    chance 0.3
+    offset 0 16 0
+}
+
+object DD_TrashCanOnFire
+{
+    frame TCFR { light DD_PRFLAMESTCN }
+}
+
+flickerlight DD_PRCANDLELIT
+{
+    color 1.0 1.0 0.0
+    size 14
+    secondarySize 22
+    chance 0.3
+    offset 0 4 0
+}
+
+object DD_Candle
+{
+    frame CNDL { light DD_PRCANDLELIT }
+}
+
+pointlight DD_PROPCLAMP
+{
+    color 0.8 0.8 0.0
+    size 40
+    offset 0 -18 0
+}
+
+object DD_CeilingLightHanging
+{
+    frame CLMA { light DD_PROPCLAMP }
+}
+
+pointlight DD_PROPSMLCLIGHT
+{
+    color 0.8 0.8 0.0
+    size 24
+    offset 0 -8 0
+}
+
+object DD_CeilingLightHangingSmall
+{
+    frame CLMB { light DD_PROPSMLCLIGHT }
+}
+
+pointlight DD_PROPSTREETLIT
+{
+    color 1.0 1.0 1.0
+    size 40
+    offset 0 56 0
+}
+
+object DD_StreetLightPole
+{
+    frame STL1 { light DD_PROPSTREETLIT }
+}
+
+pulselight DD_DESPAIRIUMCORELIT
+{
+    color 0.8 0.1 0.6
+    size 48
+    secondarySize 54
+    interval 0.4
+}
+
+flickerlight DD_DESPAIRCORE_X1
+{
+    color 0.9 0.3 0.6
+    size 64
+    secondarySize 72
+    chance 0.4
+}
+
+flickerlight DD_DESPAIRCORE_X2
+{
+    color 1.0 0.3 0.7
+    size 80
+    secondarySize 88
+    chance 0.4
+}
+
+object DD_DespairiumCore
+{
+    frame CORUA { light DD_DESPAIRIUMCORELIT }
+	frame CORUB { light DD_DESPAIRIUMCORELIT }
+	frame CORUC { light DD_DESPAIRIUMCORELIT }
+	frame CORUD { light DD_DESPAIRIUMCORELIT }
+}
+
+object DD_DespairiumExplosion
+{
+	frame CORXA { light DD_DESPAIRCORE_X1 }
+	frame CORXB { light DD_DESPAIRCORE_X2 }
+}
+

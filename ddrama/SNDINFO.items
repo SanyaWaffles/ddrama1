@@ -1,0 +1,40 @@
+// Pickups & Inventory
+pickups/generic				sounds/items/pickup.ogg				// Generic Pickup
+pickups/weapon				sounds/weapons/generic/raise1.ogg	// Weapon Pickup
+pickups/key					sounds/items/key.ogg				// Access Key Pickup
+pickups/armor				sounds/items/jacket.ogg				// Jacket Armor Pickup
+pickups/powerup				sounds/items/powerup.ogg			// Powerup Pickup
+pickups/cracker				sounds/env/woodcrack.ogg			// Cracker Pickup
+misc/upgradenotify			sounds/ui/upgrade.ogg				// Upgrade Notify Sound
+$volume pickups/armor 0.7
+$volume misc/upgradenotify 0.7
+$limit misc/upgradenotify 1 1024
+
+// Bulkpack
+bulkpack/use				sounds/items/gulp.ogg				// Drink Part of Bulk Health
+
+// Syo
+syopepper/use				sounds/player/syo_chord.ogg			// SyoPepper Begin (Use and Begin)
+syopepper/fanfare			sounds/player/syo_fanfare.ogg		// SyoPepper Begin (alt)
+syopepper/sneeze			sounds/player/syo_sneeze.ogg		// SyoPepper Sneeze (End of power)
+
+// Axx Spray Grenade
+axxspray/throw				sounds/sfx/melee/fist_miss.ogg		// Axx Spray throw
+axxspray/spray				sounds/sfx/brassy_hiss.ogg			// Axx Spray gas
+axxspray/shotx				sounds/env/thud.ogg					// Axx Spray land
+
+zoloft/use					sounds/items/pills.ogg				// Pills here!
+$alias zoloft/tick			zoloft/use
+$alias brokenjpg/use		menu/invalid						// Broken JPG artifact
+$alias sandals/use			menu/backup							// Use Shoes
+
+syopepper/tick				sounds/player/syo_ach.ogg			// SyoPepper Achoo
+sandals/tick				sounds/sfx/twong.ogg				// Sandals tick
+jpeg/tick					sounds/sfx/razz.ogg					// Broken JPEG tick
+
+$limit pickups/generic	1
+$limit pickups/weapon	1
+$limit pickups/key		1
+$limit pickups/armor	1
+$limit pickups/powerup	1
+$limit pickups/cracker	1

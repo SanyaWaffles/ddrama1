@@ -1,0 +1,13 @@
+glow
+{
+		Texture "textures/materials/hazards/lava1.png", F47209, 64, fullbright
+		Texture "textures/materials/hazards/lava2.png", FFD500, 64, fullbright
+		Texture "textures/materials/hazards/lavad_a.png", F0509A, 30
+		Texture "textures/materials/hazards/lavad_b.png", F0509A, 32
+		Texture "textures/materials/hazards/lavaf_a.png", F47209, 30
+		Texture "textures/materials/hazards/lavaf_b.png", F47209, 32
+		Texture "textures/materials/hazards/nuke1.png", F0509A, 64, fullbright
+		Texture "textures/materials/hazards/nuke2.png", 68C124, 64, fullbright
+		Texture "textures/materials/hazards/nuke3.png", 50AF54, 64, fullbright
+}
+

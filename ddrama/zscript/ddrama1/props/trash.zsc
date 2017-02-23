@@ -1,0 +1,166 @@
+/* *******************************************************************
+ *		trash.zsc
+ *
+ *		Trash Daytime Drama Classes
+ *
+ *		As long as you attribute it to me in some
+ *		way I don't mind people using this. Considering how much
+ *		some people have caused an uproar over the lack of proper
+ *		examples and the like.
+ *
+ *		Copyright Sanya K. C. Waffles 2013-2017
+ *
+ * ****************************************************************** */
+
+// Garbage base
+Class DD_TrashObj : DD_BreakableContainer
+{
+	Default
+	{
+		Health 5;
+		Mass 400;
+
+		+NoBlood
+		+Shootable
+		+DontGib
+	}
+	
+	void A_TrashDeath()
+	{
+		A_PlaySound("misc/tcanbreak", CHAN_BODY);
+		Actor mo = null;
+		int i;
+
+		for(i = (Random[Trash]()&4)+4; i; i--)
+		{
+			mo = Spawn("DD_FloatingPaperJunk", Pos, ALLOW_REPLACE);
+			if (mo != null)
+			{
+				mo.Vel.X = Random2[Trash]() / 64.;
+				mo.Vel.Y = Random2[Trash]() / 64.;
+				mo.Vel.Z = ((Random[Trash]() & 7) + 5) * 0.75;
+			}
+		}
+	
+		for(i = (random[TVDebris]()&3)+3; i; i--)
+		{
+			mo = Spawn("DD_MetalJunk", Pos, ALLOW_REPLACE);
+			if (mo != null)
+			{
+				mo.Vel.X = random2[TVDebris]() / 64.;
+				mo.Vel.Y = random2[TVDebris]() / 64.;
+				mo.Vel.Z = ((random[TVDebris]() & 7) + 5) * 0.75;
+			}
+		}
+		
+		A_DestroyDDContainer();
+	}
+	
+	States
+	{
+		Death:
+			TNT1 A 1 A_TrashDeath;
+			TNT1 A 2;
+			Stop;
+	}
+}
+
+// Garbage Bag Container
+Class DD_GarbageBag : DD_TrashObj
+{
+	Default
+	{
+		//$NotAngled
+		//$Title "Garbage Bag
+		//$Sprite GBAGA0
+		//$Category "Decoration"
+		
+		Height 24;
+		Radius 12;
+		
+		-Solid
+		+Shootable
+	}
+
+	States
+	{
+		Spawn:
+			GBAG A -1;
+			Stop;
+	}
+}
+
+// A breakable trash can
+Class DD_TrashCan : DD_TrashObj
+{
+	Default
+	{
+		//$NotAngled
+		//$Title "Trash Can"
+		//$Sprite TCANA0
+		//$Category "Obstacles"
+		//$ArgNEnum spawnthing
+		
+		Radius 12;
+		Height 38;
+		Mass 850;
+
+		+Solid
+		+Shootable
+		+NoBlood
+		+DontGib
+	}
+
+	States
+	{
+		Spawn:
+			TCAN A -1;
+			Stop;
+	}
+}
+
+// Rubbermaid. Break it by a rocket or expander blast
+Class DD_FlappyTrashCan : DD_TrashObj
+{
+	Default
+	{
+		//$NotAngled
+		//$Title "Rubber Trash Can"
+		//$Sprite RCANA0
+		//$Category "Obstacles"
+		//$ArgNEnum spawnthing
+		
+		Health 4;
+		Radius 12;
+		Height 38;
+		Mass 1000;
+		PainChance 255;
+
+		+Solid
+		+Shootable
+		+NoBlood
+		+DontGib
+		+NoDamage
+	}
+
+	States
+	{
+		Spawn:
+			RCAN A -1;
+			Stop;
+		
+		Pain:
+			RCAN A 1 A_PlaySound("misc/tcanping", CHAN_BODY);
+			RCAN BAC 2;
+			RCAN ABAC 4;
+			RCAN AB 8;
+			Goto Spawn;
+		
+		Pain.Rocket:
+		Pain.Webbing:
+		Pain.Expand:
+			RCAN A 0 { bNoDamage = false; }
+			RCAN A 1 A_Die;
+			Goto Death;
+	}
+}

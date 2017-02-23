@@ -1,0 +1,193 @@
+/* *******************************************************************
+ *		bonzi.zsc
+ *
+ *		BonziBuddy
+ *
+ *		As long as you attribute it to me in some
+ *		way I don't mind people using this. Considering how much
+ *		some people have caused an uproar over the lack of proper
+ *		examples and the like.
+ *
+ *		Copyright Sanya K. C. Waffles 2013-2017
+ *
+ * ****************************************************************** */
+
+Class DD_BonziShot : DD_ProjectileActor
+{
+	Default
+	{
+		Radius 6;
+		Height 8;
+		Speed 24;
+		Damage 12;
+		
+		SeeSound "bonzi/attack";
+		DeathSound "bonzi/shotx";
+	}
+
+	States
+	{
+		Spawn:
+			BNZP ABCD 3 Bright;
+			Loop;
+		
+		Death:
+			BNZE ABCD 5 Bright;
+			Stop;
+	}
+}
+
+Class DD_BonziFlames : DD_ProjectileActor
+{
+	Default
+	{
+		Radius 8;
+		Height 8;
+		Speed 24;
+		Damage 5;
+		Alpha 0.6;
+		Mass 10;
+		RenderStyle "Add";
+		
+		ReactionTime 6;
+		MaxStepHeight 4;
+		
+		SeeSound "bonzi/attack";
+		
+		-NoGravity
+	}
+	
+	States
+	{
+		Spawn:
+			BNZE B 2 Bright;
+			EXPL BC 2 Bright;
+			EXPL C 1 Bright A_Countdown;
+			Loop;
+		
+		Death:
+			BNZE DEF 2;
+			Stop;
+	}
+}
+
+Class DD_BonziBuddy : DD_Boss
+{
+	Default
+	{
+		//$Title "BONZIBuddy"
+		//$Sprite BNZIA0
+		
+		Health 600;
+		Radius 30;
+		Height 74;
+		Mass 1000;
+		Speed 8;
+		MeleeRange 40;
+		PainChance 80;
+		Species "Bonzi";
+		SeeSound "bonzi/sight";
+		PainSound "bonzi/pain";
+		DeathSound "bonzi/death";
+		ActiveSound "bonzi/active";
+		Obituary "$DD_OB_BONZI";
+		
+		+DontThrust
+	}
+	
+	void A_DDBonziFireAttack()
+	{
+		A_FaceTarget();
+		A_FatAttack1("DD_BonziFlames");
+	}
+	
+	void A_DDBonziStartAttack()
+	{
+		A_FaceTarget();
+		A_PlaySound("bonzi/raiseguns", CHAN_WEAPON);
+	}
+	
+	States
+	{
+		Spawn:
+			BNZI A 15 A_DDramaLook;
+			Loop;
+		
+		See:
+			BNZI BCDEFGFEDC 4 A_DDramaChase;
+			Loop;
+		
+		Melee:
+			BNZI HIJ 1 A_FaceTarget;
+			Goto TorchEm;
+		
+		TorchEm:
+			BNZI K 2
+			{
+				A_FaceTarget();
+				A_FatAttack1("DD_BonziFlames");
+			}
+			BNZI L 2 A_FaceTarget;
+			BNZI M 2
+			{
+				A_FaceTarget();
+				A_FatAttack1("DD_BonziFlames");
+			}
+			BNZI J 1
+			{
+				A_FaceTarget();
+				
+				if (target)
+				{
+					if (!CheckIfCloser(target, (radius + Random[HellaJeff](24,32)), false))
+					{
+						return ResolveState("TorchEmEnd");
+					}
+				}
+				return ResolveState(null);
+			}
+			Loop;
+		
+		TorchEmEnd:
+			BNZI JIH 1;
+			Goto See;
+		
+		Missile:
+			BNZI H 8
+			{
+				A_FaceTarget();
+				A_PlaySound("bonzi/raiseguns", CHAN_WEAPON);
+			}
+			BNZI I 8 A_FaceTarget;
+			BNZI J 24 A_FaceTarget;
+			BNZI K 4 A_FatAttack1("DD_BonziShot");
+			BNZI LMJ 4 A_FaceTarget;
+			BNZI K 4 A_FatAttack2("DD_BonziShot");
+			BNZI LMJ 4 A_FaceTarget;
+			BNZI K 4 A_FatAttack3("DD_BonziShot");
+			BNZI LM 4 A_FaceTarget;
+			Goto See;
+		
+		Pain:
+			BNZI N 3;
+			BNZI N 3 A_Pain;
+			Goto See;
+
+		Death:
+		Death.Rocket:
+		Death.Webbing:
+		Death.Expand:
+		Death.Shou:
+		Death.Extreme:
+			BNZI O 8 A_ScreamAndUnblock;
+			BNZI P 8;
+			BNZI Q 8;
+			BNZI R 35 A_DDGivePlayerOneLiner;
+			BNZI R -1 A_BossDeath;
+			Stop;
+		
+		Raise:
+		Crush:
+			Stop;
+	}
+}

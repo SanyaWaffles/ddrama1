@@ -1,0 +1,155 @@
+/* *******************************************************************
+ *		rest_in_peace.zsc
+ *
+ *		Rest In Peace Tokens
+ *
+ *		As long as you attribute it to me in some
+ *		way I don't mind people using this. Considering how much
+ *		some people have caused an uproar over the lack of proper
+ *		examples and the like.
+ *
+ *		Copyright Sanya K. C. Waffles 2013-2017
+ *
+ * ****************************************************************** */
+
+Class DD_VOX_RIPInPeace_Ctr : Inventory
+{
+	Default
+	{
+		Inventory.Amount 1;
+		Inventory.MaxAmount 32;
+	}
+}
+
+Class DD_VOX_RIPFelixHet : DD_VOX_Base
+{
+	States
+	{
+		Pickup:
+			Goto PlaySound;
+		
+		PlaySound:
+			TNT1 A 0
+			{
+				A_PlaySound("epitaph/felixgameover", (DDPLAYER_VOICECHAN), DDPLAYER_RIPVOL, true, ATTN_NONE);
+				return true;
+			}
+			Stop;
+	}
+}
+
+Class DD_VOX_RIPFelixHetStop : DD_VOX_Base
+{
+	States
+	{
+		Pickup:
+			Goto PlaySound;
+		
+		PlaySound:
+			TNT1 A 0
+			{
+				A_StopSound(CHAN_VOICE);
+				return true;
+			}
+			Stop;
+	}
+}
+
+Class DD_VOX_RIPInPeace : DD_VOX_Base
+{
+	States
+	{
+		Pickup:
+			TNT1 A 0
+			{
+				if(Random[VOX](0, 1))
+				{
+					return ResolveState("PlaySound");
+				}
+				return ResolveState(null);
+			}
+			Stop;
+		
+		PlaySound:
+			TNT1 A 0
+			{
+				CallACS("DDLib_StopMusic");	// hmmm...
+				
+				// only do this if this is true
+				if(GetCvar("dd_snd_oneliners"))
+				{
+					A_GiveInventory("DD_VOX_RIPInPeace_Ctr", (random[DD_RIPINPEACE](1,15)));
+					
+					if (CountInv("DD_VOX_RIPInPeace_Ctr") >= 12)
+					{
+						// Felix The Cat (it's safe, dun worry!)
+						if (CountInv("DD_VOX_RIPInPeace_Ctr") == 12)
+						{
+							CallACS("DDLib_Het", 3, 0, 0);
+							A_Print("\cj[ OA ]        [ HET ]", 30, "BigFont");
+							A_PlaySound("epitaph/felixsafe", (DDPLAYER_VOICECHAN), DDPLAYER_RIPVOL, false, ATTN_NONE);
+							return true;
+						}
+						
+						// Deep Hurting
+						if (CountInv("DD_VOX_RIPInPeace_Ctr") == 13)
+						{
+							A_Print("\cgDEEP HURTING", 15, "BigFont");
+							A_PlaySound("epitaph/deephurting", (DDPLAYER_VOICECHAN), DDPLAYER_RIPVOL, false, ATTN_NONE);
+							return true;
+						}
+						
+						// loser (METROIDS PRIM)
+						if (CountInv("DD_VOX_RIPInPeace_Ctr") == 14)
+						{
+							A_Print("\cgloser", 2);
+							A_PlaySound("epitaph/lowtax", (DDPLAYER_VOICECHAN), DDPLAYER_RIPVOL, false, ATTN_NONE);
+							return true;
+						}
+						
+						// Jeopardy
+						if (CountInv("DD_VOX_RIPInPeace_Ctr") == 15)
+						{
+							CallACS("DDLib_JeopardyGameOver", 0, 0, 0);
+							A_Print("\cjYOU FUCKING IDIOT", 15, "BigFont");
+							A_PlaySound("epitaph/joelidiot", (DDPLAYER_VOICECHAN), DDPLAYER_RIPVOL, false, ATTN_NONE);
+							return true;
+						}
+					}
+					
+					A_PlaySound("epitaph/main", (DDPLAYER_VOICECHAN), DDPLAYER_RIPVOL, false, ATTN_NONE);
+					return true;
+				}
+				return true;
+			}
+			Stop;
+	}
+}
+
+
+
+Class DD_VOX_RIPInPeace2 : DD_VOX_RIPInPeace
+{
+	States
+	{
+		Pickup:
+			TNT1 A 0
+			{
+				if(Random[VOX](0, 4) > 1)
+				{
+					return ResolveState("PlaySound");
+				}
+				return ResolveState(null);
+			}
+			Stop;
+	}
+}
+
+Class DD_VOX_RIPInPeaceForSure : DD_VOX_RIPInPeace
+{
+	States
+	{
+		Pickup:
+			Goto PlaySound;
+	}
+}

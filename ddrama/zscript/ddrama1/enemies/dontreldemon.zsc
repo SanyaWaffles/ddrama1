@@ -1,0 +1,191 @@
+/* *******************************************************************
+ *		flaming_firecrown.zsc
+ *
+ *		Dontreldemon
+ *
+ *		As long as you attribute it to me in some
+ *		way I don't mind people using this. Considering how much
+ *		some people have caused an uproar over the lack of proper
+ *		examples and the like.
+ *
+ *		Copyright Sanya K. C. Waffles 2013-2017
+ *
+ * ****************************************************************** */
+
+Class DD_KorezBall : DD_ProjectileActor
+{
+	Default
+	{
+		Radius 6;
+		Height 8;
+		Speed 10;
+		FastSpeed 12;
+		Damage 4;
+		RenderStyle "Add";
+		Alpha 0.6;
+		SeeSound "dontrel/attack";
+		DeathSound "dontrel/shotx";
+	}
+
+	States
+	{
+		Spawn:
+			KORE A 4 Bright;
+			Loop;
+		
+		Death:
+			KOXP ABC 6 Bright;
+			Stop;
+	}
+}
+
+Class DD_Dontreldemon : DD_Enemy
+{
+	Default
+	{
+		//$Title "Dontreldemon"
+		//$Sprite DONTA0B0
+		
+		Health 220;
+		Radius 18;
+		Height 44;
+		Mass 400;
+		Speed 8;
+		FloatSpeed 8;
+		PainChance 128;
+		MeleeRange 40;
+		Species "Ghoul";
+		SeeSound "dontrel/sight";
+		PainSound "dontrel/pain";
+		DeathSound "dontrel/death";
+		ActiveSound "dontrel/active";
+		Obituary "$DD_OB_DONTREL";
+
+		-FloorClip
+		+Float
+		+NoGravity
+		+DontThrust
+	}
+	
+	const DONTRELTHRUSTING = 12;
+	
+	// Dontrel attack 'choosing'
+	state DD_DontrelAttackChoose()
+	{
+		A_FaceTarget();
+		
+		if (!(random[Dontreldemon](1, 5) % 2)) return ResolveState("AttackThrust");
+		
+		return ResolveState("AttackKore");
+	}
+	
+	// Projectile Attack/Nomming attack
+	void DD_DontrelKorezAttack()
+	{
+		if (target && target.health > 0) A_CustomComboAttack("DD_KorezBall", 32, (random[Dontreldemon](1, 6) * 2), "dontrel/melee");
+	}
+	
+	// Do the scale.x flipping
+	private void DD_DontrelFlip()
+	{
+		A_SetScale(-(Scale.X), Scale.Y);
+	}
+	
+	// Flip sprite left/right/left like toy soldier
+	void DD_DontrelChase()
+	{
+		int dontrelflip = random[Dontreldemon](1,8);
+		
+		if (!(dontrelflip % 2) && dontrelflip <= 4)
+			DD_DontrelFlip();
+		
+		A_DDramaChase();
+	}
+	
+	// Thrust towards the player unless the player
+	// has caught the Syo
+	void A_DDDontrelThrust()
+	{
+		bFrightened = CountInv("DD_SyoPepperPowerStrength", AAPTR_TARGET);
+		
+		if (bFrightened)
+			return;
+		
+		A_PlaySound("dontrel/sight", CHAN_BODY, 1.0);
+		A_FaceTarget();
+		A_SkullAttack(DONTRELTHRUSTING);
+	}
+	
+	// Check if the target is alive and if close enough thrusting might catch them by surprise
+	state A_DDDontrelCheck()
+	{
+		if (target && target.health > 0)
+		{
+			if (CheckIfCloser(target, (radius + 72), true))
+				return ResolveState("AttackThrust");
+		}
+		
+		return ResolveState(null);
+	}
+	
+	// PAIN. GLORIOUS PAIN
+	void A_DDDontrelPain()
+	{
+		if (Scale.X < 0) DD_DontrelFlip();
+		
+		bFrightened = CountInv("DD_SyoPepperPowerStrength", AAPTR_TARGET);
+		
+		A_Pain();
+	}
+
+	States
+	{
+		Spawn:
+			DONT A 10 A_DDramaLook;
+			Loop;
+		
+		See:
+			DONT AAAAAA 2 DD_DontrelChase;
+			Loop;
+		
+		Missile:
+			DONT A 1 DD_DontrelAttackChoose;
+			Goto AttackKore;
+		
+		AttackKore:
+			DONT CD 5 A_FaceTarget;
+			DONT E 5 DD_DontrelKorezAttack;
+			Goto See;
+			
+		AttackThrust:
+			DONT A 1 A_FaceTarget;
+			DONT A 1 A_DDDontrelThrust;
+			DONT A 1 A_DDDontrelCheck;
+			Goto See;
+		
+		Pain:
+			DONT F 3 DD_DontrelFlip;
+			DONT F 3 A_DDDontrelPain;
+			Goto See;
+		
+		Death:
+		Death.Rocket:
+		Death.Shou:
+		Death.Extreme:
+			DONT H 8;
+			DONT I 8 A_ScreamAndUnblock;
+			DONT J 8 A_SetFloorClip;
+			DONT K 35 A_DDGivePlayerOneLiner;
+			DONT K -1;
+			Stop;
+		
+		Death.Expand:
+			DONT F 1 A_SetScale(abs(Scale.X), abs(Scale.Y));	// make the scale absolute (no flipping)
+			Goto Super::Death.Expand;
+		
+		Raise:
+			DONT K 8 A_UnSetFloorClip;
+			DONT GKF 8;
+			Goto See;
+	}
+}

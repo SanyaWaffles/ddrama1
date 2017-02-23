@@ -1,0 +1,94 @@
+/* *******************************************************************
+ *		urinal.zsc
+ *
+ *		Urninal
+ *
+ *		As long as you attribute it to me in some
+ *		way I don't mind people using this. Considering how much
+ *		some people have caused an uproar over the lack of proper
+ *		examples and the like.
+ *
+ *		Copyright Sanya K. C. Waffles 2013-2017
+ *
+ * ****************************************************************** */
+
+// Urinal Texture
+Class DD_Urinal : DD_SwitchableDecoration
+{
+	Default
+	{
+		//$Title "Urinal"
+		//$Category "Decoration"
+		//$Color 4
+		
+		Radius 20;
+		Height 60;
+		Health 5;
+		Mass 1000;
+		VSpeed 0;
+		Activation THINGSPEC_Default | THINGSPEC_Switch | THINGSPEC_NoDeathSpecial;
+		
+		-Solid
+		+UseSpecial
+		+Shootable
+		+NoBlood
+		+DontGib
+		+DontFall
+		+NoGravity
+		+DontThrust
+		+NoTeleport
+		+WallSprite
+	}
+	
+	void A_ToggleUrinalStart()
+	{
+		A_DisableSpecial();
+		A_PlaySound("misc/toiletflush", CHAN_BODY);
+		A_Stop();
+	}
+	
+	void A_UrinalXPlode()
+	{
+		A_PlaySound("misc/tcanbreak", CHAN_BODY);
+		A_DisableSpecial();
+		A_NoBlocking();
+		
+		Actor mo = null;
+		int i;
+		
+		for(i = (random[TVDebris]()&3)+3; i; i--)
+		{
+			mo = Spawn("DD_MetalJunk", pos, ALLOW_REPLACE);
+			if (mo != null)
+			{
+				mo.Vel.X = random2[TVDebris]() / 64.;
+				mo.Vel.Y = random2[TVDebris]() / 64.;
+				mo.Vel.Z = ((random[TVDebris]() & 3) + 5) * 0.75;
+			}
+		}
+		A_PlaySound("misc/watergush", CHAN_BODY, 0.5, true, ATTN_NORM);
+		A_Stop();
+	}
+
+	States
+	{
+		Active:
+		Inactive:
+			URNL A 1 A_ToggleUrinalStart;
+			URNL A 38;
+			URNL A 1 A_EnableSpecial;
+			Goto Spawn;
+		
+		Spawn:
+			URNL A 1 A_Stop;
+			Loop;
+			
+		Death:
+			URNL B 0 A_UrinalXPlode;
+			Goto DeathLoop;
+		
+		DeathLoop:
+			URNL BC 2 A_Stop;
+			Loop;
+	}
+}

@@ -1,0 +1,44 @@
+/* *******************************************************************
+ *		manholecvr.zsc
+ *
+ *		Manhole Cover
+ *
+ *		As long as you attribute it to me in some
+ *		way I don't mind people using this. Considering how much
+ *		some people have caused an uproar over the lack of proper
+ *		examples and the like.
+ *
+ *		Copyright Sanya K. C. Waffles 2013-2017
+ *
+ * ****************************************************************** */
+
+Class DD_ManholeCover : DD_Decoration
+{
+	Default
+	{
+		//$NotAngled
+		//$Title "Manhole Cover"
+		//$Sprite MHLEA0
+		//$Category "Decoration"
+		
+		Radius 1;
+		Height 1;
+		
+		+FlatSprite
+		+RollSprite
+		+DontFlip
+		+RollCenter
+		+NoBlockMap
+		+RelativeToFloor
+		+Float
+		+NoGravity
+		-FloorClip
+	}
+
+	States
+	{
+		Spawn:
+			MHLE A -1;
+			Stop;
+	}
+}

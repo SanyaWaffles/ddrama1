@@ -1,0 +1,74 @@
+//$GZ_SKIP
+
+brightmap texture "textures/doors/LCARDBLU.png"
+{
+	map "brightmap/textures/doors/LCARDBLU.png"
+	thiswad
+}
+
+brightmap texture "textures/doors/LCARDGRN.png"
+{
+	map "brightmap/textures/doors/LCARDGRN.png"
+	thiswad
+}
+
+brightmap texture "textures/doors/LCARDRED.png"
+{
+	map "brightmap/textures/doors/LCARDRED.png"
+	thiswad
+}
+
+brightmap texture "textures/doors/LCARDYEL.png"
+{
+	map "brightmap/textures/doors/LCARDYEL.png"
+	thiswad
+}
+
+brightmap texture "textures/doors/LOCK0B.png"
+{
+	map "brightmap/textures/doors/LOCK0.png"
+	thiswad
+}
+
+brightmap texture "textures/doors/LOCK0G.png"
+{
+	map "brightmap/textures/doors/LOCK0.png"
+	thiswad
+}
+
+brightmap texture "textures/doors/LOCK0R.png"
+{
+	map "brightmap/textures/doors/LOCK0.png"
+	thiswad
+}
+
+brightmap texture "textures/doors/LOCK0Y.png"
+{
+	map "brightmap/textures/doors/LOCK0.png"
+	thiswad
+}
+
+brightmap texture "textures/freeway/HWYALRT0.png"
+{
+	map "brightmap/textures/freeway/HWYALRT0.png"
+	thiswad
+}
+
+brightmap texture "textures/freeway/TLITE001.png"
+{
+	map "brightmap/textures/freeway/TLITE001.png"
+	thiswad
+}
+
+brightmap texture "textures/light/LITE00.png"
+{
+	map "brightmap/textures/light/LITE00.png"
+	thiswad
+}
+
+brightmap texture "textures/light/LITE10.png"
+{
+	map "brightmap/textures/light/LITE00.png"
+	thiswad
+}
+

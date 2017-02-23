@@ -1,0 +1,157 @@
+/* *******************************************************************
+ *		barrels.zsc
+ *
+ *		Barrel-related Daytime Drama Classes
+ *
+ *		As long as you attribute it to me in some
+ *		way I don't mind people using this. Considering how much
+ *		some people have caused an uproar over the lack of proper
+ *		examples and the like.
+ *
+ *		Copyright Sanya K. C. Waffles 2013-2017
+ *
+ * ****************************************************************** */
+
+// Exploding Barrel that has a big fireball that can gib lesser enemies around it.
+// Red in appearance with hazard labels.
+Class DD_ExplodingBarrel : DD_Prop
+{
+	Default
+	{
+		//$NotAngled
+		//$Title "Explosive Barrel"
+		//$Sprite BAR1A0
+		//$Category "Obstacles"
+		
+		Health 20;
+		Radius 16;
+		Height 36;
+		Mass 1280;
+		DeathSound "world/barrelx";
+		DamageType "Extreme";
+		Obituary "$OB_BARREL";
+
+		+Shootable
+		+NoBlood
+		+DontGib
+	}
+	
+	void A_ExplodeDDBarrel()
+	{
+		A_SpawnItemEx("DD_ExplosionFX1", 0, 0, ((height/2) + 16), flags:SXF_NOCHECKPOSITION);
+		A_Explode(128, 128, XF_NOTMISSILE, false, 0, 0, 0, "DD_BulletPuff", "Extreme");
+	}
+
+	States
+	{
+		Spawn:
+			BAR1 A -1;
+			Stop;
+		
+		Death:
+			BAR1 B 5 Bright A_Scream;
+			BAR1 C 5 Bright A_ExplodeDDBarrel;
+			BAR1 C 2 A_FadeOut(0.2, true);
+			Wait;
+	}
+}
+
+// Explosion object thing
+Class DD_ExplosionFX1 : DD_Decoration
+{
+	Default
+	{
+		VSpeed 4;
+		Speed 0;
+		Radius 8;
+		Height 8;
+		Gravity 0.0;
+		Scale 0.24;
+		Renderstyle "Add";
+		DeathSound "world/barrelx";
+		DamageType "Extreme";
+		Alpha 0.7;
+
+		+NoGravity
+	}
+
+	States
+	{
+		Spawn:
+			TNT1 A 1 NoDelay A_Die;
+			Goto Death;
+			
+		Death:
+			EXPL A 3 Bright A_Scream;
+			EXPL B 3 Bright A_Quake(4, 14, 0, 1096);
+			EXPL CDEFG 3 Bright;
+			EXPL I 1 A_FadeOut(0.3, true);
+			Wait;
+	}
+}
+
+// Regular non-exploding barrel. Kind of has a desaturated
+// dark green look and no hazard markings.
+Class DD_Barrel : DD_Prop
+{
+	Default
+	{
+		//$NotAngled
+		//$Title "Barrel"
+		//$Sprite BCANA0
+		//$Category "Obstacles"
+		
+		Radius 16;
+		Height 36;
+	}
+
+	States
+	{
+		Spawn:
+			BCAN A -1;
+			Stop;
+	}
+}
+
+// Trash can on fire, can emit noise but doesn't
+// damage the player or enemies
+Class DD_TrashCanOnFire : DD_Prop
+{
+	Default
+	{
+		Radius 12;
+		Height 48;
+		
+		//$Title "Flames in Trash Can"
+		//$Sprite TCFRA0
+		//$Category "Light sources"
+		//$Color 3
+		
+		//$Arg0 "Noise"
+		//$Arg0Default 1
+		//$Arg0Type 11
+		//$Arg0Enum { 0 = "Nothing"; 1 = "Noise"; }
+	}
+	
+	bool emitsnoise;
+		
+	override void PostBeginPlay()
+	{
+		emitsnoise = (bool)(args[0]);
+	}
+	
+	void A_BarrelFireCrackle()
+	{
+		if (emitsnoise)
+		{
+			A_PlaySound("world/fire", CHAN_BODY, 0.5, true, ATTN_STATIC);
+		}
+	}
+	
+	States
+	{
+		Spawn:
+			TCFR ABCDEFEDCB 3 Bright A_BarrelFireCrackle;
+			Loop;
+	}
+}

@@ -1,0 +1,42 @@
+/* *******************************************************************
+ *		marshal.zsc
+ *
+ *		Marshal
+ *
+ *		As long as you attribute it to me in some
+ *		way I don't mind people using this. Considering how much
+ *		some people have caused an uproar over the lack of proper
+ *		examples and the like.
+ *
+ *		Copyright Sanya K. C. Waffles 2013-2017
+ *
+ * ****************************************************************** */
+
+
+Class DD_Marshal : DD_Hostage
+{
+	Default
+	{
+		//$Title "Marshal"
+		//$Sprite HST2A0
+		
+		ActiveSound "hostages/marshal";
+	}
+	
+	States
+	{
+		Inactive:
+			HST2 A 0;
+			Goto Spawn;
+		
+		Active:
+			HST2 A 0;
+			Goto Spawn;
+		
+		Spawn:
+			HST2 A 150 NoDelay A_NPCCallout;
+			HST2 A 150;
+			Loop;
+	}
+}
+

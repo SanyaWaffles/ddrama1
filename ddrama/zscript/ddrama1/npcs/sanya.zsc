@@ -1,0 +1,85 @@
+/* *******************************************************************
+ *		sanya.zsc
+ *
+ *		sanya cutscene object
+ *
+ *		As long as you attribute it to me in some
+ *		way I don't mind people using this. Considering how much
+ *		some people have caused an uproar over the lack of proper
+ *		examples and the like.
+ *
+ *		Copyright Sanya K. C. Waffles 2013-2017
+ *
+ * ****************************************************************** */
+
+
+Class DD_CSSanya : DD_NPC
+{
+	Default
+	{
+		//$Title "Sanya (Cutscene)"
+		//$Sprite CSN1A0
+		
+		Height 56;
+		Radius 24;
+		Scale 0.12;
+	}
+	
+	enum SanyaCSStates
+	{
+		SANYACS_IDLE = 1,
+		SANYACS_HANDSINAIR = 2,
+		SANYACS_GUNFLASH = 3,
+		SANYACS_PEACE = 4,
+	};
+	
+	void A_ChangeSanyaSprite()
+	{
+		static const StateLabel syStates[] =
+		{
+			"IdleTalk",
+			"HandsInAir",
+			"GunFlashing",
+			"Peace"
+		};
+		
+		if (!InStateSequence(ResolveState(syStates[user_statetochange-1]), CurState))
+		{
+			SetStateLabel(syStates[user_statetochange-1]);
+			return;
+		}
+		
+		SetStateLabel("IdleTalk");
+	}
+	
+	override void Tick()
+	{
+		A_ChangeSanyaSprite();
+		Super.Tick();
+	}
+	
+	States
+	{
+		Spawn:
+		IdleTalk:
+			CSN1 A 5;
+			CSN1 B 5;
+			Loop;
+		
+		HandsInAir:
+			CSN2 A 5;
+			CSN2 B 5;
+			Loop;
+		
+		GunFlashing:
+			CSN3 A 5;
+			CSN3 B 5;
+			Loop;
+		
+		Peace:
+			CSN4 A 5;
+			CSN4 B 5;
+			Loop;
+	}
+}
+

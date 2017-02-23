@@ -1,0 +1,112 @@
+$pitchshiftrange 0
+
+// Brony of Hell
+brony/sight1			sounds/enemies/brony/git_it.ogg
+brony/sight2			sounds/enemies/brony/iwanna_fweephue.ogg
+brony/sight3			sounds/enemies/brony/must_be_fresh.ogg
+brony/sight4			sounds/enemies/brony/must_be_blood.ogg
+$random brony/sight
+{
+	brony/sight1
+	brony/sight2
+	brony/sight3
+	brony/sight4
+}
+
+brony/pain				sounds/enemies/brony/pain.ogg
+brony/death				sounds/enemies/brony/imma_goner.ogg
+$alias brony/meleehit	fist/hit
+$alias brony/meleemiss	fist/miss
+brony/attack			sounds/sfx/balls/fire.ogg
+brony/shotx				sounds/sfx/balls/hit.ogg
+brony/dudebrotv1		sounds/enemies/brony/cut_the_crap.ogg
+brony/dudebrotv2		sounds/enemies/brony/no_favors.ogg
+brony/dudebrotv3		sounds/enemies/brony/fweep_me.ogg
+$random brony/dudebrotv
+{
+	brony/dudebrotv1
+	brony/dudebrotv2
+	brony/dudebrotv3
+}
+brony/active1			sounds/enemies/brony/laugh.ogg
+brony/active2			sounds/enemies/brony/more.ogg
+brony/active3			sounds/enemies/brony/cut_the_crap.ogg
+brony/active4			sounds/enemies/brony/must_be_fresh.ogg
+$random brony/active
+{
+	brony/active1
+	brony/active2
+	brony/active3
+}
+
+// Monokuma
+monokuma/sight1			sounds/enemies/monokuma/getpsyched.ogg
+monokuma/sight2			sounds/enemies/monokuma/punish.ogg
+monokuma/active1		sounds/enemies/monokuma/laugh.ogg
+monokuma/active2		sounds/enemies/monokuma/yahoo.ogg
+monokuma/thrust			sounds/weapons/despairium/hiss.ogg
+monokuma/explode		sounds/sfx/booms/boom1.ogg
+monokuma/rocketx		sounds/weapons/rocket_launcher/explode.ogg
+
+$alias monokuma/plasmaf	weapons/despairx
+$alias monokuma/plasmax	weapons/despairf
+$alias monokuma/headx	monokuma/explode
+$random monokuma/sight
+{
+	monokuma/sight1
+	monokuma/sight2
+}
+$random monokuma/active
+{
+	monokuma/active1
+	monokuma/active2
+}
+
+//
+// Junko Enoshima
+//
+// Active
+junko_bored/active1			sounds/enemies/junko/boring.ogg			/* "So boring" */
+junko_bored/active2			sounds/enemies/junko/stubborn.ogg		/* "Stubborn to the very end, huh?" */
+junko_bored/active3			sounds/enemies/junko/hurryup.ogg		/* "Then let's just get this over with */
+junko_genki/active1			sounds/enemies/junko/laugh1.ogg			// Excited laugh
+junko_blues/active1			sounds/enemies/junko/closesoon.ogg		/* "We have to draw this to a close soon" */
+junko_generic/active1		sounds/enemies/junko/laugh2.ogg			// Laugh #1
+junko_generic/active2		sounds/enemies/junko/laugh3.ogg			// Laugh #2
+
+// Death Sounds
+junko_genki/death1			sounds/enemies/junko/death1.ogg		// "THIS IS THE BEST!"
+junko_orgasm/death1			sounds/enemies/junko/death2.ogg		// "So this is despair..."
+junko_orgasm/death2			sounds/enemies/junko/death3.ogg		/* "So this is how the despair of death feels! */
+junko_orgasm/death3			sounds/enemies/junko/death4.ogg		/* "It's so wonderful~!" */
+junko_orgasm/death4			sounds/enemies/junko/death5.ogg		/* Despair in its mouth! */
+
+// See Sounds
+junko_generic/sight1		sounds/enemies/junko/letsdothis.ogg		/* "Let's Do This!" */
+junko_generic/sight2		sounds/enemies/junko/punishtime.ogg		/* "It's PUNISHMENT TIME!" */
+
+// Pain
+junkoboss/pain				sounds/enemies/junko/pain.ogg
+junkoboss/syo_melee			sounds/sfx/melee/claw.ogg
+junkoboss/shearsf			sounds/sfx/melee/fist_miss.ogg
+junkoboss/shearsx			sounds/sfx/twong.ogg
+junkoboss/smart_ui			sounds/ui/notify.ogg
+junkoboss/shroomf			sounds/sfx/melee/fist_miss.ogg
+
+$alias	junkoboss/shroomx	junkoboss/shearsx
+$random	junkoboss/active
+{
+	junko_bored/active1
+	junko_bored/active2
+	junko_bored/active3
+	junko_genki/active1
+	junko_blues/active1
+	junko_generic/active1
+	junko_generic/active2
+}
+$random	junkoboss/sight
+{
+	junko_generic/sight1
+	junko_generic/sight2
+}
+$alias	junkoboss/death	junko_genki/death1

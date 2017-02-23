@@ -1,0 +1,207 @@
+/* *******************************************************************
+ *		hella_jeff.zsc
+ *
+ *		Hella Jeff / Prison Guard
+ *
+ *		As long as you attribute it to me in some
+ *		way I don't mind people using this. Considering how much
+ *		some people have caused an uproar over the lack of proper
+ *		examples and the like.
+ *
+ *		Copyright Sanya K. C. Waffles 2013-2017
+ *
+ * ****************************************************************** */
+
+Class DD_HellaJeffBall : DD_DespairPlasmaBall
+{
+	Default
+	{
+		Radius 8;
+		Height 8;
+		Speed 20;
+		Damage 2;
+		
+		SeeSound "hjeff/plasmaf";
+		DeathSound "hjeff/plasmax";
+	}
+}
+
+Class DD_HellaJeffDorito : DD_ProjectileActor
+{
+	Default
+	{
+		Radius 6;
+		Height 8;
+		Speed 12;
+		FastSpeed 16;
+		Damage 4;
+		DamageType "Dorito";
+		SeeSound "hjeff/doritof";
+		DeathSound "hjeff/doritox";
+	}
+	
+	States
+	{
+		Spawn:
+			DRTO ABABAB 2;
+			loop;
+		
+		Death:
+			DRTO CDE 3;
+			Stop;
+	}
+}
+
+Class DD_HellaJeff : DD_Enemy
+{
+	Default
+	{
+		//$Title "Hella Jeff"
+		//$Sprite HJEFA0
+		
+		Radius 15;
+		Height 54;
+		Mass 400;
+		Health 200;
+		PainChance 128;
+		PainChance "Dorito", 0;
+		Species "Gamebro";
+		Speed 12;
+		MeleeRange 80;
+		SeeSound "hjeff/sight";
+		PainSound "hjeff/pain";
+		DeathSound "hjeff/death";
+		ActiveSound "hjeff/active";
+		DamageFactor "Normal", 1.0;
+		DamageFactor "Rocket", 0.7;
+		DamageFactor "Expand", 0.7;
+		DamageFactor "Webbing", 0.7;
+		DamageFactor "Dorito", 0.1;
+		Obituary "$DD_OB_HJEFF";
+
+		+NeverRespawn
+		+DontMorph
+	}
+	
+	void A_DDHellaJeffReFire()
+	{
+		// keep firing unless target got out of sight
+		A_FaceTarget();
+		if (Random[HellaJeff](0, 100) >= 67)
+		{
+			if (!target || HitFriend() || target.health <= 0 || !CheckSight(target, SF_SEEPASTBLOCKEVERYTHING|SF_SEEPASTSHOOTABLELINES))
+			{
+				SetState(SeeState);
+			}
+		}
+	}
+	
+	state A_DDHellaJeffAttackChoose()
+	{
+		if (target)
+		{
+			if (target.health <= 0)
+			{
+				return ResolveState(null);
+			}
+			
+			if (CheckIfCloser(target, (radius + Random[HellaJeff](24,32)), false))
+			{
+				return ResolveState("DoritoBomb");
+			}
+			else
+			{
+				return ResolveState("DespairShot");
+			}
+		}
+		
+		return ResolveState(null);
+	}
+	
+	void A_DDHellaJeffDoritoYell()
+	{
+		A_FaceTarget();
+		A_PlaySound("hjeff/alert", CHAN_VOICE);
+	}
+	
+	state A_DDHellaJeffPainSelect()
+	{
+		// keep firing unless target got out of sight
+		if ((Random[HellaJeff](1, 100) % 2) == 0)
+			return ResolveState("Pain1");
+		
+		return ResolveState("Pain2");
+	}
+	
+	void A_DDHellaJeffDropItem()
+	{
+		A_FaceTarget();
+		A_ScreamAndUnblock();
+		A_DropItem("DD_DespairiumRifle", -1, 128);
+	}
+	
+	void A_DDHellaJeffDeath()
+	{
+		ThrustThing(angle * 256 / 360 + 128, 56, true);	// Make him go into a different game
+		A_FadeTo(0.1, 0.1, true);	// Make him go into a different game
+		A_FaceTarget();
+	}
+
+	States
+	{
+		Spawn:
+			HJEF A 5 A_DDramaLook;
+			Loop;
+			
+		See:
+			HJEF BCDEBCDE 2 A_DDramaChase;
+			Loop;
+		
+		Missile:
+		Melee:
+			HJEF A 0 A_DDHellaJeffAttackChoose;
+			goto DespairShot;
+		
+		DespairShot:
+			HJEF F 5 A_FaceTarget;
+			HJEF G 3 Bright A_SpawnProjectile("DD_HellaJeffBall");
+			HJEF F 2 A_DDHellaJeffReFire;
+			goto DespairShot+1;
+		
+		DoritoBomb:
+			HJEF H 4 A_DDHellaJeffDoritoYell;
+			HJEF I 2 A_SpawnProjectile("DD_HellaJeffDorito");
+			HJEF I 1;
+			goto See;
+		
+		Pain:
+			HJEF J 0 A_DDHellaJeffPainSelect;
+			goto Pain1;
+		
+		Pain1:
+			HJEF J 2;
+			HJEF J 2 A_Pain;
+			Goto See;
+		
+		Pain2:
+			HJEF K 2;
+			HJEF K 2 A_Pain;
+			Goto See;
+		
+		Death.Despair:
+		Death.Expand:
+		Death.Rocket:
+		Death.Shou:
+		Death.Extreme:
+		Death:
+			HJEF L 1 A_DDHellaJeffDropItem;
+			Goto DeathLoop;
+		
+		DeathLoop:
+			HJEF M 3 A_DDHellaJeffDeath;
+			Loop;
+			
+		Raise:
+			Stop;
+	}
+}

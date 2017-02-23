@@ -1,0 +1,42 @@
+/* *******************************************************************
+ *		ice_bear.zsc
+ *
+ *		Ice Bear
+ *
+ *		As long as you attribute it to me in some
+ *		way I don't mind people using this. Considering how much
+ *		some people have caused an uproar over the lack of proper
+ *		examples and the like.
+ *
+ *		Copyright Sanya K. C. Waffles 2013-2017
+ *
+ * ****************************************************************** */
+
+
+Class DD_IceBear : DD_Hostage
+{
+	Default
+	{
+		//$Title "Ice Bear"
+		//$Sprite HST0A0
+		
+		ActiveSound "hostages/icebear";
+	}
+	
+	States
+	{
+		Inactive:
+			HST0 A 0;
+			Goto Spawn;
+		
+		Active:
+			HST0 A 0;
+			Goto Spawn;
+		
+		Spawn:
+			HST0 A 150 NoDelay A_NPCCallout;
+			HST0 A 150;
+			Loop;
+	}
+}
+

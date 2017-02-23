@@ -1,0 +1,275 @@
+Resolution 320, 200;
+Height 32;
+LowerHealthCap true;
+CompleteBorder true;
+
+StatusBar FullScreen, fullscreenoffsets, forcescaled
+{
+	InInventory Not DD_DisableHudToken
+	{
+		// Health
+		DrawImage "STS_HEAL", 2, -16;
+		DrawNumber 3, DDHUD_V3_FONT, Untranslated, Health, alignment(left), 16, -14, 1;
+
+		// Armor
+		DrawImage "STS_ARMR", 2, -32;
+		DrawNumber 3, DDHUD_V3_FONT, Untranslated, Armor, alignment(left), 16, -30, 1;
+		// # END HEALTH BLOCK
+
+		// # INVENTORY  BLOCK
+		InventorybarNotVisible
+		{
+			DrawImage "STINVBAK", -32, 0;			// Inventory Placeholder
+			DrawSelectedInventory alternateonempty, alwaysshowcounter, DDHUD_V3_FONT_SMOL, -32, 0, -12, 24, Untranslated
+			{
+				Alpha 0.6
+				{
+					DrawImage "STINVBAK", -32, 0;	// Inventory Placeholder
+				}
+			}
+		}
+		
+		InInventory DD_RedCard
+			DrawImage "STK_RED0", -44, 0;
+		InInventory DD_GreenCard
+			DrawImage "STK_GRN0", -44, 10;
+		InInventory DD_BlueCard
+			DrawImage "STK_BLU0", -44, 20;
+		InInventory DD_GoldCard
+			DrawImage "STK_YEL0", -44, 30;
+
+		InInventory DD_RedKey
+			DrawImage "STK_RED1", -54, 2;
+		InInventory DD_GreenKey
+			DrawImage "STK_GRN1", -54, 12;
+		InInventory DD_BlueKey
+			DrawImage "STK_BLU1", -54, 22;
+		InInventory DD_GoldKey
+			DrawImage "STK_YEL1", -54, 32;
+		
+		
+		InInventory DD_GladiatorSandalsBouncing
+		{
+			DrawImage "STICSH", -140, -200;
+		}
+		InInventory DD_PowerBrokenInvisibility
+		{
+			DrawImage "STICGH", -120, -200;
+		}
+		InInventory DD_SyoPepperPowerStrength
+		{
+			DrawImage "STICPP", -100, -200;
+		}
+		InInventory DD_PowerZoloft
+		{
+			DrawImage "STICRX", -80, -200;
+		}
+		InInventory DD_AirCompressor, 1
+		{
+			DrawImage "STU_COMP", -75, -20;
+		}
+		InInventory DD_HeatSeekCard, 1
+		{
+			DrawImage "STU_SEEK", -50, -20;
+		}		
+		
+		InInventory DD_Pistol
+		{
+			DrawImage "STSAMO0", 0, 40;
+			DrawNumber 3, DDHUD_V3_FONT_SMOL, Untranslated, Ammo(DD_Bullets), alignment(left), 12, 42;
+		}
+		InInventory DD_Shotgun
+		{
+			DrawImage "STSAMO1", 0, 50;
+			DrawNumber 3, DDHUD_V3_FONT_SMOL, Untranslated, Ammo(DD_Shells), alignment(left), 12, 52;
+		}
+		InInventory DD_Minigun
+		{
+			DrawImage "STSAMO2", 0, 60;
+			DrawNumber 3, DDHUD_V3_FONT_SMOL, Untranslated, Ammo(DD_AmmoBelt), alignment(left), 12, 62;
+		}
+		InInventory DD_RocketLauncher
+		{
+			DrawImage "STSAMO3", 0, 70;
+			DrawNumber 3, DDHUD_V3_FONT_SMOL, Untranslated, Ammo(DD_RocketAmmo), alignment(left), 12, 72;
+		}
+		InInventory DD_DespairiumRifle
+		{
+			DrawImage "STSAMO4", 0, 80;
+			DrawNumber 3, DDHUD_V3_FONT_SMOL, Untranslated, Ammo(DD_Despairium), alignment(left), 12, 82;
+		}
+		InInventory DD_TrollbloodDevice
+		{
+			DrawImage "STSAMO5", 0, 96;
+			DrawNumber 3, DDHUD_V3_FONT_SMOL, Untranslated, Ammo(DD_OliveBloodAmmo), alignment(left), 12, 92;	
+			DrawNumber 3, DDHUD_V3_FONT_SMOL, Untranslated, Ammo(DD_BronzeBloodAmmo), alignment(left), 12, 100;
+			DrawNumber 3, DDHUD_V3_FONT_SMOL, Untranslated, Ammo(DD_CobaltBloodAmmo), alignment(left), 12, 108;
+		}
+		
+		// Hmmm
+		InInventory DD_AxxSpray
+		{
+			DrawImage "STA_AXXE", -24, -50;
+			DrawNumber 3, DDHUD_V3_FONT_SMOL, Untranslated, DD_AxxSpray, alignment(left), -10, -50;
+		}
+		
+		IsSelected DD_TrollbloodDevice
+		{
+			InInventory DD_TrollGunStage, 3
+			{
+				DrawNumber 3, DDHUD_V3_FONT, Untranslated, Ammo(DD_CobaltBloodAmmo), alignment(right), -20, -30, 1;
+			}
+			Else InInventory DD_TrollGunStage, 2
+			{
+				DrawNumber 3, DDHUD_V3_FONT, Untranslated, Ammo(DD_BronzeBloodAmmo),alignment(right), -20, -30, 1;
+			}
+			Else
+			{
+				DrawNumber 3, DDHUD_V3_FONT, Untranslated, Ammo(DD_OliveBloodAmmo), alignment(right), -20, -30, 1;
+			}
+		}
+		Else IsSelected Not DD_SonicTabletpen
+		{
+			DrawNumber 3, DDHUD_V3_FONT, Untranslated, Ammo1, alignment(right), -20, -30, 1;
+		}
+		// # END AMMO + WEAPONS
+		// # END INVENTORY BLOCK
+		
+		DrawString "Smallfont", LightBlue, "Beta", -1, -200, 0, alignment(right);
+	}
+}
+
+StatusBar Normal, forcescaled
+{
+	InInventory Not DD_DisableHudToken
+	{
+		DrawImage "STBAKBAR", 0, 168;		// BG Status Bar
+		
+		DrawImage "STS_HEAL", 0, 169;		// Health Symbol
+		DrawImage "STS_ARMR", 0, 186;		// Armour Symbol
+		
+		// DrawImage "STD_H0", 1, 184;		// Horizontal Divider
+		DrawImage "STD_V0", 48, 170;		// Vertical Divider #1
+		// DrawImage "STD_V0", 80, 170;		// Vertical Divider #2
+		
+		DrawImage "STD_V0", 112, 170;		// Vertical Divider #3
+		DrawImage "STD_V0", 144, 170;		// Vertical Divider #4
+		DrawImage "STD_V0", 176, 170;		// Vertical Divider #5
+		
+		InInventory DD_RedCard
+		{
+			DrawImage "stk_red0", 50, 170;
+		}
+		InInventory DD_GreenCard
+		{
+			DrawImage "stk_grn0", 50, 177;
+		}
+		InInventory DD_BlueCard
+		{
+			DrawImage "stk_blu0", 50, 184;
+		}
+		InInventory DD_GoldCard
+		{
+			DrawImage "stk_yel0", 50, 191;
+		}
+		
+		InInventory DD_RedKey
+		{
+			DrawImage "stk_red1", 62, 173;
+		}
+		InInventory DD_GreenKey
+		{
+			DrawImage "stk_grn1", 62, 178;
+		}
+		InInventory DD_BlueKey
+		{
+			DrawImage "stk_blu1", 62, 183;
+		}
+		InInventory DD_GoldKey
+		{
+			DrawImage "stk_yel1", 62, 188;
+		}
+		
+		DrawNumber 3, DDHUD_V3_FONT, Untranslated, Health, alignment(right), interpolate(6), 44, 172;
+		DrawNumber 3, DDHUD_V3_FONT, Untranslated, Armor,  alignment(right), interpolate(6), 44, 189;
+		
+		InInventory DD_AxxSpray
+		{
+			DrawImage "STA_AXXE", 160, 172;
+			DrawNumber 3, DDHUD_V3_FONT_SMOL, Untranslated, DD_AxxSpray, 172, 179;
+		}
+		
+		IsSelected not DD_SonicTabletpen
+		{
+			IsSelected DD_Pistol
+			{
+				DrawImage "STA_BULL", 272, 176;	// Boolets Icon
+				DrawNumber 3, DDHUD_V3_FONT, Untranslated, Ammo(DD_Bullets), 318, 179;
+			}
+			Else IsSelected DD_Shotgun
+			{
+				DrawImage "STA_SHEL", 272, 176;	// Shells Icon
+				DrawNumber 3, DDHUD_V3_FONT, Red, Ammo(DD_Shells), 318, 179;
+			}
+			Else IsSelected DD_Minigun
+			{
+				DrawImage "STA_MINI", 272, 176;	// Minigun Ammo Icon
+				DrawNumber 3, DDHUD_V3_FONT, Untranslated, Ammo(DD_AmmoBelt), 318, 179;
+			}
+			Else IsSelected DD_RocketLauncher
+			{
+				DrawImage "STA_ROCK", 272, 176;	// Rocket Icon
+				
+				InInventory DD_HeatSeekMode, 1
+				{
+					DrawNumber 3, DDHUD_V3_FONT, Orange, Ammo(DD_RocketAmmo), 318, 179;
+				}
+				Else
+				{
+					DrawNumber 3, DDHUD_V3_FONT, Blue, Ammo(DD_RocketAmmo), 318, 179;
+				}
+			}
+			Else IsSelected DD_DespairiumRifle
+			{
+				DrawImage "STA_DESP", 272, 176;	// Despairium 45 Icon
+				DrawNumber 3, DDHUD_V3_FONT, Untranslated, Ammo(DD_Despairium), 318, 179;
+			}
+			Else IsSelected DD_TrollbloodDevice
+			{
+				InInventory DD_TrollGunStage, 3
+				{
+					DrawImage "STA_BLD3", 272, 176;	// Cobalt Blood Icon
+					DrawNumber 3, DDHUD_V3_FONT, LightBlue, Ammo(DD_CobaltBloodAmmo), 318, 179;
+				}
+				Else InInventory DD_TrollGunStage, 2
+				{
+					DrawImage "STA_BLD2", 272, 176;	// Bronze Blood Icon
+					DrawNumber 3, DDHUD_V3_FONT, Orange, Ammo(DD_BronzeBloodAmmo), 318, 179;
+				}
+				Else
+				{
+					DrawImage "STA_BLD1", 272, 176;	// Olive Blood Icon
+					DrawNumber 3, DDHUD_V3_FONT, Green, Ammo(DD_OliveBloodAmmo), 318, 179;
+				}
+			}
+		}
+		
+		InventorybarNotVisible
+		{
+			// DrawImage "STINVBAK", 84, 168;		// Inventory Placeholder
+			DrawSelectedInventory DDHUD_V3_FONT_SMOL, 114, 168, 120, 192, Untranslated;
+		}
+		
+		InInventory DD_AirCompressor
+		{
+			DrawImage "STU_COMP", 180, 170;
+		}
+		
+		InInventory DD_HeatSeekCard
+		{
+			DrawImage "STU_SEEK", 180, 182;
+		}
+		
+		DrawString "Smallfont", LightBlue, "Beta", 320, 160, 0, alignment(right);
+	}
+}

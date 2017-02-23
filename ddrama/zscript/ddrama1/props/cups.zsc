@@ -1,0 +1,159 @@
+/* *******************************************************************
+ *		cups.zsc
+ *
+ *		Cups
+ *
+ *		As long as you attribute it to me in some
+ *		way I don't mind people using this. Considering how much
+ *		some people have caused an uproar over the lack of proper
+ *		examples and the like.
+ *
+ *		Copyright Sanya K. C. Waffles 2013-2017
+ *
+ * ****************************************************************** */
+
+// Full Popcorn Cup
+Class DD_PopcornCup : DD_Decoration
+{
+	Default
+	{
+		//$NotAngled
+		//$Title "Popcorn Cup"
+		//$Sprite PCRNA0
+		//$Category "Decoration"
+		
+		Radius 10;
+		Height 20;
+		Mass 0;
+		VSpeed 0;
+
+		+NoGravity
+	}
+
+	States
+	{
+		Spawn:
+			PCRN A -1 NoDelay A_Stop;
+			Stop;
+	}
+}
+
+// Empty Popcorn Cups
+Class DD_EmptyPopcornCups : DD_PopcornCup
+{
+	Default
+	{
+		//$NotAngled
+		//$Title "Popcorn Cups - Empty"
+		//$Sprite PCRNB0
+		//$Category "Decoration"
+	}
+	
+	States
+	{
+		Spawn:
+			PCRN B -1 NoDelay A_Stop;
+			Stop;
+	}
+}
+
+// Empty Popcorn Cup
+Class DD_PopcornCupEmpty : DD_PopcornCup
+{
+	Default
+	{
+		//$NotAngled
+		//$Title "Popcorn Cup Empty"
+		//$Sprite PCRNB0
+		//$Category "Decoration"
+	}
+	
+	States
+	{
+		Spawn:
+			PCRN C -1 NoDelay A_Stop;
+			Stop;
+	}
+}
+
+
+Class DD_DrinkingCup : DD_Decoration
+{
+	Default
+	{
+		//$NotAngled
+		//$Category "Decoration"
+		
+		Height 12;
+		Radius 10;
+	}
+}
+
+Class DD_DrinkingCup1 : DD_DrinkingCup
+{
+	Default
+	{
+		//$NotAngled
+		//$Title "Drinking Cup 1 (White 1)"
+		//$Category "Decoration"
+	}
+	
+	States
+	{
+		Spawn:
+			BCUP A -1;
+			Stop;
+	}
+}
+
+
+Class DD_DrinkingCup1Side : DD_DrinkingCup
+{
+	Default
+	{
+		//$NotAngled
+		//$Title "Drinking Cup 1 (White 2)"
+		//$Category "Decoration"
+	}
+	
+	States
+	{
+		Spawn:
+			BCUP B -1;
+			Stop;
+	}
+}
+
+Class DD_DrinkingCup2 : DD_DrinkingCup
+{
+	Default
+	{
+		//$NotAngled
+		//$Title "Drinking Cup 2 (Get Out 1)"
+		//$Category "Decoration"
+	}
+	
+	States
+	{
+		Spawn:
+			GCUP A -1;
+			Stop;
+	}
+}
+
+Class DD_DrinkingCup2Side : DD_DrinkingCup
+{
+	Default
+	{
+		//$NotAngled
+		//$Title "Drinking Cup 2 (Get Out 2)"
+		//$Category "Decoration"
+	}
+	
+	States
+	{
+		Spawn:
+			GCUP B -1;
+			Stop;
+	}
+}

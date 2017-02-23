@@ -1,0 +1,340 @@
+/* *******************************************************************
+ *		glass.zsc
+ *
+ *		Glass Effects Daytime Drama Classes
+ *
+ *		As long as you attribute it to me in some
+ *		way I don't mind people using this. Considering how much
+ *		some people have caused an uproar over the lack of proper
+ *		examples and the like.
+ *
+ *		Copyright Sanya K. C. Waffles 2013-2017
+ *
+ * ****************************************************************** */
+
+// Garbage base
+Class DD_GlassJunk : DD_JunkPart
+{
+	States
+	{
+		Spawn:
+			GLAS ABCD 2;
+			Loop;
+	}
+}
+
+// Glass Object Base
+Class DD_GlassObject : DD_Decoration
+{
+	Default
+	{
+		Height 14;
+		Radius 6;
+		Health 3;
+		Mass 70;
+		Scale 0.12;
+
+		+Shootable
+		+NoBlood
+		+DontGib
+		-Solid
+	}
+	
+	virtual void A_TranslateGlassObj()
+	{
+		static const string glsbttllut[] =
+		{
+			"None",
+			"RedBeerGlass",
+			"LBlueBeerGlass",
+			"OrangeBeerGlass",
+			"GreenBeerGlass",
+			"BrownBeerGlass",
+			"PinkBeerGlass"
+		};
+		
+		string glstran = glsbttllut[0];
+		
+		glstran = args[0] > 0 ? glsbttllut[args[0]] : glsbttllut[Random[GlassBottle](1, 6)];
+		
+		A_SetTranslation(glstran);
+	}
+	
+	void ThrowGlass()
+	{
+		Actor mo = null;
+		int i;
+
+		for(i = (Random[Glass]()&7)+7; i; i--)
+		{
+			mo = Spawn("DD_GlassJunk", Pos, ALLOW_REPLACE);
+			if (mo != null)
+			{
+				mo.Vel.X = Random2[Glass]() / 64.;
+				mo.Vel.Y = Random2[Glass]() / 64.;
+				mo.Vel.Z = ((Random[Glass]() & 7) + 5) * 0.75;
+			}
+		}
+	}
+	
+	virtual void A_BreakGlassObj()
+	{
+		ThrowGlass();
+		A_PlaySound("misc/glassbreak", CHAN_BODY, 0.5, false, 2.0);
+	}
+	
+	States
+	{
+		Death:
+			TNT1 A 0 A_BreakGlassObj;
+			Stop;
+	}
+}
+
+Class DD_GlassObjectWithLiquid : DD_GlassObject
+{
+	Default
+	{
+		Mass 85;
+	}
+	
+	override void A_BreakGlassObj()
+	{
+		A_SpawnItemEx("DD_LiquidPuddle", flags:SXF_TRANSFERTRANSLATION);
+		Super.A_BreakGlassObj();
+	}
+}
+
+// DD_GlassBottleSpawner
+Class DD_GlassBottleBase : DD_GlassObject
+{
+	override void PostBeginPlay()
+	{
+		A_TranslateGlassObj();
+	}
+	
+	States
+	{
+		Spawn:
+			BTLE A -1;
+			Stop;
+	}
+}
+
+Class DD_BeerGlassBase : DD_GlassObjectWithLiquid
+{
+	override void PostBeginPlay()
+	{
+		A_TranslateGlassObj();
+	}
+	
+	States
+	{
+		Spawn:
+			BGLS A -1;
+			Stop;
+	}
+}
+
+Class DD_TableLamp : DD_GlassObject
+{
+	Default
+	{
+		//$Title "Table Lamp"
+		//$Category "Light Source"
+		//$NotAngled
+		
+		Height 30;
+		Radius 8;
+		Health 4;
+		Mass 85;
+		Translation "2:15=112:127";	// B&W to Purple
+	}
+
+	States
+	{
+		Spawn:
+			DLMP A -1 Bright;
+			Stop;
+	}
+}
+
+Class DD_BrownVase : DD_GlassObject
+{
+	Default
+	{
+		//$Title "Brown Vase"
+		//$Category "Decoration"
+		//$NotAngled
+
+		Height 30;
+		Radius 8;
+		Health 4;
+		Mass 85;
+		Translation "0:15=128:139";	// B&W to Purple
+	}
+
+	States
+	{
+		Spawn:
+			VASE A -1;
+			Stop;
+	}
+}
+
+Class DD_GreenLiquidPuddle : DD_LiquidPuddle
+{
+	Default
+	{
+		Translation "0:15=48:63";	// B&W to Greenish
+	}
+}
+
+Class DD_GreenChemBeaker : DD_GlassObjectWithLiquid
+{
+	Default
+	{
+		//$Title "Green Chemical Beaker"
+		//$Category "Decoration"
+		//$NotAngled
+		
+		Height 24;
+		Radius 8;
+		Health 4;
+		Mass 150;
+	}
+
+	States
+	{
+		Spawn:
+			FLSK A -1;
+			Stop;
+		
+		Death:
+			TNT1 A 0
+			{
+				A_NoBlocking();
+				A_PlaySound("misc/glassbreak", CHAN_BODY, 0.5, false, 2.0);
+				A_SpawnItemEx("DD_GreenLiquidPuddle");
+			}
+			Goto DD_GlassObject::Death;
+	}
+}
+
+Class DD_JarLemondrops : DD_GlassObject
+{
+	Default
+	{
+		//$Title "Jar of Lemondrops"
+		//$Category "Decoration"
+		//$NotAngled
+		
+		Height 12;
+		Radius 6;
+		Health 4;
+		Mass 100;
+	}
+
+	States
+	{
+		Spawn:
+			JARH A -1;
+			Stop;
+	}
+}
+
+Class DD_JarQTips : DD_GlassObject
+{
+	Default
+	{
+		//$Title "Jar of QTips"
+		//$Category "Decoration"
+		//$NotAngled
+
+		Height 12;
+		Radius 6;
+		Health 4;
+		Mass 100;
+	}
+
+	States
+	{
+		Spawn:
+			JARH B -1;
+			Stop;
+	}
+}
+
+Class DD_JarTongueSticks : DD_GlassObject
+{
+	Default
+	{
+		//$Title "Jar of Tongue Depressers"
+		//$Category "Decoration"
+		//$NotAngled
+		
+		Height 12;
+		Radius 6;
+		Health 4;
+		Mass 100;
+	}
+
+	States
+	{
+		Spawn:
+			JARH C -1;
+			Stop;
+	}
+}
+
+// IV Stand 1
+Class DD_IVStand : DD_GlassObject
+{
+	Default
+	{
+		//$NotAngled
+		//$Title "IV Stand 1"
+		//$Sprite IVSTA0
+		//$Category "Decoration"
+		
+		Height 60;
+		Radius 14;
+		Health 5;
+		Mass 1000;
+
+		-Solid
+		+Shootable
+		+NoBlood
+		+DontGib
+	}
+
+	States
+	{
+		Spawn:
+			IVST A -1;
+			Stop;
+		
+		Death:
+			TNT1 A 0 A_BreakGlassObj;
+			Stop;
+	}
+}
+
+// IV Stand 2
+Class DD_IVStandB : DD_IVStand
+{
+	Default
+	{
+		//$NotAngled
+		//$Title "IV Stand 2"
+		//$Sprite IVSTB0
+	}
+	
+	States
+	{
+		Spawn:
+			IVST B -1;
+			Stop;
+	}
+}
+

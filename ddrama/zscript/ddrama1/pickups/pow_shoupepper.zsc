@@ -1,0 +1,149 @@
+/* *******************************************************************
+ *		pow_shoupepper.zsc
+ *
+ *		Jack and Jill Pepper for Daytime Drama
+ *
+ *		As long as you attribute it to me in some
+ *		way I don't mind people using this. Considering how much
+ *		some people have caused an uproar over the lack of proper
+ *		examples and the like.
+ *
+ *		Copyright Sanya K. C. Waffles 2013-2017
+ *
+ * ****************************************************************** */
+
+// The power that gives you the strength
+Class DD_SyoPepperPowerStrength : PowerDamage
+{
+	Default
+	{
+		Powerup.Duration -35;
+		Powerup.Color "ff0000", 0.3;
+		DamageFactor "Normal", 1;
+	}
+}
+
+// The actual inventory that gives you that power
+Class DD_SyoPepperStrengthGiver : PowerupGiver
+{
+	Default
+	{
+		Powerup.Duration -35;
+		Powerup.Type "DD_SyoPepperPowerStrength";
+	}
+}
+
+// The power that gives you superspeed
+Class DD_SyoPepperPowerSpeed : PowerSpeed
+{
+	Default
+	{
+		Powerup.Duration -35;
+		Speed 1.5;
+
+		+PowerSpeed.NoTrail
+	}
+}
+
+// The power that dampens all incoming damage
+Class DD_SyoPepperPowerProtection : PowerProtection
+{
+	Default
+	{
+		Powerup.Duration -35;
+		DamageFactor "Normal", 0.4;
+		DeathSound "syopepper/sneeze";
+	}
+}
+
+// The token inventory that indicates if you are protected or not
+Class DD_IsProtectedSyo : Inventory
+{
+	Default
+	{
+		Inventory.Amount 1;
+		Inventory.MaxAmount 1;
+	}
+}
+
+// Changes some flags so you are not morphable by shrink shots
+Class DD_SyoUnMorphStart : CustomInventory
+{
+	States
+	{
+		Pickup:
+			TNT1 A 0
+			{
+				bDontMorph = true;	// this is important
+				
+				// ACS/playerpawn checks for this presence. If you have it
+				// you are unmorphed immediately.
+				A_GiveInventory("DD_IsProtectedSyo", 1);
+			}
+			Stop;
+	}
+}
+
+// Revert our protection/morphing when done
+Class DD_SyoUnMorphDone : CustomInventory
+{
+	States
+	{
+		Pickup:
+			TNT1 A 0
+			{
+				bDontMorph = false;	// clear this
+				A_TakeInventory("DD_IsProtectedSyo", 255);
+			}
+			Stop;
+	}
+}
+
+// The actual pickup/usable inventory
+Class DD_SyoPepper : CustomInventory
+{
+	Default
+	{
+		//$Sprite PPRSA0
+		//$Title "Jack-N-Jill Pepper"
+		//$Category "Powerups"
+
+		Scale 0.12;
+		Radius 16;
+		Height 24;
+		Inventory.Amount 1;
+		Inventory.MaxAmount 2;
+		Inventory.InterHubAmount 2;
+		Inventory.PickupMessage "$DD_GOTPEPPER";
+		Inventory.PickupSound "pickups/powerup";
+		Inventory.UseSound "syopepper/use";
+		Inventory.Icon "STICPP";
+		Tag "$DD_TAGPEPPER";
+
+		+Inventory.InvBar
+	}
+
+	States
+	{
+		Spawn:
+			PPRS A -1;
+			Stop;
+		
+		Use:
+			TNT1 A 0
+			{
+				A_GiveInventory("DD_VOX_PepperSoundOff_Use", 1);
+				
+				if(!GetCvar("dd_snd_oneliners"))
+				{
+					A_GiveInventory("DD_VOX_PepperSoundOff_Fanfare", 1);
+				}
+				
+				A_GiveInventory("DD_SyoPepperPowerStrength", 1);
+				A_GiveInventory("DD_SyoPepperPowerSpeed", 1);
+				A_GiveInventory("DD_SyoPepperPowerProtection", 1);
+				A_GiveInventory("DD_IsProtectedSyo", 1);
+			}
+			Stop;
+	}
+}

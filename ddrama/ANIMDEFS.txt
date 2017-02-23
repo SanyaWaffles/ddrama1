@@ -1,0 +1,169 @@
+// Switches (Standalone, for indentation buttons/levers)
+switch SSW0A on sound switches/normbutn pic SSW0B tics 0
+switch SSW0B off sound switches/normbutn pic SSW0A tics 0
+switch SSW1A on sound switches/normbutn pic SSW1B tics 0
+switch SSW1B off sound switches/normbutn pic SSW1A tics 0
+switch SSW2A on sound switches/normbutn pic SSW2B tics 0
+switch SSW2B off sound switches/normbutn pic SSW2A tics 0
+switch SSW3A on sound switches/normbutn pic SSW3B tics 0
+switch SSW3B off sound switches/normbutn pic SSW3A tics 0
+switch SSW4A on sound switches/normbutn pic SSW4B tics 0
+switch SSW4B off sound switches/normbutn pic SSW4A tics 0
+
+// Switches on a wall texture SWMTLP_A
+switch SWMETL_A on sound switches/normbutn pic SWMETL_B tics 0
+switch SWMETL_B off sound switches/normbutn pic SWMETL_A tics 0
+switch SWMTLP_A on sound switches/normbutn pic SWMTLP_B tics 0
+switch SWMTLP_B off sound switches/normbutn pic SWMTLP_A tics 0
+switch SWBRIK_A on sound switches/normbutn pic SWBRIK_B tics 0
+switch SWBRIK_B off sound switches/normbutn pic SWBRIK_A tics 0
+switch SWBRK2_A on sound switches/normbutn pic SWBRK2_B tics 0
+switch SWBRK2_B off sound switches/normbutn pic SWBRK2_A tics 0
+switch SWLITE_A on sound switches/normbutn pic SWLITE_B tics 0
+switch SWLITE_B off sound switches/normbutn pic SWLITE_A tics 0
+switch SWWOOD_A on sound switches/normbutn pic SWWOOD_B tics 0
+switch SWWOOD_B off sound switches/normbutn pic SWWOOD_A tics 0
+
+// Breakable Vents
+switch VENT_A on sound misc/ventbust pic VENT_B tics 0
+switch VENT_C on sound misc/ventbust pic VENT_D tics 0
+
+// Breakable Glass & misc
+switch GLASBKA0 on sound misc/glassbreak pic GLASBKA1 tics 0
+switch GLASBKB0 on sound misc/glassbreak pic GLASBKB1 tics 0
+switch GLASBKC0 on sound misc/glassbreak pic GLASBKC1 tics 0
+switch SGLASS0  on sound misc/glassbreak pic SGLASS1  tics 0
+switch DONTR0	on sound misc/tcanbreak  pic DONTR1   tics 0
+
+// Animated TV textures
+// NOTE: The Breaking functions
+// for TVs is controlled by
+// an object controller that
+// spawns specific junk and such.
+texture TVS_A0
+	pic TVS_A0 rand 3 6
+	pic TVS_A1 rand 2 5
+	pic TVS_A2 rand 3 6
+	pic TVS_A1 rand 2 5
+
+texture TVS_B0
+	pic TVS_B0 rand 3 6
+	pic TVS_B1 rand 2 5
+	pic TVS_B2 rand 3 6
+	pic TVS_B1 rand 2 5
+
+texture TVS_C0
+	pic TVS_C0 rand 3 6
+	pic TVS_C1 rand 2 5
+	pic TVS_C2 rand 3 6
+	pic TVS_C1 rand 2 5
+
+texture TVS_MK0
+	pic TVS_MK0 tics 2
+	pic TVS_MK1 tics 2
+	pic TVS_MK2 tics 2
+	pic TVS_MK3 tics 2
+
+texture TVS_SNW0
+	pic TVS_SNW0 tics 2
+	pic TVS_SNW1 tics 2
+	pic TVS_SNW2 tics 2
+	pic TVS_SNW3 tics 2
+
+texture TVS_HMN0
+	pic TVS_HMN0 tics 5
+	pic TVS_HMN1 tics 5
+	pic TVS_HMN2 tics 5
+	pic TVS_HMNB tics 35
+
+texture BATH10
+	pic BATH10 tics 2
+	pic BATH11 tics 2
+
+// Animated Boredomdai flag in the wind
+texture BFLAGA
+	pic BFLAGA tics 4
+	pic BFLAGB tics 4
+	pic BFLAGC tics 4
+	pic BFLAGD tics 4
+
+// same as above but reversed
+texture BFLAGE
+	pic BFLAGE tics 4
+	pic BFLAGF tics 4
+	pic BFLAGG tics 4
+	pic BFLAGH tics 4
+
+// Animated Equestria flag in the wind
+texture EFLAGA
+	pic EFLAGA tics 4
+	pic EFLAGB tics 4
+	pic EFLAGC tics 4
+	pic EFLAGD tics 4
+
+// same as above but reversed
+texture EFLAGE
+	pic EFLAGE tics 4
+	pic EFLAGF tics 4
+	pic EFLAGG tics 4
+	pic EFLAGH tics 4
+
+// PewDiePie Cinema
+texture CNMA_A0
+	pic CNMA_A0 tics 1
+	pic CNMA_A1 tics 2
+	pic CNMA_A2 tics 4
+	pic CNMA_A3 tics 0
+
+// Town With No Name
+texture CNMA_B0
+	pic CNMA_B0 tics 8
+	pic CNMA_B1 tics 8
+	pic CNMA_B2 tics 8
+
+// Ashens
+texture CNMA_C0
+	pic CNMA_C0 tics 25
+	pic CNMA_C1 tics 25
+	pic CNMA_C2 tics 25
+	pic CNMA_C3 tics 25
+
+// Dusk's Dawn
+texture CNMA_D0
+	pic CNMA_D0 tics 75
+	pic CNMA_D1 tics 75
+	pic CNMA_D2 tics 75
+	pic CNMA_D1 tics 75
+	pic CNMA_D2 tics 75
+	pic CNMA_D1 tics 75
+	pic CNMA_D2 tics 75
+	pic CNMA_D1 tics 75
+	pic CNMA_D2 tics 75
+
+// This is neat (TM)
+texture NEAT_A
+	pic NEAT_A	tics 32
+	pic NEAT_B	tics 32
+
+texture TLITE000
+	pic TLITE000 tics 15
+	pic TLITE001 tics 20
+
+// Warped liquids
+warp2 texture WATER1
+warp2 texture WATER2
+warp2 texture LAVA1
+warp2 texture LAVA2
+warp2 texture NUKE1
+warp2 texture NUKE2
+warp2 texture NUKE3
+warp2 texture STUFF004
+
+// Camera Textures
+cameratexture CTEXT001 320 256 fit 80 64 worldpanning
+cameratexture CTEXT002 320 256 fit 80 64 worldpanning
+cameratexture CTEXT003 320 256 fit 80 64 worldpanning
+cameratexture CTEXT004 320 256 fit 80 64 worldpanning
+cameratexture CTEXT005 512 320 worldpanning
+cameratexture CTEXT006 512 320 worldpanning
+cameratexture CTEXT007 512 320 worldpanning

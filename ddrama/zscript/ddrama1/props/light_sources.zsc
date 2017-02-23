@@ -1,0 +1,221 @@
+/* *******************************************************************
+ *		light_sources.zsc
+ *
+ *		Light Sources Daytime Drama Class
+ *
+ *		As long as you attribute it to me in some
+ *		way I don't mind people using this. Considering how much
+ *		some people have caused an uproar over the lack of proper
+ *		examples and the like.
+ *
+ *		Copyright Sanya K. C. Waffles 2013-2017
+ *
+ * ****************************************************************** */
+
+// A simple, animated candle that is not solid
+Class DD_Candle : DD_Decoration
+{
+	Default
+	{
+		//$Title "Candle"
+		//$Sprite CNDLA0
+		//$Category "Light sources"
+		
+		Radius 10;
+		Height 20;
+	}
+
+	States
+	{
+		Spawn:
+			CNDL ABCB 3 Bright;
+			Loop;
+	}
+}
+
+// Hanging light for Restaurants
+Class DD_CeilingLightHanging : DD_Decoration
+{
+	Default
+	{
+		//$Title "Hanging Restaurant Light"
+		//$Sprite CLMAA0
+		//$Category "Light sources"
+		
+		Radius 8;
+		Height 24;
+
+		+SpawnCeiling
+		+NoGravity
+		+Float
+	}
+
+	States
+	{
+		Spawn:
+			CLMA A -1 Bright;
+			Stop;
+	}
+}
+
+// Hanging small light
+Class DD_CeilingLightHangingSmall : DD_Decoration
+{
+	Default
+	{
+		//$Title "Small Ceiling Light"
+		//$Sprite CLMBA0
+		//$Category "Light sources"
+		
+		Radius 4;
+		Height 8;
+
+		+SpawnCeiling
+		+NoGravity
+		+Float
+	}
+
+	States
+	{
+		Spawn:
+			CLMB A -1 Bright;
+			Stop;
+	}
+}
+
+// Moving flames with sound. Harmful to touch. This may be inhereted and scaled/modified
+// to make bigger or smaller flames. Arg[0] determines types.
+Class DD_FireBase : DD_Decoration
+{
+	Default
+	{
+		//$Title "Flames"
+		//$Sprite FLMSA0D0
+		//$Category "Light sources"
+		//$Arg0 "Effects"
+		//$Arg0ToolTip "If the flames do damage, noise, or both."
+		//$Arg0Default 1
+		//$Arg0Type 11
+		//$Arg0Enum { 0 = "Nothing"; 1 = "Noise"; 2 = "Hurt"; 3 = "Noise+Hurt"; }
+		
+		Radius 20;
+		Height 40;
+		Scale 0.15;
+		RenderStyle "Add";
+		Alpha 0.4;
+		DamageType "BurnPlayer";
+	}
+		
+	int looptype;
+	
+	enum ELoopTypes
+	{
+		LT_NONE = 0,
+		LT_NOISE,
+		LT_DAMAGE,
+		LT_BOTH,
+		LT_MAXTYPES = LT_BOTH,
+	};
+	
+	override void PostBeginPlay()
+	{
+		if (args[0] >= 0 && args[0] < LT_MAXTYPES)
+		{
+			looptype = args[0];
+		}
+		else
+		{
+			looptype = LT_NONE;
+		}
+	}
+	
+	void A_FlamesBurn()
+	{
+		if (looptype == LT_NONE || looptype == LT_DAMAGE)
+		{
+			A_PlaySound("world/fire", CHAN_BODY, 0.3, true, 2.0);	// emit noise
+		}
+			
+		if (looptype >= LT_DAMAGE)
+		{
+			A_Explode(2, (radius - 6), XF_NOTMISSILE);	// do radius damage
+		}
+	}
+
+	States
+	{
+		Spawn:
+			FLMS ABCDEFEDCB 2 Bright A_FlamesBurn;
+			Loop;
+	}
+}
+
+Class DD_PoliceLamp : DD_GlassObject
+{
+	Default
+	{
+		//$Title "Police Lamp"
+		//$Category "Light sources"
+		
+		Radius 10;
+		Height 56;
+	}
+	
+	void ThowPoliceJunk()
+	{
+		static const Class<Actor> POPOJUNK[] = { "DD_GlassJunk", "DD_MetalJunk" };
+		Actor mo = null;
+		int i;
+
+		for(i = (Random[Trash]()&9)+9; i; i--)
+		{
+			mo = Spawn(POPOJUNK[Random[Trash](0, 3)], Pos, ALLOW_REPLACE);
+			if (mo)
+			{
+				mo.Vel.X = Random2[Trash]() / 64.;
+				mo.Vel.Y = Random2[Trash]() / 64.;
+				mo.Vel.Z = ((Random[Trash]() & 7) + 5) * 0.75;
+			}
+		}
+	}
+	
+	void A_DestroyPLamp()
+	{
+		A_NoBlocking();
+		A_PlaySound("misc/tcanbreak", CHAN_BODY, 0.5, false, 2.0);
+		ThowPoliceJunk();
+	}
+
+	States
+	{
+		Spawn:
+			POLI A -1 Bright;
+			Stop;
+	}
+	
+	override void Die(Actor source, Actor inflictor, int dmgflags = 0)
+	{
+		A_DestroyPLamp();
+	}
+}
+
+// Street Light Pole
+Class DD_StreetLightPole : DD_Prop
+{
+	Default
+	{
+		//$Title "Streetlamp"
+		//$Sprite STL1A0
+		//$Category "Light sources"
+		
+		Radius 8;
+		Height 70;
+	}
+
+	States
+	{
+		Spawn:
+			STL1 A -1 Bright;
+			Stop;
+	}
+}

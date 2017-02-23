@@ -1,0 +1,114 @@
+/* *******************************************************************
+ *		csjunko.zsc
+ *
+ *		junko cutscene object
+ *
+ *		As long as you attribute it to me in some
+ *		way I don't mind people using this. Considering how much
+ *		some people have caused an uproar over the lack of proper
+ *		examples and the like.
+ *
+ *		Copyright Sanya K. C. Waffles 2013-2017
+ *
+ * ****************************************************************** */
+
+
+Class DD_CSJunkoE : DD_Terrorist
+{
+	Default
+	{
+		//$Title "Junko (Cutscene)"
+		//$Sprite CJK0A0
+		
+		Height 56;
+		Radius 24;
+		Scale 0.12;
+	}
+	
+	enum JunkoCSStates
+	{
+		JUNKOCS_LEFTARMUP = 1,
+		JUNKOCS_RIGHTARMUP = 2,
+		JUNKOCS_BOTHARMSUP = 3,
+		JUNKOCS_HANDSONHIPS = 4,
+		JUNKOCS_WINKYFACE = 5,
+		JUNKOCS_LAUGH = 6,
+		JUNKOCS_DEADKO = 7,
+	};
+	
+	void A_ChangeJunkoSprite()
+	{
+		static const StateLabel jeStates[] =
+		{
+			"LeftArmUp",
+			"RightArmUp",
+			"BothArmsUp",
+			"HandsOnHips",
+			"WinkyFace",
+			"Laff",
+			"Ded"
+		};
+		
+		if (!InStateSequence(ResolveState(jeStates[user_statetochange-1]), CurState))
+		{
+			SetStateLabel(jeStates[user_statetochange-1]);
+			return;
+		}
+		
+		SetStateLabel("Laff");
+	}
+	
+	override void Tick()
+	{
+		A_ChangeJunkoSprite();
+		Super.Tick();
+	}
+	
+	States
+	{		
+		LeftArmUp:
+			CJK0 A 5;
+			CJK0 B 5;
+			Loop;
+		
+		RightArmUp:
+			CJK1 A 5;
+			CJK1 B 5;
+			Loop;
+		
+		BothArmsUp:
+			CJK2 A 5;
+			CJK2 B 5;
+			Loop;
+		
+		HandsOnHips:
+			CJK3 A 5;
+			CJK3 B 5;
+			Loop;
+		
+		WinkyFace:
+			CJK4 A 5;
+			CJK4 B 5;
+			Loop;
+		
+		Spawn:
+		Laff:
+			CJK5 A 5;
+			CJK5 B 5;
+			Loop;
+		
+		Ded:
+			CJK6 A 0 { bWallSprite = true;}
+			CJK6 A 50;
+			CJK6 B 1
+			{
+				pitch--;
+				if (pitch == 270)
+					return ResolveState("Null");
+				
+				return ResolveState(null);
+			}
+			Wait;
+	}
+}
+

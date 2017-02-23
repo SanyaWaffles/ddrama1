@@ -1,0 +1,348 @@
+// Enemies
+
+// Buddy Bear
+bear/sight1			sounds/enemies/bears/oh_jesus.ogg
+bear/sight2			sounds/enemies/bears/oh_boy.ogg
+bear/sight3			sounds/enemies/bears/oh_god.ogg
+bear/attack			sounds/weapons/pistol/fire.ogg
+bear/pain			sounds/enemies/bears/ow1.ogg
+bear/death1			sounds/enemies/bears/scream1.ogg
+bear/death2			sounds/enemies/bears/scream2.ogg
+bear/death3			sounds/enemies/bears/scream3.ogg
+bear/death4			sounds/enemies/bears/scream4.ogg
+bear/active1		sounds/enemies/bears/creeping.ogg
+bear/active2		sounds/enemies/bears/woahwoah.ogg
+$random	bear/sight
+{
+	bear/sight1
+	bear/sight2
+	bear/sight3
+}
+$random bear/death
+{
+	bear/death1
+	bear/death2
+	bear/death3
+	bear/death4
+}
+$random bear/active
+{
+	bear/active1
+	bear/active2
+}
+
+// Gumball Watterson
+gumball/sight1			sounds/enemies/gumball/see0.ogg
+gumball/sight2			sounds/enemies/gumball/see1.ogg
+gumball/sight3			sounds/enemies/gumball/see2.ogg
+gumball/attack			sounds/weapons/shotgun/fire2_pump.ogg
+gumball/pain1			sounds/enemies/gumball/pain0.ogg
+gumball/pain2			sounds/enemies/gumball/pain1.ogg
+gumball/pain3			sounds/enemies/gumball/pain2.ogg
+gumball/death1			sounds/enemies/gumball/dead0.ogg
+gumball/death2			sounds/enemies/gumball/dead1.ogg
+gumball/death3			sounds/enemies/gumball/dead2.ogg
+gumball/active			sounds/enemies/gumball/roam0.ogg
+$random	gumball/sight
+{
+	gumball/sight1
+	gumball/sight2
+}
+$random	gumball/pain
+{
+	gumball/pain1
+	gumball/pain2
+	gumball/pain3
+}
+$random	gumball/death
+{
+	gumball/death1
+	gumball/death2
+	gumball/death3
+}
+
+// Lotso Huggin' Bear
+lotso/sight1			sounds/enemies/lotso/doggy.ogg
+lotso/sight2			sounds/enemies/lotso/bigfavor.ogg
+lotso/sight3			sounds/enemies/lotso/shutup.ogg
+lotso/attack			sounds/weapons/minigun/fire.ogg
+lotso/pain				sounds/enemies/lotso/what.ogg
+lotso/death1			sounds/enemies/lotso/scream1.ogg
+lotso/death2			sounds/enemies/lotso/scream2.ogg
+lotso/active			sounds/enemies/lotso/getout.ogg
+$random lotso/sight
+{
+	lotso/sight1
+	lotso/sight2
+	lotso/sight3
+}
+$random lotso/death
+{
+	lotso/death1
+	lotso/death2
+}
+
+// Barfbag
+barfbag/sight1			sounds/enemies/barfbag/shut_up.ogg
+barfbag/sight2			sounds/enemies/barfbag/hey.ogg
+barfbag/sight3			sounds/enemies/barfbag/hachi.ogg
+barfbag/sight4			sounds/enemies/barfbag/chixluv.ogg
+barfbag/sight5			sounds/enemies/barfbag/dontleave.ogg
+barfbag/sight6			sounds/enemies/barfbag/dtreat.ogg
+barfbag/pain1			sounds/enemies/barfbag/ow.ogg
+barfbag/pain2			sounds/enemies/barfbag/no.ogg
+barfbag/pain3			sounds/enemies/barfbag/god.ogg
+barfbag/death1			sounds/enemies/barfbag/scream.ogg
+barfbag/death2			sounds/enemies/barfbag/groan.ogg
+barfbag/attack			sounds/enemies/barfbag/burp.ogg
+barfbag/shotx			sounds/sfx/slop/gibslop3.ogg
+$volume barfbag/death1 0.75
+$random barfbag/sight
+{
+	barfbag/sight1
+	barfbag/sight2
+	barfbag/sight3
+	barfbag/sight4
+	barfbag/sight5
+	barfbag/sight6
+}
+$random barfbag/pain
+{
+	barfbag/pain1
+	barfbag/pain2
+	barfbag/pain3
+}
+$random barfbag/death
+{
+	barfbag/death1
+	barfbag/death2
+}
+
+// Dontreldemon
+dontrel/sight1			sounds/enemies/dontrel/mionjaw.ogg
+dontrel/sight2			sounds/enemies/dontrel/pearbutt.ogg
+dontrel/sight3			sounds/enemies/dontrel/hello.ogg
+dontrel/sight4			sounds/enemies/dontrel/lol.ogg
+dontrel/sight5			sounds/enemies/dontrel/lol3.ogg
+
+dontrel/pain1			sounds/enemies/dontrel/no.ogg
+dontrel/pain2			sounds/enemies/dontrel/rude.ogg
+dontrel/pain3			sounds/enemies/dontrel/savethem.ogg
+dontrel/pain4			sounds/enemies/dontrel/shit.ogg
+
+dontrel/death1			sounds/enemies/dontrel/scream1.ogg
+dontrel/death2			sounds/enemies/dontrel/scream2.ogg
+dontrel/death3			sounds/enemies/dontrel/scream3.ogg
+
+dontrel/active1			sounds/enemies/dontrel/breathe.ogg
+dontrel/active2			sounds/enemies/dontrel/greybutthole.ogg
+dontrel/active3			sounds/enemies/dontrel/lastdance.ogg
+dontrel/active4			sounds/enemies/dontrel/butthole.ogg
+dontrel/active5			sounds/enemies/dontrel/whatu.ogg
+
+dontrel/attack			sounds/enemies/dontrel/kore.ogg
+dontrel/shotx			sounds/sfx/booms/boom1.ogg
+dontrel/melee			sounds/sfx/melee/claw.ogg
+$volume dontrel/attack 0.75
+$alias dontrel/active6 dontrel/sight3
+$random	dontrel/sight
+{
+	dontrel/sight1
+	dontrel/sight2
+	dontrel/sight3
+	dontrel/sight4
+	dontrel/sight5
+}
+$random	dontrel/pain
+{
+	dontrel/pain1
+	dontrel/pain2
+	dontrel/pain3
+	dontrel/pain4
+}
+$random	dontrel/death
+{
+	dontrel/death1
+	dontrel/death2
+	dontrel/death3
+}
+$random	dontrel/active
+{
+	dontrel/active1
+	dontrel/active2
+	dontrel/active3
+	dontrel/active4
+	dontrel/active5
+	dontrel/active6
+}
+
+// Smokeyhead
+smokey/melee			sounds/enemies/smokey/roar.ogg
+smokey/death			sounds/weapons/rocket_launcher/explode.ogg
+smokey/active			sounds/enemies/smokey/roam.ogg
+smokey/pain				sounds/enemies/smokey/ow.ogg
+$volume smokey/melee 0.7
+
+// BONZIBuddy
+bonzi/sight1			sounds/enemies/bonzi/lookingood.ogg
+bonzi/sight2			sounds/enemies/bonzi/monkeyfck.ogg
+bonzi/sight3			sounds/enemies/bonzi/change.ogg
+bonzi/sight4			sounds/enemies/bonzi/euthanized.ogg
+bonzi/sight5			sounds/enemies/bonzi/wtf.ogg
+
+bonzi/attack			sounds/enemies/bonzi/fire.ogg
+
+bonzi/shotx				sounds/sfx/booms/boom3.ogg
+
+bonzi/pain1				sounds/enemies/bonzi/gasp1.ogg
+bonzi/pain2				sounds/enemies/bonzi/gasp2.ogg
+bonzi/pain3				sounds/enemies/bonzi/gasp3.ogg
+
+bonzi/death1			sounds/enemies/bonzi/death1.ogg
+bonzi/death2			sounds/enemies/bonzi/death2.ogg
+
+bonzi/active1			sounds/enemies/bonzi/laugh1.ogg
+bonzi/active2			sounds/enemies/bonzi/dicks.ogg
+bonzi/active3			sounds/enemies/bonzi/worstday.ogg
+bonzi/active4			sounds/enemies/bonzi/gettingtoit.ogg
+bonzi/active5			sounds/enemies/bonzi/laugh2.ogg
+
+bonzi/raise1			sounds/enemies/bonzi/derewego.ogg
+bonzi/raise2			sounds/enemies/bonzi/worstday.ogg
+bonzi/raise3			sounds/enemies/bonzi/jrjam.ogg
+bonzi/raise4			sounds/enemies/bonzi/itbegins.ogg
+bonzi/raise5			sounds/enemies/bonzi/expand.ogg
+
+$random	bonzi/raiseguns
+{
+	bonzi/raise1
+	bonzi/raise2
+	bonzi/raise3
+	bonzi/raise4
+	bonzi/raise5
+}
+$random	bonzi/death
+{
+	bonzi/death1
+	bonzi/death2
+}
+$random	bonzi/sight
+{
+	bonzi/sight1
+	bonzi/sight2
+	bonzi/sight3
+	bonzi/sight4
+	bonzi/sight5
+}
+$random	bonzi/active
+{
+	bonzi/active1
+	bonzi/active2
+	bonzi/active3
+	bonzi/active4
+	bonzi/active5
+}
+$volume bonzi/shotx 0.8
+$volume bonzi/death 0.8
+
+// Sweet Bro (Prisoner)
+sweetbro/sight1			sounds/enemies/sbahj/sbhi1.ogg
+sweetbro/sight2			sounds/enemies/sbahj/sbhi2.ogg
+sweetbro/pain			sounds/enemies/sbahj/sbpain.ogg
+sweetbro/death			sounds/enemies/sbahj/sbdie.ogg
+sweetbro/active			sounds/enemies/sbahj/sbroam.ogg
+$alias sweetbro/melee	fist/hit
+$alias sweetbro/miss	fist/miss
+$random sweetbro/sight
+{
+	sweetbro/sight1
+	sweetbro/sight2
+}
+
+// Hella Jeff (Warden)
+hjeff/sight1			sounds/enemies/sbahj/hjhi1.ogg
+hjeff/sight2			sounds/enemies/sbahj/hjhi2.ogg
+hjeff/pain				sounds/enemies/sbahj/hjpain.ogg
+hjeff/death				sounds/enemies/sbahj/hjdead.ogg
+hjeff/catch				sounds/enemies/sbahj/hjcatch.ogg
+hjeff/active1			sounds/enemies/sbahj/hjlol1.ogg
+hjeff/active2			sounds/enemies/sbahj/hjlol2.ogg
+hjeff/doritof			sounds/sfx/melee/fist_miss.ogg
+hjeff/doritox			sounds/sfx/balls/hit.ogg
+hjeff/plasmaf			sounds/weapons/despairium/fire1.ogg
+hjeff/plasmax			sounds/weapons/despairium/hit2.ogg
+$volume hjeff/plasmaf 0.7
+$volume hjeff/plasmax 0.7
+$random hjeff/sight
+{
+	hjeff/sight1
+	hjeff/sight2
+}
+$random hjeff/active
+{
+	hjeff/active1
+	hjeff/active2
+}
+
+// Purrmoid
+purrmoid/sight			sounds/enemies/purrmoid/sight.ogg
+purrmoid/pain			sounds/enemies/purrmoid/pain.ogg
+purrmoid/death			sounds/enemies/purrmoid/death.ogg
+purrmoid/active			sounds/enemies/purrmoid/purr.ogg
+purrmoid/attack			sounds/enemies/purrmoid/hiss.ogg
+purrmoid/tracex			sounds/sfx/balls/hit.ogg
+$volume purrmoid/active 0.3
+$volume purrmoid/attack 0.7
+
+// Checksummer Unicorn
+checksum/sight1			sounds/enemies/checksum/laugh.ogg
+checksum/sight2			sounds/enemies/checksum/anger.ogg
+checksum/sight3			sounds/enemies/checksum/gametonite.ogg
+checksum/sight4			sounds/enemies/checksum/holdit.ogg
+checksum/sight5			sounds/enemies/checksum/shutup.ogg
+checksum/active1		sounds/enemies/checksum/treatment.ogg
+checksum/active2		sounds/enemies/checksum/oneall.ogg
+checksum/active3		sounds/enemies/checksum/shutup.ogg
+checksum/active4		sounds/enemies/checksum/you.ogg
+checksum/pain			sounds/enemies/checksum/growl.ogg
+checksum/death			sounds/enemies/checksum/howdare.ogg
+checksum/heal			sounds/enemies/checksum/alright.ogg
+checksum/raise			sounds/sfx/sizzle.ogg
+checksum/attack			sounds/sfx/flames.ogg
+checksum/shotx			sounds/sfx/kamehameha.ogg
+$random checksum/sight
+{
+	checksum/sight1
+	checksum/sight2
+	checksum/sight3
+	checksum/sight4
+	checksum/sight5
+}
+$random checksum/active
+{
+	checksum/active1
+	checksum/active2
+	checksum/active3
+	checksum/active4
+}
+
+// Junko Troll OC Donut Steel
+troll/sight				sounds/enemies/troll/dumbrock.ogg
+troll/pain				sounds/enemies/troll/pain.ogg
+troll/death1			sounds/enemies/troll/pathetic.ogg
+troll/death2			sounds/enemies/troll/cry.ogg
+troll/active1			sounds/enemies/troll/wuhaha.ogg
+troll/active2			sounds/enemies/troll/ruffian.ogg
+troll/melee				sounds/sfx/melee/claw.ogg
+troll/miss				sounds/sfx/melee/fist_miss.ogg
+troll/hiss				sounds/enemies/purrmoid/hiss.ogg
+$random troll/death
+{
+	troll/death1
+	troll/death2
+}
+$random troll/active
+{
+	troll/active1
+	troll/active2
+}

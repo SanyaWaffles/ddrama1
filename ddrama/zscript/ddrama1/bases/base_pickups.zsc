@@ -1,0 +1,45 @@
+/* *******************************************************************
+ *		base_pickups.zsc
+ *
+ *		Base Pickup Classes
+ *
+ *		As long as you attribute these functions to me in some
+ *		way I don't mind people using these. Considering how much
+ *		some people have caused an uproar over the lack of proper
+ *		examples and the like.
+ *
+ *		Copyright Sanya K. C. Waffles 2013-2017
+ *
+ * ****************************************************************** */
+
+// Health Pickup actor
+Class DD_Health : Health
+{
+	Default
+	{
+		//$NotAngled
+		//$Category "Health and Armor"
+		//$Color 1
+		
+		Radius 14;
+		Height 28;
+		Scale 0.12;
+		Inventory.PickupSound "pickups/generic";
+	}
+}
+
+// Base Key Object Sets scale, pickup noise and size
+Class DD_Key : Key
+{
+	Default
+	{
+		//$NotAngled
+		//$Category "Keys"
+		//$Color 13
+
+		Radius 12;
+		Height 24;
+		Scale 0.15;
+		Inventory.PickupSound "pickups/key";
+	}
+}

@@ -1,0 +1,150 @@
+/* *******************************************************************
+ *		base_splash.zsc
+ *
+ *		Base Classes for Splashes
+ *
+ *		As long as you attribute it to me in some
+ *		way I don't mind people using this. Considering how much
+ *		some people have caused an uproar over the lack of proper
+ *		examples and the like.
+ *
+ *		Copyright Sanya K. C. Waffles 2013-2017
+ *
+ * ****************************************************************** */
+
+// Water Splashes
+Class DD_WaterSplash : DD_SplashBase
+{
+	States
+	{
+		Spawn:
+			SPLW ABC 4;
+			SPLW D 8;
+			Stop;
+		
+		Death:
+			SPLW D 8;
+			Stop;
+	}
+}
+
+Class DD_WaterSplashSmall : DD_WaterSplash
+{
+	Default
+	{
+		Radius 2;
+		Height 4;
+		Scale 0.1;
+	}
+}
+
+Class DD_WaterSplashBig : DD_WaterSplash
+{
+	Default
+	{
+		Radius 4;
+		Height 8;
+		Scale 0.2;
+	}
+}
+
+// Sludge Splashes
+Class DD_SludgeSplashSmall : DD_WaterSplashSmall
+{
+	Default
+	{
+		Translation "160:175=48:63";
+	}
+}
+
+Class DD_SludgeSplashBig : DD_WaterSplashBig
+{
+	Default
+	{
+		Translation "160:175=48:63";
+	}
+}
+
+// Despairium Splashes
+Class DD_DespairSplash : DD_SplashBase
+{
+	Default
+	{
+		Radius 2;
+		Height 4;
+	}
+
+	States
+	{
+		Spawn:
+			SPLB ABC 4;
+			SPLB D 8;
+			Stop;
+		
+		Death:
+			SPLB D 8;
+			Stop;
+	}
+}
+
+Class DD_DespairSplashSmall : DD_DespairSplash
+{
+	Default
+	{
+		Radius 2;
+		Height 4;
+		Scale 0.1;
+	}
+}
+
+Class DD_DespairSplashBig : DD_DespairSplash
+{
+	Default
+	{
+		Radius 4;
+		Height 8;
+		Scale 0.2;
+	}
+}
+
+// Lava Splashes
+Class DD_LavaSplash : DD_SplashBase
+{
+	Default
+	{
+		Radius 2;
+		Height 4;
+	}
+	
+	States
+	{
+		Spawn:
+			SPLL ABC 4;
+			SPLL D 8;
+			Stop;
+		
+		Death:
+			SPLL D 8;
+			Stop;
+	}
+}
+
+Class DD_LavaSplashSmall : DD_LavaSplash
+{
+	Default
+	{
+		Radius 2;
+		Height 4;
+		Scale 0.1;
+	}
+}
+
+Class DD_LavaSplashBig : DD_LavaSplash
+{
+	Default
+	{
+		Radius 4;
+		Height 8;
+		Scale 0.2;
+	}
+}

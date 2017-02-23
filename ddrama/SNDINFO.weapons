@@ -1,0 +1,89 @@
+// Weapons
+// Sonic Wacom Pen Puff
+weapons/sonicpen				sounds/weapons/ssdriver.ogg			// Sonic Hit
+$alias weapons/sonicpenmiss		generic/nullvoid					// Sonic Miss
+
+weapons/bulletrico1				sounds/weapons/impact/ricochet1.ogg	// Bullet Ricochet 1
+weapons/bulletrico2				sounds/weapons/impact/ricochet2.ogg	// Bullet Ricochet 2
+weapons/bulletrico3				sounds/weapons/impact/ricochet3.ogg	// Bullet Ricochet 3
+$random weapons/bulletricochet
+{
+	weapons/bulletrico1
+	weapons/bulletrico2
+	weapons/bulletrico3
+}
+
+weapons/bullethit				sounds/weapons/impact/body_hit0.ogg		// Bullet impacting flesh
+
+weapons/pistolf					sounds/weapons/pistol/fire.ogg			// Pistol Fire
+
+
+weapons/shotgunf				sounds/weapons/shotgun/fire2_pump.ogg	// Shotgun Fire
+weapons/shotgunfshou			sounds/weapons/shotgun/fire2.ogg		// Shotgun Fire without cocking
+weapons/shotgunpump				sounds/weapons/shotgun/pump.ogg			// Shotgun Pump
+
+// Minigun
+weapons/minigunr				sounds/weapons/minigun/spinup.ogg		// Revving up
+weapons/miniguns				sounds/weapons/minigun/slowdown.ogg		// Slowing down
+weapons/minigunf				sounds/weapons/minigun/fire.ogg			// Firing
+
+// Rocket Launcher
+weapons/rocklf					sounds/weapons/rocket_launcher/fire.ogg		// Rocket Firing
+weapons/rocklh					sounds/weapons/rocket_launcher/trail.ogg	// Rocket Trail
+weapons/rocklx					sounds/sfx/booms/boom2.ogg					// Rocket Impact/Explode
+
+// Despairium Rifle Plasma
+weapons/despairf1				sounds/weapons/despairium/fire1.ogg		// Despair Fire 1
+weapons/despairf2				sounds/weapons/despairium/fire2.ogg		// Despair Fire 2
+weapons/despairx1				sounds/weapons/despairium/hit1.ogg		// Despair Hit 1
+weapons/despairx2				sounds/weapons/despairium/hit2.ogg		// Despair Hit 2
+// Despair Overheat Vent
+weapons/despairhiss				sounds/sfx/sharp_hiss.ogg				
+$volume weapons/despairhiss 0.7
+
+// Despairium Fire 1
+$random weapons/despairf
+{
+	weapons/despairf1
+	weapons/despairf2
+}
+
+// Despairium Hit
+$random weapons/despairx
+{
+	weapons/despairx1
+	weapons/despairx2
+}
+
+$volume weapons/rocklf 0.7
+$volume weapons/rocklx 0.8
+
+// Trollgun
+weapons/shrinkf					sounds/weapons/tbd/shrinker/fire.ogg	// Shrink shot
+weapons/expandf					sounds/weapons/tbd/expander/fire.ogg	// Expander spark
+weapons/webbingb				sounds/weapons/tbd/webber/bounce.ogg	// Webbing bounce
+weapons/webbingf				sounds/weapons/tbd/webber/fire.ogg		// Webbing shot
+weapons/webbingx				sounds/weapons/tbd/webber/impact.ogg	// Webbing impact
+weapons/trollhbeat				sounds/sfx/heartbeat.ogg				// Troll Heartbeat sound
+
+// Weapon related sounds that aren't specific to just one
+generic/shrink					sounds/weapons/tbd/shrinker/shrink.ogg	// Shrinking SFX
+generic/squashx					sounds/sfx/slop/gibslop2.ogg			// Step on shrunken grub
+generic/expanding				sounds/weapons/tbd/expander/expand.ogg	// Expanding enemy
+generic/cocoonx					sounds/sfx/slop/gibslop1.ogg			// Cocoon opens
+weapons/hemofail				sounds/ui/error.ogg						// Out of current trollblood type
+
+// Weapon Alt Fire Toggle Sounds
+weapon/rockltoggle/on			sounds/ui/beep.ogg						// Rocket Launcher Heat Seek On
+$alias weapon/rockltoggle/off	menu/backup								// Rocket Launcher Heat Seek Off
+
+$volume weapon/rockltoggle/on 0.7
+$volume weapon/rockltoggle/off 0.7
+
+// Weapom raising sounds
+weapons/raiseA					sounds/weapons/generic/raise1.ogg		// Higher Pitched
+weapons/raiseB					sounds/weapons/generic/raise2.ogg		// Lower Pitched & Slow
+weapons/raiseHeavy				sounds/weapons/generic/raise3.ogg		// Heavy
+$alias weapons/raiseNone		generic/nullvoid						// None!
+
+$alias weapons/silent			generic/nullvoid						// Nada

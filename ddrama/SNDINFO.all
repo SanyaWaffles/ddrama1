@@ -1,0 +1,6 @@
+fist/hit				sounds/sfx/melee/fist_hit.ogg
+fist/miss				sounds/sfx/melee/fist_miss.ogg
+
+generic/expanding		sounds/weapons/tbd/expander/expand.ogg
+
+generic/nullvoid		DSEMPTY					// null sound

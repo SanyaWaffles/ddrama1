@@ -1,0 +1,69 @@
+/* *******************************************************************
+ *		armor.zsc
+ *
+ *		Armor Jackets for Daytime Drama
+ *
+ *		As long as you attribute it to me in some
+ *		way I don't mind people using this. Considering how much
+ *		some people have caused an uproar over the lack of proper
+ *		examples and the like.
+ *
+ *		Copyright Sanya K. C. Waffles 2013-2017
+ *
+ * ****************************************************************** */
+
+// Green Armor - 100 armor points, and resists 33% of damage inflicted by enemies.
+Class DD_GreenJacket : BasicArmorPickup
+{
+	Default
+	{
+		//$Sprite JCKTA0
+		//$Title "Green Armor Jacket"
+		//$Category "Health and Armor"
+
+		Radius 20;
+		Height 16;
+		Scale 0.12;
+		Inventory.PickupSound "pickups/armor";
+		Inventory.PickupMessage "Protective Sweater.";
+		Inventory.Icon "JCKTA0";
+		Armor.SavePercent 33.335;
+		Armor.SaveAmount 100;
+	}
+
+	States
+	{
+		Spawn:
+			JCKT A 6;
+			JCKT A 6 Bright;
+			Loop;
+	}
+}
+
+// Blue Armor - 200 armor points, and resists 50% of damage inflicted by enemies.
+Class DD_BlueJacket : BasicArmorPickup
+{
+	Default
+	{
+		//$Sprite JCKTB0
+		//$Title "Blue Armor Jacket"
+		//$Category "Health and Armor"
+
+		Radius 20;
+		Height 16;
+		Scale 0.12;
+		Inventory.PickupSound "pickups/armor";
+		Inventory.PickupMessage "Super Protective Sweater!";
+		Inventory.Icon "JCKTB0";
+		Armor.SavePercent 50;
+		Armor.SaveAmount 200;
+	}
+
+	States
+	{
+		Spawn:
+			JCKT B 6;
+			JCKT B 6 Bright;
+			Loop;
+	}
+}

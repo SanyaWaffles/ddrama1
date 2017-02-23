@@ -1,0 +1,480 @@
+/* *******************************************************************
+ *		junko_enoshima.zcs
+ *		Junko Enoshima Boss
+ *
+ *		As long as you attribute it to me in some
+ *		way I don't mind people using this. Considering how much
+ *		some people have caused an uproar over the lack of proper
+ *		examples and the like.
+ *
+ *		Copyright Sanya K. C. Waffles 2013-2017
+ *
+ * ****************************************************************** */
+
+Class DD_JunkoStarsFx : DD_Actor
+{
+	Default
+	{
+		Mass 100;
+		VSpeed 0;
+		Speed 0;
+		FloatSpeed 0;
+		Gravity 0;
+		Scale 0.12;
+
+		-AllowParticles
+		+NoBlockMap
+		+NoTeleport
+		+DropOff
+		+Missile
+		+DontFall
+	}
+
+	States
+	{
+		Spawn:
+			JKFX ABABABABABABABABABAB 4 NoDelay
+			{
+				A_Warp(AAPTR_TARGET, 0, 0, 64, 0, WARPF_NOCHECKPOSITION | WARPF_STOP);
+			}
+			Stop;
+	}
+}
+
+Class DD_JunkoSyoShears : DD_ProjectileActor
+{
+	Default
+	{
+		Radius 6;
+		Height 8;
+		Speed 12;
+		FastSpeed 24;
+		Damage 6;
+		SeeSound "junkoboss/shearsf";
+		DeathSound "junkoboss/shearsx";
+	}
+
+	States
+	{
+		Spawn:
+			SCSX AB 4;
+			Loop;
+			
+		Death:
+			TNT1 A 6;
+			Stop;
+	}
+}
+
+
+
+Class DD_JunkoFungusSpray : DD_AxxGasObj
+{
+	Default
+	{
+		Translation "96:111=16:31", "144:159=16:31", "128:143=16:31", "176:191=16:31";
+		RenderStyle "Translucent";
+		Alpha 0.8;
+		Radius 24;
+		Height 10;
+		DamageType "DespairSpores";
+		Speed 0;
+		VSpeed 4;
+
+		+NoGravity
+		+Float
+	}
+	
+	int explrad;
+	int expldam;
+	
+	override void PostBeginPlay()
+	{
+		explrad = 24;
+		explrad = 32;
+	}
+	
+	void A_DDDespairSpore()
+	{
+		if (alpha == 0.8)
+		{
+			A_PlaySound("axxspray/spray", CHAN_VOICE);
+		}
+		
+		ThrustThingZ(0, 4, 0, 1);
+		A_SetRenderStyle(alpha - 0.2, Style_Translucent);
+		A_Explode(explrad, expldam);
+		
+		explrad -= 8;
+		expldam -= 8;
+	}
+
+	States
+	{
+		Spawn:
+			PAXS ABCDE 4 A_DDDespairSpore;
+			Stop;
+	}
+}
+
+Class DD_JunkoFungus : DD_ProjectileActor
+{
+	Default
+	{
+		Radius 12;
+		Height 10;
+		Damage 0;
+		Speed 14;
+		BounceType "Doom";
+		BounceCount 3;
+
+		+Ripper
+	}
+	
+	int shroomctr;
+	int shroom_x;
+	int shroom_y;
+	
+	States
+	{
+		Spawn:
+			MSRM A 2 NoDelay
+			{
+				A_PlaySound("junkoboss/shroomf", CHAN_WEAPON);
+				bNoGravity = false;
+			}
+			Goto SpawnLoop;
+		
+		SpawnLoop:
+			MSRM A 2;
+			Loop;
+		
+		Death:
+		XDeath:
+		Crash:
+			MSRM A 1 A_Gravity;
+			MSRM A 1
+			{
+				A_SetScale(0.12, 0.10);
+				A_PlaySound("junkoboss/shroomx", CHAN_BODY);
+				shroomctr = 0;
+			}
+			MSRM AA 2;
+			Goto DeathLoop;
+		
+		DeathLoop:
+			MSRM A 1
+			{				
+				A_SetTics(Random[JunkoShrooms](2,8));
+				
+				shroom_x = Random[JunkoShrooms](-12, 12);
+				shroom_y = Random[JunkoShrooms](-12, 12);
+				
+				A_SpawnItemEx("DD_JunkoFungusSpray",  shroom_x,  -shroom_y, 8);
+				A_SpawnItemEx("DD_JunkoFungusSpray",  -shroom_x, shroom_y,  8);
+				A_SpawnItemEx("DD_JunkoFungusSpray",  -shroom_x, -shroom_y, 8);
+				
+				shroomctr++;
+				
+				if (shroomctr > 8)
+				{
+					return ResolveState("DeathB");
+				}
+				return ResolveState(null);
+			}
+			Loop;
+		
+		DeathB:
+			MSRM A 2 A_FadeTo(0.0, 0.2, true);
+			Loop;
+	}
+}
+
+
+
+Class DD_JunkoEnoshimaBoss : DD_Boss
+{
+	Default
+	{
+		//$Title "Junko Enoshima"
+		//$Sprite JKO0A0
+		
+		Health 6000;
+		Scale 0.12;
+		Radius 20;
+		Height 60;
+		Mass 250;
+		Speed 18;
+		PainChance 112;
+		PainChance "Despair", 256;
+		Species "Despair";
+		DamageFactor "Despair", 0.0;
+		DamageFactor "DespairSpores", 0.0;
+		PainChance "DespairSpores", 0;
+		SeeSound "junkoboss/sight";
+		PainSound "junkoboss/pain";
+		DeathSound "junkoboss/death";
+		ActiveSound "junkoboss/active";
+		Obituary "$DD_OB_JUNKO";
+
+		+QuickToRetaliate
+		+NoTarget
+		+DontMorph
+		+NeverRespawn
+		+AllowPain
+		+Boss
+	}
+	
+	const DDJUNKO_MOOD_DESPAIR = -1;
+	const DDJUNKO_MOOD_ROAM = 0;
+	const DDJUNKO_MOOD_NORM = 0;
+	const DDJUNKO_MOOD_SYO = 1;
+	const DDJUNKO_MOOD_SMART = 2;
+	const DDJUNKO_MOOD_SAD = 3;
+	
+	int junkostate;
+	
+	void A_DDJunkoNormalChase()
+	{
+		A_Chase("Transform",	"Transform");
+	}
+	
+	void A_DDJunkoSyoChase()
+	{
+		A_Chase("MeleeSyo",		"MissileSyo");
+	}
+	
+	void A_DDJunkoSmartChase()
+	{
+		A_Chase("MissileSmart",	"MissileSmart");
+	}
+	
+	void A_DDJunkoSadChase()
+	{
+		A_Chase("MissileSad",	"MissileSad");
+	}
+	
+	
+	override void BeginPlay()
+	{
+		junkostate = DDJUNKO_MOOD_NORM;
+	}
+
+	States
+	{
+		Spawn:
+			JKO0 A 10 A_DDramaLook;
+			Loop;
+			
+		See:
+			JKO0 A 0
+			{
+				if (junkostate == DDJUNKO_MOOD_SYO)
+					return ResolveState("SeeSyo");
+				if (junkostate == DDJUNKO_MOOD_SMART)
+					return ResolveState("SeeSmart");
+				if (junkostate == DDJUNKO_MOOD_SMART)
+					return ResolveState("SeeSad");
+				
+				return ResolveState(null);
+			}
+			Goto SeeNorm;
+		
+		SeeNorm:
+			JKO0 BCDE 4 A_DDJunkoNormalChase;
+			Loop;
+		
+		SeeSyo:
+			JKO1 BCDE 2 A_DDJunkoSyoChase;
+			Loop;
+		
+		SeeSmart:
+			JKO2 BCDE 4 A_DDJunkoSmartChase;
+			Loop;
+		
+		SeeSad:
+			JKO3 BCDE 2 A_DDJunkoSadChase;
+			Loop;
+		
+		MeleeSyo:
+			JKO1 F 3 A_FaceTarget;
+			JKO1 G 2 A_CustomMeleeAttack(6, "junkoboss/syo_melee", "junkoboss/syo_miss");
+			JKO1 H 3 A_FaceTarget;
+			JKO1 I 2 A_CustomMeleeAttack(6, "junkoboss/syo_melee", "junkoboss/syo_miss");
+			Goto SeeSyo;
+			
+		MissileSyo:
+			JKO1 F 2 A_FaceTarget;
+			JKO1 G 2 A_SpawnProjectile("DD_JunkoSyoShears");
+			JKO1 H 2 A_FaceTarget;
+			JKO1 I 2 A_SpawnProjectile("DD_JunkoSyoShears");
+			Goto SeeSyo;
+		
+		MissileSmart:
+			JKO2 F 5 A_FaceTarget;
+			JKO2 F 3
+			{
+				A_PlaySound("junkoboss/smart_ui", CHAN_WEAPON);
+				ACS_NamedExecute("DDLib_JunkoBossSpawn", 0, 666);
+			}
+			Goto TransformPostSmart;
+			
+		MissileSad:
+			JKO3 F 4 A_FaceTarget;
+			JKO3 F 2 A_FatAttack1("DD_JunkoFungus");
+			Goto SeeSad;
+			
+		Transform:
+			JKOW A 0 Bright
+			{
+				bInvulnerable = true;
+				bNoPain = true;
+			}
+			JKOW A 4 Bright;
+			JKOW B 4 Bright;
+			JKOW B 0 Bright A_Jump(256, "TransformSyo", "TransformSmart", "TransformSad");
+			Goto SeeSad;
+		
+		TransformSyo:
+			JKOX B 0 Bright
+			{
+				junkostate = DDJUNKO_MOOD_SYO;
+			}
+			JKOX B 4 Bright;
+			JKOY B 6 Bright;
+			JKOY B 0 Bright
+			{
+				bInvulnerable = false;
+				bNoPain = false;
+			}
+			Goto SeeSyo;
+		
+		TransformSmart:
+			JKOX A 0 Bright
+			{
+				junkostate = DDJUNKO_MOOD_SMART;
+			}
+			JKOX A 4 Bright;
+			JKOX A 6 Bright;
+			JKOY B 0 Bright
+			{
+				bInvulnerable = false;
+				bNoPain = false;
+			}
+			Goto SeeSmart;
+		
+		TransformSad:
+			JKOX C 0 Bright;
+			JKOX C 4 Bright
+			{
+				junkostate = DDJUNKO_MOOD_SAD;
+			}
+			JKOY C 6 Bright
+			{
+				A_PlaySound("junko_blues/active1", CHAN_VOICE);
+			}
+			JKOY C 0 Bright
+			{
+				bInvulnerable = false;
+				bNoPain = false;
+			}
+			Goto SeeSad;
+		
+		TransformPostSmart:
+			JKOW A 0 Bright			
+			{
+				bInvulnerable = true;
+				bNoPain = true;
+			}
+			JKOW A 4 Bright;
+			JKOW B 4 Bright;
+			JKOW B 0 A_Jump(256, "TransformSyo", "TransformSad");
+			Goto See;
+		
+		Pain.Despair:
+			JKOP A 0 A_SetHealth(health + Random[JunkoE](4,16));
+			Goto See;
+		
+		Pain:
+			JKOP A 0
+			{
+				bInvulnerable = true;
+				bNoPain = true;
+			}
+			JKOP A 4
+			{
+				A_Pain();
+				A_SpawnItemEx("DD_JunkoStarsFx", 0, 0, 72);
+			}
+			JKOP BABABABABA 4;
+			JKOP BABABAB 4;
+			JKOP A 4
+			{
+				bInvulnerable = false;
+				bNoPain = false;
+			}
+			JKOP A 0
+			{
+				return A_Jump(128, "Transform");
+			}
+			Goto See;
+		
+		Death:
+		Death.Rocket:
+		Death.Webbing:
+		Death.Expand:
+		Death.Shou:
+		Death.Extreme:
+			JKOP A 5
+			{
+				A_ScreamAndUnblock();
+				A_DDGivePlayerOneLiner(1);
+			}
+			JKOP BABABABBABABABBABABABBABABAB 5
+			{
+				A_SpawnItemEx("DD_LudicrousGibsFx", flags:DDFL_AMMOFLAGSFX);
+			}
+			JKOP A 5
+			{
+				A_SpawnItemEx("DD_LudicrousGibsFx", flags:DDFL_AMMOFLAGSFX);
+				A_PlaySound("junko_orgasm/death1", CHAN_VOICE);
+			}
+			JKOP BABABABBABABABBABABABBABABAB 5
+			{
+				A_SpawnItemEx("DD_LudicrousGibsFx", flags:DDFL_AMMOFLAGSFX);
+			}
+			JKOP A 5
+			{
+				A_SpawnItemEx("DD_LudicrousGibsFx", flags:DDFL_AMMOFLAGSFX);
+				A_PlaySound("junko_orgasm/death3", CHAN_VOICE);
+			}
+			JKOP BABABABBABABABBABABABBABABAB 5
+			{
+				A_SpawnItemEx("DD_LudicrousGibsFx", flags:DDFL_AMMOFLAGSFX);
+			}
+			JKOP A 5
+			{
+				A_SpawnItemEx("DD_LudicrousGibsFx", flags:DDFL_AMMOFLAGSFX);
+				A_PlaySound("junko_orgasm/death4", CHAN_VOICE);
+			}
+			JKOP BABABABBABABABBABABABBABABABBABABAB 5
+			{
+				A_SpawnItemEx("DD_LudicrousGibsFx", flags:DDFL_AMMOFLAGSFX);
+			}
+			GIBW A 4
+			{
+				Thing_Remove(666);
+				Thing_Destroy(667, true);
+				A_XScream();
+				A_SpawnItemEx("DD_LudicrousGibsFx", flags:DDFL_AMMOFLAGSFX);
+			}
+			GIBW BCDE 4;
+			GIBW F 305;
+			GIBW F -1 A_BossDeath;
+			Stop;
+		
+		Raise:
+		Crush:
+			Stop;
+	}
+}

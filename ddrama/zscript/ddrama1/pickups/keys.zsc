@@ -1,0 +1,189 @@
+/* *******************************************************************
+ *		keys.zsc
+ *
+ *		Keys for Daytime Drama
+ *
+ *		As long as you attribute it to me in some
+ *		way I don't mind people using this. Considering how much
+ *		some people have caused an uproar over the lack of proper
+ *		examples and the like.
+ *
+ *		Copyright Sanya K. C. Waffles 2013-2017
+ *
+ * ****************************************************************** */
+
+// Red Key
+Class DD_RedKey : DD_Key
+{
+	Default
+	{
+		//$Sprite RKEYA0
+		//$Title "Red Key"
+		//$Category "Keys"
+		//$Color 13
+		
+		Inventory.PickupMessage "$DD_GOTREDKEY";
+		Inventory.Icon "RKEYA0";
+	}
+
+	States
+	{
+		Spawn:
+			RKEY A 10 Bright;
+			Loop;
+	}
+}
+
+// Green Key
+Class DD_GreenKey : DD_Key
+{
+	Default
+	{
+		//$Sprite GKEYA0
+		//$Title "Green Key"
+		//$Category "Keys"
+		//$Color 13
+		
+		Inventory.PickupMessage "$DD_GOTGRNKEY";
+		Inventory.Icon "GKEYA0";
+	}
+
+	States
+	{
+		Spawn:
+			GKEY A 10 Bright;
+			Loop;
+	}
+}
+
+// Blue Key
+Class DD_BlueKey : DD_Key
+{
+	Default
+	{
+		//$Sprite BKEYA0
+		//$Title "Blue Key"
+		//$Category "Keys"
+		//$Color 13
+		
+		Inventory.PickupMessage "$DD_GOTBLUKEY";
+		Inventory.Icon "BKEYA0";
+	}
+
+	States
+	{
+		Spawn:
+			BKEY A 10 Bright;
+			Loop;
+	}
+}
+
+// Yellow/Gold Key
+Class DD_GoldKey : DD_Key
+{
+	Default
+	{
+		//$Sprite YKEYA0
+		//$Title "Gold Key"
+		//$Category "Keys"
+		//$Color 13
+		
+		Inventory.PickupMessage "$DD_GOTYELKEY";
+		Inventory.Icon "YKEYA0";
+	}
+
+	States
+	{
+		Spawn:
+			YKEY A 10 Bright;
+			Loop;
+	}
+}
+
+// Red Access Card
+Class DD_RedCard : DD_Key
+{
+	Default
+	{
+		//$Sprite RCRDA0
+		//$Title "Red Card"
+		//$Category "Keys"
+		//$Color 13
+		
+		Inventory.PickupMessage "$DD_GOTREDCARD";
+		Inventory.Icon "RCRDA0";
+	}
+
+	States
+	{
+		Spawn:
+			RCRD A 10 Bright;
+			Loop;
+	}
+}
+
+// Green Access Card
+Class DD_GreenCard : DD_Key
+{
+	Default
+	{
+		//$Sprite GCRDA0
+		//$Title "Green Card"
+		//$Category "Keys"
+		//$Color 13
+		
+		Inventory.PickupMessage "$DD_GOTGRNCARD";
+		Inventory.Icon "GCRDA0";
+	}
+
+	States
+	{
+		Spawn:
+			GCRD A 10 Bright;
+			Loop;
+	}
+}
+
+// Blue Access Card
+Class DD_BlueCard : DD_Key
+{
+	Default
+	{
+		//$Sprite BCRDA0
+		//$Title "Blue Card"
+		//$Category "Keys"
+		//$Color 13
+		
+		Inventory.PickupMessage "$DD_GOTBLUCARD";
+		Inventory.Icon "BCRDA0";
+	}
+
+	States
+	{
+		Spawn:
+			BCRD A 10 Bright;
+			Loop;
+	}
+}
+
+// Gold/Yellow Access Card
+Class DD_GoldCard : DD_Key
+{
+	Default
+	{
+		//$Sprite YCRDA0
+		//$Title "Gold Card"
+		//$Category "Keys"
+		//$Color 13
+		
+		Inventory.PickupMessage "$DD_GOTYELCARD";
+		Inventory.Icon "YCRDA0";
+	}
+
+	States
+	{
+		Spawn:
+			YCRD A 10 Bright;
+			Loop;
+	}
+}

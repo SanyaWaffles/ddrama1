@@ -1,0 +1,23 @@
+class DD_ConversationMenu : ConversationMenu
+{
+
+	//============================================================================
+	//
+	// DrawConversationMenu
+	//
+	//============================================================================
+
+	override void Drawer()
+	{
+		if (mCurNode == NULL)
+		{
+			Close ();
+			return;
+		}
+
+		bool dimbg = DrawBackdrop();
+		DrawSpeakerText(dimbg);
+		DrawReplies();
+		//  DrawGold();
+	}
+}

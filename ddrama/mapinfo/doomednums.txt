@@ -1,0 +1,156 @@
+DoomEdNums
+{
+	6000 = DD_BuddyBear
+	6001 = DD_Gumball
+	6002 = DD_BarfBag
+	6003 = DD_BronyOfDespair
+	6004 = DD_Dontreldemon
+	6005 = DD_SmokeyHead
+	6006 = DD_SweetBro
+	6007 = DD_LotsoBear
+	6008 = DD_BonziBuddy
+	6009 = DD_NightmareBro
+	6010 = DD_Purrmoid
+	6011 = DD_ChecksumUnicorn
+	6012 = DD_Monokuma
+	6013 = DD_TrollJunko
+	6014 = DD_JunkoEnoshimaBoss
+	6016 = DD_HellaJeff
+	
+	6200 = DD_IceBear
+	6201 = DD_GradeA
+	6202 = DD_Marshal
+	6203 = DD_Krisana
+	6204 = DD_Amber
+	6205 = DD_Emmy
+	6206 = DD_Kelsie
+	
+	6300 = DD_CSJunkoE
+	6301 = DD_CSSanya
+	6302 = DD_CSBronyBlue
+	6303 = DD_CSBronyGreen
+	
+	6400 = DD_ChocolateBar
+	6401 = DD_SportDrink
+	6402 = DD_BurgersFries
+	6403 = DD_GreenJacket
+	6404 = DD_BlueJacket
+	
+	6410 = DD_BulkSportDrinkPack
+	6411 = DD_SyoPepper
+	6412 = DD_BouncySandals
+	6413 = DD_BrokenJPEG
+	6414 = DD_Cracker
+	6415 = DD_AxxSpray
+	6416 = DD_Antidepressant
+	
+	6600 = DD_Shotgun
+	6602 = DD_Minigun
+	6603 = DD_RocketLauncher
+	6604 = DD_DespairiumRifle
+	6605 = DD_TrollbloodDevicePickup
+	6606 = DD_Pistol
+	
+	6650 = DD_Bullets
+	6651 = DD_Shells
+	6653 = DD_AmmoBelt
+	6654 = DD_RocketAmmo
+	6655 = DD_Despairium
+	6660 = DD_OliveBloodAmmo
+	6661 = DD_BronzeBloodAmmo
+	6662 = DD_CobaltBloodAmmo
+	6663 = DD_MultiBloodPak
+	
+	6670 = DD_Handbag
+	
+	6680 = DD_HeatSeekCard
+	6681 = DD_AirCompressor
+	
+	6750 = DD_RedKey
+	6751 = DD_GreenKey
+	6752 = DD_BlueKey
+	6753 = DD_GoldKey
+	6754 = DD_RedCard
+	6755 = DD_GreenCard
+	6756 = DD_BlueCard
+	6757 = DD_GoldCard
+	
+	6800 = DD_ExplodingBarrel
+	6801 = DD_Barrel
+	6802 = DD_Candle
+	6803 = DD_FireBase
+	6804 = DD_TeacherOnPole
+	6805 = DD_ChoirBoyHeads
+	6806 = DD_ChainHook
+	6807 = DD_ChainHookWithBlood
+	6808 = DD_TrashCanOnFire
+	6809 = DD_TrashCan
+	6810 = DD_TrafficCone
+	6811 = DD_MarlanaEvansSkel
+	6812 = DD_GlassBottleBase
+	6813 = DD_BeerGlassBase
+	6814 = DD_TableLamp
+	
+	6820 = DD_ShoppingCart
+	6821 = DD_BrownVase
+	6822 = DD_Gibpile1
+	6823 = DD_ChoirboyHead
+	6824 = DD_ChoirboyHeadSmiling
+	6825 = DD_Watermelon
+	6826 = DD_TrollCorpseHook
+	6827 = DD_TrollCorpse
+	6828 = DD_Moneybag
+	6829 = DD_DontrelDoll
+	6830 = DD_MGAWDoll
+	
+	6831 = DD_DudebroHat
+	6832 = DD_GarbageBag
+	6833 = DD_PopcornCup
+	6834 = DD_EmptyPopcornCups
+	6835 = DD_FlappyTrashCan
+	6836 = DD_PopcornCupEmpty
+	6837 = DD_Toilet
+	6838 = DD_IVStand
+	6839 = DD_IVStandB
+	6840 = DD_GreenChemBeaker
+	6841 = DD_JarLemondrops
+	6842 = DD_JarQTips
+	6843 = DD_JarTongueSticks
+	6844 = DD_CeilingLightHanging
+	6845 = DD_CeilingLightHangingSmall
+	
+	6847 = DD_CrapPlop
+	6848 = DD_StreetLightPole
+	6849 = DD_PlantedTree
+	6850 = DD_PounlandGeorge
+	6851 = DD_DrinkingCup1
+	6852 = DD_DrinkingCup1Side
+	6853 = DD_DrinkingCup2
+	6854 = DD_DrinkingCup2Side
+	6855 = DD_Sponge
+	6856 = DD_BunTop
+	6857 = DD_BunBottom
+	6858 = DD_Sock
+	6859 = DD_MeatPatty
+	6860 = DD_MeatPatty2
+	6861 = DD_FryBasket
+	6862 = DD_BarStool
+	6863 = DD_ManholeCover
+	6864 = DD_StuffPint
+	6865 = DD_StuffPintOpen
+	
+	6900 = DD_PigPowerController
+	6901 = DD_MailboxController
+	6902 = DD_SupermarketSpeaker
+	6903 = DD_ExplosionChainController
+	6904 = DD_ExplosionSpot
+	6905 = DD_SecretLevelPsych
+	6906 = DD_DudebroTVController
+	6907 = DD_RegularTVController
+	6908 = DD_Urinal
+	6909 = DD_DespairiumTurret
+	6910 = DD_DudebronyObservingController
+	6911 = DD_DudebronySpot
+	
+	6999 = DD_DespairiumCore
+}

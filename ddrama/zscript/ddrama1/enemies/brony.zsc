@@ -1,0 +1,144 @@
+/* *******************************************************************
+ *		brony.zsc
+ *
+ *		Brony / Brony Boss
+ *
+ *		As long as you attribute it to me in some
+ *		way I don't mind people using this. Considering how much
+ *		some people have caused an uproar over the lack of proper
+ *		examples and the like.
+ *
+ *		Copyright Sanya K. C. Waffles 2013-2017
+ *
+ * ****************************************************************** */
+
+Class DD_DudebronyBall : DD_ProjectileActor
+{
+	Default
+	{
+		Radius 6;
+		Height 16;
+		Speed 15;
+		FastSpeed 20;
+		Damage 8;
+		RenderStyle "Add";
+		Alpha 1;
+		SeeSound "brony/attack";
+		DeathSound "brony/shotx";
+	}
+
+	States
+	{
+		Spawn:
+			BAL7 A 4 Bright NoDelay A_SetScale(0.10, 0.10);
+			BAL7 A 4 Bright A_SetScale(0.20, 0.20);
+			Loop;
+		
+		Death:
+			BAL7 C 6 Bright A_SetScale(0.12, 0.12);
+			BAL7 DE 6 Bright;
+			Stop;
+	}
+}
+ 
+
+Class DD_BronyOfDespair : DD_Boss
+{
+	Default
+	{
+		//$Title "Brony of Despair"
+		//$Sprite BMRAA0
+		
+		Scale 0.14;
+		Health 1000;
+		Radius 24;
+		Height 64;
+		Mass 1000;
+		Speed 8;
+		DamageFactor "Dorito", 0.25;
+		PainChance "Dorito", 0;
+		PainChance 50;
+		Species "Pony";
+		SeeSound "brony/sight";
+		PainSound "brony/pain";
+		DeathSound "brony/death";
+		ActiveSound "brony/active";
+		Obituary "$DD_OB_MRABRONY";
+
+		+Boss
+		+JumpDown
+		+FullVolActive
+		+FullVolDeath
+	}
+	
+	const DUDEBRONY_GREEN = 1;
+	const DUDEBRONY_BLUE = 2;
+	
+	int user_type;
+	
+	States
+	{
+		Spawn:
+			BMRA A 0 NoDelay
+			{
+				if (user_type == DUDEBRONY_GREEN) return ResolveState("SetGreenSpr");
+				
+				if (user_type == DUDEBRONY_BLUE) return ResolveState("SetBlueSpr");
+				
+				return ResolveState(null);
+			}
+			Goto SetNormalSpr;
+		
+		SetNormalSpr:
+			BMRA A 0;
+			Goto SpawnActual;
+			
+		SetGreenSpr:
+			BRO1 A 0;
+			Goto SpawnActual;
+			
+		SetBlueSpr:
+			BRO2 A 0;
+			Goto SpawnActual;
+			
+		SpawnActual:
+			"####" A 10 A_DDramaLook;
+			Loop;
+			
+		See:
+			"####" BCDEBCDE 3 A_DDramaChase;
+			Loop;
+			
+		Melee:
+			"####" HI 6 A_FaceTarget;
+			"####" J 6 A_CustomMeleeAttack(random[Brony](1, 8) * 10, "brony/meleehit", "brony/meleemiss");
+			Goto See;
+			
+		Missile:
+			"####" EF 8 A_FaceTarget;
+			"####" G 8 A_SpawnProjectile("DD_DudebronyBall", 48, 0);
+			Goto See;
+		
+		Pain:
+			"####" K 2;
+			"####" K 2 A_Pain;
+			Goto See;
+		
+		Death:
+		Death.Extreme:
+		Death.Rocket:
+		Death.Webbing:
+		Death.Expand:
+		Death.Shou:
+			"####" L 8;
+			"####" M 8 A_Scream;
+			"####" N 8;
+			"####" O 8 A_NoBlocking;
+			"####" P 150;
+			"####" P -1 A_BossDeath;
+			Stop;
+		
+		Raise:
+			Stop;
+	}
+}

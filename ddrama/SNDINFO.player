@@ -1,0 +1,39 @@
+// Player sounds
+$playersound	sanya	male	*death		sounds/player/dead1.ogg
+$playersound	sanya	male	*xdeath		sounds/player/dead2.ogg
+$playersound	sanya	male	*gibbed		sounds/sfx/slop/gibslop2.ogg
+$playersound	sanya	male	*pain100	sounds/player/pain.ogg
+$playersounddup	sanya	male	*pain75		*pain100
+$playersounddup	sanya	male	*pain50		*pain100
+$playersounddup	sanya	male	*pain25		*pain100
+$playersound	sanya	male	*grunt		DSEMPTY
+$playersounddup	sanya	male	*land		*grunt
+$playersounddup	sanya	male	*jump		*grunt
+$playersounddup	sanya	male	*fist		*grunt
+$playersounddup	sanya	male	*usefail	*grunt
+
+$playersound	sanya	female	*death		sounds/player/dead1.ogg
+$playersound	sanya	female	*xdeath		sounds/player/dead2.ogg
+$playersound	sanya	female	*gibbed		sounds/sfx/slop/gibslop2.ogg
+$playersound	sanya	female	*pain100	sounds/player/pain.ogg
+$playersounddup	sanya	female	*pain75		*pain100
+$playersounddup	sanya	female	*pain50		*pain100
+$playersounddup	sanya	female	*pain25		*pain100
+$playersound	sanya	female	*grunt		DSEMPTY
+$playersounddup	sanya	female	*land		*grunt
+$playersounddup	sanya	female	*jump		*grunt
+$playersounddup	sanya	female	*fist		*grunt
+$playersounddup	sanya	female	*usefail	*grunt
+
+$playersound	sanya	other	*death		sounds/player/dead1.ogg
+$playersound	sanya	other	*xdeath		sounds/player/dead2.ogg
+$playersound	sanya	other	*gibbed		sounds/sfx/slop/gibslop2.ogg
+$playersound	sanya	other	*pain100	sounds/player/pain.ogg
+$playersounddup	sanya	other	*pain75		*pain100
+$playersounddup	sanya	other	*pain50		*pain100
+$playersounddup	sanya	other	*pain25		*pain100
+$playersound	sanya	other	*grunt		DSEMPTY
+$playersounddup	sanya	other	*land		*grunt
+$playersounddup	sanya	other	*jump		*grunt
+$playersounddup	sanya	other	*fist		*grunt
+$playersounddup	sanya	other	*usefail	*grunt

@@ -1,0 +1,124 @@
+/* *******************************************************************
+ *		base_player.zsc
+ *
+ *		Base player pawn Daytime Drama Class
+ *
+ *		As long as you attribute it to me in some
+ *		way I don't mind people using this. Considering how much
+ *		some people have caused an uproar over the lack of proper
+ *		examples and the like.
+ *
+ *		Copyright Sanya K. C. Waffles 2013-2017
+ *
+ * ****************************************************************** */
+
+Class DD_PlayerPawn : PlayerPawn
+{
+	Default
+	{
+		TeleFogSourceType "DD_TeleportFog";
+		TeleFogDestType "DD_TeleportFog";
+		
+		Scale 0.12;
+	}
+	
+	// is this even a thing we need?
+	enum ETrollBloodColors
+	{
+		TROLL_BLOOD_OLIVE,
+		TROLL_BLOOD_BRONZE,
+		TROLL_BLOOD_COBALT,
+		TROLL_BLOOD_MAX,
+	};
+	
+	bool startepisode;		// starting episode?
+	bool heatseektoggle;	// Rocket Launcher Heatseek Toggle
+	int trollbloodstage;	// Trollblood Device Stage
+	int shoucounter;		// current genicdershou counter (general use)
+	int cscenehold;			// Hmmm...
+	int expandloop;			// Expand Count
+	int onelinercount;		// One Liner Counter
+	int tic_counter;		// Tic Counter
+	
+	// Make a rubbery expanding noise
+	void A_DDExpandDongStart()
+	{
+		A_PlaySound("generic/expanding", CHAN_BODY);
+	}
+	
+	// Loop until you go big
+	state A_DDExpandDongLoop()
+	{
+		expandloop++;
+		
+		return (expandloop >= DD_ENEMY_SCALECOUNT) ? ResolveState("ExpandFinish") : ResolveState(null);
+	}
+	
+	// When you do go big, explode like a motherfuckin' mushroom cloud
+	void A_DDExpandDongFin()
+	{
+		A_Explode(128, 144);
+		A_DDSpawnLudicrousGibs();
+	}
+	
+	// Throw actual giblets around
+	void A_DDSpawnLudicrousGibs()
+	{
+		A_SpawnItemEx("DD_LudicrousGibsFx", flags:DDFL_AMMOFLAGSFX);
+	}
+	
+	void PerSecondFunctions()
+	{
+		// nada so far.
+	}
+	
+	override void BeginPlay()
+	{
+		if (!startepisode)
+		{
+			startepisode = true;
+			heatseektoggle = false;
+			trollbloodstage = 0;
+		}
+		expandloop = 0;
+		tic_counter = 0;
+		
+		Super.BeginPlay();
+	}
+	
+	override void Tick()
+	{
+		// to avoid something going on with "voodoo dolls" not performing right
+		// or the like. Since Daytime Drama doesn't support multiplayer, this
+		// is more for the sake of completion, or if someone wants to
+		// expand on it.
+		if (!player || !player.mo || player.mo != self)
+		{
+			// Onply perform the PlayerPawn functionality, nothing more...
+			Super.Tick();
+			return;	// bailing out...
+		}
+		
+		tic_counter++;	// increment
+		
+		// This is mainly here to do things on every ~second or so.
+		// right now it's empty, but if I were, or someone else, were
+		// to do something like this, it's here for them to use.
+		// ----
+		// We use modulo to check if current tics have been 35. If so,
+		// reset the tic_counter to zero and do any second-sensitive
+		// functions (more for Daytime Drama 2 boilerplating)
+		// ----
+		if ((tic_counter % 35) == 0)
+		{
+			// reset tic_counter...
+			tic_counter = 0;
+			
+			// any per-second functions go here
+			PerSecondFunctions();
+		}
+		
+		Super.Tick();	// call any PlayerPawn Tick functionality
+	}
+}
+

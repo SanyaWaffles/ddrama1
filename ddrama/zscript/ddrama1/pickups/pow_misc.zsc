@@ -1,0 +1,72 @@
+/* *******************************************************************
+ *		pow_misc.zsc
+ *
+ *		Misc. Powerups
+ *
+ *		As long as you attribute these functions to me in some
+ *		way I don't mind people using these. Considering how much
+ *		some people have caused an uproar over the lack of proper
+ *		examples and the like.
+ *
+ *		Copyright Sanya K. C. Waffles 2013-2017
+ *
+ * ****************************************************************** */
+
+Class DD_Handbag : BackpackItem
+{
+	Default
+	{
+		//$NotAngled
+		//$Category "Ammunition"
+		//$Color 6
+		//$Sprite HBAGA0
+		//$Title "Ammo satchel"
+		
+		Scale 0.12;
+		Radius 24;
+		Height 36;
+
+		Inventory.PickupMessage "$DD_GOTHBAG";
+		Inventory.PickupSound "pickups/generic";
+	}
+
+	States
+	{
+		Spawn:
+			HBAG A -1;
+			Stop;
+	}
+}
+
+// Christmas Cracker
+// Like ill-conceived love:: one loud bang, 
+// a dissapointing trinket, and ultimately a joke
+// handled in ACS previously, I need to look into
+// how to make it remove itself all in ZScript
+Class DD_Cracker : Inventory
+{
+	Default
+	{
+		//$Sprite CRKRA0
+		//$Title "Cracker"
+		//$Category "Powerups"
+		
+		Scale 0.12;
+		Radius 12;
+		Height 24;
+		Inventory.PickupMessage "$DD_GOTCRACKER";
+		Inventory.PickupSound "pickups/cracker";
+		Inventory.Amount 1;
+		Inventory.MaxAmount 1;
+
+		-Inventory.InvBar;
+	}
+
+	States
+	{
+		Spawn:
+			CRKR A -1;
+			Stop;
+	}
+}
+

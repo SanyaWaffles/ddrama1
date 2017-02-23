@@ -1,0 +1,125 @@
+type = "Doom Builder Map Settings Configuration";
+gameconfig = "WIGZDoom_DDramaUDMF.cfg";
+strictpatches = 0;
+
+maps
+{
+	
+	MAP10
+	{
+		
+		resources
+		{
+		}
+		defaultfloortexture = "DIRTF01";
+		defaultceiltexture = "FUNC_SKY";
+		defaulttoptexture = "FLESHY00";
+		defaultwalltexture = "FLESHY00";
+		defaultbottomtexture = "FLESHY00";
+		custombrightness = 196;
+		customfloorheight = 0;
+		customceilheight = 128;
+		overridefloortexture = false;
+		overrideceiltexture = false;
+		overridetoptexture = false;
+		overridemiddletexture = false;
+		overridebottomtexture = false;
+		overridefloorheight = false;
+		overrideceilheight = false;
+		overridebrightness = false;
+		scriptcompiler = "zdoom_acs.cfg";
+		
+		grid
+		{
+			background = "";
+			backsource = 0;
+			backoffsetx = 0;
+			backoffsety = 0;
+			backscalex = 100;
+			backscaley = 100;
+			gridsize = 8f;
+		}
+		uselongtexturenames = false;
+		viewpositionx = -1184.122f;
+		viewpositiony = 0.2232132f;
+		viewscale = 0.1196244f;
+		
+		scriptlumps
+		{
+			
+			lump
+			{
+				filename = "SCRIPTS";
+				hash = 3469170009;
+				caretposition = 52;
+				activetab = true;
+			}
+		}
+		
+		fieldtypes
+		{
+			
+			sidedef
+			{
+				offsetx_bottom = 1;
+				offsety_bottom = 1;
+				offsetx_mid = 1;
+				offsety_mid = 1;
+				offsetx_top = 1;
+				offsety_top = 1;
+				light = 0;
+				lightabsolute = 3;
+				scalex_top = 1;
+				scaley_top = 1;
+				scalex_bottom = 1;
+				scaley_bottom = 1;
+			}
+			
+			sector
+			{
+				rotationfloor = 1;
+				lightceiling = 0;
+				lightcolor = 0;
+				xpanningceiling = 1;
+				ypanningceiling = 1;
+				lightfloor = 0;
+				rotationceiling = 1;
+				xpanningfloor = 1;
+				ypanningfloor = 1;
+				xscaleceiling = 1;
+				xscalefloor = 1;
+				yscaleceiling = 1;
+				yscalefloor = 1;
+			}
+			
+			thing
+			{
+				arg0str = 2;
+			}
+		}
+		useresourcesinreadonlymode = false;
+		
+		scriptdocuments
+		{
+			
+			document0
+			{
+				filename = "DIALOGUE";
+				hash = 3588187714;
+				resource;
+				tabtype = 0;
+				scripttype = 18;
+			}
+			
+			document1
+			{
+				filename = "SCRIPTS";
+				hash = 3469170009;
+				resource;
+				tabtype = 0;
+				scripttype = 1;
+				activetab = true;
+			}
+		}
+	}
+}

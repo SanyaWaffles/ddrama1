@@ -1,0 +1,91 @@
+/* *******************************************************************
+ *		functions.zsc
+ *
+ *		Actor-shared general functions.
+ *
+ *		As long as you attribute these functions to me in some
+ *		way I don't mind people using these. Considering how much
+ *		some people have caused an uproar over the lack of proper
+ *		examples and the like.
+ *
+ *		Copyright Sanya K. C. Waffles 2013-2017
+ *
+ * ****************************************************************** */
+
+extend class DD_Actor
+{
+	/*	***********************************************
+	 *				DDFunc_EnemyWeaponSnd();
+	 *		make an enemy emit a shooting noise
+	 *	***********************************************/
+	void DDFunc_EnemyWeaponSnd(sound attacksnd = "generic/enemyshoot")
+	{
+		A_PlaySound(attacksnd, CHAN_WEAPON);	// make a shooting noise
+	}
+	
+	/*	***********************************************
+	 *				DDFunc_HSAttack();
+	 *		basic hitscan attack for enemies
+	 *	angoffs ==> offset to change angle. Randomized preferred.
+	 *	dmg ==> Randomized or non-randomized damage
+	 *	pufftype ==> Pufftype to use (defaults to DD_BulletPuff")
+	 *	dmgtype ==> name for damage type
+	 *	***********************************************/
+	void DDFunc_HSAttack(double angoffs, int dmg, class<Actor> pufftype = "DD_BulletPuff", name dmgtype = "Hitscan")
+	{
+		double ang = angle + angoffs;	// offset our angle
+		double slope = AimLineAttack(ang, MISSILERANGE);	// aim
+		
+		LineAttack(ang, MISSILERANGE, slope, dmg, dmgtype, pufftype);
+	}
+	
+	/*	***********************************************
+	 *			DDFunc_PickAngleAdj();
+	 *		picks an angle to shift
+	 *	***********************************************/
+	double DDFunc_PickAngleAdj()
+	{
+		return FRandomPick[AnglePicker](22.5,45.,90.);
+	}
+	
+	/*	***********************************************
+	 *			DDFunc_ShouCheck();
+	 *	checks if Genodicer Shou Powerup active
+	 *	***********************************************/
+	bool DDFunc_ShouCheck()
+	{
+		return CountInv("DD_SyoPepperPowerStrength") ? true : false;
+	}
+	
+	/*	***********************************************
+	 *				A_DDLudicrousGibs();
+	 *		Called when an enemy dies and is gibbed.
+	 *	***********************************************/
+	
+	void A_DDLudicrousGibs()
+	{		
+		// Spawn some nasty gibs
+		A_SpawnItemEx("DD_LudicrousGibsFx", flags:DDFL_AMMOFLAGSFX);
+		A_SpawnItemEx("DD_LootAmmoSpawnSmall", flags:DDFL_AMMOFLAGSFX);
+	}
+	
+	/*	***********************************************
+	 *				A_DDramaLook();
+	 *		AI Looking Around Function
+	 *	***********************************************/
+	void A_DDramaLook()
+	{
+		A_LookEx(fov:360);
+	}
+	
+	/*	***********************************************
+	 *				A_DDramaChase();
+	 *			AI Chasing Around Function
+	 *	***********************************************/
+	void A_DDramaChase()
+	{
+		if(!bBoss) bFrightened = DDFunc_ShouCheck();
+		
+		A_Chase();
+	}
+}

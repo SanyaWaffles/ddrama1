@@ -1,0 +1,9 @@
+user int	dd_hudhints	= 1;	// Hud Hints
+								// 0 = Never
+								// 1 = On Lower Difficulties
+								// 2 = Always
+
+user bool	dd_cutscene = false;	// Allow Cutscene Skip (hmm...)
+
+user int	dd_snd_oneliners = 1;
+

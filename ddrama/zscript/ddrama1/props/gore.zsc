@@ -1,0 +1,374 @@
+// That male teacher from Nichijou
+// impaled on a bamboo shoot
+Class DD_TeacherOnPole : DD_Prop
+{
+	Default
+	{
+		//$Title "Impaled Nichijou Guy"
+		//$Sprite POL1A0
+		//$Category "Obstacles"
+		
+		Radius 14;
+		Height 54;
+	}
+
+	States
+	{
+		Spawn:
+			POL1 AB 8;
+			Loop;
+	}
+}
+
+// Three choirboy heads impaled on a spike
+// one of them looks quite happy about it
+Class DD_ChoirBoyHeads : DD_Prop
+{
+	Default
+	{
+		//$Title "Chorus Kids Stake"
+		//$Sprite POL2A0
+		//$Category "Obstacles"
+		
+		Radius 12;
+		Height 54;
+	}
+
+	States
+	{
+		Spawn:
+			POL2 A -1;
+			Stop;
+	}
+}
+
+// Clean Chain Hook
+Class DD_ChainHook : DD_Prop
+{
+	Default
+	{
+		//$Title "Hook"
+		//$Sprite HOOKA0
+		//$Category "Obstacles"
+		
+		Radius 10;
+		Height 40;
+
+		+NoGravity
+		+SpawnCeiling
+	}
+
+	States
+	{
+		Spawn:
+			HOOK A -1;
+			Stop;
+	}
+}
+
+// Used Chain Hook
+Class DD_ChainHookWithBlood : DD_ChainHook
+{
+	Default
+	{
+		//$Title "Bloody Hook"
+		//$Sprite HUK2A0
+		//$Category "Obstacles"
+	}
+	
+	States
+	{
+		Spawn:
+			HUK2 A -1;
+			Stop;
+	}
+}
+
+// Marlana Evans didn't escape the saloon wine cellar.
+Class DD_MarlanaEvansSkel : DD_Decoration
+{
+	Default
+	{
+		//$Title "Blond Girl Skeleton"
+		//$Sprite SKLEA0
+		//$Category "Decoration"
+		
+		Radius 10;
+		Height 20;
+	}
+
+	States
+	{
+		Spawn:
+			SKLE A -1;
+			Stop;
+	}
+}
+
+Class DD_Gibpile1 : DD_Decoration
+{
+	Default
+	{
+		//$Title "Gib Pile"
+		//$Sprite PULGA0
+		//$Category "Decoration"
+
+		Radius 12;
+		Height 24;
+	}
+
+	States
+	{
+		Spawn:
+			PULG A -1;
+			Stop;
+	}
+}
+
+Class DD_ChoirboyHead : DD_Decoration
+{
+	Default
+	{
+		//$Title "Choirboy Head (Glare)"
+		//$Sprite CBH1A0
+		//$Category "Decoration"
+		
+		Radius 8;
+		Height 16;
+	}
+
+	States
+	{
+		Spawn:
+			CBH1 A -1;
+			Stop;
+	}
+}
+
+Class DD_ChoirboyHeadSmiling : DD_ChoirboyHead
+{
+	Default
+	{
+		//$Title "Choirboy Head (Smiling)"
+		//$Sprite CBH2A0
+		//$Category "Decoration"
+	}
+
+	States
+	{
+		Spawn:
+			CBH2 A -1;
+			Stop;
+	}
+}
+
+Class DD_TrollCorpseHook : DD_ChainHook
+{
+	Default
+	{
+		Radius 10;
+		Height 40;
+		Health 10;
+		Mass 800;
+		Speed 0;
+		VSpeed 0;
+		FloatSpeed 0;
+		DeathSound "misc/gibbed";
+
+		+Shootable
+		+Solid
+		+NoPain
+		+NoGravity
+		+DontMorph
+		+DontFall
+		+DontThrust
+		+NoBlood
+	}
+
+	States
+	{
+		Spawn:
+			TRC2 ABAC 3 A_Stop;
+			Loop;
+		
+		Death:
+			HUK2 A 0
+			{
+				A_Stop();
+				A_ScreamAndUnblock();
+				A_SpawnItemEx("DD_LudicrousGibsFx", flags:DDFL_AMMOFLAGSFX);
+			}
+			HUK2 A 35 A_Stop;
+			HUK2 A -1 A_Stop;
+			Stop;
+	}
+}
+
+/*
+Class DD_TrollCorpseHookRouge : DD_TrollCorpseHookBase
+{
+	Translation "16:31=32:39"
+	BloodColor "AF 00 00"
+}
+
+Class DD_TrollCorpseHookBronze : DD_TrollCorpseHookBase
+{
+	Translation "16:31=99:108"
+	BloodColor "66 46 00"
+}
+
+Class DD_TrollCorpseHookOlive : DD_TrollCorpseHookBase
+{
+	Translation "16:31=224:232"
+	BloodColor "00 84 00"
+}
+
+Class DD_TrollCorpseHookJade : DD_TrollCorpseHookBase
+{
+	Translation "16:31=48:55"
+	BloodColor "00 4A 00"
+}
+
+Class DD_TrollCorpseHookCerulean : DD_TrollCorpseHookBase
+{
+	Translation "16:31=160:175"
+	BloodColor "00 00 92"
+}
+
+Class DD_TrollCorpseHookCobalt : DD_TrollCorpseHookBase
+{
+	Translation "16:31=160:167"
+	BloodColor "2C 47 62"
+}
+
+Class DD_TrollCorpseHookViolet : DD_TrollCorpseHookBase
+{
+	Translation "16:31=112:119"
+	BloodColor "65 00 65"
+} */
+
+Class DD_TrollCorpse : DD_Prop
+{
+	Default
+	{
+		Radius 10;
+		Height 24;
+		Health 10;
+		Mass 800;
+		DeathSound "misc/gibbed";
+
+		+Shootable
+		-Solid
+		+NoPain
+		+DontMorph
+		+NoBlood
+	}
+
+	States
+	{
+		Spawn:
+			TRC1 A -1;
+			Stop;
+		
+		Death:
+			TNT1 A 0
+			{
+				A_Stop();
+				A_ScreamAndUnblock();
+				A_SpawnItemEx("DD_LudicrousGibsFx", flags:DDFL_AMMOFLAGSFX);
+			}
+			Stop;
+	}
+}
+/*
+ACTOR DD_TrollCorpseRouge : DD_TrollCorpseBase
+{
+	Translation "16:31=32:39"
+	BloodColor "AF 00 00"
+}
+
+ACTOR DD_TrollCorpseBronze : DD_TrollCorpseBase
+{
+	Translation "16:31=99:108"
+	BloodColor "66 46 00"
+}
+
+ACTOR DD_TrollCorpseOlive : DD_TrollCorpseBase
+{
+	Translation "16:31=224:232"
+	BloodColor "00 84 00"
+}
+
+ACTOR DD_TrollCorpseJade : DD_TrollCorpseBase
+{
+	Translation "16:31=48:55"
+	BloodColor "00 4A 00"
+}
+
+ACTOR DD_TrollCorpseCerulean : DD_TrollCorpseBase
+{
+	Translation "16:31=160:168"
+	BloodColor "00 00 92"
+}
+
+ACTOR DD_TrollCorpseCobalt : DD_TrollCorpseBase
+{
+	Translation "16:31=160:167"
+	BloodColor "2C 47 62"
+}
+
+ACTOR DD_TrollCorpseViolet : DD_TrollCorpseBase
+{
+	Translation "16:31=112:119"
+	BloodColor "65 00 65"
+}
+
+ACTOR DD_TrollCorpseSpawner : DD_Decoration
+{
+	//$Title "Troll Corpse"
+	//$Sprite TRC1A0
+	//$Category "Obstacles"
+	
+	//$Arg0 "Blood Color"
+	//$Arg0Type 11
+	//$Arg0ToolTip "Change troll corpse's blood color."
+	//$Arg0Enum { 0 = "Randomized"; 1 = "Rouge"; 2 = "Bronze"; 3 = "Olive"; 4 = "Jade"; 5 = "Cerulian"; 6 = "Cobalt"; 7 = "Violet"; }
+	//$Arg0Default 0
+	
+	Radius 10
+	Height 24
+
+	States
+	{
+		Spawn:
+			TRC1 A 0 NoDelay A_JumpIf(args[0] == 1, "SpawnRouge")
+			TRC1 A 0         A_JumpIf(args[0] == 2, "SpawnBronze")
+			TRC1 A 0         A_JumpIf(args[0] == 3, "SpawnOlive")
+			TRC1 A 0         A_JumpIf(args[0] == 4, "SpawnJade")
+			TRC1 A 0         A_JumpIf(args[0] == 5, "SpawnCerulean")
+			TRC1 A 0         A_JumpIf(args[0] == 6, "SpawnCobalt")
+			TRC1 A 0         A_JumpIf(args[0] == 7, "SpawnViolet")
+			TRC1 A 0 		 A_Jump(256, "SpawnRouge", "SpawnBronze", "SpawnOlive", "SpawnJade", "SpawnCerulean", "SpawnCobalt", "SpawnViolet")
+		SpawnRouge:
+			TRC1 A 0 A_SpawnItemEx("DD_TrollCorpseRouge")
+			Stop
+		SpawnBronze:
+			TRC1 A 0 A_SpawnItemEx("DD_TrollCorpseBronze")
+			Stop
+		SpawnOlive:
+			TRC1 A 0 A_SpawnItemEx("DD_TrollCorpseOlive")
+			Stop
+		SpawnJade:
+			TRC1 A 0 A_SpawnItemEx("DD_TrollCorpseJade")
+			Stop
+		SpawnCerulean:
+			TRC1 A 0 A_SpawnItemEx("DD_TrollCorpseCerulean")
+			Stop
+		SpawnCobalt:
+			TRC1 A 0 A_SpawnItemEx("DD_TrollCorpseCobalt")
+			Stop
+		SpawnViolet:
+			TRC1 A 0 A_SpawnItemEx("DD_TrollCorpseViolet")
+			Stop
+	}
+} */

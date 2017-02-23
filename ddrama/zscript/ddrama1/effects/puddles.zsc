@@ -1,0 +1,82 @@
+/* *******************************************************************
+ *		puddles.zsc
+ *
+ *		Puddles
+ *
+ *		As long as you attribute it to me in some
+ *		way I don't mind people using this. Considering how much
+ *		some people have caused an uproar over the lack of proper
+ *		examples and the like.
+ *
+ *		Copyright Sanya K. C. Waffles 2013-2017
+ *
+ * ****************************************************************** */
+
+Class DD_LiquidPuddle : DD_Decoration
+{
+	Default
+	{
+		+FlatSprite
+		+RollSprite
+		+RollCenter
+		+NoBlockMap
+		-FloorClip
+	}
+	
+	const STRECHPUDDMAX = 8;
+	int strechloop;
+	
+	override void PostBeginPlay()
+	{
+		strechloop = 0;
+	}
+	
+	state A_StretchPuddle()
+	{
+		if (strechloop == 0)
+		{
+			A_SetAngle(angle + FRandomPick[Puddle](0.0, 45.0, 90.0, 135.0, 180.0, 225.0, 270.0, 315.0));
+		}
+		
+		A_SetScale(Scale.X + 0.01, Scale.Y + 0.01);
+		
+		strechloop++;
+		
+		if (strechloop >= STRECHPUDDMAX)
+		{
+			return ResolveState("FadeOat");
+		}
+		return ResolveState(null);
+	}
+
+	States
+	{
+		Spawn:
+			PUDD A 1 NoDelay A_StretchPuddle;
+			Loop;
+		FadeOat:
+			"####" A 105;
+			"####" A 5 A_FadeTo(0.0, 0.1, true);
+			Wait;
+	}
+}
+
+Class DD_GibletBloodPuddle : DD_LiquidPuddle
+{
+	States
+	{
+		Spawn:
+			BLPL A 1 NoDelay A_StretchPuddle;
+			Loop;
+	}
+}
+
+Class DD_GibletBarfPuddle : DD_LiquidPuddle
+{
+	States
+	{
+		Spawn:
+			BRFP A 1 NoDelay A_StretchPuddle;
+			Loop;
+	}
+}

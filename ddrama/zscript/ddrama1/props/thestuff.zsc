@@ -1,0 +1,54 @@
+/* *******************************************************************
+ *		thestuff.zsc
+ *
+ *		The Stuff Stuff
+ *
+ *		As long as you attribute it to me in some
+ *		way I don't mind people using this. Considering how much
+ *		some people have caused an uproar over the lack of proper
+ *		examples and the like.
+ *
+ *		Copyright Sanya K. C. Waffles 2013-2017
+ *
+ * ****************************************************************** */
+
+// The Stuff Pint
+Class DD_StuffPint : DD_Decoration
+{
+	Default
+	{
+		//$NotAngled
+		//$Title "Stuff Pint"
+		//$Sprite STUFA0
+		//$Category "Decoration"
+		
+		Radius 12;
+		Height 12;
+	}
+
+	States
+	{
+		Spawn:
+			STUF A -1;
+			Stop;
+	}
+}
+
+// The Stuff Pint
+Class DD_StuffPintOpen : DD_StuffPint
+{
+	Default
+	{
+		//$NotAngled
+		//$Title "Stuff Pint Open"
+		//$Sprite STF2A0
+		//$Category "Decoration"
+	}
+
+	States
+	{
+		Spawn:
+			STF2 ABCDCB 2;
+			Loop;
+	}
+}

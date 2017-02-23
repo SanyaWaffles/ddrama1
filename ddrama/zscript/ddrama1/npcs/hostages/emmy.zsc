@@ -1,0 +1,42 @@
+/* *******************************************************************
+ *		emmy.zsc
+ *
+ *		Emmy
+ *
+ *		As long as you attribute it to me in some
+ *		way I don't mind people using this. Considering how much
+ *		some people have caused an uproar over the lack of proper
+ *		examples and the like.
+ *
+ *		Copyright Sanya K. C. Waffles 2013-2017
+ *
+ * ****************************************************************** */
+
+
+Class DD_Emmy : DD_Hostage
+{
+	Default
+	{
+		//$Title "Emmy"
+		//$Sprite HST5A0
+		
+		ActiveSound "hostages/emmy";
+	}
+	
+	States
+	{
+		Inactive:
+			HST5 A 0;
+			Goto Spawn;
+		
+		Active:
+			HST5 A 0;
+			Goto Spawn;
+		
+		Spawn:
+			HST5 A 150 NoDelay A_NPCCallout;
+			HST5 A 150;
+			Loop;
+	}
+}
+

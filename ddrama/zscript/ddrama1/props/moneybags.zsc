@@ -1,0 +1,250 @@
+/* *******************************************************************
+ *		moneybags.zsc
+ *
+ *		Think like a rich duck
+ *
+ *		As long as you attribute it to me in some
+ *		way I don't mind people using this. Considering how much
+ *		some people have caused an uproar over the lack of proper
+ *		examples and the like.
+ *
+ *		Copyright Sanya K. C. Waffles 2013-2017
+ *
+ * ****************************************************************** */
+
+Class DD_CoinJunkBase : DD_JunkPart
+{
+	Default
+	{
+		Height 8;
+		Radius 4;
+		Gravity 1.1;
+		Mass 60;
+		Scale 0.05;
+		DeathSound "misc/coinb";
+
+		+Float
+		+Windthrust
+		+DontSplash
+		+Missile
+		+Dropoff
+		+NoTeleport
+		+CannotPush
+		+NoGravity
+	}
+
+	States
+	{
+		Spawn:
+			COIN A 4 NoDelay
+			{
+				bNoGravity = false;
+				A_SetAngle(random[coin](0, 360));
+				ThrustThingZ(0, random[coin](15, 25), 0, 0);
+			}
+		Spawn1:
+			COIN A 2 A_SetScale(-(abs(Scale.X)), Scale.Y);
+			COIN A 2 A_SetScale( (abs(Scale.X)),  Scale.Y);
+			Goto Spawn1;
+		
+		Death:
+			COIN A 8
+			{
+				A_Scream();
+				if ((random[Moneybags](0, 255) % 2) == 0)
+				{
+					A_Recoil(-(random[coin](2, 6)));
+				}
+				else
+				{
+					A_Recoil((random[Moneybags](2, 6)));
+				}
+				ThrustThingZ(0, (random[Moneybags]((randompick[Moneybags](6, 8)), (randompick[Moneybags](12, 14)))), 0, 0);
+			}
+			Stop;
+	}
+}
+
+Class DD_CoinGold : DD_CoinJunkBase { }
+
+Class DD_CoinSilver : DD_CoinJunkBase
+{
+	Default
+	{
+		Scale 0.075;
+		Translation "80:95=4:13";
+	}
+}
+
+Class DD_CoinSilverSmall : DD_CoinSilver
+{
+	Default
+	{
+		Scale 0.04;
+		Translation "80:95=4:13";
+	}
+}
+
+Class DD_CoinCopper : DD_CoinJunkBase
+{
+	Default
+	{
+		Scale 0.05;
+		Translation "80:95=4:13";
+	}
+}
+
+// Banknote Base
+Class DD_MoneyBillBase : DD_JunkPart
+{
+	Default
+	{
+		Height 8;
+		Radius 4;
+		Mass 20;
+		Gravity 0.6;
+		Scale 0.09;
+
+		+Float
+		+Windthrust
+		+DontSplash
+		+Missile
+		+Dropoff
+		+NoTeleport
+		+CannotPush
+		+NoGravity
+	}
+
+	States
+	{
+		Spawn:
+			MONY A 10 NoDelay
+			{
+				A_SetAngle(random[money](0, 360));
+				ThrustThingZ(0, random[money](15, 25), 0, 0);
+				bNoGravity = false;
+			}
+		FloatDown:
+			MONY A 2 A_Recoil(5);
+			MONY A 2 A_SetScale(-(abs(Scale.X)), Scale.Y);
+			MONY A 2 A_Recoil(-5);
+			MONY A 2 A_SetScale( (abs(Scale.X)), Scale.Y);
+			Goto FloatDown;
+		
+		Death:
+			MONY A 1;
+			Stop;
+	}
+}
+
+Class DD_MoneyBillAqua : DD_MoneyBillBase { }
+
+Class DD_MoneyBillBlue : DD_MoneyBillBase
+{
+	Default
+	{
+		Translation "224:239=160:175";
+	}
+}
+
+Class DD_MoneyBillPink : DD_MoneyBillBase
+{
+	Default
+	{
+		Translation "224:239=16:31";
+	}
+}
+
+Class DD_MoneyBillGreen : DD_MoneyBillBase
+{
+	Default
+	{
+		Translation "224:239=48:63";
+	}
+}
+
+Class DD_MoneyBillPurple : DD_MoneyBillBase
+{
+	Default
+	{
+		Translation "224:239=112:127";
+	}
+}
+
+// A Moneybag that throws coins
+// and dollar bills en mass when blown up
+Class DD_Moneybag : DD_Decoration
+{
+	Default
+	{
+		//$NotAngled
+		//$Title "Moneybag"
+		//$Sprite MBAGA0
+		//$Category "Decoration"
+		
+		Height 24;
+		Radius 12;
+		Health 5;
+		Mass 600;
+
+		-NoBlood
+		+Shootable
+		+DontGib
+	}
+
+	States
+	{
+		Spawn:
+			MBAG A -1;
+			Stop;
+		
+		Death:
+			TNT1 A 5
+			{
+				A_NoBlocking();
+				A_PlaySound("misc/tcanbreak", CHAN_BODY);
+				// TO DO: Messy messy...
+				A_SpawnItemEx("DD_CoinGold", 0, 0, 45, frandom[MoneyBag](1,4.984375)*cos(Angle+90),
+							frandom[MoneyBag](1,4.984375)*sin(Angle+90), 8, 90, DDFL_COINFLAGS);
+				A_SpawnItemEx("DD_CoinSilver", 0, 0, 45, frandom[MoneyBag](1,4.984375)*cos(Angle-90),
+							frandom[MoneyBag](1,4.984375)*sin(Angle-90), 8, 270, DDFL_COINFLAGS);
+				A_SpawnItemEx("DD_CoinGold", 0, 0, 45, frandom[MoneyBag](1,4.984375)*cos(Angle-90),
+							frandom[MoneyBag](1,4.984375)*sin(Angle-90), 8, 270, DDFL_COINFLAGS);
+				A_SpawnItemEx("DD_CoinSilver", 0, 0, 45, frandom[MoneyBag](1,4.984375)*cos(Angle-90),
+							frandom[MoneyBag](1,4.984375)*sin(Angle-90), 8, 270, DDFL_COINFLAGS);
+				A_SpawnItemEx("DD_CoinSilverSmall", 0, 0, 45, frandom[MoneyBag](1,4.984375)*cos(Angle-90),
+							frandom[MoneyBag](1,4.984375)*sin(Angle-90), 8, 270, DDFL_COINFLAGS);
+				A_SpawnItemEx("DD_CoinSilverSmall", 0, 0, 45, frandom[MoneyBag](1,4.984375)*cos(Angle-90),
+							frandom[MoneyBag](1,4.984375)*sin(Angle-90), 8, 270, DDFL_COINFLAGS);
+				A_SpawnItemEx("DD_CoinCopper", 0, 0, 45, frandom[MoneyBag](1,4.984375)*cos(Angle+90),
+							frandom[MoneyBag](1,4.984375)*sin(Angle-90), 8, 270, DDFL_COINFLAGS);
+				A_SpawnItemEx("DD_CoinCopper", 0, 0, 45, frandom[MoneyBag](1,4.984375)*cos(Angle-90),
+							frandom[MoneyBag](1,4.984375)*sin(Angle-90), 8, 270, DDFL_COINFLAGS);
+				A_SpawnItemEx("DD_CoinCopper", 0, 0, 45, frandom[MoneyBag](1,4.984375)*cos(Angle+90),
+							frandom[MoneyBag](1,4.984375)*sin(Angle-90), 8, 270, DDFL_COINFLAGS);
+				A_SpawnItemEx("DD_CoinCopper", 0, 0, 45, frandom[MoneyBag](1,4.984375)*cos(Angle+180),
+							frandom[MoneyBag](1,4.984375)*sin(Angle-90), 8, 270, DDFL_COINFLAGS);
+				A_SpawnItemEx("DD_MoneyBillAqua", 0, 0, 45, frandom[MoneyBag](1,4.984375)*cos(Angle+90),
+							frandom[MoneyBag](1,4.984375)*sin(Angle+90), 8, 90, DDFL_COINFLAGS);
+				A_SpawnItemEx("DD_MoneyBillGreen", 0, 0, 45, frandom[MoneyBag](1,4.984375)*cos(Angle-90),
+							frandom[MoneyBag](1,4.984375)*sin(Angle-90), 8, 270, DDFL_COINFLAGS);
+				A_SpawnItemEx("DD_MoneyBillBlue", 0, 0, 45, frandom[MoneyBag](1,4.984375)*cos(Angle-90),
+							frandom[MoneyBag](1,4.984375)*sin(Angle-90), 8, 270, DDFL_COINFLAGS);
+				A_SpawnItemEx("DD_MoneyBillBlue", 0, 0, 45, frandom[MoneyBag](1,4.984375)*cos(Angle-90),
+							frandom[MoneyBag](1,4.984375)*sin(Angle-90), 8, 270, DDFL_COINFLAGS);
+				A_SpawnItemEx("DD_MoneyBillPink", 0, 0, 45, frandom[MoneyBag](1,4.984375)*cos(Angle-90),
+							frandom[MoneyBag](1,4.984375)*sin(Angle-90), 8, 270, DDFL_COINFLAGS);
+				A_SpawnItemEx("DD_MoneyBillPurple", 0, 0, 45, frandom[MoneyBag](1,4.984375)*cos(Angle-90),
+							frandom[MoneyBag](1,4.984375)*sin(Angle-90), 8, 270, DDFL_COINFLAGS);
+				A_SpawnItemEx("DD_MoneyBillGreen", 0, 0, 45, frandom[MoneyBag](1,4.984375)*cos(Angle+90),
+							frandom[MoneyBag](1,4.984375)*sin(Angle-90), 8, 270, DDFL_COINFLAGS);
+				A_SpawnItemEx("DD_MoneyBillPink", 0, 0, 45, frandom[MoneyBag](1,4.984375)*cos(Angle-90),
+							frandom[MoneyBag](1,4.984375)*sin(Angle-90), 8, 270, DDFL_COINFLAGS);
+				A_SpawnItemEx("DD_MoneyBillAqua", 0, 0, 45, frandom[MoneyBag](1,4.984375)*cos(Angle+90),
+							frandom[MoneyBag](1,4.984375)*sin(Angle-90), 8, 270, DDFL_COINFLAGS);
+				A_SpawnItemEx("DD_MoneyBillPurple", 0, 0, 45, frandom[MoneyBag](1,4.984375)*cos(Angle+180),
+							frandom[MoneyBag](1,4.984375)*sin(Angle-90), 8, 270, DDFL_COINFLAGS);
+			}
+			Stop;
+	}
+}

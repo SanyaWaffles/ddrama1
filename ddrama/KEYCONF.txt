@@ -1,0 +1,8 @@
+alias test_rip		"take DD_VOX_RIPInPeace_Ctr 255; give DD_VOX_RIPInPeaceForSure; toggleconsole;"
+alias test_ol		"give DD_VOX_SnarkEnemiesGuarantee; toggleconsole;"
+alias berniesanders	"give all; give dd_heatseekcard; give dd_aircompressor; toggleconsole;"
+alias raycharles 	"testcolor Black 1.0; toggleconsole;"
+alias claridryl		"testcolor White 1.0; give dd_antidepressant; toggleconsole;"
+alias lynksdisease	"noclip2; god2; echo \"got the 12 guage granular clay.\n\" toggleconsole;"
+alias donate2anita	"take dd_bullets 100; take dd_shells 256; take dd_ammobelt 400; take dd_rocketammo 100; take dd_despairium 600; take health 66; toggleconsole;"
+alias resetplayroll	"give dd_debug_resetroll; toggleconsole;"

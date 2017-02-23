@@ -1,0 +1,22 @@
+// Clusters Block
+cluster 1
+{
+	pic = "INTERPIC"
+	music = ""
+}
+// End Clusters Block
+
+DamageType LavaFloor
+{
+	Factor = 1.0
+}
+
+DamageType RegularNukeSlime
+{
+	Factor = 1.0
+}
+
+DamageType PeptoBloodSlime
+{
+	Factor = 1.0
+}

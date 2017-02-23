@@ -1,0 +1,47 @@
+/* *******************************************************************
+ *		base_projectiles.zsc
+ *
+ *		Base projectile/missile Daytime Drama Classes
+ *
+ *		As long as you attribute it to me in some
+ *		way I don't mind people using this. Considering how much
+ *		some people have caused an uproar over the lack of proper
+ *		examples and the like.
+ *
+ *		Copyright Sanya K. C. Waffles 2013-2017
+ *
+ * ****************************************************************** */
+
+Class DD_ProjectileActor : DD_Actor
+{
+	Default
+	{
+		Mass 0;
+		Speed 8;
+		RenderStyle "Normal";
+		Alpha 1;
+		
+		Projectile;
+		
+		+ActivateImpact
+		+ActivatePCross
+	}
+}
+
+// Morph projectiles have a few
+// properties and their own base
+// class, so we need this for scales
+// and flags
+Class DD_MorphProjectile : MorphProjectile
+{
+	Default
+	{
+		Speed 18;
+		Height 12;
+		Radius 12;
+		Scale 0.12;
+
+		-ActivatePCross
+		-ActivateImpact
+	}
+}

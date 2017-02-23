@@ -1,0 +1,37 @@
+ClearLocks
+
+Lock 1
+{
+	//$Title "Red Access"
+	Any { DD_RedKey DD_RedCard }
+	Message "$DD_REDKEYRQ1"
+	RemoteMessage "$DD_REDKEYRQ1"
+	Mapcolor 255 0 0
+}
+
+Lock 2
+{
+	//$Title "Green Access"
+	Any { DD_GreenKey DD_GreenCard }
+	Message "$DD_GRNKEYRQ1"
+	RemoteMessage "$DD_GRNKEYRQ1"
+	Mapcolor 0 255 0
+}
+
+Lock 3
+{
+	//$Title "Blue Access"
+	Any { DD_BlueKey DD_BlueCard }
+	Message "$DD_BLUKEYRQ1"
+	RemoteMessage "$DD_BLUKEYRQ1"
+	Mapcolor 0 0 255
+}
+
+Lock 4
+{
+	//$Title "Gold Access"
+	Any { DD_GoldKey DD_GoldCard }
+	Message "$DD_YELKEYRQ1"
+	RemoteMessage "$DD_YELKEYRQ1"
+	Mapcolor 255 255 0
+}

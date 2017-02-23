@@ -1,0 +1,71 @@
+/* *******************************************************************
+ *		mailbox.zsc
+ *
+ *		Mailbox for Daytime Drama
+ *
+ *		As long as you attribute it to me in some
+ *		way I don't mind people using this. Considering how much
+ *		some people have caused an uproar over the lack of proper
+ *		examples and the like.
+ *
+ *		Copyright Sanya K. C. Waffles 2013-2017
+ *
+ * ****************************************************************** */
+
+// Mailbox Controller - Use this to spawn items when using it. Place near mailboxes.
+// args[0] -> number/spawntype for item to spawn
+
+Class DD_MailboxController : DD_SwitchableController
+{
+	Default
+	{
+		//$Title "Mailbox"
+		//$Sprite internal:MBoxCtrl
+		//$Category "Controllers"
+		//$NotAngled
+		//$Title "Mailbox"
+		//$Sprite internal:MBoxCtrl
+		//$Category "Controllers"
+		
+		//$NotAngled
+		
+		//$Arg0 "Item"
+		//$Arg0Default 0
+		//$Arg0Tooltip "Item to 'fetch' from in the mailbox."
+		
+		Radius 24;
+		Height 48;
+		Activation THINGSPEC_Activate | THINGSPEC_Default;
+
+		+UseSpecial
+	}
+	
+	// Copied the code and made some edits from Pottery1
+	void OpenMailbox()
+	{		
+		// Spawn an item?
+		Class<Actor> type = GetSpawnableType(args[0]);
+		
+		if (type != null)
+		{
+			if (!(level.nomonsters || sv_nomonsters) || !(GetDefaultByType (type).bIsMonster))
+			{
+				// Only spawn monsters if not -nomonsters
+				Spawn(type, pos, ALLOW_REPLACE);
+			}
+		}
+		
+		A_PlaySound("misc/mailbox", CHAN_BODY);
+	}
+	
+	States
+	{
+		Spawn:
+			TNT1 A 5;
+			Loop;
+			
+		Active:
+			TNT1 A 5 OpenMailbox;
+			Stop;
+	}
+}

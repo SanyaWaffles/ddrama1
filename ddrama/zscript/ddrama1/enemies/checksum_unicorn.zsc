@@ -1,0 +1,216 @@
+/* *******************************************************************
+ *		checksum_unicorn.zsc
+ *
+ *		Checksum Unicorn
+ *
+ *		As long as you attribute it to me in some
+ *		way I don't mind people using this. Considering how much
+ *		some people have caused an uproar over the lack of proper
+ *		examples and the like.
+ *
+ *		Copyright Sanya K. C. Waffles 2013-2017
+ *
+ * ****************************************************************** */
+
+// Hadoughken thrown by a Checksum Unicorn
+Class DD_CheckBall : DD_ProjectileActor
+{
+	Default
+	{
+		Radius 12;
+		Height 24;
+		Speed 12;
+		Damage 10;
+		RenderStyle "Add";
+		Alpha 0.6;
+		
+		SeeSound "checksum/attack";
+		DeathSound "checksum/shotx";
+	}
+
+	States
+	{
+		Spawn:
+			KAME A 4 Bright NoDelay A_SpawnProjectile("DD_CheckBallFx");
+			Loop;
+		
+		Death:
+			KAME B 3 A_FadeOut(0.1);
+			KAME CD 2;
+			KAME EF 2 A_FadeOut(0.1);
+			Stop;
+	}
+}
+
+// Trail of the Hadoughken ball
+Class DD_CheckBallFx : DD_Actor
+{
+	Default
+	{
+		RenderStyle "Add";
+		Alpha 0.8;
+
+		+FloorHugger
+	}
+
+	States
+	{
+		Spawn:
+			KAM2 AB 2 Bright A_FadeOut(0.1, (FTF_REMOVE|FTF_CLAMP));
+			Loop;
+	}
+}
+
+ 
+Class DD_ChecksumUnicorn : DD_Enemy
+{
+	Default
+	{
+		//$Title "Checksum Unicorn"
+		//$Sprite CSUMA0
+		
+		Health 800;
+		Scale 0.13;
+		Radius 22;
+		Height 60;
+		Mass 650;
+		Speed 12;
+		MaxTargetRange 896;
+		PainChance 10;
+		Species "Pony";
+		MeleeRange 48;
+		SeeSound "checksum/sight";
+		PainSound "checksum/pain";
+		DeathSound "checksum/death";
+		ActiveSound "checksum/active";
+		Obituary "$DD_OB_CHECKSUM";
+
+		+QuickToRetaliate
+		+NoTarget
+		+DontMorph
+		+NeverRespawn
+		+JumpDown
+		+FullVolActive
+		+FullVolDeath
+		+NoTargetSwitch
+		+DontThrust
+		+MissileMore
+	}
+	
+	int checksumjump;
+	
+	override void PostBeginPlay()
+	{		
+		checksumjump = 0;
+	}
+	
+	void A_DDChecksumChase()
+	{
+		A_Chase("JumpBack", "Missile", CHF_FASTCHASE|CHF_RESURRECT);
+	}
+	
+	void A_DDChecksumJumpBack()
+	{
+		A_FaceTarget();
+		A_PlaySound("checksum/shotx", CHAN_WEAPON, 2.0, false);
+		A_RadiusThrust(640, radius+32, RTF_NOTMISSILE|RTF_THRUSTZ, radius+12);
+		ThrustThing(angle * 256 / 360 + 128, 0, 0, 0);
+	}
+	
+	state A_DDChecksumAttackSelect()
+	{
+		if ((Random[ChecksumUnicorn](0,6) % 2) == 0)
+		{
+			return ResolveState("Kickback");
+		}
+		
+		return ResolveState(null);
+	}
+	
+	void A_DDChecksumAttack()
+	{
+		A_FaceTarget();
+		A_SpawnProjectile("DD_CheckBall");
+	}
+	
+	state A_DDChecksumAttackRep()
+	{
+		checksumjump++;
+		
+		if (checksumjump > 1)
+		{
+			checksumjump = 0;
+			return ResolveState(null);
+		}
+		
+		return ResolveState("Hadoughken");
+	}
+	
+	void A_DDChecksumHeal()
+	{
+		A_FaceTarget();
+		A_PlaySound("checksum/heal", CHAN_BODY);
+	}
+
+	States
+	{
+		Spawn:
+			CSUM A 10 A_DDramaLook;
+			Loop;
+		
+		See:
+			CSUM BCDEBCDE 3 A_DDChecksumChase;
+			Loop;
+		
+		JumpBack:
+			CSUM B 5 Bright A_FaceTarget;
+			CSUM B 4 Bright A_DDChecksumJumpBack;
+			CSUM A 12 A_DDChecksumAttack;
+			Goto See;
+			
+		Missile:
+			CSUM F 0 A_DDChecksumAttackSelect;
+			Goto Hadoughken;
+			
+		Hadoughken:
+			CSUM FGHIJ 4 Bright A_FaceTarget;
+			CSUM K 2 Bright A_DDChecksumAttack;
+			CSUM K 3 A_DDChecksumAttackRep;
+			Goto See;
+		
+		Kickback:
+			CSUM B 5 Bright A_FaceTarget;
+			CSUM B 4 Bright A_SkullAttack(14);
+			CSUM A 15;
+			CSUM A 6 A_DDChecksumAttackRep;
+			Goto See;
+			
+		Heal:
+			CSUM L 3 Bright A_DDChecksumHeal;
+			CSUM M 5 Bright;
+			Goto See;
+		
+		Pain:
+			CSUM N 5;
+			CSUM N 5 A_Pain;
+			Goto See;
+		
+		Death:
+		Death.Rocket:
+		Death.Webbing:
+		Death.Expand:
+		Death.Shou:
+			CSUM N 7;
+			CSUM O 7 A_ScreamAndUnblock;
+			CSUM PQ 7;
+			CSUM R 35 A_DDGivePlayerOneLiner;
+			CSUM R -1;
+			Stop;
+		
+		Crush:
+			Stop;
+		
+		Raise:
+			Stop;
+	}
+}

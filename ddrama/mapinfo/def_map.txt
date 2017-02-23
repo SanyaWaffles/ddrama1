@@ -1,0 +1,55 @@
+defaultmap
+{
+	Cluster = 1
+	PrecacheClasses = "DD_BuddyBear", "DD_Gumball", "DD_BarfBag", "DD_LotsoBear", "DD_SmokeyHead", "DD_SweetBro", "DD_Purrmoid", "DD_Dontreldemon", "DD_HellaJeff", "DD_BonziBuddy", "DD_Dontreldemon", "DD_BronyOfDespair", "DD_ChecksumUnicorn", "DD_Monokuma", "DD_JunkoEnoshimaBoss", "DD_TrollJunko", "DD_BarfBall"
+
+	// Time
+	Par = 70
+	SuckTime = 0	// We don't need no stinkin SuckTime
+
+	// Physics...
+	AirControl = 0.67
+	Gravity = 768
+
+	// The cloudy sky of despair...
+	// SKY1 - Brown Smokey skies
+	// SKY2 - Cityscape
+	// SKY3 - Pink Despair Cloudscape
+	Sky1 = "SKY1"
+
+	// Trelyate!!!!!!!!!!!!111
+	Music = "D_AXELF"
+
+	// We use our own intermission
+	// scripting...
+	NoIntermission
+
+	// Lightning/Appearance of Level
+	SmoothLighting
+	ClipMidTextures
+
+	// Player Properties
+	AllowJump
+	AllowCrouch
+	AllowFreelook
+	CheckSwitchRange
+	AirSupply = 0	// No drowning yet
+	// SpawnWithWeaponRaised
+
+	// Monster/Activation Properties
+	NoInfighting
+	StrictMonsterActivation
+	MissilesActivateImpactLines
+	
+	// OpenGL Only Options (GZDoom)
+	PixelRatio = 1.0	// 1.2 is Mode X (320x200 streched vertically to 320x240)
+	/* *************************
+	0 (Standard): bright lighting model and stronger fading in bright sectors.
+	1 (Bright): bright lighting model and weaker fading in bright sectors.
+	2 (Doom): dark lighting model and weaker fading in bright sectors but brightness nearby (req. GLSL)
+	3 (Dark): dark lighting model and weaker fading in bright sectors.
+	4 (Legacy): Emulates lighting of Legacy 1.4's GL renderer.
+	8 (Software): Emulates Doom software lighting, Requires GLSL 1.30 or greater (OpenGL 3.0+).
+	************************* */
+	LightMode = 1
+}

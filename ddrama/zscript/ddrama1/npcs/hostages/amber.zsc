@@ -1,0 +1,42 @@
+/* *******************************************************************
+ *		amber.zsc
+ *
+ *		Amber
+ *
+ *		As long as you attribute it to me in some
+ *		way I don't mind people using this. Considering how much
+ *		some people have caused an uproar over the lack of proper
+ *		examples and the like.
+ *
+ *		Copyright Sanya K. C. Waffles 2013-2017
+ *
+ * ****************************************************************** */
+
+
+Class DD_Amber : DD_Hostage
+{
+	Default
+	{
+		//$Title "Amber"
+		//$Sprite HST4A0
+		
+		ActiveSound "hostages/amber";
+	}
+	
+	States
+	{
+		Inactive:
+			HST4 A 0;
+			Goto Spawn;
+		
+		Active:
+			HST4 A 0;
+			Goto Spawn;
+		
+		Spawn:
+			HST4 A 150 NoDelay A_NPCCallout;
+			HST4 A 150;
+			Loop;
+	}
+}
+

@@ -1,0 +1,7 @@
+RedBeerGlass = "0:15=32:47"
+LBlueBeerGlass = "0:15=160:172"
+OrangeBeerGlass = "0:15=176:187"
+GreenBeerGlass = "0:15=48:63"
+BrownBeerGlass = "0:15=128:139"
+PinkBeerGlass = "0:15=16:31"
+

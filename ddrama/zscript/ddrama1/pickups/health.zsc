@@ -1,0 +1,130 @@
+/* *******************************************************************
+ *		health.zsc
+ *
+ *		Health Items
+ *
+ *		As long as you attribute these functions to me in some
+ *		way I don't mind people using these. Considering how much
+ *		some people have caused an uproar over the lack of proper
+ *		examples and the like.
+ *
+ *		Copyright Sanya K. C. Waffles 2013-2017
+ *
+ * ****************************************************************** */
+
+// Chocolate Candy Bar - Restores 10HP up to 100
+Class DD_ChocolateBar : DD_Health
+{
+	Default
+	{
+		//$Sprite CHOCA0
+		//$Title "Chocolate Bar"
+		//$Category "Health and Armor"
+		
+		Inventory.Amount 10;
+		Inventory.PickupMessage "$DD_GOTHEALTH1";
+		Health.LowMessage 20, "$DD_GOTHEALTH4";
+	}
+
+	States
+	{
+		Spawn:
+			CHOC A -1;
+			Stop;
+	}
+}
+
+// Gatorade-type Drink - Restores 20HP up to 100
+Class DD_SportDrink : DD_Health
+{
+	Default
+	{
+		//$Sprite GADEA0
+		//$Title "Sports Drink"
+		//$Category "Health and Armor"
+		
+		Inventory.Amount 20;
+		Inventory.PickupMessage "$DD_GOTHEALTH2";
+		Health.LowMessage 20, "$DD_GOTHEALTH5";
+	}
+
+	States
+	{
+		Spawn:
+			GADE A -1;
+			Stop;
+	}
+}
+
+// Burgers and Fries Meal - Restores 30HP up to 100
+Class DD_BurgersFries : DD_Health
+{
+	Default
+	{
+		//$Sprite MEALA0
+		//$Title "Burger Meal"
+		//$Category "Health and Armor"
+		
+		Inventory.Amount 30;
+		Inventory.PickupMessage "$DD_GOTHEALTH3";
+		Health.LowMessage 20, "$DD_GOTHEALTH6";
+	}
+	
+	States
+	{
+		Spawn:
+			MEAL A -1;
+			Stop;
+	}
+}
+
+Class DD_DroppedHealth : DD_Health
+{
+	Default
+	{
+		Radius 24;
+		Height 32;
+
+		Inventory.PickupSound "pickups/generic";
+		Inventory.PickupMessage "$DD_GOTSMALLHEALTH";
+		Inventory.Amount 2;
+		
+		+DontGib
+		+Inventory.IgnoreSkill
+	}
+
+	States
+	{
+		Spawn:
+			HEAL A 280 Bright;
+			Stop;
+	}
+}
+
+Class DD_DroppedShieldShard : BasicArmorBonus
+{
+	Default
+	{
+		Radius 24;
+		Height 32;
+		Scale 0.12;
+		
+		Inventory.PickupSound "pickups/generic";
+		Inventory.PickupMessage "$DD_GOTSMALLSHIELD";
+		Inventory.Icon "JCKTB0";
+		
+		Armor.SavePercent 33.335;
+		Armor.SaveAmount 1;
+		Armor.MaxSaveAmount 200;
+		
+		+DontGib
+		+Inventory.IgnoreSkill
+	}
+	
+	States
+	{
+		Spawn:
+			SHRD A 280 Bright;
+			Stop;
+	}
+}

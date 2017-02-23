@@ -1,0 +1,88 @@
+/* *******************************************************************
+ *		buddybear.zsc
+ *
+ *		The Buddy Bear Pistol Cultist Grunt
+ *
+ *		As long as you attribute it to me in some
+ *		way I don't mind people using this. Considering how much
+ *		some people have caused an uproar over the lack of proper
+ *		examples and the like.
+ *
+ *		Copyright Sanya K. C. Waffles 2013-2017
+ *
+ * ****************************************************************** */
+
+class DD_BuddyBear : DD_Enemy
+{
+	Default
+	{
+		//$Title "Buddy Bear"
+		//$Sprite BEARA0
+		
+		Health 20;
+		Mass 100;
+		PainChance 200;
+		Height 56;
+		Radius 20;
+		
+		Speed 8;
+		
+		Species "Grunt";
+		
+		SeeSound "bear/sight";
+		PainSound "bear/pain";
+		DeathSound "bear/death";
+		ActiveSound "bear/active";
+		
+		Obituary "$DD_OB_BUDDYBEAR";
+	}
+	
+	States
+	{
+		Spawn:
+			BEAR A 10 A_DDramaLook;
+			Loop;
+		
+		See:
+			BEAR BCDCBCDC 4 A_DDramaChase;
+			Loop;
+		
+		Missile:
+			BEAR E 8 A_FaceTarget;
+			BEAR F 6 BRIGHT
+			{
+				A_FaceTarget();	// face target				
+				A_CustomBulletAttack(4.2, 0, 1, Random[BuddyBear](1, 3) * 2, "DD_BulletPuff", 1024, CBAF_NORANDOM);
+				A_PlaySound("bear/attack", CHAN_WEAPON);
+			}
+			BEAR E 6;
+			Goto See;
+		
+		Pain:
+			BEAR G 3;
+			BEAR G 3 A_Pain;
+			Goto See;
+		
+		Death:
+			BEAR H 5
+			{
+				A_ScreamAndUnblock();
+				
+				if (Random[BuddyBear](0, 1))
+					A_DropItem("DD_Bullets", -1, 256);
+				else
+					A_DropItem("DD_DroppedPistolBullets", -1, 256);
+			}
+			BEAR I 5;
+			BEAR J -1 A_DDGivePlayerOneLiner;
+			Stop;
+			
+		Death.Expand:
+			BEAR G 0;
+			goto Super::Death.Expand;
+		
+		Raise:
+			BEAR JGJGJG 3;
+			Goto See;
+	}
+}

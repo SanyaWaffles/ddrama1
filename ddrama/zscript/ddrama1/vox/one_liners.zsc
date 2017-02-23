@@ -1,0 +1,103 @@
+/* *******************************************************************
+ *		one_liners.zsc
+ *
+ *		One-Liner Token/Activator sounds
+ *
+ *		As long as you attribute it to me in some
+ *		way I don't mind people using this. Considering how much
+ *		some people have caused an uproar over the lack of proper
+ *		examples and the like.
+ *
+ *		Copyright Sanya K. C. Waffles 2013-2017
+ *
+ * ****************************************************************** */
+
+Class DD_VOX_SnarkEnemies : DD_VOX_Base
+{
+	States
+	{
+		Pickup:
+			TNT1 A 0
+			{
+				int voxr = Random[VOX](0, 100);
+				
+				if (voxr > 80)
+				{
+					return ResolveState("PlaySound");
+				}
+				return ResolveState(null);
+			}
+			Stop;
+		
+		PlaySound:
+			TNT1 A 0
+			{
+				if(GetCvar("dd_snd_oneliners") != 0 && CountInv("DD_VOX_Counter") <= 70)
+				{
+					A_GiveInventory("DD_VOX_Counter", 800);
+					A_PlaySound("sanyavox/snark", (DDPLAYER_VOICECHAN), DDPLAYER_VOICEVOL, false, ATTN_NONE);
+				}
+				return true;
+			}
+			Stop;
+	}
+}
+
+Class DD_VOX_SnarkEnemiesGuarantee : DD_VOX_SnarkEnemies
+{
+	States
+	{
+		Pickup:
+			TNT1 A 0;
+			Goto PlaySound;
+	}
+}
+
+Class DD_VOX_SnarkEnemiesGibbed : DD_VOX_SnarkEnemies
+{
+	States
+	{
+		Pickup:
+			TNT1 A 0
+			{
+				int voxr = Random[VOX](0, 10);
+				
+				if (((voxr % 2) == 0) && (voxr > 5))
+				{
+					return ResolveState("PlaySound");
+				}
+				return ResolveState(null);
+			}
+			Stop;
+	}
+}
+
+Class DD_VOX_SnarkDudeBronies : DD_VOX_BossBase
+{
+	States
+	{
+		PlaySound:
+			TNT1 A 0 ACS_NamedExecute("DD_VOX_SnarkLocal", 0, 2);
+			Stop;
+	}
+}
+
+Class DD_VOX_SnarkMonokuma : DD_VOX_BossBase
+{
+	States
+	{
+		PlaySound:
+			TNT1 A 0 ACS_NamedExecute("DD_VOX_SnarkLocal", 0, 3);
+			Stop;
+	}
+}
+
+Class DD_VOX_SnarkJunko : DD_VOX_BossBase
+{
+	States
+	{
+		PlaySound:
+			TNT1 A 0 ACS_NamedExecute("DD_VOX_SnarkLocal", 0, 4);
+			Stop;
+	}
+}

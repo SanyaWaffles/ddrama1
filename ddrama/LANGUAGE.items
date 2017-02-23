@@ -1,0 +1,85 @@
+// Item pickup strings
+
+[enu default]
+
+// Armor
+DD_GOTJACKET1		= "Normal Armor (+100)";
+DD_GOTJACKET2		= "Super Armor (+200)";
+
+// Health
+DD_GOTHEALTH1		= "Chocolate Bar (+10)";
+DD_GOTHEALTH2		= "Sports Drink (+20)";
+DD_GOTHEALTH3		= "Burger + Fries (+30)";
+DD_GOTHEALTH4		= "You really needed that Chocolate Bar (+10)";
+DD_GOTHEALTH5		= "You really needed that Sports Drink (+20)";
+DD_GOTHEALTH6		= "You really needed that Burger + Fries (+30)";
+
+// Powerups
+DD_GOTSHOES			= "High Jump Sandals";
+DD_TAGSHOES			= "High Jump Sandals - Use to Jump Higher.";
+DD_GOTJPG			= "Broken JPG Artifact";
+DD_TAGJPEG			= "Broken JPG Artifact - Use to blur into\nthe background.";
+DD_GOTHBAG			= "Ammo Handbag";
+DD_GOTBULK			= "Bulk Sport Drink Pack";
+DD_TAGBULK			= "Bulk Drink Pack - Can refill your health\nany left over can be used later.";
+DD_GOTPEPPER		= "Jack-n-Jill Pepper";
+DD_TAGPEPPER		= "Jack-n-Jill Pepper - Weird seasoning that\nyou'll go nuts for.";
+DD_GOTAXX			= "Axx Spray Grenade";
+DD_GOTZOLOFT		= "Antidepressant";
+DD_TAGZOLOFT		= "Antidespairium - Gives you some resistance\nto that despairium shit.";
+DD_GOTHEATSEEK		= "Heat Seeker Upgrade";
+DD_GOTAIRCOMP		= "Air Compressor Upgrade";
+
+// Christmas cracker
+DD_GOTCRACKER		= "Christmas Cracker";
+
+// Moved christmas cracker jokes to LANGUAGE.JOKES
+
+// Regular keys
+DD_GOTREDKEY		= "Red Access Key";
+DD_GOTGRNKEY		= "Green Access Key";
+DD_GOTBLUKEY		= "Blue Access Key";
+DD_GOTYELKEY		= "Gold Access Key";
+
+// Keycards
+DD_GOTREDCARD		= "Red Access Card";
+DD_GOTGRNCARD		= "Green Access Card";
+DD_GOTBLUCARD		= "Blue Access Card";
+DD_GOTYELCARD		= "Gold Access Card";
+
+// Weapons + Weapon pickups
+DD_GOTPISTOL		= "Pistol";
+DD_GOTBULLETS		= "9mm Rounds";
+DD_GOTSHOTGUN		= "Shotgun";
+DD_GOTSHELLS		= "12-Gauge Shells";
+DD_GOTMINIGUN		= "Minigun";
+DD_GOTMGABELT		= "Minigun Rounds";
+DD_GOTRLAUNCH		= "BZ-9 Bazooka";
+DD_GOTROCKETS		= "Missiles";
+DD_GOTTROLLGUN		= "Trollblood Weapon";
+DD_GOTBRONZEBLOOD	= "Bronze Blood Tube";
+DD_GOTOLIVEBLOOD	= "Olive Blood Tube";
+DD_GOTCOBALTBLOOD	= "Cobalt Blood Tube";
+DD_GOTBLOODBUCKET	= "Troll Blood Bucket";
+DD_GOTDESPGUN		= "Despair Rifle";
+DD_GOTDGCELLS		= "Despairium 45 Tank";
+
+DD_GOTSMALLBULLETS	=	" +5 Pistol Rounds";
+DD_GOTSMALLSHELLS	=	" +4 Shotgun Shells";
+DD_GOTSMALLBELTS	=	"+15 Minigun Rounds";
+DD_GOTSMALLROCKETS	=	" +1 Missiles";
+DD_GOTSMALLDESPAIR	=	"+20 Despairium 45";
+DD_GOTSMALLBLOODPAK	=	" +5 Each Trollblood";
+DD_GOTSMALLHEALTH	=	" +2 Health";
+DD_GOTSMALLSHIELD	=	" +5 Armor";
+
+// Key or Keycard required message
+DD_BLUKEYRQ1	= "You need blue access for this";
+DD_REDKEYRQ1	= "You need red access for this";
+DD_GRNKEYRQ1	= "You need green access for this";
+DD_YELKEYRQ1	= "You need gold access for this";
+
+[ena eng enc eng eni enz]
+// Armor
+DD_GOTJACKET1	= "Normal Armour (+100)";
+DD_GOTJACKET2	= "Super Armour (+200)";

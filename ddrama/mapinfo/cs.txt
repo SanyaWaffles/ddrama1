@@ -1,0 +1,54 @@
+/* *****
+The year 2017 has arrived.
+
+A herd of fuckin' ugly despair riddled cultists are rushing from the shadows.
+Terrorism skyrocketed! Tchpsor is ruined!
+
+Therefore, the Boredomdian government's only hope "Sanya Waffles" for the ousting of the Desperados.
+
+Sanya is a killer queen. So powerful she has the power and anger of four Joyce Browns.
+
+However, Sanya does not know there was a secret plan in progress!
+
+Junko Enoshima plans to turn Tchpsor's TV transmitter into an ultimate weapon!
+***** */
+
+Intermission DDShow_Intro
+{
+	Image 
+	{
+		Music = "D_RUDE"
+		Background = "SOLIDBLK"
+		Time = 2
+	}
+	TextScreen
+	{
+		TextColor = "Red"
+		Position = 80, 64
+		Text = "Waffle Iron Studios", "Presents"
+		Time = 5
+	}
+	/*TextScreen
+	{
+		Background = "SOLIDBLK"
+		TextColor = "Red"
+		Position = 2, 2
+		Text = "", ""
+		Time = 1
+	}
+	TextScreen
+	{
+		TextColor = "Red"
+		Position = 80, 64
+		Text = "A", "Useless Wolf Entertainment", "Production"
+		Time = 5
+	}
+	TextScreen
+	{
+		Background = "SOLIDBLK"
+		TextColor = "Red"
+		Position = 2, 2
+		Text = "", ""
+		Time = 1
+	}*/
+}

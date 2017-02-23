@@ -1,0 +1,93 @@
+/* *******************************************************************
+ *		dolls.zsc
+ *
+ *		Dolls Daytime Drama Classes
+ *
+ *		As long as you attribute it to me in some
+ *		way I don't mind people using this. Considering how much
+ *		some people have caused an uproar over the lack of proper
+ *		examples and the like.
+ *
+ *		Copyright Sanya K. C. Waffles 2013-2017
+ *
+ * ****************************************************************** */
+
+// A base which all dolls are derived from.
+Class DD_DollBase : DD_Decoration
+{
+	Default
+	{
+		Health 4;
+		Radius 14;
+		Height 28;
+		Mass 1000;
+
+		+Shootable
+		+NoBlood
+		+DontGib
+	}
+	
+	States
+	{
+		Death:
+			"####" "#" 0
+			{
+				A_NoBlocking();
+				A_PlaySound("misc/dollbust", CHAN_BODY, 0.5, false, 2.0);
+				
+				Actor mo = null;
+				int i;
+
+				for(i = (random[Doll]()&3)+3; i; i--)
+				{
+					mo = Spawn("DD_MetalJunk", Pos, ALLOW_REPLACE);
+					if (mo != null)
+					{
+						mo.Vel.X = random2[Doll]() / 64.;
+						mo.Vel.Y = random2[Doll]() / 64.;
+						mo.Vel.Z = ((random[Doll]() & 7) + 5) * 0.75;
+					}
+				}
+			}
+			Stop;
+	}
+}
+
+// PLAY MY GAME
+Class DD_DontrelDoll : DD_DollBase
+{
+	Default
+	{
+		//$NotAngled
+		//$Title "Dontrel Doll"
+		//$Sprite DOL0A0
+		//$Category "Decoration"
+	}
+	
+	States
+	{
+		Spawn:
+			DOL0 A -1;
+			Stop;
+	}
+}
+
+// Hey Jen, Lookie Here!
+Class DD_MGAWDoll : DD_DollBase
+{
+	Default
+	{
+		//$NotAngled
+		//$Title "Mr GAW Doll"
+		//$Sprite DOL1A0
+		//$Category "Decoration"
+	}
+	
+	States
+	{
+		Spawn:
+			DOL1 A -1;
+			Stop;
+	}
+}
+

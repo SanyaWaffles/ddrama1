@@ -1,0 +1,141 @@
+type = "Doom Builder Map Settings Configuration";
+gameconfig = "WIGZDoom_DDramaUDMF.cfg";
+strictpatches = 0;
+
+maps
+{
+	
+	MAP02
+	{
+		defaultfloortexture = "ROAD00";
+		overrideceilheight = false;
+		
+		resources
+		{
+		}
+		defaulttoptexture = "SWMETL_A";
+		overridemiddletexture = false;
+		
+		grid
+		{
+			background = "";
+			backoffsetx = 0;
+			backoffsety = 0;
+			backscalex = 100;
+			backscaley = 100;
+			backsource = 0;
+			gridsize = 8f;
+		}
+		overridefloortexture = false;
+		customceilheight = 128;
+		customfloorheight = 0;
+		defaultceiltexture = "FUNC_SKY";
+		overridebrightness = false;
+		overridebottomtexture = false;
+		overridefloorheight = false;
+		overridetoptexture = false;
+		custombrightness = 196;
+		overrideceiltexture = false;
+		defaultwalltexture = "SWMETL_A";
+		defaultbottomtexture = "SWMETL_A";
+		scriptcompiler = "zdoom_acs.cfg";
+		uselongtexturenames = false;
+		viewpositionx = 754.5731f;
+		viewpositiony = 1278.585f;
+		viewscale = 0.9003237f;
+		
+		scriptlumps
+		{
+			
+			lump
+			{
+				filename = "SCRIPTS";
+				hash = 3469170009;
+				caretposition = 1875;
+				firstvisibleline = 43;
+			}
+		}
+		useresourcesinreadonlymode = false;
+		
+		fieldtypes
+		{
+			
+			linedef
+			{
+				arg0str = 2;
+				locknumber = 0;
+				alpha = 1;
+			}
+			
+			sidedef
+			{
+				offsetx_bottom = 1;
+				offsety_bottom = 1;
+				offsetx_mid = 1;
+				offsety_mid = 1;
+				offsetx_top = 1;
+				offsety_top = 1;
+				light = 0;
+				scalex_bottom = 1;
+				scaley_bottom = 1;
+				lightabsolute = 3;
+				scalex_mid = 1;
+				scaley_mid = 1;
+				scalex_top = 1;
+				scaley_top = 1;
+			}
+			
+			sector
+			{
+				rotationfloor = 1;
+				xpanningfloor = 1;
+				ypanningfloor = 1;
+				xpanningceiling = 1;
+				lightceiling = 0;
+				lightfloor = 0;
+				rotationceiling = 1;
+				ypanningceiling = 1;
+				yscaleceiling = 1;
+				xscaleceiling = 1;
+				xscalefloor = 1;
+				yscalefloor = 1;
+				floorglowcolor = 0;
+				floorglowheight = 1;
+				soundsequence = 2;
+			}
+			
+			thing
+			{
+				conversation = 0;
+				renderstyle = 2;
+				alpha = 1;
+				arg0str = 2;
+				health = 0;
+			}
+		}
+		
+		scriptdocuments
+		{
+			
+			document0
+			{
+				filename = "DIALOGUE";
+				hash = 3588187714;
+				resource;
+				tabtype = 0;
+				scripttype = 18;
+				caretposition = 68;
+				activetab = true;
+			}
+			
+			document1
+			{
+				filename = "SCRIPTS";
+				hash = 3469170009;
+				resource;
+				tabtype = 0;
+				scripttype = 1;
+			}
+		}
+	}
+}

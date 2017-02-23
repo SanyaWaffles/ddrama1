@@ -1,0 +1,123 @@
+/* *******************************************************************
+ *		gibs.zsc
+ *
+ *		Gib Spawners
+ *
+ *		As long as you attribute it to me in some
+ *		way I don't mind people using this. Considering how much
+ *		some people have caused an uproar over the lack of proper
+ *		examples and the like.
+ *
+ *		Copyright Sanya K. C. Waffles 2013-2017
+ *
+ * ****************************************************************** */
+
+// Gibspawn Actor
+Class DD_LudicrousGibsFx : DD_Spawner
+{
+	Default
+	{
+		+NoBlockMap
+		+NoTeleport
+		+DropOff
+	}
+	
+	const GIBCOUNT = 5;
+	
+	const SPAWNGIBMAX = 1;
+	
+	void DDSpawnGib(Class<Actor> gibtype = "DD_MeatChunk1")
+	{
+		double sx = (random[GibsFx]() - 128) / 16.;
+		double sy = (random[GibsFx]() - 128) / 16.;
+		
+		Actor mo = Spawn(gibtype, Vec2OffsetZ(sx, sy, floorz + 1), ALLOW_REPLACE);
+		
+		if (mo != null)
+		{
+			mo.Vel.X = (random[GibsFx]() - 128) / 1024.f;
+			mo.Vel.Y = (random[GibsFx]() - 128) / 1024.f;
+			mo.Floorclip = 6;
+		}
+	}
+
+	void A_SpawnGibs()
+	{
+		static const Class<Actor> gibt[] =
+		{
+			"DD_MeatChunk1",
+			"DD_GibletBone"
+		};
+
+		for (int i = SPAWNGIBMAX; i >= 0; --i)
+		{
+			DDSpawnGib(gibt[i]);
+		}
+	}
+
+	void A_SpawnSkull()
+	{
+		DDSpawnGib("DD_GibletSkull");
+		DDSpawnGib("DD_GibletEye");
+		DDSpawnGib("DD_GibletEye");
+	}
+	
+	void A_SpawnGibsFx()
+	{
+		A_SpawnSkull();
+		
+		for (int j = 0; j < GIBCOUNT; j++)
+		{
+			A_SpawnGibs();
+		}
+	}
+
+	States
+	{
+		Spawn:
+			TNT1 A 0 NoDelay A_SpawnGibsFx;
+			Stop;
+	}
+}
+
+Class DD_LudicrousGibsBarfbagFx : DD_LudicrousGibsFx
+{
+	Default
+	{
+		+NoBlockMap
+		+NoTeleport
+		+DropOff
+	}
+	
+	const SPAWNBARFMAX = 1;
+	
+	void A_SpawnBarf()
+	{
+		static const Class<Actor> gibt[] =
+		{
+			"DD_BarfChunk2",
+			"DD_BarfChunk1"
+		};
+
+		for (int i = SPAWNBARFMAX; i >= 0; --i)
+		{
+			DDSpawnGib(gibt[i]);
+		}
+	}
+	
+	void A_SpawnBarfBagFx()
+	{
+		A_SpawnSkull();
+		for (int j = 0; j < GIBCOUNT; j++)
+		{
+			A_SpawnBarf();
+		}
+	}
+	
+	States
+	{
+		Spawn:
+			TNT1 A 0 NoDelay A_SpawnBarfBagFx;
+			Stop;
+	}
+}

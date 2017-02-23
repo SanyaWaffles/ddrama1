@@ -1,0 +1,141 @@
+/* *******************************************************************
+ *		ZSCRIPT.zsc
+ *
+ *		Each file has a comment indicating it's DECORATE subfile
+ *		if it had one before.
+ *		
+ *		This is mainly for me to keep track of what files I have
+ *		converted proper.
+ *
+ *		I want to be able to keep track of my conversions without
+ *		getting rid of the other files, rather I will comment
+ *		out those files
+ *
+ *		As long as you attribute it to me in some
+ *		way I don't mind people using this. Considering how much
+ *		some people have caused an uproar over the lack of proper
+ *		examples and the like.
+ *
+ *		Copyright Sanya K. C. Waffles 2013-2017
+ *
+ * ****************************************************************** */
+
+#include "zscript/ddrama1/bases/base_actor.zsc"				// actor.dec
+#include "zscript/ddrama1/constants.zsc"					// constants.dec
+#include "zscript/ddrama1/functions.zsc"
+
+#include "zscript/ddrama1/menus/conversation.zsc"
+
+#include "zscript/ddrama1/bases/base_enemy.zsc"				// enemy.dec+boss.dec
+#include "zscript/ddrama1/bases/base_fx.zsc"				// effects.dec
+#include "zscript/ddrama1/bases/base_items.zsc"				// pickup.dec
+#include "zscript/ddrama1/bases/base_npc.zsc"				// npc.dec
+#include "zscript/ddrama1/bases/base_player.zsc"			// player.dec
+#include "zscript/ddrama1/bases/base_projectiles.zsc"		// projectile.dec
+#include "zscript/ddrama1/bases/base_props.zsc"				// props.dec
+#include "zscript/ddrama1/bases/base_splash.zsc"			// splash.dec
+#include "zscript/ddrama1/bases/base_switchables.zsc"		// switchables.dec
+#include "zscript/ddrama1/bases/base_spawner.zsc"			// spawner.dec
+#include "zscript/ddrama1/bases/base_vox.zsc"				// vox.dec
+#include "zscript/ddrama1/bases/base_weapon.zsc"			// pickup.dec + crush.dec
+
+#include "zscript/ddrama1/pickups/armor.zsc"				// jacket_*.dec
+#include "zscript/ddrama1/pickups/health.zsc"				// health_*.dec
+#include "zscript/ddrama1/pickups/keys.zsc"					// keys.dec
+#include "zscript/ddrama1/pickups/pow_antidepressant.zsc"	// pow_zlft.dec
+#include "zscript/ddrama1/pickups/pow_axx_spray.zsc"		// pow_axxe.dec
+#include "zscript/ddrama1/pickups/pow_broken_jpeg.zsc"		// pow_hkit.dec
+#include "zscript/ddrama1/pickups/pow_bulkdrink.zsc"		// pow_mkit.dec
+#include "zscript/ddrama1/pickups/pow_misc.zsc"				// Backpack + Cracker
+#include "zscript/ddrama1/pickups/pow_shoupepper.zsc"		// pow_pepr.dec
+#include "zscript/ddrama1/pickups/pow_whatarethose.zsc"		// pow_shoe.dec
+
+// ammo.dec, static_ammo.dec, dropped_ammo.dec all have been
+// moved to each of the following files for readability.
+// Same with  for their respective fx files.
+// ------
+// The Trollblood Device file is very complex.
+#include "zscript/ddrama1/weapons/wacompen.zsc"				// sonicpen.dec
+#include "zscript/ddrama1/weapons/pistol.zsc"				// pistol.dec
+#include "zscript/ddrama1/weapons/shotgun.zsc"				// shotgun.dec
+#include "zscript/ddrama1/weapons/minigun.zsc"				// minigun.dec
+#include "zscript/ddrama1/weapons/rocket_launcher.zsc"		// rlaunch.dec + rockets.dec
+#include "zscript/ddrama1/weapons/despairium_rifle.zsc"		// despgun.dec + despairshots.dec
+#include "zscript/ddrama1/weapons/trollblood_device.zsc"	// trollblood.dec + webshot.dec + shrinkshots.dec + expanderpuff.dec
+
+// Level controller objects
+#include "zscript/ddrama1/controller/dudebro_tv.zsc"		// dudebro_tv.dec
+#include "zscript/ddrama1/controller/explosion.zsc"			// explosion_*.dec
+#include "zscript/ddrama1/controller/mailbox.zsc"			// mailbox.dec
+#include "zscript/ddrama1/controller/pigpower.zsc"			// pigpower.dec
+#include "zscript/ddrama1/controller/secret.zsc"			// secret.dec
+#include "zscript/ddrama1/controller/tv.zsc"				// regular_tv.dec
+
+#include "zscript/ddrama1/effects/giblets.zsc"				// giblet.dec
+#include "zscript/ddrama1/effects/spawners/gibs.zsc"		// giblet.dec
+#include "zscript/ddrama1/effects/puddles.zsc"				// puddles.dec
+#include "zscript/ddrama1/effects/splashes.zsc"				// spleashes.dec
+#include "zscript/ddrama1/effects/spawners/loots.zsc"		// loot.dec
+
+#include "zscript/ddrama1/players/sanya_player.zsc"			// player.dec
+
+#include "zscript/ddrama1/vox/one_liners.zsc"				// oneliners.dec
+#include "zscript/ddrama1/vox/rest_in_peace.zsc"			// rip.dec
+#include "zscript/ddrama1/vox/pickup_tokens.zsc"			// inventory.dec
+#include "zscript/ddrama1/vox/hints.zsc"					// hints.dec
+#include "zscript/ddrama1/vox/debug.zsc"					// debug.dec
+
+#include "zscript/ddrama1/npcs/hostages/ice_bear.zsc"		// icebear.dec
+#include "zscript/ddrama1/npcs/hostages/amber.zsc"			// amber.dec
+#include "zscript/ddrama1/npcs/hostages/emmy.zsc"			// emmy.dec
+#include "zscript/ddrama1/npcs/hostages/gradea.zsc"			// gradea.dec
+#include "zscript/ddrama1/npcs/hostages/kelsie.zsc"			// kelsie.dec
+#include "zscript/ddrama1/npcs/hostages/krisana.zsc"		// krisana.dec
+#include "zscript/ddrama1/npcs/hostages/marshal.zsc"		// marshal.dec
+
+#include "zscript/ddrama1/npcs/terrorists/csjunko.zsc"		// n/a
+#include "zscript/ddrama1/npcs/terrorists/brony_blue.zsc"	// n/a
+#include "zscript/ddrama1/npcs/terrorists/brony_green.zsc"	// n/a
+
+#include "zscript/ddrama1/npcs/sanya.zsc"					// n/a
+
+// their projectile/fx have been moved to each of the
+// following files for readability as well
+#include "zscript/ddrama1/enemies/barfbag.zsc"				// barfbag.dec + barfbag_puke.dec
+#include "zscript/ddrama1/enemies/bonzi.zsc"				// bonzi.dec + bonzi_ball.dec
+#include "zscript/ddrama1/enemies/brony.zsc"				// dudebrony.dec + dudebrony_ball.dec
+#include "zscript/ddrama1/enemies/buddybear.zsc"			// buddy.dec
+#include "zscript/ddrama1/enemies/checksum_unicorn.zsc"		// checksum_unicorn.dec + checksum_ball.dec
+#include "zscript/ddrama1/enemies/dontreldemon.zsc"			// dontrel.dec + dontrel_korez.dec
+#include "zscript/ddrama1/enemies/flaming_firecrown.zsc"	// smokey.dec
+#include "zscript/ddrama1/enemies/gumball.zsc"				// gumball.dec
+#include "zscript/ddrama1/enemies/hella_jeff.zsc"			// hella_jeff.dec + hjeff_ball.dec
+#include "zscript/ddrama1/enemies/junko_enoshima.zsc"		// junko.dec + junko_fx.dec
+#include "zscript/ddrama1/enemies/lotsobear.zsc"			// lotso.dec
+#include "zscript/ddrama1/enemies/monokuma.zsc"				// mkuma.dec + mkjunk.dec
+#include "zscript/ddrama1/enemies/purrmoid.zsc"				// purrmoid.dec
+#include "zscript/ddrama1/enemies/shrunken_enemy.zsc"		// shrink.dec
+#include "zscript/ddrama1/enemies/sweet_bro.zsc"			// sbro.dec
+#include "zscript/ddrama1/enemies/troll_junko.zsc"			// troll_junko.dec
+
+// PROPS
+#include "zscript/ddrama1/props/barrels.zsc"				// barrels.dec
+#include "zscript/ddrama1/props/cups.zsc"					// barrels.dec
+#include "zscript/ddrama1/props/dolls.zsc"					// dolls.dec
+#include "zscript/ddrama1/props/despaircore.zsc"			// despcore.dec
+#include "zscript/ddrama1/props/fastfood.zsc"				// fastfood.dec
+#include "zscript/ddrama1/props/glass.zsc"					// glass.dec
+#include "zscript/ddrama1/props/gore.zsc"					// gore.dec
+// TODO: split up light sources?
+#include "zscript/ddrama1/props/light_sources.zsc"			// candle.dec + ceilinglights.dec + flames.dec + flamescan.dec
+#include "zscript/ddrama1/props/marketspeaker.zsc"			// speaker.dec
+#include "zscript/ddrama1/props/manholecvr.zsc"				// manhole.dec
+#include "zscript/ddrama1/props/moneybags.zsc"				// moneybag.dec
+#include "zscript/ddrama1/props/melon.zsc"					// melon.dec
+#include "zscript/ddrama1/props/thestuff.zsc"				// thestuff.dec
+#include "zscript/ddrama1/props/toilet.zsc"					// toilet.dec
+#include "zscript/ddrama1/props/trash.zsc"					// garbagebag.dec + trashcans.dec
+#include "zscript/ddrama1/props/turret.zsc"					// turret.dec
+#include "zscript/ddrama1/props/urinal.zsc"					// urinal.dec
+
+#include "zscript/ddrama1/props/misc.zsc"					// everything else

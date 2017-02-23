@@ -1,0 +1,18 @@
+// Map Arrow for Daytime Drama
+
+// shape - a vaguely pencil shaped one
+
+(-0.875, 0.175),	(1, 0.175)			// top line of rect.
+(-0.875, -0.175),	(1, -0.175)			// bottom line of rect.
+(-0.875, 0.175),	(-0.875, -0.175)	// left line of rect.
+(-0.600, 0.175),	(-0.600, -0.175)	// left line of rect. #2
+(1, 0.175),			(1, -0.175)			// right line of rect.
+(1, 0.175),			(1.30, 0)			// top tip line
+(1, -0.175),		(1.30, 0)			// bottom tip line
+(-0.875, 0.175),	(-1, 0.175)			// eraser line hereon out
+(-1, 0.175),		(-1.050, 0.150)
+(-1.050, 0.150),	(-1.050, -0.150)
+(-1.050, -0.150),	(-1, -0.175)
+(-1, -0.175),		(-0.875, -0.175)
+
+// Done

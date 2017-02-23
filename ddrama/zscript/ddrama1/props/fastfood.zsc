@@ -1,0 +1,146 @@
+/* *******************************************************************
+ *		fastfood.zsc
+ *
+ *		Fast Food Shit
+ *
+ *		As long as you attribute it to me in some
+ *		way I don't mind people using this. Considering how much
+ *		some people have caused an uproar over the lack of proper
+ *		examples and the like.
+ *
+ *		Copyright Sanya K. C. Waffles 2013-2017
+ *
+ * ****************************************************************** */
+
+Class DD_GrilltopStuff : DD_Decoration
+{
+	Default
+	{
+		Height 12;
+		Radius 10;
+		//$Category "Decoration"
+	}
+}
+
+Class DD_Sponge : DD_GrilltopStuff
+{
+	Default
+	{
+		//$NotAngled
+		//$Title "Kitchen Sponge"
+		//$Category "Decoration"
+	}
+	
+	States
+	{
+		Spawn:
+			SBAB A -1;
+			Stop;
+	}
+}
+
+Class DD_BunTop : DD_GrilltopStuff
+{
+	Default
+	{
+		//$NotAngled
+		//$Title "Bun Top"
+		//$Category "Decoration"
+	}
+	
+	States
+	{
+		Spawn:
+			BUNH A -1;
+			Stop;
+	}
+}
+
+Class DD_BunBottom : DD_GrilltopStuff
+{
+	Default
+	{
+		//$NotAngled
+		//$Title "Bun Bottom"
+		//$Category "Decoration"
+	}
+	
+	States
+	{
+		Spawn:
+			BUNH B -1;
+			Stop;
+	}
+}
+
+Class DD_Sock : DD_GrilltopStuff
+{
+	Default
+	{
+		//$NotAngled
+		//$Title "Sock"
+		//$Category "Decoration"
+	}
+	
+	States
+	{
+		Spawn:
+			SOCK A -1;
+			Stop;
+	}
+}
+
+Class DD_MeatPatty : DD_GrilltopStuff
+{
+	Default
+	{
+		//$NotAngled
+		//$Title "Meat Patty (Grilled)"
+		//$Category "Decoration"
+	}
+	
+	States
+	{
+		Spawn:
+			GBPT A -1;
+			Stop;
+	}
+}
+
+Class DD_MeatPatty2 : DD_GrilltopStuff
+{
+	Default
+	{
+		//$NotAngled
+		//$Title "Meat Patty (Raw)"
+		//$Category "Decoration"
+	}
+	
+	States
+	{
+		Spawn:
+			GBPT B -1;
+			Stop;
+	}
+}
+
+Class DD_FryBasket : DD_Decoration
+{
+	Default
+	{
+		//$Title "Fry Basket"
+		//$Category "Decoration"
+		//$NotAngled
+		
+		Height 16;
+		Radius 14;
+		Scale 0.24;
+	}
+
+	States
+	{
+		Spawn:
+			FRYB A -1;
+			Stop;
+	}
+}

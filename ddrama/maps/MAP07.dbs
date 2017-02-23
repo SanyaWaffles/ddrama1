@@ -1,0 +1,135 @@
+type = "Doom Builder Map Settings Configuration";
+gameconfig = "WIGZDoom_DDramaUDMF.cfg";
+strictpatches = 0;
+
+maps
+{
+	
+	MAP07
+	{
+		
+		resources
+		{
+		}
+		defaultfloortexture = "CEIL00";
+		defaultceiltexture = "CEIL00";
+		defaulttoptexture = "DOORTRED";
+		defaultwalltexture = "DOORTRED";
+		defaultbottomtexture = "DOORTRED";
+		custombrightness = 196;
+		customfloorheight = 0;
+		customceilheight = 128;
+		overridefloortexture = false;
+		overrideceiltexture = false;
+		overridetoptexture = false;
+		overridemiddletexture = false;
+		overridebottomtexture = false;
+		overridefloorheight = false;
+		overrideceilheight = false;
+		overridebrightness = false;
+		scriptcompiler = "zdoom_acs.cfg";
+		
+		grid
+		{
+			background = "";
+			backsource = 0;
+			backoffsetx = 0;
+			backoffsety = 0;
+			backscalex = 100;
+			backscaley = 100;
+			gridsize = 8f;
+		}
+		uselongtexturenames = false;
+		viewpositionx = 2871.038f;
+		viewpositiony = 570.7803f;
+		viewscale = 0.7145852f;
+		
+		scriptlumps
+		{
+			
+			lump
+			{
+				filename = "SCRIPTS";
+				hash = 3469170009;
+				caretposition = 52;
+				activetab = true;
+			}
+		}
+		
+		fieldtypes
+		{
+			
+			linedef
+			{
+				alpha = 1;
+				locknumber = 0;
+			}
+			
+			sidedef
+			{
+				offsetx_mid = 1;
+				offsety_mid = 1;
+				scalex_mid = 1;
+				light = 0;
+				offsetx_bottom = 1;
+				offsety_bottom = 1;
+				offsetx_top = 1;
+				offsety_top = 1;
+				scalex_bottom = 1;
+				scaley_bottom = 1;
+				lightabsolute = 3;
+				scalex_top = 1;
+				scaley_top = 1;
+				scaley_mid = 1;
+			}
+			
+			sector
+			{
+				fadecolor = 0;
+				lightcolor = 0;
+				rotationceiling = 1;
+				xpanningceiling = 1;
+				lightceiling = 0;
+				rotationfloor = 1;
+				xpanningfloor = 1;
+				ypanningfloor = 1;
+				xscalefloor = 1;
+				yscalefloor = 1;
+				ypanningceiling = 1;
+				lightfloor = 0;
+				xscaleceiling = 1;
+				yscaleceiling = 1;
+			}
+			
+			thing
+			{
+				arg0str = 2;
+				renderstyle = 2;
+			}
+		}
+		useresourcesinreadonlymode = false;
+		
+		scriptdocuments
+		{
+			
+			document0
+			{
+				filename = "DIALOGUE";
+				hash = 3588187714;
+				resource;
+				tabtype = 0;
+				scripttype = 18;
+			}
+			
+			document1
+			{
+				filename = "SCRIPTS";
+				hash = 3469170009;
+				resource;
+				tabtype = 0;
+				scripttype = 1;
+				activetab = true;
+			}
+		}
+	}
+}

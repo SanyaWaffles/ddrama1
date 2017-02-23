@@ -1,0 +1,41 @@
+/* *******************************************************************
+ *		pigpower.zsc
+ *
+ *		Pig Power In Da House for Daytime Drama
+ *
+ *		As long as you attribute it to me in some
+ *		way I don't mind people using this. Considering how much
+ *		some people have caused an uproar over the lack of proper
+ *		examples and the like.
+ *
+ *		Copyright Sanya K. C. Waffles 2013-2017
+ *
+ * ****************************************************************** */
+
+// Switchable Pig Power in da House. Use with Thing_(De)Activate
+
+Class DD_PigPowerController : DD_SwitchableController
+{
+	Default
+	{
+		//$Sprite internal:PigPCtrl
+		//$Title "Pig Power In Da House"
+		//$Category "Controllers"
+		//$NotAngled
+	}
+
+	States
+	{
+		Spawn:
+			TNT1 A -1;
+			Stop;
+		
+		Active:
+			TNT1 A 5 A_PlaySound("world/pigpower", CHAN_VOICE, 0.5, true, 0.5);
+			Goto Spawn;
+		
+		Inactive:
+			TNT1 A 5 A_StopSound(CHAN_VOICE);
+			Goto Spawn;
+	}
+}

@@ -1,0 +1,158 @@
+/* *******************************************************************
+ *		pistol.zsc
+ *
+ *		Pistol
+ *
+ *		As long as you attribute these functions to me in some
+ *		way I don't mind people using these. Considering how much
+ *		some people have caused an uproar over the lack of proper
+ *		examples and the like.
+ *
+ *		Copyright Sanya K. C. Waffles 2013-2017
+ *
+ * ****************************************************************** */
+ 
+// Pistol Ammo pickup
+Class DD_Bullets : Ammo
+{
+	Default
+	{
+		//$NotAngled
+		//$Category "Ammunition"
+		//$Color 6
+		//$Sprite AMM2A0
+		//$Title "Pistol ammo"
+
+		Scale 0.12;
+		Radius 20;
+		Height 32;
+		Inventory.Icon "AMM2A0";
+		Inventory.PickupSound "pickups/generic";
+		Inventory.PickupMessage "$DD_GOTBULLETS";
+		Inventory.Amount 8;
+		Inventory.MaxAmount 200;
+		Ammo.BackpackAmount 40;
+		Ammo.BackpackMaxAmount 400;
+	}
+
+	States
+	{
+		Spawn:
+			AMM2 A -1;
+			Stop;
+	}
+}
+
+Class DD_DroppedPistolBullets : DD_Bullets
+{
+	Default
+	{
+		Scale 0.12;
+		Radius 20;
+		Height 32;
+		Inventory.Amount 5;
+		Inventory.PickupSound "pickups/generic";
+		Inventory.PickupMessage "$DD_GOTSMALLBULLETS";
+
+		+DontGib
+		+Inventory.IgnoreSkill
+	}
+
+	States
+	{
+		Spawn:
+			SAM0 A 280 Bright;
+			Stop;
+	}
+}
+
+// A reloading pistol
+Class DD_Pistol : DD_Weapon
+{
+	Default
+	{
+		//$Title "Pistol"
+		//$Sprite GUN2A0
+		Scale 0.10;
+		Radius 20;
+		Height 20;
+		Weapon.SelectionOrder 1900;
+		Weapon.AmmoUse 1;
+		Weapon.AmmoGive 12;
+		Weapon.BobSpeed 1.2;
+		Weapon.AmmoType "DD_Bullets";
+		Inventory.PickupMessage "$DD_GOTPISTOL";
+		Inventory.Icon "GUN2A0";
+	}
+	
+	States
+	{
+		Ready:
+			PISG A 1 A_DDWeaponReady;
+			Loop;
+		
+		Deselect:
+			PISG A 0 A_Lower;
+			PISG A 0 A_Lower;
+			PISG A 0 A_Lower;
+			PISG A 1 A_Lower;
+			Loop;
+		
+		Select:
+			PISG A 0 A_Raise;
+			PISG A 0 A_Raise;
+			PISG A 0 A_Raise;
+			PISG A 1 A_Raise;
+			Loop;
+		
+		Fire:
+			PISG B 0
+			{
+				A_TakeInventory("DD_CrushFlag", 1);
+				
+				return CheckForPepperPowerup() ? ResolveState("Fire.Shoutime") : ResolveState(null);
+			}
+			Goto Fire.Normal;
+		
+		Fire.Normal:
+			PISG B 4
+			{
+				A_GunFlash("Flash.Normal");
+				A_PlaySound("weapons/pistolf", CHAN_WEAPON, 1);
+				A_FireBullets(3.8, 0, 1, 5, "DD_BulletPuff", 1);
+			}
+			PISG B 2;
+			PISG C 3;
+			PISG A 4 A_ReFire;
+			Goto Ready;
+		
+		Fire.Shoutime:
+			PISG B 2
+			{
+				A_GunFlash("Flash.Shoutime");
+				A_PlaySound("weapons/pistolf", CHAN_WEAPON);
+				A_FireBullets(2.0, 0, 1, 5, "DD_BulletPuff", 1);
+			}
+			PISG B 1;
+			PISG C 1;
+			PISG A 2 A_ReFire;
+			Goto Ready;
+			
+		Flash:
+		Flash.Normal:
+			PISF A 2 Bright A_Light2;
+			PISF A 2 Bright A_Light1;
+			TNT1 A 0 A_Light0;
+			Stop;
+		
+		Flash.Shoutime:
+			PISF A 1 Bright A_Light2;
+			PISF A 1 Bright A_Light1;
+			TNT1 A 0 A_Light0;
+			Stop;
+		
+		Spawn:
+			GUN2 A -1;
+			Stop;
+	}
+}

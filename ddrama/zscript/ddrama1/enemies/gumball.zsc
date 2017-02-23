@@ -1,0 +1,131 @@
+/* *******************************************************************
+ *		gumball.zsc
+ *
+ *		The  Gumball Shotgun Cultist Grunt
+ *
+ *		As long as you attribute it to me in some
+ *		way I don't mind people using this. Considering how much
+ *		some people have caused an uproar over the lack of proper
+ *		examples and the like.
+ *
+ *		Copyright Sanya K. C. Waffles 2013-2017
+ *
+ * ****************************************************************** */
+
+class DD_Gumball : DD_Enemy
+{
+	Default
+	{
+		//$Title "Gumball"
+		//$Sprite GUMBA0
+		
+		Health 35;
+		Mass 150;
+		PainChance 170;
+		Height 56;
+		Radius 20;
+		Speed 8;
+		Species "Grunt";
+		SeeSound "gumball/sight";
+		PainSound "gumball/pain";
+		DeathSound "gumball/death";
+		ActiveSound "gumball/active";
+		Obituary "$DD_OB_GUMBALL";
+	}
+	
+	void A_GumballShotgunAtk()
+	{
+		A_FaceTarget();
+		A_PlaySound("gumball/attack", CHAN_WEAPON);
+		A_CustomBulletAttack(4.6, 0, 3, Random[Gumball](1, 3), "DD_BulletPuff", 1024, CBAF_NORANDOM);
+	}
+	
+	private void A_GumballDropAmmoInternal()
+	{
+		static const Class<Inventory> gwDroppedItems[] =
+		{
+			"DD_Shotgun",
+			"DD_DroppedShells"
+		};
+		
+		if (target)
+		{
+			if (target.player && !(target.CountInv(gwDroppedItems[0])))
+			{
+				A_DropItem(gwDroppedItems[0], -1, 256);
+				return;
+			}
+			
+			A_DropItem(gwDroppedItems[0], -1, 128);
+			A_DropItem(gwDroppedItems[1], -1, 256);
+			return;
+		}
+	}
+	
+	void A_GumballDropAmmo()
+	{
+		A_ScreamAndUnblock();
+		A_GumballDropAmmoInternal();
+	}
+	
+	void A_GumballDropAmmoXtr()
+	{
+		A_DDExtremeScreamAndUnblock();
+		A_GumballDropAmmoInternal();
+	}
+	
+	States
+	{
+		Spawn:
+			GUMB A 10 A_DDramaLook;
+			Loop;
+		
+		See:
+			GUMB BCDCBCDC 4 A_DDramaChase;
+			Loop;
+		
+		Missile:
+			GUMB E 10;
+			GUMB F 10 BRIGHT A_GumballShotgunAtk;
+			GUMB G 10;
+			Goto See;
+		
+		Pain:
+			GUMB H 0 A_Jump(128, "PainB");
+			Goto PainA;
+		
+		PainA:
+			GUMB H 3;
+			GUMB H 3 A_Pain;
+			Goto See;
+			
+		PainB:
+			GUMB I 3;
+			GUMB I 3 A_Pain;
+			Goto See;
+		
+		Death:
+			GUMB J 5 A_GumballDropAmmo;
+			GUMB K 5;
+			GUMB L -1 A_DDGivePlayerOneLiner;
+			Stop;
+		
+		Death.Expand:
+			GUMB G 1 A_GumballDropAmmo;
+			goto Super::Death.Expand;
+		
+		Raise:
+			GUMB LKLKLK 3;
+			Goto See;
+		
+		Death.Shou:
+		Death.Rocket:
+		Death.Extreme:
+			GIBW A 4 A_GumballDropAmmo;
+			goto Super::Death.Extreme;
+		
+		Raise:
+			GUMB LKLKLK 3;
+			Goto See;
+	}
+}

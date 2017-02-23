@@ -1,0 +1,70 @@
+/* *******************************************************************
+ *		base_props.zsc
+ *
+ *		Base Decoration, Props and Breakable Daytime Drama Classes
+ *
+ *		As long as you attribute it to me in some
+ *		way I don't mind people using this. Considering how much
+ *		some people have caused an uproar over the lack of proper
+ *		examples and the like.
+ *
+ *		Copyright Sanya K. C. Waffles 2013-2017
+ *
+ * ****************************************************************** */
+ 
+Class DD_Prop : DD_Actor
+{
+	Default
+	{
+		Height 56;
+		Radius 22;
+		
+		+Solid
+		+NotAutoAimed
+		+NoBlood
+	}
+}
+
+Class DD_Decoration : DD_Prop
+{
+	Default
+	{
+		-Solid
+	}
+}
+
+// Breakable container base
+Class DD_BreakableContainer : DD_Prop
+{
+	Default
+	{			
+		+Shootable
+		+DontGib
+	}
+	
+	States
+	{
+		Death:
+			TNT1 A 0 A_DestroyDDContainer;
+			Stop;
+	}
+	
+	// Copied the code and made some edits from Pottery1
+	void A_DestroyDDContainer()
+	{
+		A_PlaySound("generic/break", CHAN_BODY);	// hmm...
+		
+		// Spawn an item?
+		Class<Actor> type = GetSpawnableType(args[0]);
+		
+		if (type != null)
+		{
+			if (!(level.nomonsters || sv_nomonsters) || !(GetDefaultByType(type).bIsMonster))
+			{
+				// Only spawn monsters if not -nomonsters
+				Spawn(type, pos, ALLOW_REPLACE);
+			}
+		}
+		Destroy();
+	}
+}

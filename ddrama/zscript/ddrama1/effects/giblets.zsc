@@ -1,0 +1,368 @@
+/* *******************************************************************
+ *		giblets.zsc
+ *
+ *		Giblets
+ *
+ *		As long as you attribute it to me in some
+ *		way I don't mind people using this. Considering how much
+ *		some people have caused an uproar over the lack of proper
+ *		examples and the like.
+ *
+ *		Copyright Sanya K. C. Waffles 2013-2017
+ *
+ * ****************************************************************** */
+
+// Gib Actor
+Class DD_GibletPart : DD_Actor
+{
+	Default
+	{
+		Height 12;
+		Radius 8;
+		Mass 80;
+		VSpeed 3;
+
+		+NoBlockmap
+		+NoTeleport
+		+DropOff
+		+Corpse
+	}
+	
+	bool shifted;
+	
+	override void PostBeginPlay()
+	{
+		shifted = false;
+	}
+	
+	void A_GibThrust()
+	{
+		ThrustThingZ(0, random[GibxFx](24, 32), 0, 1);
+		
+		if (!shifted)
+		{
+			ThrustThing(angle*256/360+RandomPick[GibFx](0, 64, 128, 192), Random[GibFx](2, 5), 0, 0);
+			
+			shifted = true;
+		}
+		
+		A_SpawnItemEx("DD_GibletBarfTrail");
+	}
+
+	States
+	{
+		/* *********************************
+		 ***********************************
+						(DECORATE) 
+		 ***********************************
+		Crash:
+			BLUD A 3 A_PlaySound("misc/gibcrash")
+			BLUD B 3
+			BLUD C 3 A_Jump(127, "CrashEndB")
+		CrashEndA:
+			BLUD C 0 A_SpawnItemEx("DD_GibletBloodPuddle")
+		CrashEndB:
+			BLUD C 0
+			Stop
+		*********************************** */
+		
+		Crash:
+			BLUD A 3
+			{
+				A_PlaySound("misc/gibcrash");
+				A_SpawnItemEx("DD_GibletBloodPuddle", failchance: 127);
+			}
+			BLUD B 3;
+			BLUD C 3;
+			Stop;
+	}
+}
+
+// Barfbag cat Gib Actor
+Class DD_GibletBarfPart : DD_GibletPart
+{
+	Default
+	{
+		Translation "16:31=48:63";	// DRBlood to Green
+	}
+
+	States
+	{
+		Crash:
+			BLUD A 3 A_PlaySound("misc/gibcrash");
+			BLUD B 3;
+			BLUD C 3 A_SpawnItemEx("DD_GibletBloodPuddle", failchance: 127);
+			Stop;
+
+	}
+}
+
+// Junk Actor
+// Acts like a gib except it
+// just disappears rather than
+// crashes and splashes
+Class DD_JunkPart : DD_GibletPart
+{
+	States
+	{
+		Crash:
+			TNT1 A 1;
+			Stop;
+	}
+}
+
+// Troll Gib Actor
+Class DD_MeatChunkShrunk : DD_GibletPart
+{
+	Default
+	{
+		Scale 0.07;
+		Translation "16:31=224:232";	// DRBlood to Aqua
+	}
+}
+
+// Junk spawn
+Class DD_MetalJunk : DD_JunkPart
+{
+	States
+	{
+		Spawn:
+			JUNK AB 2 NoDelay A_GibThrust;
+		SpawnLoop:
+			JUNK CDAB 2;
+			Loop;
+	}
+}
+
+Class DD_PaperJunk : DD_JunkPart
+{
+	States
+	{
+		Spawn:
+			JNK2 A 2 NoDelay A_GibThrust;
+		SpawnLoop:
+			JNK2 BA 2;
+			Loop;
+	}
+}
+
+Class DD_FloatingPaperJunk : DD_JunkPart
+{
+	Default
+	{
+		Height 8;
+		Radius 4;
+		Mass 20;
+		Gravity 0.6;
+
+		+Float
+		+Windthrust
+		+DontSplash
+		+Missile
+		+Dropoff
+		+NoTeleport
+		+CannotPush
+		+NoGravity
+	}
+
+	States
+	{
+		Spawn:
+			JNK2 A 5 NoDelay
+			{
+				A_SetAngle(random[MoneyFx](0, 360));
+				ThrustThingZ(0, random[MoneyFx](15, 25), 0, 1);
+			}
+			JNK2 B 5
+			{
+				bNoGravity = false;
+			}
+			Goto FloatDown;
+			
+		FloatDown:
+			JNK2 A 2 A_Recoil(2);
+			JNK2 B 2;
+			JNK2 A 2 A_Recoil(-2);
+			JNK2 B 2;
+			Loop;
+	}
+}
+
+Class DD_GibletTrail : DD_GibletPart
+{
+	Default
+	{
+		Height 4;
+		Radius 4;
+		Mass 10;
+		Scale 0.08;
+	}
+
+	States
+	{
+		Spawn:
+			BLDT A 2;
+			Stop;
+		
+		Crash:
+			TNT1 A 1;
+			Stop;
+	}
+}
+
+Class DD_GibletBarfTrail : DD_GibletTrail
+{
+	Default
+	{
+		Translation "0:15=16:31";	// B&W to Peptobysmol
+	}
+}
+
+Class DD_GibletBone : DD_GibletPart
+{
+	Default
+	{
+		Mass 30;
+		VSpeed 4;
+	}
+	
+	States
+	{
+		Spawn:
+			GBL0 ABC 4 NoDelay A_GibThrust;
+		SpawnLoop:
+			GBL0 DABC 4;
+			Loop;
+	}
+}
+
+Class DD_GibletSkull : DD_GibletPart
+{
+	Default
+	{
+		Mass 40;
+		VSpeed 5;
+	}
+	
+	States
+	{
+		Spawn:
+			GBL1 ABC 4 NoDelay A_GibThrust;
+		SpawnLoop:
+			GBL1 DABC 4;
+			Loop;
+	}
+}
+
+Class DD_GibletSpine : DD_GibletPart
+{
+	Default
+	{
+		Mass 35;
+		VSpeed 6;
+	}
+	
+	States
+	{
+		Spawn:
+			GBL2 ABC 4 NoDelay A_GibThrust;
+			GBL2 A 0
+			{
+				bNoGravity = false;
+			}
+		SpawnLoop:
+			GBL2 DABC 4;
+			Loop;
+	}
+}
+
+Class DD_MeatChunk1 : DD_GibletPart
+{
+	Default
+	{
+		Mass 60;
+		VSpeed 8;
+	}
+	
+	States
+	{
+		Spawn:
+			GBLT HHH 4 NoDelay A_GibThrust;
+			GBLT H 0
+			{
+				bNoGravity = false;
+			}
+		SpawnLoop:
+			GBLT H 4;
+			Loop;
+	}
+}
+
+Class DD_BarfChunk1 : DD_GibletBarfPart
+{
+	Default
+	{
+		Mass 40;
+		VSpeed 12;
+	}
+	
+	States
+	{
+		Spawn:
+			GBL2 ABA 4 NoDelay A_GibThrust;
+			GBL2 A 0
+			{
+				bNoGravity = false;
+			}
+		SpawnLoop:
+			GBL2 BCDA 4 A_SpawnItemEx("DD_GibletBarfTrail");
+			Loop;
+		
+		Crash:
+			TNT1 A 0
+			{
+				A_PlaySound("misc/gibcrash");
+				A_SpawnItemEx("DD_GibletBarfPuddle", failchance: 127);
+			}
+			Stop;
+	}
+}
+
+Class DD_BarfChunk2 : DD_BarfChunk1
+{
+	States
+	{
+		Spawn:
+			GBLT HHH 4 NoDelay A_GibThrust;
+			GBLT H 0
+			{
+				bNoGravity = false;
+			}
+		SpawnLoop:
+			GBLT H 4 A_SpawnItemEx("DD_GibletBarfTrail");
+			Loop;
+	}
+}
+
+Class DD_GibletEye : DD_GibletPart
+{
+	Default
+	{
+		Mass 20;
+		VSpeed 12;
+	}
+	
+	States
+	{
+		Spawn:
+			GBLT IJI 4 NoDelay A_GibThrust;
+			GBLT I 0
+			{
+				bNoGravity = false;
+			}
+		SpawnLoop:
+			GBLT JI 4 A_SpawnItemEx("DD_GibletTrail");
+			Loop;
+	}
+}
+

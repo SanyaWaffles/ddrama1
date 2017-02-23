@@ -1,0 +1,235 @@
+include "mapinfo/ginfo.txt"
+include "mapinfo/automap.txt"
+include "mapinfo/cs.txt"
+include "mapinfo/doomednums.txt"
+include "mapinfo/spawnids.txt"
+include "mapinfo/cluster.txt"
+include "mapinfo/skills.txt"
+include "mapinfo/episode.txt"
+include "mapinfo/def_map.txt"
+
+// MAP STUFF BLOCK
+map START lookup DD_START
+{
+	Music = ""
+	Next = "MAP01"
+}
+
+map MAP01 lookup DD_MAP01
+{
+	LevelNum = 1
+	Music = "D_MINUIT"
+	Next = "MAP02"
+	NoAutosaveHint
+	
+	ResetInventory
+	ResetHealth
+}
+
+map MAP02 lookup DD_MAP02
+{
+	LevelNum = 2
+	Music = "D_KRIEG"
+	Next = "MAP03"
+	SpecialAction = "DD_BonziBuddy", "Floor_LowerToNearest", 999, 32
+}
+
+map MAP03 lookup DD_MAP03
+{
+	LevelNum = 3
+	Music = "D_MINUIT"
+	Next = "MAPB1"
+}
+
+map MAPB1 lookup DD_MAPB1
+{
+	LevelNum = 3
+	Music = "D_KRIEG"
+	Next = "MAP04"
+}
+adddefaultmap
+{
+	Cluster = 2
+	Sky1 = "SKY2"
+}
+
+map MAP04 lookup DD_MAP04
+{
+	LevelNum = 4
+	Music = "D_DRAMAT"
+	Next = "MAP05"
+	SecretNext = "SECRET01"
+}
+
+map SECRET01 lookup DD_MAPSECRET01
+{
+	LevelNum = 13
+	Music = "D_MINUIT"
+	Next = "MAP05"
+}
+
+map MAP05 lookup DD_MAP05
+{
+	LevelNum = 5
+	Music = "D_DRAMAT"
+	Next = "MAP06"
+}
+
+map MAP06 lookup DD_MAP06
+{
+	LevelNum = 6
+	Music = "D_KRIEG"
+	Next = "MAP07"
+	SecretNext = "SECRET02"
+}
+
+map SECRET02 lookup DD_MAPSECRET02
+{
+	LevelNum = 13
+	Music = "D_DRAMAT"
+	Next = "MAP07"
+}
+
+adddefaultmap
+{
+	Sky1 = "SKY3"
+}
+
+map MAP07 lookup DD_MAP07
+{
+	LevelNum = 7
+	Music = "D_MINUIT"
+	Next = "MAPB2"
+}
+
+adddefaultmap
+{
+	Cluster = 3
+}
+
+map MAPB2 lookup DD_MAPB2
+{
+	LevelNum = 8
+	Music = "D_HELL"
+	Next = "MAP09"
+}
+
+map MAP09 lookup DD_MAP09
+{
+	LevelNum = 9
+	Music = "D_KRIEG"
+	Next = "MAP10"
+}
+
+map MAP10 lookup DD_MAP10
+{
+	LevelNum = 12
+	Music = "D_HELL"
+	SpecialAction = "DD_JunkoEnoshimaBoss", "Exit_Normal", 0
+	Next = "VICTORY"
+}
+// END MAP STUFF BLOCK
+
+map VICTORY lookup DD_MAP10
+{
+	Music = ""
+	Next = GotoTitle
+	NoAutosaveHint
+}
+
+Intermission DD1Cast
+{
+	Cast
+	{
+		CastClass = "DD_BuddyBear"
+		CastName = "$CC_DD_BUDDYBEAR"
+		AttackSound = "Missile", 1, "bear/attack"
+	}
+	Cast
+	{
+		CastClass = "DD_Gumball"
+		CastName = "$CC_DD_GUMBALL"
+		AttackSound = "Missile", 1, "gumball/attack"
+	}
+	Cast
+	{
+		CastClass = "DD_LotsoBear"
+		CastName = "$CC_DD_LOTSO"
+		AttackSound = "Missile", 1, "lotso/attack"
+		AttackSound = "Missile", 2, "lotso/attack"
+		AttackSound = "Missile", 3, "lotso/attack"
+	}
+	Cast
+	{
+		CastClass = "DD_BarfBag"
+		CastName = "$CC_DD_BARFBAG"
+		AttackSound = "Missile", 2, "barfbag/attack"
+	}
+	Cast
+	{
+		CastClass = "DD_SweetBro"
+		CastName = "$CC_DD_SWEETBRO"
+		AttackSound = "Melee", 1, "sweetbro/miss"
+	}
+	Cast
+	{
+		CastClass = "DD_SmokeyHead"
+		CastName = "$CC_DD_FLOWERCROWN"
+		AttackSound = "Missile", 1, "smokey/melee"
+	}
+	Cast
+	{
+		CastClass = "DD_Dontreldemon"
+		CastName = "$CC_DD_DONTRELDEMON"
+		AttackSound = "Missile", 1, "dontrel/attack"
+	}
+	Cast
+	{
+		CastClass = "DD_BronyOfDespair"
+		CastName = "$CC_DD_BRONY"
+		AttackSound = "Missile", 1, "brony/attack"
+	}
+	Cast
+	{
+		CastClass = "DD_ChecksumUnicorn"
+		CastName = "$CC_DD_CHECKSUM"
+		AttackSound = "Missile", 1, "checksum/attack"
+	}
+	Cast
+	{
+		CastClass = "DD_HellaJeff"
+		CastName = "$CC_DD_HELLAJEFF"
+		AttackSound = "Missile", 1, "hjeff/plasmaf"
+	}
+	Cast
+	{
+		CastClass = "DD_Purrmoid"
+		CastName = "$CC_DD_PURRMOID"
+		AttackSound = "Missile", 1, "purrmoid/attack"
+	}
+	Cast
+	{
+		CastClass = "DD_BonziBuddy"
+		CastName = "$CC_DD_BONZI"
+		AttackSound = "Missile", 1, "bonzi/attack"
+		AttackSound = "Missile", 4, "bonzi/attack"
+		AttackSound = "Missile", 7, "bonzi/attack"
+	}
+	Cast
+	{
+		CastClass = "DD_TrollJunko"
+		CastName = "$CC_DD_TROLLJUNKO"
+		AttackSound = "Missile", 1, "troll/hiss"
+	}
+	Cast
+	{
+		CastClass = "DD_Monokuma"
+		CastName = "$CC_DD_MONOKUMA"
+	}
+	Cast
+	{
+		CastClass = "DD_JunkoEnoshimaBoss"
+		CastName = "$CC_DD_JUNKO"
+	}
+	Link = Inter_Titlescreen	// restart to titlemap
+}

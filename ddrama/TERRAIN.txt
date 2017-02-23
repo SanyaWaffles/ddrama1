@@ -1,0 +1,102 @@
+splash WaterSplashDD
+{
+	smallclass		DD_WaterSplashSmall
+	smallclip		12
+	smallsound		world/smallsplash
+
+	baseclass		DD_WaterSplashBig
+	chunkclass		DD_WaterSplashSmall
+	sound			world/watersplash
+	noalert
+}
+
+splash SewageSplashDD
+{
+	smallclass		DD_SludgeSplashSmall
+	smallclip		12
+	smallsound		world/smallsplash
+
+	baseclass		DD_SludgeSplashBig
+	chunkclass		DD_SludgeSplashSmall
+	sound			world/watersplash
+	noalert
+}
+
+splash PeptoSplashDD
+{
+	smallclass		DD_DespairSplashSmall
+	smallclip		12
+	smallsound		world/smallsplash
+
+	baseclass		DD_DespairSplashBig
+	chunkclass		DD_DespairSplashSmall
+	sound			world/watersplash
+	noalert
+}
+
+splash LavaSplashDD
+{
+	smallclass		DD_LavaSplashSmall
+	smallclip		12
+	smallsound		world/lavasizzle
+
+	baseclass		DD_LavaSplashBig
+	chunkclass		DD_LavaSplashSmall
+	sound			world/lavasizzle
+	noalert
+}
+
+terrain WaterDD
+{
+	splash				WaterSplashDD
+	footclip			4
+	liquid
+	friction			1.4
+}
+
+terrain PeptoLava
+{
+	splash				PeptoSplashDD
+	footclip			4
+	liquid
+	friction			1.2
+	damagetype			PeptoBloodSlime
+	damageamount		4
+	damagetimemask		31
+	AllowProtection
+}
+
+terrain RegularNukage
+{
+	splash				SewageSplashDD
+	footclip			4
+	liquid
+	friction			0.75
+	damagetype			RegularNukeSlime
+	damageamount		1
+	damagetimemask		31
+	AllowProtection
+}
+
+terrain LavaFlows
+{
+	splash				LavaSplashDD
+	footclip			4
+	liquid
+	friction			0.8
+	damagetype			LavaFloor
+	damageamount		2
+	damagetimemask		31
+	AllowProtection
+}
+
+floor "NUKE1" PeptoLava
+
+floor "NUKE2" RegularNukage
+floor "NUKE3" RegularNukage
+
+floor "LAVA1" LavaFlows
+floor "LAVA2" LavaFlows
+
+floor "WATER1"	WaterDD
+floor "WATER2"	WaterDD

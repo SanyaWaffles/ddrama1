@@ -1,0 +1,37 @@
+// Polyobject Sliding Door
+
+:DDDoorSlidingOpen
+	door 10
+	play		doors/slideopen
+	nostopcutoff
+end
+
+// Bushes
+
+:DDBushesOpen
+	platform 11
+	play			bushes/slide
+	nostopcutoff
+	stopsound		bushes/stop
+end
+
+:DDWoodSliding
+	platform 12
+	play			wooden/slide
+	nostopcutoff
+	stopsound		wooden/stop
+end
+
+:DDBuildingSlide
+	platform 13
+	play			rocks/slide
+	nostopcutoff
+	stopsound		rocks/stop
+end
+
+[DoorNormal
+	0		DDDoorSlidingOpen
+	1		DDDoorSlidingOpen
+	2		DDDoorSlidingOpen
+	3		DDDoorSlidingOpen
+]

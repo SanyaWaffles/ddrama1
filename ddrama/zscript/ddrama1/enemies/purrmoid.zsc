@@ -1,0 +1,200 @@
+/* *******************************************************************
+ *		purrmoid.zsc
+ *
+ *		Purrmoid
+ *
+ *		As long as you attribute it to me in some
+ *		way I don't mind people using this. Considering how much
+ *		some people have caused an uproar over the lack of proper
+ *		examples and the like.
+ *
+ *		Copyright Sanya K. C. Waffles 2013-2017
+ *
+ * ****************************************************************** */
+
+
+
+Class DD_PurrmoidTracer : DD_ProjectileActor
+{
+	Default
+	{
+		Radius 11;
+		Height 8;
+		Speed 8;
+		Damage 8;
+		SeeSound "purrmoid/attack";
+		DeathSound "purrmoid/tracex";
+		RenderStyle "Add";
+
+		+SeekerMissile
+		+Randomize
+	}
+	
+	// We randomly seek from the same missile...
+	state A_DDPurrmoidTraceChoose()
+	{
+		if (Random[Purrmoid](1, 6) % 2)
+			return ResolveState("SpawnStraight");
+		
+		return ResolveState("SpawnHoming");
+	}
+	
+	// The actual 'seeking' function
+	void A_DDPurrmoidTraceHome()
+	{
+		A_SeekerMissile(24, 10);
+		A_SpawnItemEx("DD_PurrmoidTracerFx");
+	}
+
+	States
+	{
+		Spawn:
+			KSML A 0 Bright NoDelay A_DDPurrmoidTraceChoose;
+			Goto SpawnStraight;
+		
+		SpawnStraight:
+			KMSL AC 2 Bright;
+			Loop;
+		
+		SpawnHoming:
+			KMSL ABCD 2 Bright A_DDPurrmoidTraceHome;
+			Loop;
+		
+		Death:
+			KMSL E 8 Bright;
+			KMSL F 6 Bright;
+			KMSL G 4 Bright;
+			Stop;
+	}
+}
+
+Class DD_PurrmoidTracerFx : DD_Actor
+{
+	Default
+	{
+		VSpeed 0;
+		Speed 0;
+		Gravity 0;
+		Mass 100;
+		RenderStyle "Subtract";
+		Alpha 0.5;
+		Scale 0.1;
+
+		+NoGravity
+		+Float
+	}
+
+	States
+	{
+		Spawn:
+			KMSL AC 2 Bright A_Stop;
+			Stop;
+	}
+}
+
+Class DD_Purrmoid : DD_Enemy
+{
+	Default
+	{
+		//$Sprite PURMA0
+		//$Title "Purrmoid"
+		
+		Health 80;
+		Radius 20;
+		Height 44;
+		Mass 350;
+		Speed 10;
+		DamageFactor "Normal", 0.0;
+		DamageFactor "Dorito", 1.5;
+		DamageFactor "Rocket", 2.5;
+		DamageFactor "Shou", 1.2;
+		DamageFactor "Despair", 1.8;
+		DamageFactor "Expand", 1.8;
+		DamageFactor "Webbing", 1.8;
+		PainChance 256;
+		PainChance "Normal", 256;
+		Species "Feline";
+		SeeSound "purrmoid/sight";
+		PainSound "purrmoid/pain";
+		DeathSound "purrmoid/death";
+		ActiveSound "purrmoid/active";
+		Obituary "$DD_OB_PURRMOID";
+
+		+DontMorph
+		+NeverRespawn
+		+MissileMore
+		+AllowPain
+		-Solid
+	}
+	
+	// Purmoid looking function
+	void A_DDPurrmoidLook()
+	{
+		A_DDramaLook();
+		A_PlaySound("purrmoid/active", CHAN_BODY, 1.0, true, ATTN_IDLE);
+	}
+	
+	// Purrmoid Chaising Function
+	void A_DDPurrmoidChase()
+	{
+		A_StopSound(CHAN_BODY);
+		A_DDramaChase();
+	}
+	
+	// Purrmoid Pain
+	void A_DDPurrmoidPain()
+	{
+		A_Pain();
+		bNotAutoAimed = true;
+		bNoPain = true;
+	}
+	
+	// Purrmoid 'coming out of it'
+	void A_DDPurrmoidUnPain()
+	{
+		bNotAutoAimed = false;
+		bNoPain = false;
+	}
+
+	States
+	{
+		Spawn:
+			PURM A 10 A_DDPurrmoidLook;
+			Loop;
+		
+		See:
+			PURM ABCDCB 3 A_DDPurrmoidChase;
+			Loop;
+		
+		Missile:
+			PURM D 2 A_FaceTarget;
+			PURM B 6 A_FaceTarget;
+			PURM E 10 A_SpawnProjectile("DD_PurrmoidTracer", 38, 4);	// Fire Cat Finger Missile!
+			PURM FG 4;
+			Goto See;
+		
+		Pain:
+		Pain.Normal:
+			PURM H 3 A_DDPurrmoidPain;		// feign death...
+			PURM IJK 3;
+			PURM L 35 A_SetTics((35 * random[Purrmoid](10,24)) - 1);	// make it feign death for 10 to 24 seconds... gives the player time to get away if need be.
+			PURM L 1 A_DDPurrmoidUnPain;	// resurrect!
+			PURM KJIH 2;
+			Goto See;
+		
+		Death:
+		Death.Rocket:
+		Death.Despair:
+		Death.Expand:
+		Death.Webbing:
+		Death.Dorito:
+		Death.Shou:
+		Death.Extreme:
+			GIBX A 4 A_DDLudicrousGibs;
+			Goto GibDeathLoop;
+		
+		GibDeathLoop:
+			GIBX A 35 A_FadeOut(0.1, true);
+			Loop;
+	}
+}

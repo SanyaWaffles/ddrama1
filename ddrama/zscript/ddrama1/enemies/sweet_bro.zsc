@@ -1,0 +1,142 @@
+/* *******************************************************************
+ *		sweet_bro.zsc
+ *
+ *		Sweet Bro (Rotten Prisoner)
+ *
+ *		As long as you attribute it to me in some
+ *		way I don't mind people using this. Considering how much
+ *		some people have caused an uproar over the lack of proper
+ *		examples and the like.
+ *
+ *		Copyright Sanya K. C. Waffles 2013-2017
+ *
+ * ****************************************************************** */
+ 
+Class DD_SweetBro : DD_Enemy
+{
+	Default
+	{
+		//$Sprite SBROA0
+		//$Title "Sweet Bro"
+		
+		Health 150;
+		PainChance 180;
+		Species "Gamebro";
+		Speed 10;
+		Radius 22;
+		Height 54;
+		Mass 200;
+		SeeSound "sweetbro/sight";
+		PainSound "sweetbro/pain";
+		DeathSound "sweetbro/death";
+		ActiveSound "sweetbro/active";
+		Obituary "$DD_OB_SWEETBRO";
+
+		+NeverRespawn
+	}
+	
+	void A_DDSweetBroPunch(int dmgmod = 4)
+	{
+		if (target)
+		{
+			if (CheckMeleeRange())
+			{
+				int damage = random[SweetBro](1, 10) * dmgmod;
+				int newdam = target.DamageMobj(self, self, damage, "Melee");
+				target.TraceBleed(newdam > 0 ? newdam : damage, self);
+				
+				A_PlaySound("sweetbro/melee", CHAN_WEAPON); // We hit so it makes a punch
+			}
+			else
+			{
+				A_PlaySound("sweetbro/miss", CHAN_WEAPON);	// We missed so it makes a 'whoosh'
+			}
+		}
+		return;
+	}
+	
+	void A_DDSweetBroDeath()
+	{
+		A_FaceTarget();
+		A_ScreamAndUnblock();
+	}
+	
+	void A_DDSweetBroLoop()
+	{
+		ThrustThing(angle * 256 / 360 + 128, 56, true);	// Make him go into a different game
+		A_FadeTo(0.1, 0.1, true);	// Make him go into a different game
+		A_FaceTarget();
+	}
+
+	States
+	{
+		Spawn:
+			SBRO A 10 A_DDramaLook;
+			Loop;
+			
+		See:
+			SBRO BCDEBCDE 2 A_DDramaChase;
+			Loop;
+			
+		Melee:
+			SBRO FG 8 A_FaceTarget;
+			SBRO H 8 A_DDSweetBroPunch;
+			Goto See;
+			
+		Pain:
+			SBRO I 2;
+			SBRO I 2 A_Pain;
+			Goto See;
+		
+		Death:
+		Death.Extreme:
+		Death.Rocket:
+			SBRO J 1 A_DDSweetBroDeath;
+			Goto DeathLoop;
+		
+		DeathLoop:
+			SBRO K 1 A_DDSweetBroLoop;
+			Wait;
+			
+		Raise:
+			Stop;
+	}
+}
+
+Class DD_NightmareBro : DD_SweetBro
+{
+	Default
+	{
+		//$Sprite SBR2A0
+		//$Title "Nitemare Sweet Bro"
+		
+		Health 300;
+		PainChance 140;
+		DamageFactor "Shrink", 0.0;
+		PainChance "Shrink", 0;
+		Speed 12;
+		RenderStyle "Subtract";
+		Obituary "$DD_OB_SWEETBRO2";
+		BloodColor "00 00 bb";
+
+		+DontMorph
+	}
+	
+	void A_DDSweetBroDeath()
+	{
+		ThrustThing(angle * 256 / 360 + 128, 56, true);	// Make him go into a different game
+		A_FadeTo(0.1, 0.1, true);	// Make him go into a different game
+		A_FaceTarget();
+	}
+
+	States
+	{
+		Melee:
+			SBRO FG 6 Fast A_FaceTarget;
+			SBRO H 6 Fast A_DDSweetBroPunch(6);
+			Goto See;
+		
+		Death.Webbing:
+			Goto Super::Death;
+	}
+}

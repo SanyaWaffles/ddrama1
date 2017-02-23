@@ -1,0 +1,121 @@
+/* *******************************************************************
+ *		melon.zsc
+ *
+ *		Melon Drama Classes
+ *
+ *		As long as you attribute it to me in some
+ *		way I don't mind people using this. Considering how much
+ *		some people have caused an uproar over the lack of proper
+ *		examples and the like.
+ *
+ *		Copyright Sanya K. C. Waffles 2013-2017
+ *
+ * ****************************************************************** */
+
+// Melon Parts
+Class DD_MelonPart : DD_JunkPart { }
+
+Class DD_MelonShell : DD_MelonPart
+{
+	States
+	{
+		Spawn:
+			WMLX B 4;
+			Loop;
+	}
+}
+
+Class DD_MelonHalf : DD_MelonPart
+{
+	States
+	{
+		Spawn:
+			WMLX A 4;
+			Loop;
+	}
+}
+
+Class DD_MelonFleshBit : DD_MelonPart
+{
+	States
+	{
+		Spawn:
+			WMLF ABCD 2;
+			Loop;
+	}
+}
+
+Class DD_MelonSeed : DD_MelonPart
+{
+	States
+	{
+		Spawn:
+			WMLS ABCB 2;
+			Loop;
+	}
+}
+
+// A breakable watermelon
+Class DD_Watermelon : DD_Decoration
+{
+	Default
+	{
+		//$NotAngled
+		//$Title "Watermelon"
+		//$Sprite WMELA0
+		//$Category "Decoration"
+		
+		Height 24;
+		Radius 12;
+		Health 5;
+		Mass 500;
+		BloodColor "cc 00 00";
+
+		+Shootable
+		+DontGib
+		+NoBloodDecals
+	}
+	
+	void ThrowMelon()
+	{
+		static const Class<Actor> MELONPARTS[] =
+		{
+			"DD_MelonHalf",
+			"DD_MelonShell",
+			"DD_MelonFleshBit",
+			"DD_MelonSeed"
+		};
+		
+		Actor mo;
+		int i;
+
+		for(i = (Random[Melon]()&9)+9; i; i--)
+		{
+			mo = Spawn(MELONPARTS[Random[Melon](0, 3)], pos, ALLOW_REPLACE);
+			if (mo)
+			{
+				mo.Vel.X = Random2[Melon]() / 64.;
+				mo.Vel.Y = Random2[Melon]() / 64.;
+				mo.Vel.Z = ((Random[Melon]() & 7) + 5) * 0.75;
+			}
+		}
+	}
+	
+	void A_MelonDeath()
+	{
+		A_NoBlocking();
+		A_PlaySound("misc/gibbed", CHAN_BODY);
+		ThrowMelon();
+	}
+
+	States
+	{
+		Spawn:
+			WMEL A -1;
+			Stop;
+		
+		Death:
+			TNT1 A 0 A_MelonDeath;
+			Stop;
+	}
+}

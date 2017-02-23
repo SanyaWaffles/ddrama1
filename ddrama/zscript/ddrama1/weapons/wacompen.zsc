@@ -1,0 +1,112 @@
+/* *******************************************************************
+ *		wacompen.zsc
+ *
+ *		Sonic Wacom Pen
+ *
+ *		As long as you attribute these functions to me in some
+ *		way I don't mind people using these. Considering how much
+ *		some people have caused an uproar over the lack of proper
+ *		examples and the like.
+ *
+ *		Copyright Sanya K. C. Waffles 2013-2017
+ *
+ * ****************************************************************** */
+ 
+Class DD_SonicPuff : DD_BulletPuff
+{
+	Default
+	{
+		ActiveSound "weapons/silent";
+		SeeSound "weapons/silent";
+		AttackSound "weapons/silent";
+		RenderStyle "None";
+
+		+NoBlockMap
+		+NoGravity
+		+Randomize
+		+PuffOnActors
+		+DontSplash
+		+ActivatePCross
+		-AllowParticles
+	}
+
+	States
+	{
+		Melee:
+		Crash:
+		Spawn:
+			TNT1 A 5;	// invisible
+			Stop;
+	}
+}
+
+// Genocider Syo/Jack Puff (for damagetype purposes)
+Class DD_SyoSonicPuff : DD_SonicPuff
+{
+	Default
+	{
+		DamageType "Shou";
+	}
+}
+
+Class DD_SonicTabletpen : DD_Weapon
+{
+	Default
+	{
+		Weapon.SelectionOrder 3700;
+		Weapon.Kickback 0;
+		Weapon.UpSound "weapons/raiseNone";
+
+		+Weapon.MeleeWeapon
+		+Weapon.NoAlert
+	}
+
+	States
+	{
+		Ready:
+			PENG A 1 A_DDWeaponReady;
+			Loop;
+		
+		Deselect:
+			PENG A 0 A_Lower;
+			PENG A 0 A_Lower;
+			PENG A 0 A_Lower;
+			PENG A 0 A_Lower;
+			PENG A 0 A_Lower;
+			PENG A 1 A_Lower;
+			Loop;
+		
+		Select:
+			PENG A 0 A_Raise;
+			PENG A 0 A_Raise;
+			PENG A 0 A_Raise;
+			PENG A 0 A_Raise;
+			PENG A 0 A_Raise;
+			PENG A 1 A_Raise;
+			Loop;
+		
+		Fire:
+			PENG B 1;
+			PENG B 2
+			{
+				
+				
+				if (CheckForPepperPowerup())
+				{
+					// Do more damage, heal player
+					A_CustomPunch((random(4, 7) * random[TabletPen](3, 4)), true, (CPF_NOTURN|CPF_NORANDOMPUFFZ|CPF_STEALARMOR) , "DD_SyoSonicPuff", 80, random[TabletPen](0, 3), 10, "ArmorBonus", "weapons/sonicpen", "weapons/sonicpenmiss");
+					ThrustThing(angle * 256 / 360, 5, 0, 0);	// we wanna thrust
+					A_SetTics(1);
+				}
+				else
+				{
+					// Do less damage
+					A_CustomPunch((random(3, 5) * random[TabletPen](2,3)), true, (CPF_NOTURN|CPF_NORANDOMPUFFZ) , "DD_SonicPuff", 64, 0, 0, "ArmorBonus", "weapons/sonicpen", "weapons/sonicpenmiss");
+					A_SetTics(3);
+				}
+			}
+			PENG B 1;
+			PENG B 2 A_ReFire;
+			Goto Ready;
+	}
+}

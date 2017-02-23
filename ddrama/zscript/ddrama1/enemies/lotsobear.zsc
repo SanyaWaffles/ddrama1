@@ -1,0 +1,111 @@
+/* *******************************************************************
+ *		lotsobear.zsc
+ *
+ *		Lotso Shootan Bear Grunt
+ *
+ *		As long as you attribute it to me in some
+ *		way I don't mind people using this. Considering how much
+ *		some people have caused an uproar over the lack of proper
+ *		examples and the like.
+ *
+ *		Copyright Sanya K. C. Waffles 2013-2017
+ *
+ * ****************************************************************** */
+
+Class DD_LotsoBear : DD_Enemy
+{
+	Default
+	{	
+		//$Sprite LTSOA0
+		//$Title "Lotso-Shootan Bear"
+		
+		Health 120;
+		Mass 200;
+		PainChance 170;
+		Height 56;
+		Radius 20;
+		Speed 8;
+		Species "Grunt";
+		SeeSound "lotso/sight";
+		PainSound "lotso/pain";
+		DeathSound "lotso/death";
+		ActiveSound "lotso/active";
+		Obituary "$DD_OB_LOTSOBEAR";
+	}
+	
+	void A_DDLotsoAttack()
+	{
+		A_FaceTarget();
+		A_PlaySound("lotso/attack", CHAN_WEAPON);
+		A_CustomBulletAttack(4.6, 0, 3, Random[BuddyBear](1, 4), "DD_BulletPuff", 1024, CBAF_NORANDOM);
+	}
+	
+	private void A_DDLotsoDropAmmoInternal()
+	{
+		if (target.player && !target.CountInv("DD_Minigun"))
+		{
+			A_DropItem("DD_Minigun", -1, 256);
+			return;
+		}
+		
+		A_DropItem("DD_AmmoBelt", -1, 192);
+		return;
+	}
+	
+	void A_DDLotsoDropAmmo()
+	{
+		A_ScreamAndUnblock();
+		A_DDLotsoDropAmmoInternal();
+		A_DDGivePlayerOneLiner();
+	}
+	
+	void A_DDLotsoDropAmmoXtr()
+	{
+		A_DDExtremeScreamAndUnblock();
+		A_DropItem("DD_Minigun", -1, 256);
+		A_DDGivePlayerOneLiner();
+	}
+	
+	States
+	{
+		Spawn:
+			LTSO A 10 A_DDramaLook;
+			Loop;
+		
+		See:
+			LTSO BCDCBCDC 4 A_DDramaChase;
+			Loop;
+		
+		Missile:
+			LTSO F 10 A_FaceTarget;
+			LTSO G 4 Bright A_DDLotsoAttack;
+			LTSO H 4 Bright A_DDLotsoAttack;
+			LTSO G 1 A_MonsterRefire(128, "See");
+			Goto Missile+1;
+			
+		Pain:
+			LTSO I 3;
+			LTSO I 3 A_Pain;
+			Goto See;
+		
+		Death:
+			LTSO J 3 A_DDLotsoDropAmmo;
+			LTSO K 6;
+			LTSO L -1;
+			Stop;
+		
+		Death.Expand:
+			LTSO G 1 A_DDLotsoDropAmmo;
+			Goto Super::Death.Expand;
+		
+		Death.Shou:
+		Death.Rocket:
+		Death.Extreme:
+			GIBW A 4 A_DDLotsoDropAmmoXtr;
+			Goto Super::Death.Extreme;
+		
+		Raise:
+			LTSO LKLKLK 3;
+			Goto See;
+	}
+}

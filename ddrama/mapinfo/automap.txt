@@ -1,0 +1,17 @@
+// Automap Block
+automap
+{
+	// Base = "Doom"
+	ShowLocks = true
+	Background = "64 95 ed"
+	YourColor = "ff 66 ff"
+	WallColor = "ff d7 00"
+	TwoSidedWallColor = "ff ff ff"
+	FloorDiffWallColor = "dd dd dd"
+	CeilingDiffWallColor = "dd dd dd"
+	ThingColor = "f0 50 9a"
+	SecretSectorColor = "dd 00 00"
+	IntraTeleportColor = "00 3d 00"
+
+}
+// End Automap Block

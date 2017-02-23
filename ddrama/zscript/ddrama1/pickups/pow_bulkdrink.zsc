@@ -1,0 +1,137 @@
+/* *******************************************************************
+ *		pow_bulkdrink.zsc
+ *
+ *		Bulk Drink Pack for Daytime Drama
+ *
+ *		As long as you attribute it to me in some
+ *		way I don't mind people using this. Considering how much
+ *		some people have caused an uproar over the lack of proper
+ *		examples and the like.
+ *
+ *		Copyright Sanya K. C. Waffles 2013-2017
+ *
+ * ****************************************************************** */
+
+
+Class DD_BulkSportDrinkPack : CustomInventory
+{
+	Default
+	{
+		//$Sprite HKITD0
+		//$Title "Bulk Gatorade"
+		//$Category "Powerups"
+
+		Scale 0.14;
+		Radius 16;
+		Height 24;
+		Inventory.Amount 100;
+		Inventory.MaxAmount 100;
+		Inventory.InterHubAmount 100;
+		Inventory.PickupMessage "$DD_GOTBULK";
+		Inventory.PickupSound "pickups/powerup";
+		Inventory.UseSound "bulkpack/use";
+		Inventory.Icon "STICHP";
+		Tag "$DD_TAGBULK";
+
+		+Inventory.InvBar
+	}
+
+	States
+	{
+		Spawn:
+			HKIT D -1;
+			Stop;
+		
+		Use:
+			TNT1 A 0
+			{
+				// get current amount of this item.
+				// due to how Decorate and ZScript
+				// works, this actually works on the
+				// player and not the item.
+				int blkdrink = CountInv("DD_BulkSportDrinkPack");
+				
+				// check if owner/invoker's health is 100
+				if (invoker.health < 100)
+				{
+					// play 'use' sound
+					A_PlaySound("bulkpack/use", CHAN_ITEM);
+				}
+				
+				// while we have inventory AND we have less than 100 health
+				while (health < 100 && blkdrink > 0)
+				{
+					A_GiveInventory("Health", 1);	// add health
+					A_TakeInventory("DD_BulkSportDrinkPack", 1);	// take health
+				}
+				
+				// If The powerup is depleted we need to return true so
+				// it is destroyed. Counter intuitive... I know.
+				if (!blkdrink)
+				{
+					A_TakeInventory("DD_BulkSportDrinkPack", 100); // jic
+					return true;
+				}
+				
+				// we need to return false lest the powerup be destroyed
+				return false;
+			}
+			Stop;
+	}
+}
+
+// For the sake of documentation, I want to show how this is done.
+//
+// THE ORIGINAL STATES IS BELOW - this is how you had to do loops in decorate.
+// I had to use states to basically make functions. Really messy and hard to
+// read. Believe it or not the code above and below do the exact same thing.
+//
+// basically it checks if you have 100 health or more (Use)
+// if you do, jumps to Failure so nothing is taken from the powerup.
+// if you don't, it takes one of the object, and adds that to
+// your health. It then checks using a A_JumpIfInventory action function
+// to see if it needs to repeat itself again.
+//
+// If it is depleted, it jumps to RemoveMega (counterintuitive) to
+// ensure depletion and removes it (by marking as stop and not fail)
+// which again is counterintuitive.
+//
+// This is supposed to emulate the portable health kit in Duke 3D in
+// a roundabout way. I was surprised I found a way at all to do this in decorate
+// but it just looks so goddamn awful.
+//
+// Plus with no dedicated function it looks so spaghetti code-y too. Like
+// believe it or not I could rewrite this as an anonymous function but
+// it pretty much looks like above with some minor changes, so why bother.
+//
+// besides, anonymous functions were kind of a stepping stone from what
+// I can tell to test the ZScript virtual machine and kind of a half-way
+// feature.
+//
+// this code below is so messy as fuck.
+//
+// As an aside, Decorate more and more reminds me in a way of assembly.
+//
+
+/*
+	States
+	{
+		Spawn:
+			HKIT D -1
+			Stop
+		Use:
+			TNT1 A 1 A_JumpIf(health >= 100, "Failure")						// ; if health is at or above 100, goto Failure
+			TNT1 A 0 A_TakeInventory("DD_BulkSportDrinkPack", 1)			// ; take one of the item
+			TNT1 A 0 A_GiveInventory("Health", 1)							// ; give one health
+			TNT1 A 0 A_PlaySound("bulkpack/use", CHAN_BODY)					// ; play sound
+			TNT1 A 0 A_JumpIfInventory("DD_BulkSportDrinkPack", 1, "Use")	// ; if bulkpack remains, go back to Use
+			Goto RemoveMega
+		Failure:
+			TNT1 A 0														// ; we fail to ensure item remains/isn't removed
+			Fail
+		RemoveMega:
+			TNT1 A 0 A_TakeInventory("DD_BulkSportDrinkPack", 100)			// ; clear bulkpack (jic)
+			TNT1 A 0
+			Stop
+	}
+*/

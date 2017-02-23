@@ -1,0 +1,177 @@
+/* *******************************************************************
+ *		flaming_firecrown.zsc
+ *
+ *		Smokey Head / Flaming Firecrown
+ *
+ *		As long as you attribute it to me in some
+ *		way I don't mind people using this. Considering how much
+ *		some people have caused an uproar over the lack of proper
+ *		examples and the like.
+ *
+ *		Copyright Sanya K. C. Waffles 2013-2017
+ *
+ * ****************************************************************** */
+
+Class DD_SmokeyHead : DD_Enemy
+{
+	Default
+	{
+		//$Sprite SHMOA0
+		//$Title "Flaming Firecrown"
+		
+		Health 50;
+		Radius 16;
+		Height 48;
+		Mass 75;
+		Speed 8;
+		Damage 3;
+		PainChance 256;
+		RenderStyle "Translucent";
+		Alpha 0.7;
+		Scale 0.08;
+		Species "Ghoul";
+		AttackSound "smokey/melee";
+		PainSound "smokey/pain";
+		DeathSound "smokey/death";
+		ActiveSound "smokey/active";
+		Obituary "$DD_OB_SMOKEY";
+		
+		Monster;
+		
+		+Float
+		+NoGravity
+		+MissileMore
+		+DontFall
+		+NoIceDeath
+		+DontMorph
+		+NeverRespawn
+		+NoBlood
+		+NoBloodDecals
+	}
+	
+	const FCROWNATTACK = 20;
+	
+	const FCROWNTHRUSTAMT = 15;
+	
+	void A_FlowerCrownThrust(int thrustshift)
+	{
+		if (thrustshift == DBTHRUSTSHIFT_L || thrustshift == DBTHRUSTSHIFT_R)
+			ThrustThing(angle * 256 / 360 + thrustshift, FCROWNTHRUSTAMT, 1, 0);	// thrust the enemy a bit
+	}
+	
+	void A_FlowerCrownPain(int thrustshift)
+	{
+		bNoPain = true;
+		A_FaceTarget();
+		A_Pain();
+		
+		A_FlowerCrownThrust(thrustshift);
+		
+		A_SpawnProjectile("DD_SmokeyTrail", 0, 0, 0);	// Fire Trail
+	}
+	
+	void A_FlowerCrownPainEnd()
+	{
+		bNoPain = false;
+	}
+
+	States
+	{
+		Spawn:
+			SHMO ABCDCB 6 Bright A_DDramaLook;
+			Loop;
+			
+		See:
+			SHMO ABCDCB 4 Bright A_DDramaChase;
+			Loop;
+			
+		Missile:
+			SHMO E 5 Bright A_FaceTarget;
+			SHMO F 4 Bright
+			{
+				A_SkullAttack(FCROWNATTACK);	// The actual attack
+				A_SpawnProjectile("DD_SmokeyTrail", 0, 0, 0);	// Fire Trail
+			}
+			SHMO GH 4 Bright;
+			SHMO E 4 Bright
+			{
+				A_FaceTarget();
+				A_MonsterRefire(127, "See");
+			}
+			Goto Missile+1;
+			
+		Pain:
+			SHMO D 0 Bright { return A_Jump(256, "PainLeft", "PainRight"); }
+			goto PainRight;
+		
+		PainRight:
+			SMMO H 2 Bright A_FlowerCrownPain(DBTHRUSTSHIFT_R);
+			SHMO IH 2 Bright A_FlowerCrownThrust(DBTHRUSTSHIFT_R);
+			SHMO IH 2 Bright;
+			SHMO I 1 Bright A_FlowerCrownPainEnd;
+			Goto See;
+			
+		PainLeft:
+			SMMO J 2 Bright A_FlowerCrownPain(DBTHRUSTSHIFT_L);
+			SHMO KJ 2 Bright A_FlowerCrownThrust(DBTHRUSTSHIFT_L);
+			SHMO KJ 2 Bright;
+			SHMO K 1 Bright A_FlowerCrownPainEnd;
+			Goto See;
+		
+		Death:
+		Death.Rocket:
+		Death.Despair:
+		Death.Expand:
+		Death.Webbing:
+		Death.Shou:
+		Death.Rocket:
+		Death.Extreme:
+			SMMO M 5 Bright
+			{
+				ThrustThingZ(0, 8, 0, 1);
+			}
+			EXPL A 3 Bright
+			{
+				A_SetScale(0.10, 0.10);
+				A_SetRenderStyle(0.66, STYLE_Add);
+				A_ScreamAndUnBlock();
+			}
+			EXPL B 3 Bright;
+			EXPL CDEFGH 2 Bright A_FadeOut(0.3);
+			Stop;
+		
+		Raise:
+		Crush:
+			Stop;
+	}
+}
+
+//$GZDB_SKIP
+Class DD_SmokeyTrail : DD_ProjectileActor
+{
+	Default
+	{
+		Speed 0;
+		Radius 10;
+		Height 20;
+		RenderStyle "Add";
+		Scale 0.15;
+		Alpha 0.5;
+		Damage 3;
+
+		+NoGravity
+		+NonShootable
+		+NoTeleport
+		+NoBlockmap
+		+NoBlood
+		+NoBloodDecals
+	}
+
+	States
+	{
+		Spawn:
+			SHMF ABCD 2 Bright;
+			Stop;
+	}
+}
+

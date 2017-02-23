@@ -1,0 +1,7 @@
+clearepisodes
+episode START
+{
+	name = "$DD_EP1STR"
+	key = "m"
+	noskillmenu
+}

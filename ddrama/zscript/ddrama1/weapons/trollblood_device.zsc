@@ -1,0 +1,656 @@
+/* *******************************************************************
+ *		trollblood_device.zsc
+ *
+ *		Trollblood Device
+ *
+ *		As long as you attribute these functions to me in some
+ *		way I don't mind people using these. Considering how much
+ *		some people have caused an uproar over the lack of proper
+ *		examples and the like.
+ *
+ *		Copyright Sanya K. C. Waffles 2013-2017
+ *
+ * ****************************************************************** */
+Class DD_ShrinkShot : DD_MorphProjectile
+{
+	Default
+	{
+		Radius 14;
+		Height 14;
+		Speed 26;
+		RenderStyle "Add";
+		Alpha 0.6;
+		SeeSound "weapons/shrinkf";
+		MorphProjectile.PlayerClass "DD_ShrunkenPlayer";
+		MorphProjectile.MonsterClass "DD_ShrunkenEnemy";
+		MorphProjectile.Duration 525;
+		MorphProjectile.MorphStyle MRF_FULLHEALTH|MRF_LOSEACTUALWEAPON;
+		MorphProjectile.MorphFlash "DD_ShrinkFlash";
+		MorphProjectile.UnmorphFlash "DD_UnShrinkFlash";
+	}
+
+	States
+	{
+		Spawn:
+			TBL1 AAAA 2 Bright NoDelay A_SetScale(-(Scale.X));	// keep flipping the sprite horizontally
+			Loop;
+		
+		Death:
+			TBL1 B 2 Bright A_SetScale(0.12);
+			TBL1 B 0 Bright A_SetRenderStyle(0.6,  STYLE_Translucent); // A_SetTranslucent(0.6);
+			TBL1 B 2 Bright A_SetScale(-0.14);
+			TBL1 B 0 Bright A_SetRenderStyle(0.4,  STYLE_Translucent); // A_SetTranslucent(0.4);
+			TBL1 B 3 Bright A_SetScale(-0.12);
+			TBL1 B 0 Bright A_SetRenderStyle(0.25, STYLE_Translucent); // A_SetTranslucent(0.25);
+			TBL1 B 5 Bright;
+			Stop;
+	}
+}
+
+Class DD_ShrinkFlash : DD_Actor
+{
+	Default
+	{
+		Scale 0.10;
+		RenderStyle "Add";
+		Alpha 0.6;
+	}
+
+	States
+	{
+		Spawn:
+			SRFX A 0 Bright NoDelay A_PlaySound("generic/shrink");
+			SRFX A 3 Bright A_SetScale(Scale.X / 1.25);
+			SRFX A 0 Bright A_SpawnItemEx("DD_ShrinkFlashTrail");
+			SRFX AAA 3 Bright A_SetScale(Scale.X / 1.25);
+			SRFX A 4 Bright A_SetScale(0.025);
+			Stop;
+	}
+}
+
+Class DD_ShrinkFlashTrail : DD_Actor
+{
+	Default
+	{
+		Scale 0.10;
+		RenderStyle "Add";
+		Alpha 0.6;
+	}
+
+	States
+	{
+		Spawn:
+			SRFX A 3 Bright NoDelay A_SetScale(Scale.X / 1.25);
+			SRFX AAA 3 Bright A_SetScale(Scale.X / 1.25);
+			SRFX A 4 Bright A_SetScale(0.025);
+			Stop;
+	}
+}
+
+Class DD_UnShrinkFlash : DD_Actor
+{
+	Default
+	{
+		Scale 0.025;
+		RenderStyle "Add";
+		Alpha 0.7;
+	}
+
+	States
+	{
+		Spawn:
+			SRFX A 2 Bright NoDelay A_SetScale(Scale.X + 0.025);
+			SRFX AAA 2 Bright A_SetScale(Scale.X + 0.025);
+			Stop;
+	}
+}
+
+Class DD_HemoExpandSpark : DD_BulletPuff
+{
+	Default
+	{
+		Scale 0.12;
+		RenderStyle "Add";
+		Alpha 0.50;
+		VSpeed 0;
+		Mass 5;
+		DamageType "Expand";
+
+		-Randomize
+		+NoBlockMap
+		+NoGravity
+		+Randomize
+		+PuffOnActors
+		+ActivatePCross
+	}
+
+	States
+	{
+		Spawn:
+			TBL2 A 1 Bright;
+			TBL2 A 1 Bright A_SetScale(0.18);
+			TBL2 A 1 Bright A_SetScale(0.24);
+			TBL2 A 1 Bright A_SetScale(0.18);
+			TBL2 A 1 Bright A_SetScale(0.20);
+			TBL2 A 1 Bright A_SetScale(0.28);
+			TBL2 A 1 Bright A_SetScale(0.22);
+			TBL2 A 1 Bright A_SetScale(0.16);
+			TBL2 A 1 Bright A_SetScale(0.12);
+			TBL2 A 1 Bright;
+			Stop;
+	}
+}
+
+Class DD_Webshot : DD_ProjectileActor
+{
+	Default
+	{
+		Scale 0.12;
+		RenderStyle "Add";
+		Alpha 0.6;
+		Radius 10;
+		Height 20;
+		Speed 24;
+		Damage 10;
+		DamageType "Webbing";
+		BounceType "Hexen";
+		BounceCount 3;
+		SeeSound "weapons/webbingf";
+		BounceSound "weapons/webbingb";
+
+		+ActivateImpact
+		+ActivatePCross
+	}
+
+	States
+	{
+		Spawn:
+			TBL3 A 2 Bright;
+			TBL3 B 2 Bright A_SetScale(0.24);
+			TBL3 A 2 Bright;
+			TBL3 B 2 Bright A_SetScale(0.12);
+			Loop;
+		
+		Death:
+			TBL3 C 3 Bright A_SetRenderStyle(0.6, Style_Add);
+			TBL3 D 2 Bright A_SetRenderStyle(0.4, Style_Add);
+			TBL3 E 2 Bright A_SetRenderStyle(0.2, Style_Add);
+			Stop;
+	}
+}
+
+
+Class DD_Cocoon : DD_Actor
+{
+	Default
+	{
+		Radius 20;
+		Height 48;
+		
+		+Solid
+	}
+	
+	void A_CocoonCrack()
+	{
+		A_SpawnItemEx("DD_LootAmmoSpawnSmall", flags:DDFL_CHUNKFLAGS);
+		A_PlaySound("generic/cocoonx");
+	}
+
+	States
+	{
+		Spawn:
+			ESAC ABACABAC 4;	// wiggle a bit
+			ESAC D 3 A_CocoonCrack;
+			ESAC E 3 A_NoBlocking;
+			ESAC F 3;
+			ESAC G -1;
+			Stop;
+	}
+}
+ 
+// Troll Blood Device Flag - this ammo serves
+// only to check if the Troll Blood Device has
+// No Ammo left for any of the Modes and thus
+// not be selectable
+Class DD_TrollDeviceAmmo : Ammo
+{
+	Default
+	{
+		Inventory.Amount 1;
+		Inventory.MaxAmount 1;
+		Ammo.BackpackAmount 0;
+		Ammo.BackpackMaxAmount 1;
+		
+		+Inventory.IgnoreSkill
+		+Inventory.Quiet
+		+Inventory.Undroppable
+		+Inventory.Untossable
+		-Inventory.Invbar
+	}
+}
+
+Class DD_TrollGunStage : Inventory
+{
+	Default
+	{
+		Inventory.Amount 1;
+		Inventory.MaxAmount 3;
+		
+		+Inventory.IgnoreSkill
+		+Inventory.Quiet
+		+Inventory.Undroppable
+		+Inventory.Untossable
+		-Inventory.Invbar
+	}
+}
+
+
+// Olive Blood Ammo Pickup
+Class DD_OliveBloodAmmo : Ammo
+{
+	Default
+	{
+		//$NotAngled
+		//$Category "Ammunition"
+		//$Color 6
+		//$Sprite AMMYA0
+		//$Title "Olive blood"
+		
+		Scale 0.12;
+		Radius 22;
+		Height 36;
+
+		Inventory.Icon "AMMYA0";
+		Inventory.Amount 5;
+		Inventory.PickupSound "pickups/generic";
+		Inventory.PickupMessage "$DD_GOTOLIVEBLOOD";
+		Inventory.MaxAmount 30;
+		Ammo.BackpackAmount 0;
+		Ammo.BackpackMaxAmount 60;
+	}
+
+	States
+	{
+		Spawn:
+			AMMY A -1;
+			Stop;
+	}
+}
+
+// Bronze Blood Ammo Pickup
+Class DD_BronzeBloodAmmo : Ammo
+{
+	Default
+	{
+		//$NotAngled
+		//$Category "Ammunition"
+		//$Color 6
+		//$Sprite AMMXA0
+		//$Title "Bronze blood"
+		
+		Scale 0.12;
+		Radius 22;
+		Height 36;
+		Inventory.Icon "AMMXA0";
+		Inventory.Amount 20;
+		Inventory.PickupSound "pickups/generic";
+		Inventory.PickupMessage "$DD_GOTBRONZEBLOOD";
+		Inventory.MaxAmount 80;
+		
+		Ammo.BackpackAmount 0;
+		Ammo.BackpackMaxAmount 160;
+	}
+
+	States
+	{
+		Spawn:
+			AMMX A -1;
+			Stop;
+	}
+}
+
+// Cobalt Blood Ammo Pickup
+Class DD_CobaltBloodAmmo : Ammo
+{
+	Default
+	{
+		//$NotAngled
+		//$Category "Ammunition"
+		//$Color 6
+		//$Sprite AMMZA0
+		//$Title "Cobalt blood"
+		
+		Scale 0.12;
+		Radius 22;
+		Height 36;
+		Inventory.Icon "AMMZA0";
+		Inventory.Amount 20;
+		Inventory.PickupSound "pickups/generic";
+		Inventory.PickupMessage "$DD_GOTCOBALTBLOOD";
+		Inventory.MaxAmount 80;
+		
+		Ammo.BackpackAmount 0;
+		Ammo.BackpackMaxAmount 160;
+	}
+
+	States
+	{
+		Spawn:
+			AMMZ A -1;
+			Stop;
+	}
+}
+
+// Multiple Blood Bucket
+Class DD_MultiBloodPak : CustomInventory
+{
+	Default
+	{
+		//$NotAngled
+		//$Category "Ammunition"
+		//$Color 6
+		//$Sprite AMMWA0
+		//$Title "Bucket of Trollblood"
+		
+		Scale 0.12;
+		Radius 24;
+		Height 32;
+		Inventory.PickupSound "pickups/generic";
+		Inventory.PickupMessage "$DD_GOTBLOODBUCKET";
+	}
+
+	States
+	{
+		Spawn:
+			AMMW A -1;
+			Stop;
+		
+		Pickup:
+			TNT1 A 0
+			{
+				A_GiveInventory("DD_CobaltBloodAmmo", 20);	// Give 20 Cobalt (Coccoon)  ammo
+				A_GiveInventory("DD_BronzeBloodAmmo", 20);	// Give 20 Bronze (expander) ammo
+				A_GiveInventory("DD_OliveBloodAmmo",  5);	// Give  5 Olive  (shrinker) ammo
+			}
+			Stop;
+	}
+}
+
+// For loot / enemy drops
+Class DD_DroppedAmmoTrollBlood : CustomInventory
+{
+	Default
+	{
+		Scale 0.12;
+		Radius 24;
+		Height 32;
+
+		Inventory.PickupSound "pickups/generic";
+		Inventory.PickupMessage "$DD_GOTSMALLBLOODPAK";
+		
+		+DontGib
+		+Inventory.IgnoreSkill
+	}
+
+	States
+	{
+		Spawn:
+			SAM5 A 280 Bright;
+			Stop;
+		
+		Pickup:
+			TNT1 A 0
+			{
+				A_GiveInventory("DD_CobaltBloodAmmo", 5);	// Give 5 Cobalt (Coccoon)  ammo
+				A_GiveInventory("DD_BronzeBloodAmmo", 5);	// Give 5 Bronze (expander) ammo
+				A_GiveInventory("DD_OliveBloodAmmo", 2);	// Give 2 Olive  (shrinker) ammo
+			}
+			Stop;
+	}
+}
+
+// The actual trollblood device pickup is more complicated
+// than the other weapon pickups allow. Thus we need
+// to script it.
+Class DD_TrollbloodDevicePickup : CustomInventory
+{
+	Default
+	{
+		//$Title "Trollblood Device"
+		//$Sprite GUNXA0
+		//$NotAngled
+		//$Color 14
+		//$Category "Weapons"
+		
+		Inventory.PickupSound "pickups/weapon";
+		Inventory.PickupMessage "$DD_GOTTROLLGUN";
+
+		Scale 0.12;
+		Radius 22;
+		Height 34;
+	}
+
+	States
+	{
+		Spawn:
+			GUNX A -1;
+			Stop;
+		
+		Pickup:
+			TNT1 A 0
+			{
+				// Starter Ammo
+				A_GiveInventory("DD_CobaltBloodAmmo", 12);	// Give 12 Cobalt (Coccoon)  ammo
+				A_GiveInventory("DD_BronzeBloodAmmo", 5);	// Give 5  Bronze (expander) ammo
+				A_GiveInventory("DD_OliveBloodAmmo", 2);	// Give 2 Olive  (shrinker) amm
+				
+				// if we do not have the TBD, give it to the player
+				if (CountInv("DD_TrollbloodDevice") <= 0)
+				{
+					A_GiveInventory("DD_TrollbloodDevice", 1);	// Give them the actual weapon
+					A_GiveInventory("DD_TrollDeviceAmmo", 1);	// Give TBD Ammo Flag
+				}
+			}
+			TNT1 A 0;
+			Stop;
+	}
+}
+
+// Hemoshrinker - Olive Blood
+Class DD_TrollbloodDevice : DD_Weapon
+{
+	Default
+	{
+		Weapon.BobSpeed 0.6;
+		Weapon.UpSound "weapons/raiseB";
+		Weapon.AmmoGive 1;
+		Weapon.AmmoType "DD_TrollDeviceAmmo";
+		Weapon.AmmoUse 1;
+		Weapon.SelectionOrder 2800;
+		Weapon.SlotPriority 0;
+		Weapon.ReadySound "weapons/trollhbeat";
+		Inventory.Icon "GUNXA0";
+
+		+Weapon.NoAutoFire
+	}
+	
+	int trollbloodstage;
+	
+	// Fire the bouncing web projectile
+	void A_DDShootWeb()
+	{
+		// Fire a shot but manually take ammo
+		A_FireProjectile("DD_Webshot", 0, false);
+		A_TakeInventory("DD_CobaltBloodAmmo", 1);
+	}
+	
+	// Fire the expander puff
+	void A_DDShootExpandSpark()
+	{
+		// Fire a shot but manually take ammo
+		A_FireBullets(2.4, 1.2, 1, 14, "DD_HemoExpandSpark", FBF_NORANDOMPUFFZ);
+		A_TakeInventory("DD_BronzeBloodAmmo", 1);
+	}
+	
+	// Fire the shrinker shot
+	void A_DDShootOliveShot()
+	{
+		// Fire a shot but manually take ammo
+		A_FireProjectile("DD_ShrinkShot", 0, false);
+		A_TakeInventory("DD_OliveBloodAmmo", 1);
+	}
+	
+	action int TBDGetAmmoType()
+	{
+		return invoker.trollbloodstage;
+	}
+	
+	action void TBDSetAmmoType()
+	{
+		invoker.trollbloodstage++;		// increment
+		
+		A_PlaySound("weapon/rockltoggle/on", CHAN_WEAPON | CHAN_UI);
+		
+		if (invoker.trollbloodstage > 2) invoker.trollbloodstage = 0;	// if > 3, go back to 1.
+		
+		A_SetInventory("DD_TrollGunStage", invoker.trollbloodstage+1);
+	}
+	
+	action state A_DDTBDReadySwitch()
+	{
+		static const StateLabel ReadyStates[] = { "Ready.Shrink", "Ready.Expand", "Ready.Webber" };
+		
+		return ResolveState(ReadyStates[TBDGetAmmoType()]);
+	}
+	
+	action void A_DDTBDReadyLoop()
+	{
+		A_WeaponReady(WRF_ALLOWUSER1);
+		
+		if (CountInv("DD_CrushFlag") > 0)
+		{
+			A_Overlay(DD_PSP_MISC1, "FootCrush");
+			A_TakeInventory("DD_CrushFlag", 255);
+		}
+	}
+	
+	action state A_DDTBDFireSwitch()
+	{
+		static const StateLabel FireStates[] = { "Fire.Shrink", "Fire.Expand", "Fire.Webber" };
+		
+		static const String AmmoToCheck[] = { "DD_OliveBloodAmmo", "DD_BronzeBloodAmmo", "DD_CobaltBloodAmmo" };
+		
+		int t = TBDGetAmmoType();
+		int i = 0;
+		int j = -1;
+		
+		// if out of bounds...
+		if (t < 0 || t > 2)
+		{
+			A_Log("TrollbloodDevice Error: Line 537 - tbd stage out of bounds\nYou should NOT see this message.\n");
+			
+			return ResolveState("Fire.Failure");
+		}
+		
+		// Check Ammo reserves
+		if (!CountInv(AmmoToCheck[t]))
+		{
+			for (i = 0; i < 3; i++)
+			{
+				if (CountInv(AmmoToCheck[i]))
+				{
+					return A_DDTBDReadySwitch();
+				}
+			}
+			
+			A_TakeInventory("DD_TrollDeviceAmmo", 1);
+			
+			return ResolveState("Fire.Failure");
+		}
+		
+		return ResolveState(FireStates[t]);
+	}
+
+	States
+	{
+		User1:
+			"####" A 0
+			{
+				A_WeaponReady(WRF_NOFIRE);
+				A_Overlay(DD_PSP_MISC1, "ChangeAmmoType", true);
+			}
+			Goto Ready;
+		
+		ChangeAmmoType:
+			TNT1 A 0 TBDSetAmmoType;
+			TNT1 A 35;
+			Stop;
+		
+		Ready:
+			TRLG A 0 A_DDTBDReadySwitch;
+			Goto Ready.Shrink;
+			
+		Ready.Shrink:
+			TRLG A 0;
+			Goto Ready.Real;
+		
+		Ready.Expand:
+			TRLG B 0;
+			Goto Ready.Real;
+		
+		Ready.Webber:
+			TRLG C 0;
+			Goto Ready.Real;
+		
+		Ready.Real:
+			"####" "#" 1 A_DDTBDReadyLoop;
+			Goto Ready;
+		
+		Deselect:
+			TRLG "#" 1 A_Lower;
+			Loop;
+		
+		Select:
+			TRLG "#" 1 A_Raise;
+			Loop;
+		
+		Fire:
+			TRLG A 1 A_DDTBDFireSwitch;
+			Goto Ready;
+			
+		Fire.Failure:
+			"####" "#" 3 A_PlaySound("weapons/hemofail", CHAN_WEAPON);	// Weapon failed to fire for some reason...
+			Goto Ready;
+		
+		// Fire the shrink shot
+		Fire.Shrink:
+			TRLG A 2 Offset(-3, 0) A_PlaySound("weapons/hemoshrink", CHAN_WEAPON);
+			TRLG A 2 Bright Offset(3, 0);
+			TRLG A 2 Bright A_DDShootOliveShot;
+			TRLG A 2;
+			TRLG A 1 Offset(2, 0);
+			TRLG A 1 Offset(-2, 0);
+			TRLG A 14;
+			TRLG A 1 A_ReFire;
+			Goto Ready;
+			
+		// Fire the expander
+		Fire.Expand:
+			TRLG B 1 Bright Offset(-3, 0) A_PlaySound("weapons/expandf", CHAN_WEAPON);
+			TRLG B 1 Offset(3, 0);
+			TRLG B 1 Offset(-3, 0);
+			TRLG B 1 Bright Offset(3, 0);
+			TRLG B 2 Bright A_DDShootExpandSpark;
+			TRLG B 1 Bright Offset(-1, 0);
+			TRLG B 1 Offset(1, 0) A_ReFire;
+			Goto Ready;
+		
+		// Fire the cocoon
+		Fire.Webber:
+			TRLG C 2;
+			TRLG C 4 Bright A_DDShootWeb;
+			TRLG C 4;
+			TRLG C 3 A_ReFire;
+			Goto Ready;
+	}
+}

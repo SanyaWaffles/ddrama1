@@ -1,0 +1,110 @@
+#library "cutscene"
+#include "zcommon.acs"
+#import "cookbook.acs"
+
+// Waffle Iron Studios
+// Cutscene Library
+// Parts influenced and based on
+// Ral22's cutscene scripts
+// (c) 2012-2015 Sanya K. Waffles
+
+#libdefine CS_TICUNIT			35.725
+
+#libdefine HUDS_WIDTH		640
+#libdefine HUDS_HEIGHT		400
+
+#libdefine HUDS_XCENTER		0.0
+#libdefine HUDS_XLEFT		0.1
+#libdefine HUDS_XRIGHT		0.2
+#libdefine HUDS_XCENTER_C	0.4
+#libdefine HUDS_XCENTER_L	0.5
+#libdefine HUDS_XCENTER_R	0.6
+
+#libdefine HUDS_YCENTER		0.0
+#libdefine HUDS_YCENTERTOP	0.1
+#libdefine HUDS_YCENTERBTM	0.2
+
+#libdefine CUTSCENEPLAYERVAR "cutscenehold"
+
+// Hud Message IDS
+#libdefine CS_HUDID_WSBOX		 1		//  1: Widescreen box
+#libdefine CS_HUDID_CHARL1		10		// 10: Left Character Sprite #1
+#libdefine CS_HUDID_CHARL2		11		// 11: Left Character Sprite #2
+#libdefine CS_HUDID_CHARR1		15		// 15: Right Character Sprite #1
+#libdefine CS_HUDID_CHARR2		16		// 16: Right Character Sprite #2
+#libdefine CS_HUDID_DIALOGBG	20		// 20: Dialogue Backdrop
+#libdefine CS_HUDID_DIALOGTXT	21		// 21: Dialogue Text
+// Remember: HUDSIZE is 800 x 600 and can overwrite the statusbar
+
+function str cs_FormLangStr(str s1, str s2)
+{
+	return StrParam(s:s1, s:s2);
+}
+
+function int cs_GetLength(str s)
+{
+	if (!s)
+		return 0;
+	
+	return strlen(strparam(l:s));
+}
+
+function void cs_SetGfx(str gfxname)
+{
+	if (strlen(gfxname) <= 0)
+		return;
+	
+	SetFont(gfxname);
+}
+
+function void cs_BlackFadeInit(void)
+{
+	FadeTo(0, 0, 0, 1.0, 0);
+}
+
+function bool cs_GetUseKeyDown(void)
+{
+	return func_CheckButtonPressed(BT_USE);
+}
+
+function void cs_ClearHoldAmount(void)
+{
+	SetUserVariable(0, CUTSCENEPLAYERVAR, 0);
+}
+
+function void cs_IncHoldAmount(void)
+{
+	SetUserVariable(0, CUTSCENEPLAYERVAR, (GetUserVariable(0, CUTSCENEPLAYERVAR)+1));
+}
+
+function void cs_DecHoldAmount(void)
+{
+	SetUserVariable(0, CUTSCENEPLAYERVAR, (GetUserVariable(0, CUTSCENEPLAYERVAR)-1));
+}
+
+function bool cs_CheckHoldAmount(int _a)
+{
+	int i = GetUserVariable(0, CUTSCENEPLAYERVAR);
+	
+	if (i >= _a)
+		return TRUE;
+	
+	return FALSE;
+}
+
+// Cleaned up Ral22's function slightly for clarity
+function int cs_HudMsgTime(int type, int length, int typetime, int staytime, int fadetime)
+{
+	switch(type)
+	{
+		case HUDMSG_PLAIN:
+			return floor(FixedMul(staytime, CS_TICUNIT));
+		case HUDMSG_FADEOUT:
+			return floor(FixedMul(staytime + fadetime, CS_TICUNIT));
+		case HUDMSG_TYPEON:
+			return floor(FixedMul(FixedMul(typetime, length) + staytime + fadetime, CS_TICUNIT));
+		case HUDMSG_FADEINOUT:
+			return floor(FixedMul(typetime + staytime + fadetime, CS_TICUNIT));
+	}
+	return 0;
+}

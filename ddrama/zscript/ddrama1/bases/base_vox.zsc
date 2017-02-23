@@ -1,0 +1,71 @@
+/* *******************************************************************
+ *		base_vox.zsc
+ *
+ *		Base Voice/Oneliner Token Daytime Drama Class
+ *
+ *		As long as you attribute it to me in some
+ *		way I don't mind people using this. Considering how much
+ *		some people have caused an uproar over the lack of proper
+ *		examples and the like.
+ *
+ *		Copyright Sanya K. C. Waffles 2013-2017
+ *
+ * ****************************************************************** */
+
+Class DD_VOX_Counter : Inventory
+{
+	Default
+	{
+		Inventory.Amount 1;
+		Inventory.MaxAmount 800;
+	}
+}
+
+Class DD_VOX_Base : CustomInventory
+{
+	Default
+	{
+		+Inventory.Quiet
+		+Inventory.AlwaysPickup
+		// +Inventory.AutoActivate
+	}
+	
+	States
+	{
+		Spawn:
+			TNT1 A -1;
+			Stop;
+		
+		Pickup:
+			TNT1 A 0
+			{
+				if (Random[VOX](0, 100) < 67)
+				{
+					return ResolveState("PlaySound");
+				}
+				return ResolveState(null);
+			}
+			Stop;
+		
+		PlaySound:
+			TNT1 A 0;	// Override this
+			Stop;
+	}
+}
+
+Class DD_VOX_BossBase : DD_VOX_Base
+{
+	Default
+	{
+		+Inventory.Quiet
+		+Inventory.AlwaysPickup
+		+Inventory.AutoActivate
+	}
+
+	States
+	{
+		Pickup:
+			TNT1 A 0;
+			Goto PlaySound;
+	}
+}

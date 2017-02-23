@@ -1,0 +1,166 @@
+// Finale Strings
+
+[enu default]
+DD_CREDIT_LABEL001 = "Creative Director";
+DD_CREDIT_LABEL002 = "Art Design";
+DD_CREDIT_LABEL003 = "Mapping";
+DD_CREDIT_LABEL004 = "Sound Design";
+DD_CREDIT_LABEL005 = "UI / HUD Design";
+DD_CREDIT_LABEL006 = "Auxillary ACS Code";
+
+DD_CREDIT_THANKS = "Special Thanks";
+
+DD_CREDIT_THECAST = "THE CAST";
+
+DD_CREDIT_AUTHOR001	= "SanyaWaffles";
+DD_CREDIT_AUTHOR003	= "Astley Z. Simile";
+DD_CREDIT_AUTHOR004 = "NelsonJ";
+DD_CREDIT_AUTHOR007 = "Amber Ellem";
+DD_CREDIT_AUTHOR008 = "RodScorpion";
+DD_CREDIT_AUTHOR009 = "RickCressin";
+DD_CREDIT_AUTHOR010 = "Kelsie Armerding";
+DD_CREDIT_AUTHOR011 = "Ral22";
+
+TITLEMAP_AE		  = "AE-1000 DOS\n"
+					"Version 2.9\n"
+					"Waffle Iron Shell (under license from Fujisama Industries, Ltd.)\n"
+					"................\n"
+					"Booting Up Waffle Iron Studios' Daytime Drama\n"
+					"(c) 2017 Waffle Iron Studios Ltd\n"
+					"Using GZDoom 2.x Series\n"
+					"................\n"
+					"R_Init: Init DDrama Refresh Damion Thorne\n"
+					"I_Nutcase: Losing all Marbles\n"
+					"T_Tungle: Having Taka Salt The Earth using Steven Universe fandumb tears\n"
+					"AM_SNAP: Taking sandwich away from Rosie O'Donnel\n"
+					"AM_Alloc: Removing Twitter From Trump's cell phone and computer\n"
+					"T_Hortons: Making Latte for Ice Bear\n"
+					"Z_PushKek: Spotting people removing Kek from the Top\n"
+					"Z_PopKek: Putting Kek back on top\n"
+					"I_Bear: cup. cake.\n"
+					"S_Spin: Spinning Pete Burns like a record (he would want it that way)\n"
+					"I_BoilEye: Deflecting Boils' sockpuppets\n"
+					"I_KebPrune: Removing Kebab\n"
+					"I_Remember: Remembering Gaming Garbage before Shmorky went too deep\n"
+					"I_Remember the Kaiser\n"
+					"S_Music: Contacting Rod for more electronic creepy music\n"
+					"S_JWarrior: Ice Sanya loathes them\n"
+					"I_TwitterS: Getting vague comments from Alexa on Twitter\n"
+					"I_Nuggets: I mean chicken ones you stoner\n"
+					"D_Main: Despite all that, game Is Ready\n"
+					"\n"
+					"\n"
+					"\n"
+					"\n"
+					"\n"
+					"\n"
+					"\n"
+					"\n"
+					"\n"
+					"If you can see this you don't need glasses.";
+
+TITLEMAP_CREDIT01 = "(c) Waffle Iron Studios 2013-2017. All\n"
+					"Rights, Lefts, Authoritarians and Liberitarians\n"
+					"Reserved.\n\n"
+					"This game may contain content that may be\n"
+					"offensive to some viewers. Viewer discretion\n"
+					"is advised. Angry rioters are ill advised.\n";
+
+TITLEMAP_CREDIT02 = "This game's content does not represent\n"
+					"any views of the ZDoom community nor its\n"
+					"developers.\n\n"
+					"SanyaWaffles and the Waffle Iron Studios\n"
+					"contributors and staff do not blame any\n"
+					"fandom discourse or MatPat videos about\n"
+					"Sanya really being Ness or whatever.\n"
+					"Enjoy the game. Ignore the zealots.\n";
+
+TITLEMAP_SPEAK01 = "BREAKING NEWS FROM BSWK HERE IN TCHPSOR,\nWE HAVE A PROBLEM!";
+
+TITLEMAP_SPEAK02 = "I AM THE PROBLEM!";
+
+TITLEMAP_SPEAK03 = "Due to the media's tendency to take despair\n"
+				   "and make it into a show and fail, I, JUNKO\n"
+				   "ENOSHIMA will show you a true way.";
+				   
+TITLEMAP_SPEAK04 = "I have taken this city hostage.\n"
+				   "Members of the Boredomdai Civil Defence\n"
+				   "are kidnapped by me. And the local police\n"
+				   "are now under my control.";
+				   
+TITLEMAP_SPEAK05 = "The local police and these other legions\n"
+				   "are hard at work trying to set up trans-\n"
+				   "mitters to spread my media far and wide\n"
+				   "and keep communications down.";
+
+TITLEMAP_SPEAK06 = "I, JUNKO ENOSHIMA, will leave nothing\n"
+				   "to chance!\n";
+
+TITLEMAP_SPEAK07 = "Fat chance in hell. I know you can't\n"
+				   "hear me Junko. But I have a set of\n"
+				   "skills. A set of skills I have learned\n"
+				   "in two different countries.";
+
+TITLEMAP_SPEAK08 = "Now if you change your mind and flee\n"
+				   "tospecial snowflake anal cavity you\n"
+				   "came from, and release my friends...\n"
+				   "I'll let you be.";
+
+TITLEMAP_SPEAK09 = "However if you continue down this path\n"
+				   "I will find each and every one of your\n"
+				   "cronies, and then find you, and I will\n"
+				   "kill you.";
+				   
+TITLEMAP_SPEAK10 = "... For queen and country\n";
+
+TITLEMAP_SPEAK11 = "... For my only family left - my friends\n";
+
+TITLEMAP_SPEAK12 = "... For me!\n";
+
+TITLEMAP_SPEAK13 = "Cuz you just ruined my goddamn vacation, bitch!\n";
+
+ENDMAP_TALK1	 =  "You rescue your friends from the previous arena\n."
+					"They've seen better and worse.";
+ENDMAP_TALK2	 = "Ice Bear is with them, he kept Junko's army\n"
+				   "at bay. He was loyal to you.";
+ENDMAP_TALK3	 = "You brief your superiors. They immediately\n"
+				    "reinstate any funding they cut.";
+ENDMAP_TALK4	 = "This town will take time to heal, but you\n"
+				   "know your team and you can handle it\n"
+				   "with the proper resources...";
+
+ENDMAP_CREDIT_MAIN = "Main Mapping, Scripting, Coding\n"
+					 "Game Art and Spriting by\n"
+					 "SanyaWaffles"
+
+ENDMAP_CREDIT_MUSIC = "Original Music by RodScorpion";
+
+ENDMAP_CREDIT_TEXTURES = "Textures by\n\n"
+						  "Kelsie Armerding\n"
+						  "SanyaWaffles\n"
+						  "http://opengameart.org"
+						  "Bart Kelsey\n"
+						  "NoBlax.deviantart.com"
+
+ENDMAP_CREDIT_SOUND = "Kelsie Armerding, SanyaWaffles\n"
+					  "RodScorpion, Astley Similie\n"
+					  "Revo794";
+
+ENDMAP_SPECIAL_THANKS = "Risa Hunt, Joel of Vinesauce\n"
+						"Ral22 and many others...";
+
+CC_DD_BUDDYBEAR	 = "Buddy Bear (Garfield and Friends)\nVoiced By Butters From South Park";
+CC_DD_GUMBALL	 = "Gumball Watterson (The Amazing World of Gumball)";
+CC_DD_LOTSO		 = "Lotso-Shootan-Bear (Lotso from Toy Story 3)\nVoiced by Lotso from Toy Story 3\nand\nDuke Phillips From The Critic";
+CC_DD_BARFBAG	 = "Barfbag (Knockoff Garfield Backpack)\nVoiced by Jay Sherman from The Critic";
+CC_DD_SWEETBRO	 = "Sweet Bro Prisoner (Sweet Bro and Hella Jeff/Homestuck)\nVoiced by SanyaWaffles.";
+CC_DD_FLOWERCROWN	 = "Flaming Firecrown";
+CC_DD_DONTRELDEMON	 = "Dontreldemon (Dontrel the Dolphin)\nVoiced by Rich Lowtax Kayanka";
+CC_DD_BRONY		 = "Brony of Despair\nVoiced by Levi Stubbs (Audrey II)";
+CC_DD_CHECKSUM	 = "Checksum Unicorn\nVoiced by Mrs. MeVilda from The Christmas Tree";
+CC_DD_HELLAJEFF	 = "Hella Jeff (Sweet Bro and Hella Jeff/Homestuck)\nVoiced by Astley Similie";
+CC_DD_PURRMOID	 = "Purrmoid (Catfingers from Steven Universe)";
+CC_DD_BONZI	 	 = "BonziBuddy\nVoiced by Joel from Vinesauce";
+CC_DD_TROLLJUNKO = "Trollsona Junko\nVoiced by Kootie Pie Koopa from TAOSMB3";
+CC_DD_MONOKUMA	 = "Giant Monokuma";
+CC_DD_JUNKO		 = "Junko Enoshima";

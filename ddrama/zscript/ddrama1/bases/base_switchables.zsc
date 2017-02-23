@@ -1,0 +1,111 @@
+/* *******************************************************************
+ *		base_switchabbles.zsc
+ *
+ *		Base switchables and controllers Daytime Drama Classes
+ *
+ *		As long as you attribute it to me in some
+ *		way I don't mind people using this. Considering how much
+ *		some people have caused an uproar over the lack of proper
+ *		examples and the like.
+ *
+ *		Copyright Sanya K. C. Waffles 2013-2017
+ *
+ * ****************************************************************** */
+ 
+// Switchable Physical Decoration With scale pre-set
+Class DD_SwitchableDecoration : SwitchableDecoration
+{
+	Default
+	{
+		Radius 20;
+		Height 56;
+		Scale 0.12;
+
+		+Solid
+		+NoBloodDecals
+	}
+	
+	void A_DisableSpecial()
+	{
+		bUseSpecial = false;
+	}
+	
+	void A_EnableSpecial()
+	{
+		bUseSpecial = true;
+	}
+}
+
+// Switchable controller that is invisible
+Class DD_SwitchableController : DD_SwitchableDecoration
+{
+	Default
+	{
+		//$IgnoreRenderstyle
+		
+		Radius 12;
+		Height 24;
+		Scale 1.0;	// Scale doesn't matter for invisible objects
+		RenderStyle "None";
+
+		-Solid
+		+NoBlockMap
+		+NoInteraction
+	}
+}
+
+// Switchable controller that is invisible and shootable
+Class DD_SwitchableShootableController : DD_SwitchableController
+{
+	Default
+	{
+		//$IgnoreRenderstyle
+		
+		Radius 12;
+		Height 24;
+		Scale 1.0;	// Scale doesn't matter for invisible objects
+		RenderStyle "None";
+		Health 4;
+		DamageFactor 4.0;
+
+		+Shootable
+		-Solid
+		-NoBlockMap
+		-NoInteraction
+	}
+}
+
+// Controller that isn't switchable but still needs to be invisible
+Class DD_Controller : DD_Actor
+{
+	Default
+	{
+		//$IgnoreRenderstyle
+		
+		Radius 12;
+		Height 24;
+		Scale 1.0;	// Scale doesn't matter for invisible objects
+		RenderStyle "None";
+		
+		+NotAutoAimed
+		+NoBloodDecals
+		+NoGravity
+		+DontMorph
+		+NoBlood
+		-Solid
+	}
+}
+
+// Controller that can be destroyed
+Class DD_ShootableController : DD_Controller
+{
+	Default
+	{
+		//$IgnoreRenderstyle
+		
+		Health 4;
+		DamageFactor 4.0;
+		
+		+Shootable
+	}
+}

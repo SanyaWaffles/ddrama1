@@ -1,0 +1,54 @@
+/* *******************************************************************
+ *		constants.zsc
+ *
+ *		Global Constants and Structs
+ *
+ *		As long as you attribute it to me in some
+ *		way I don't mind people using this. Considering how much
+ *		some people have caused an uproar over the lack of proper
+ *		examples and the like.
+ *
+ *		Copyright Sanya K. C. Waffles 2013-2017
+ *
+ * ****************************************************************** */
+
+// USER_DD_ENEMY_SCALECOUNT
+const DD_ENEMY_SCALECOUNT	=	5;	// Scale Count For Going Big
+const DDFL_CHUNKFLAGS		=	SXF_TransferTranslation | SXF_NoCheckPosition;	// Constant flag for gibs
+const DDFL_COINFLAGS		=	SXF_NoCheckPosition | SXF_AbsoluteVelocity;	// Constant flag for coins
+const DDFL_AMMOFLAGSFX		=	SXF_TransferPointers | SXF_NoCheckPosition | SXF_AbsoluteVelocity;	// Constant flag for Ammo Dropping Calls
+const DDPLAYER_VOICECHAN	=	CHAN_VOICE | CHAN_UI;	// Constant flag for Voice Overs (aren't savegame worthy)
+const DDPLAYER_BODYCHAN		=	CHAN_BODY | CHAN_UI;	// Constant flag for Misc. Sound Effects on the 'body' channel (aren't savegame worthy)
+
+// Constant for voice acting volume
+const DDPLAYER_VOICEVOL		=	4.0;
+// Constant for RIP Sound Obit volume
+const DDPLAYER_RIPVOL		=	2.5;
+
+// Weapon Overlay IDs
+// TODO: Add to Weapons class?
+enum EDDOverlays
+{
+	DD_PSP_TOGGLEWEAP = -3,
+	DD_PSP_FOOTCRUSH = -2,
+	DD_PSP_STRIFEJAZZ,
+	DD_PSP_NONE,
+	DD_PSP_WEAPON,
+	DD_PSP_MISC1,
+	DD_PSP_MISC2,
+	DD_PSP_FLASH = 1000,
+};
+
+// Snark Type IDs?
+// TODO: Use?
+enum EDDSnarkType
+{
+	DD_SNARK_REGULAR = 0,
+	DD_SNARK_EXTREME,
+	DD_SNARK_BOSS,
+	DD_SNARK_RIP,
+};
+//TODO: Better way to do this I'm sure...
+
+const DBTHRUSTSHIFT_L	=	64;
+const DBTHRUSTSHIFT_R	=	128;

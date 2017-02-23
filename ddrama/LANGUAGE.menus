@@ -1,0 +1,185 @@
+// Menu, UI and Automap Strings
+
+[enu default]
+
+SECRETMESSAGE		= "You found a secret area!";
+
+STSTR_NOMUS			= "That isn't valid music.";
+STSTR_DQDON			= "God mode on.";
+STSTR_DQDOFF		= "God mode off.";
+STSTR_KFAADDED		= "All Access, Ammo, Weapons. Only 49.99 for the Season Pass!";
+STSTR_FAADDED		= "Guns and Ammo. Hope you got a permit ;)";
+STSTR_NCON			= "No clipping allowed.";
+STSTR_NCOFF			= "Clipping has been legalized.";
+STSTR_BEHOLD		= "Gentlemen, behold! ";
+STSTR_BEHOLDX		= "Gentlemen, behold! ";
+STSTR_CHOPPERS		= "You can't get a chainsaw in this game you freeloader.";
+STSTR_CLEV			= "Let's do the time warp again!";
+
+MNU_DDRAMA_EXP		= "Customize Experience";
+
+MNU_DDRAMA_NEWGAME	= "New Game";
+MNU_DDRAMA_SSTATES	= "Game States";
+MNU_DDRAMA_LOADGAME	= "Load State";
+MNU_DDRAMA_SAVEGAME = "Save State";
+MNU_DDRAMA_OPTIONS	= "Options";
+MNU_DDRAMA_README	= "Help Me";
+MNU_DDRAMA_QUIT		= "Exit To System";
+
+OPTVAL_MALE			= "Male";
+OPTVAL_FEMALE		= "Female";
+OPTVAL_OTHER		= "NB";
+
+MNU_DDRAMA_CCSW1	= "ENTER to change, BACKSPACE to clear";
+MNU_DDRAMA_CCSW2	= "Press new key for control, ESC to cancel"
+
+MNU_DDRAMA_HPLAYERC	= "PLAYER CONTROLS";
+
+MNU_DDRAMA_MOVEM	= "Movement";
+MNU_DDRAMA_USEOPEN	= "Open + Interact";
+MNU_DDRAMA_FORWARD	= "Move Forward";
+MNU_DDRAMA_BACKWARD	= "Move Backward";
+MNU_DDRAMA_STRAFEL	= "Strafe Left";
+MNU_DDRAMA_STRAFER	= "Strafe Right";
+MNU_DDRAMA_JUMP		= "Jump Up";
+MNU_DDRAMA_CROUCH	= "Crouch";
+MNU_DDRAMA_RUN		= "Run";
+MNU_DDRAMA_STRAFE	= "Strafe";
+MNU_DDRAMA_TURNL	= "Turn Left";
+MNU_DDRAMA_TURNR	= "Turn Right";
+MNU_DDRAMA_KBLU		= "Keyboard Look Up";
+MNU_DDRAMA_KBLD		= "Keyboard Look Down";
+NNU_DDRAMA_CROUCHT	= "Crouch Toggle";
+MNU_DDRAMA_RUNT		= "Run Toggle";
+
+MNU_DDRAMA_COMBAT	= "COMBAT";
+MNU_DDRAMA_ATTACK	= "Attack";
+MNU_DDRAMA_WEAPONT	= "Weapon Mode Toggle";
+MNU_DDRAMA_WEAPCF	= "Next Weapon";
+MNU_DDRAMA_WEAPCB	= "Previous Weapon";
+
+MNU_DDRAMA_INVENT	= "INVENTORY";
+MNU_DDRAMA_INVUSE	= "Use Item";
+MNU_DDRAMA_INVNEXT	= "Next Item";
+MNU_DDRAMA_INVPREV	= "Previous Item";
+MNU_DDRAMA_QUERY	= "Query Item/Hint";
+
+MNU_DDRAMA_GRENADE	= "Spray Grenade";
+MNU_DDRAMA_BULKHP	= "Bulk Health Drink";
+MNU_DDRAMA_JPGBOKE	= "Broken JPG";
+MNU_DDRAMA_SHOES	= "Shoes";
+MNU_DDRAMA_JNJPEPP	= "Jack+Jill Pepper";
+MNU_DDRAMA_CLARID	= "Claridryl";
+
+MNU_DDRAMA_HOTHER	= "OTHER";
+MNU_DDRAMA_AMAPT	= "Toggle Automap";
+MNU_DDRAMA_SSHOT	= "Screenshot";
+MNU_DDRAMA_CONSOLET	= "Open Console";
+
+DD_QUITMSG1			= "Play for Hope. Quit for Despair.";
+DD_QUITMSG2			= "Don't go now, there's bears to blast.";
+DD_QUITMSG3			= "If you quit playing, I'll feel bad.";
+DD_QUITMSG4			= "You'll be back again some day.";
+DD_QUITMSG5			= "Don't let the door hit you\non the way out!";
+DD_QUITMSG6			= "You dare leave in our time of need!?";
+DD_QUITMSG7			= "Where are you going? Come back!";
+
+DD_EP1STR		= "Metro Misery";
+
+DD_MAPSTART		= "Start";
+
+DD_MAP01		= "Full Stop";
+DD_MAP02		= "One Man's Trash";
+DD_MAP03		= "Suburban Nightmare";
+DD_MAPB1		= "Shopping Block";
+DD_MAP04		= "Sinemaplex";
+DD_MAP05		= "Medicull Emergency";
+DD_MAP06		= "Borderline";
+DD_MAP07		= "Flatfooted";
+DD_MAPB2		= "Batter Up";
+DD_MAP08		= "Shoe of Despair";
+DD_MAP09		= "Studio of Despair";
+DD_MAP10		= "Sign-Off Time";
+DD_MAPB3		= "Sign-Off Time";
+
+DD_MAPSECRET01	= "Hopewell";
+DD_MAPSECRET02	= "Fort O' Soggyknees";
+
+DD_CINEND		= "Ending";
+
+DD_SKILL_EASY	= "This Path Selects The Easy Skill.\n"
+					"For those who just wanna shoot shit.";
+DD_SKILL_MEDIUM	= "This Path Selects The Medium Skill.\n"
+					"For those who like a slight challenge.";
+DD_SKILL_HARD	= "This Path Selects The Hard Skill.\n"
+					"For people who eat lead for breakfast.";
+DD_SKILL_DISCOURSE	= "This Path Selects The Discourse Skill.\n"
+						"\n"
+						"Don't complain if this skill is\n"
+						"too hard for you sweaty\n"
+						"\n"
+						"uwu\n";
+
+/*	End-episode text.
+	Do not let text go beyond this width below
+	Or you might have Story Cutoff Disorder...
+
+	"=======================================\n"
+*/
+
+DD_E1_TEXT =
+	"Blah Blah Blah Blah",
+	"Blah Blah Blah Blah",
+	"Blah Blah Blah Blah",
+	"Blah Blah Blah Blah",
+	"Blah Blah Blah Blah",
+	"Blah Blah Blah Blah",
+	"Blah Blah Blah Blah";
+
+// MUSEUM STUFF
+/* DD_MAP11_TEXT01 =    "The SGA is the glyphs used by some minority",
+					 "speaking groups, including the Damekko",
+					 "Klurvian, and Rhythmese people.",
+					 "",
+					 "It is a simple shift cypher, but the",
+					 "different languages and dialects may",
+					 "cause the words to sound different.";
+
+DD_MAP11_TEXT02 =    "The monarch of Boredomdai is a ceremonial",
+					 "representative of the power vested in the",
+					 "Dominion of Boredomdai and its provinces.";
+
+DD_MAP11_QUEEN01 =	 "Queen Haruhi [2008-2011]",
+					 "Her hidden power to manipulate certain realities",
+					 "was the reason a queen was made. However Haruhi",
+					 "vested great interest in protecting the people",
+					 "who fought for her, and thus their right to live",
+					 "at Romero I's hand. She was killed by a Hugboxskan",
+					 "assassin in October 2010";
+
+DD_MAP11_QUEEN02 = 	 "After Haruhi's assassination, the succession",
+					 "laws were amended, as Haruhi had no next of kin.",
+					 "",
+					 "However, Haruhi recommended Madoka Kaname, a rising",
+					 "member of the royal council, succeed her, in accordance",
+					 "to a legal document signed two months before her death.";
+
+DD_MAP11_QUEEN03 =   "Queen Madoka [2011-2013]",
+					 "Queen Madoka was the first queen to be elected",
+					 "as Haruhi's document had to be approved by council.",
+					 "",
+					 "Two great challenges faced Madoka during her tenure,"
+					 "including Rhythm Tengoku & Gensokyo Premiere Jaycee"
+					 "Angle's attempt at dividing the nation.";
+
+DD_MAP11_QUEEN04 =   "After finding out Jaycee was not a citizen of RTG and",
+					 "was impeached, Prime Minister Mihama and her cabinet",
+					 "allowed RTG to join, becoming the sixth province.",
+					 "Alas, Madoka's second crisis would end with her life,",
+					 "as a visit in Tumblria took a deadly turn.";
+
+DD_MAP11_QUEEN05 =	 "Despite her death, a line of succession had been formed,",
+					 "and Homura Akemi ascended the throne in 2013.";
+
+DD_MAP11_QUEEN06 =	 "Queen Homura [2013-]";
+*/

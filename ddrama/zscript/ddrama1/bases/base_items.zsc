@@ -1,0 +1,45 @@
+/* *******************************************************************
+ *		base_items.zsc
+ *
+ *		Base pickup items for Daytime Drama
+ *
+ *		As long as you attribute it to me in some
+ *		way I don't mind people using this. Considering how much
+ *		some people have caused an uproar over the lack of proper
+ *		examples and the like.
+ *
+ *		Copyright Sanya K. C. Waffles 2013-2017
+ *
+ * ****************************************************************** */
+
+// Health Pickup class sets scale, pickup noise and size
+Class DD_Health : Health
+{
+	Default
+	{
+		//$NotAngled
+		//$Category "Health and Armor"
+		//$Color 1
+		
+		Radius 14;
+		Height 28;
+		Scale 0.12;
+		Inventory.PickupSound "pickups/generic";
+	}
+}
+
+// Base Key class sets scale, pickup noise and size
+Class DD_Key : Key
+{
+	Default
+	{
+		//$NotAngled
+		//$Category "Keys"
+		//$Color 13
+		
+		Radius 12;
+		Height 24;
+		Scale 0.12;
+		Inventory.PickupSound "pickups/key";
+	}
+}

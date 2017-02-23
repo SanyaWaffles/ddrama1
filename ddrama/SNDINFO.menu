@@ -1,0 +1,32 @@
+// Tiitlemap Stuff and Credits stuff
+titlemap/boot						sounds/ui/keen_trumpet.ogg
+
+menu/activate						sounds/ui/click.ogg		// Activate a new menu
+menu/backup							sounds/ui/backup.ogg	// Backup to previous menu
+menu/prompt							sounds/ui/notify.ogg	// Activate a prompt "menu"
+menu/cursor							sounds/ui/slide.ogg		// Move cursor up/down
+menu/invalid						sounds/ui/error.ogg		// Menu not available
+menu/choose							sounds/ui/accept.ogg	// Choose a menu item
+menu/clear							sounds/ui/woosh.ogg		// Close top menu
+$volume menu/activate 0.7
+$volume menu/backup 0.7
+$volume menu/prompt 0.7
+$volume menu/cursor 0.7
+$volume menu/invalid 0.7
+$volume menu/choose 0.7
+$volume menu/clear 0.7
+
+$alias menu/dismiss					menu/activate		// Dismiss a prompt message
+$alias menu/change					menu/activate		// Select new value for option
+$alias misc/chatdd					menu/prompt			// Chat Ping
+
+// Intermission
+$alias intermission/tick			menu/activate
+$alias intermission/cooptotal		menu/activate
+$alias intermission/nextstage		menu/choose
+$alias intermission/paststats		menu/clear
+$alias intermission/pastcoopstats	menu/clear
+$alias intermission/pastdmstats		menu/choose
+
+$alias misc/secret					generic/nullvoid
+$alias misc/quitdd					generic/nullvoid

@@ -1,0 +1,33 @@
+
+[enu default]
+
+OB_SUICIDE		= "%o ate their own gun. It tasted salty";
+OB_FALLING		= "I warned you about about heights. I told you %o";
+OB_CRUSH		= "%o got squashed";
+OB_EXIT			= "%o tried to leave";
+OB_WATER		= "%o forgot that oxygen is love, oxygen is life";
+OB_SLIME		= "%o caved into despair goop";
+OB_LAVA			= "%o forgot that walking on lava doesn't end well";
+OB_BARREL		= "%o spent their final moments gently carressing with an explosive thing";
+OB_SPLASH		= "%o shot themselves how the...";
+OB_R_SPLASH		= "Don't fire that rocket too close next time, %o";
+OB_ROCKET		= "%o, you asshole. Watch the freaking blast radius!";
+OB_KILLEDSELF	= "%o had a bad time";
+OB_DESPAIRCORE	= "%o got caught in a despairium meltdown";
+
+DD_OB_TURRET	 = "%o got mowed down by a despairium turret";
+
+DD_OB_BUDDYBEAR  = "%o disagreed with a Buddy Bear";
+DD_OB_GUMBALL	 = "Gumball turned %o into sponge cake";
+DD_OB_LOTSOBEAR  = "%o didn't escape from Lotso's line of fire";
+DD_OB_BARFBAG    = "%o died from a Barfbag's hairball";
+DD_OB_DONTREL	 = "%o entered the plur butthole of Dontrel";
+DD_OB_SMOKEY	 = "%o got snuffed by a Shmorky Head";
+DD_OB_SWEETBRO	 = "%o became one with the Sweet Bros";
+DD_OB_SWEETBRO2  = "%o was spooked by a Nightmare Bro";
+DD_OB_BONZI		 = "%o was blasted by a Bonzi Buddy's load";
+DD_OB_CHECKSUM	 = "%o triggered a Checksum Unicorn calm friend uwu";
+DD_OB_HJEFF		 = "I warned you about Hella Jeff, %o";
+DD_OB_MRABRONY	 = "%o was bruised up by a Brony of Despair";
+DD_OB_MONOKUMA	 = "%o could not bear the suspense of Monokuma";
+DD_OB_JUNKO		 = "%o went and caved into Junko's despair";

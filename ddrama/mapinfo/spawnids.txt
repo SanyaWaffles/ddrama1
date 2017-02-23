@@ -1,0 +1,64 @@
+SpawnNums
+{
+	1 = DD_BuddyBear
+	2 = DD_Gumball
+	3 = DD_LotsoBear
+	4 = DD_BarfBag
+	5 = DD_Dontreldemon
+	6 = DD_SweetBro
+	7 = DD_NightmareBro
+	8 = DD_SmokeyHead
+	9 = DD_BonziBuddy
+	10 = DD_Purrmoid
+	11 = DD_ChecksumUnicorn
+	12 = DD_BronyOfDespair
+	13 = DD_TrollJunko
+	14 = DD_JunkoEnoshimaBoss
+	16 = DD_Monokuma
+	17 = DD_HellaJeff
+
+	23 = DD_ChocolateBar
+	24 = DD_SportDrink
+	25 = DD_BurgersFries
+	
+	26 = DD_Pistol
+	27 = DD_Shotgun
+	28 = DD_Minigun
+	29 = DD_RocketLauncher
+	30 = DD_DespairiumRifle
+	31 = DD_TrollbloodDevicePickup
+	
+	68 = DD_GreenJacket
+	69 = DD_BlueJacket
+	
+	85 = DD_RedKey
+	86 = DD_GreenKey
+	87 = DD_BlueKey
+	88 = DD_GoldKey
+	89 = DD_RedCard
+	90 = DD_GreenCard
+	91 = DD_BlueCard
+	92 = DD_GoldCard
+	
+	100 = DD_AirCompressor
+	101 = DD_HeatSeekCard
+	
+	130 = DD_Cracker
+	131 = DD_BrokenJPEG
+	132 = DD_AxxSpray
+	133 = DD_BulkSportDrinkPack
+	134 = DD_SyoPepper
+	135 = DD_BouncySandals
+	136 = DD_Handbag
+	137 = DD_Antidepressant
+	
+	138 = DD_Bullets
+	139 = DD_Shells
+	140 = DD_RocketAmmo
+	141 = DD_Despairium
+	142 = DD_Shells
+	143 = DD_OliveBloodAmmo
+	144 = DD_BronzeBloodAmmo
+	145 = DD_CobaltBloodAmmo
+	146 = DD_MultiBloodPak
+}

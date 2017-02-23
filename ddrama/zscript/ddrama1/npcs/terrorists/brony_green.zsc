@@ -1,0 +1,34 @@
+/* *******************************************************************
+ *		brony_green.zsc
+ *
+ *		green brony cutscene object
+ *
+ *		As long as you attribute it to me in some
+ *		way I don't mind people using this. Considering how much
+ *		some people have caused an uproar over the lack of proper
+ *		examples and the like.
+ *
+ *		Copyright Sanya K. C. Waffles 2013-2017
+ *
+ * ****************************************************************** */
+
+Class DD_CSBronyGreen : DD_Terrorist
+{
+	Default
+	{
+		//$Title "Brony Green (Cutscene)"
+		//$Sprite BRN2A0
+		
+		Height 56;
+		Radius 24;
+		Scale 0.12;
+	}
+	
+	States
+	{		
+		Spawn:
+			BRN2 A 10;
+			BRN2 B 10;
+			Loop;
+	}
+}

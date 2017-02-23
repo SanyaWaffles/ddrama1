@@ -1,0 +1,209 @@
+Black
+{
+	#111111	#444444
+Console:
+	#000000	#222222	0	127
+	#333333	#555555 128 256
+Flat:
+	#000000
+}
+
+DarkGray DarkGrey "Dark Gray" "Dark Grey"
+{
+	#333333	#666666
+Console:
+	#333333	#555555	0	127
+	#666666	#888888 128 256
+Flat:
+	#333333
+}
+
+Olive OliveGreen
+{
+	#496F58	#8BE8B2
+Console:
+	#548367	#6AAB85	0	127
+	#75C094	#8BE8B2 128 256
+Flat:
+	#5F9776
+}
+
+Blue
+{
+	#00003C	#0000F7
+Console:
+	#00004A	#000084	0	127
+	#0000F7	#CEE3FF 128 256
+Flat:
+	#000092
+}
+
+DarkGreen "Dark Green"
+{
+	#001F00	#0000F7
+Console:
+	#003C00	#005900	0	127
+	#006700	#009200 128 256
+Flat:
+	#004A00
+}
+
+Orange
+{
+	#BC5A00	#FF8200
+Console:
+	#2F0F06	#824400	0	127
+	#FF8D00	#FFFBEE 128 256
+Flat:
+	#FF7600
+}
+
+Brick
+{
+	#3C0000	#CB6F7F
+Console:
+	#1F0000	#42162A	0	127
+	#42162A	#EB506F 128 256
+Flat:
+	#590000
+}
+
+DarkRed "Dark Red"
+{
+	#590000	#840000
+Console:
+	#590000	#750000	0	127
+	#840000	#920000 128 256
+Flat:
+	#750000
+}
+
+Purple
+{
+	#3F003F	#BF00BF
+Console:
+	#3F003F	#720072	0	127
+	#D900D9	#F0B3D1 128 256
+Flat:
+	#F200F2
+}
+
+Brown
+{
+	#65391A	#C47233
+Console:
+	#2F0F06	#A63D14	0	127
+	#C47233	#FABA89 128 256
+Flat:
+	#B5682E
+}
+
+/* Gold
+{
+	#EEBB00	#FFFF00
+Console:
+	#472F00	#BC9300	0	127
+	#FFC800	#FFFFE3 128 256
+Flat:
+	#FFC800
+} */
+
+Red
+{
+	#1F0000	#F70000
+Console:
+	#2D0000	#750000	0	127
+	#F70000	#F0D2E0 128 256
+Flat:
+	#E90000
+}
+
+Cream
+{
+	#FABA89	#FFFBEE
+Console:
+	#2F0F06	#A63D14	0	127
+	#FABA89	#FFFBEE 128 256
+Flat:
+	#FCD2AE
+}
+
+Gray Grey
+{
+	#777777	#DDDDDD
+Console:
+	#333333	#555555	0	127
+	#AAAAAA	#EEEEEE 128 256
+Flat:
+	#CCCCCC
+}
+
+Tan
+{
+	#452713	#FABA89
+Console:
+	#2F0F06	#A63D14	0	127
+	#FBC9A1	#FEEFDB 128 256
+Flat:
+	#CCCCCC
+}
+
+/* Cyan
+{
+	#005F3F	#EFF7F1
+Console:
+	#005F3F	#00A084	0	127
+	#17F7E1	#EFF7F1 128 256
+Flat:
+	#5DF7E8
+} */
+
+Green
+{
+	#004A00	#00DA00
+Console:
+	#001F00	#005900	0	127
+	#00AF00	#00F700 128 256
+Flat:
+	#00CC00
+}
+
+White
+{
+	#222222	#FFFFFF
+Console:
+	#111111	#444444	0	127
+	#CCCCCC	#FFFFFF 128 256
+Flat:
+	#EEEEEE
+}
+
+DarkBrown "Dark Brown"
+{
+	#2F0F06	#A55F2A
+Console:
+	#001F00	#006700	0	127
+	#B5682E	#F1B07E 128 256
+Flat:
+	#955527
+}
+
+/* LightBlue "Light Blue" Cobalt TumblrBlue "Tumblr Blue" Tumblr
+{
+	#101F2F	#A8BCD5
+Console:
+	#00004A	#4F6074	0	127
+	#75889E	#CEE3FF 128 256
+Flat:
+	#A8BCD5
+} */
+
+Yellow
+{
+	#101F2F	#FFFF00
+Console:
+	#472F00	#BC9300	0	127
+	#FFFF00	#FFFFBF 128 256
+Flat:
+	#FFFF00
+}
