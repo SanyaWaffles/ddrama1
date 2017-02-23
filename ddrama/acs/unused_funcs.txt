@@ -13,6 +13,7 @@
 // -------------------------->>>>
 
 // Get Aspect Ratio Information
+// (Original by Ral22)
 // TODO: Find some use for it
 function int func_GetAspectRatio(void)
 {
