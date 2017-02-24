@@ -1,0 +1,5 @@
+Any original art assets are hereby released under the Creative Commons Attribution + ShareAlike license. This mainly applies to the sprites.
+
+Voice clips are the exception.
+
+The ZScript code is released into the public domain, but I'd like some attributation if you copy/paste it or use it. All I ask.
