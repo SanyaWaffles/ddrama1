@@ -131,23 +131,26 @@ ENDMAP_TALK4	 = "This town will take time to heal, but you\n"
 
 ENDMAP_CREDIT_MAIN = "Main Mapping, Scripting, Coding\n"
 					 "Game Art and Spriting by\n"
-					 "SanyaWaffles"
+					 "SanyaWaffles";
 
-ENDMAP_CREDIT_MUSIC = "Original Music by RodScorpion";
+ENDMAP_CREDIT_MUSIC = "Original Music by RodScorpion\n"
+						"Buy soon on Bandcamp!";
 
 ENDMAP_CREDIT_TEXTURES = "Textures by\n\n"
 						  "Kelsie Armerding\n"
 						  "SanyaWaffles\n"
-						  "http://opengameart.org"
+						  "http://opengameart.org\n"
 						  "Bart Kelsey\n"
 						  "NoBlax.deviantart.com"
 
 ENDMAP_CREDIT_SOUND = "Kelsie Armerding, SanyaWaffles\n"
 					  "RodScorpion, Astley Similie\n"
-					  "Revo794";
+					  "Revo794, and.\n"
+					  "Innocent-Darkside (Brad S.)";
 
 ENDMAP_SPECIAL_THANKS = "Risa Hunt, Joel of Vinesauce\n"
-						"Ral22 and many others...";
+						"Ral22, Havocarious, and many\n"
+						"others!";
 
 CC_DD_BUDDYBEAR	 = "Buddy Bear (Garfield and Friends)\nVoiced By Butters From South Park";
 CC_DD_GUMBALL	 = "Gumball Watterson (The Amazing World of Gumball)";

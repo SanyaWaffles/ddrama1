@@ -23,6 +23,8 @@ Class DD_CSJunkoE : DD_Terrorist
 		Height 56;
 		Radius 24;
 		Scale 0.12;
+		
+		+FlatSprite
 	}
 	
 	enum JunkoCSStates
@@ -49,13 +51,11 @@ Class DD_CSJunkoE : DD_Terrorist
 			"Ded"
 		};
 		
-		if (!InStateSequence(ResolveState(jeStates[user_statetochange-1]), CurState))
-		{
-			SetStateLabel(jeStates[user_statetochange-1]);
-			return;
-		}
+		StateLabel s = jeStates[user_statetochange-1];
 		
-		SetStateLabel("Laff");
+		if (InStateSequence(ResolveState(s), CurState)) return;
+		
+		SetStateLabel(s);
 	}
 	
 	override void Tick()
@@ -98,16 +98,7 @@ Class DD_CSJunkoE : DD_Terrorist
 			Loop;
 		
 		Ded:
-			CJK6 A 0 { bWallSprite = true;}
 			CJK6 A 50;
-			CJK6 B 1
-			{
-				pitch--;
-				if (pitch == 270)
-					return ResolveState("Null");
-				
-				return ResolveState(null);
-			}
 			Wait;
 	}
 }

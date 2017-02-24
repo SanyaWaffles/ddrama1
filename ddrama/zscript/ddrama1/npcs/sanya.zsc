@@ -43,13 +43,11 @@ Class DD_CSSanya : DD_NPC
 			"Peace"
 		};
 		
-		if (!InStateSequence(ResolveState(syStates[user_statetochange-1]), CurState))
-		{
-			SetStateLabel(syStates[user_statetochange-1]);
-			return;
-		}
+		StateLabel s = syStates[user_statetochange-1];
 		
-		SetStateLabel("IdleTalk");
+		if (InStateSequence(ResolveState(s), CurState)) return;
+		
+		SetStateLabel(s);
 	}
 	
 	override void Tick()
@@ -77,7 +75,6 @@ Class DD_CSSanya : DD_NPC
 			Loop;
 		
 		Peace:
-			CSN4 A 5;
 			CSN4 B 5;
 			Loop;
 	}
