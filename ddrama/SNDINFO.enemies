@@ -119,6 +119,42 @@ $random barfbag/death
 }
 
 // Dontreldemon
+dontrel/sight1			sounds/enemies/dontrel/brad/makes_me_unsad.ogg
+dontrel/sight2			sounds/enemies/dontrel/brad/mutter.ogg
+dontrel/sight3			sounds/enemies/dontrel/brad/hello.ogg
+
+dontrel/pain1			sounds/enemies/dontrel/brad/groan.ogg
+dontrel/pain2			sounds/enemies/dontrel/brad/ayeeee.ogg
+
+dontrel/death1			sounds/enemies/dontrel/brad/death0.ogg
+dontrel/death2			sounds/enemies/dontrel/brad/mein_leiben.ogg
+
+dontrel/active			sounds/enemies/dontrel/brad/eat_them_well.ogg
+
+dontrel/attack			sounds/enemies/dontrel/kore.ogg
+dontrel/shotx			sounds/sfx/booms/boom1.ogg
+dontrel/melee			sounds/sfx/melee/claw.ogg
+$volume dontrel/attack 0.75
+$alias dontrel/active6 dontrel/sight3
+$random	dontrel/sight
+{
+	dontrel/sight1
+	dontrel/sight2
+	dontrel/sight3
+}
+
+$random	dontrel/pain
+{
+	dontrel/pain1
+	dontrel/pain2
+}
+$random	dontrel/death
+{
+	dontrel/death1
+	dontrel/death2
+}
+
+/*
 dontrel/sight1			sounds/enemies/dontrel/mionjaw.ogg
 dontrel/sight2			sounds/enemies/dontrel/pearbutt.ogg
 dontrel/sight3			sounds/enemies/dontrel/hello.ogg
@@ -174,7 +210,7 @@ $random	dontrel/active
 	dontrel/active4
 	dontrel/active5
 	dontrel/active6
-}
+}*/
 
 // Smokeyhead
 smokey/melee			sounds/enemies/smokey/roar.ogg
