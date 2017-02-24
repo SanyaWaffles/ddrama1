@@ -31,7 +31,10 @@ Class DD_VOX_RIPFelixHet : DD_VOX_Base
 		PlaySound:
 			TNT1 A 0
 			{
-				A_PlaySound("epitaph/felixgameover", (DDPLAYER_VOICECHAN), DDPLAYER_RIPVOL, true, ATTN_NONE);
+				if(GetCvar("dd_rip"))
+				{
+					A_PlaySound("epitaph/felixgameover", (DDPLAYER_VOICECHAN), DDPLAYER_RIPVOL, true, ATTN_NONE);
+				}
 				return true;
 			}
 			Stop;
@@ -76,7 +79,7 @@ Class DD_VOX_RIPInPeace : DD_VOX_Base
 				CallACS("DDLib_StopMusic");	// hmmm...
 				
 				// only do this if this is true
-				if(GetCvar("dd_snd_oneliners"))
+				if(GetCvar("dd_rip"))
 				{
 					A_GiveInventory("DD_VOX_RIPInPeace_Ctr", (random[DD_RIPINPEACE](1,15)));
 					
@@ -135,9 +138,12 @@ Class DD_VOX_RIPInPeace2 : DD_VOX_RIPInPeace
 		Pickup:
 			TNT1 A 0
 			{
-				if(Random[VOX](0, 4) > 1)
+				if(GetCvar("dd_rip"))
 				{
-					return ResolveState("PlaySound");
+					if(Random[VOX](0, 4) > 1)
+					{
+						return ResolveState("PlaySound");
+					}
 				}
 				return ResolveState(null);
 			}

@@ -55,6 +55,7 @@ maps
 				activetab = true;
 			}
 		}
+		useresourcesinreadonlymode = false;
 		
 		fieldtypes
 		{
@@ -97,6 +98,8 @@ maps
 				yscalefloor = 1;
 				ypanningceiling = 1;
 				lightfloor = 0;
+				floorglowcolor = 0;
+				floorglowheight = 1;
 				xscaleceiling = 1;
 				yscaleceiling = 1;
 			}
@@ -107,7 +110,6 @@ maps
 				renderstyle = 2;
 			}
 		}
-		useresourcesinreadonlymode = false;
 		
 		scriptdocuments
 		{

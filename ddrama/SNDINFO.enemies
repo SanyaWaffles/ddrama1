@@ -119,8 +119,8 @@ $random barfbag/death
 }
 
 // Dontreldemon
-dontrel/sight1			sounds/enemies/dontrel/brad/makes_me_unsad.ogg
-dontrel/sight2			sounds/enemies/dontrel/brad/mutter.ogg
+dontrel/sight1			sounds/enemies/dontrel/brad/blowhole.ogg
+dontrel/sight2			sounds/enemies/dontrel/brad/whod_ya_expect.ogg
 dontrel/sight3			sounds/enemies/dontrel/brad/hello.ogg
 
 dontrel/pain1			sounds/enemies/dontrel/brad/groan.ogg
@@ -129,7 +129,9 @@ dontrel/pain2			sounds/enemies/dontrel/brad/ayeeee.ogg
 dontrel/death1			sounds/enemies/dontrel/brad/death0.ogg
 dontrel/death2			sounds/enemies/dontrel/brad/mein_leiben.ogg
 
-dontrel/active			sounds/enemies/dontrel/brad/eat_them_well.ogg
+dontrel/active1			sounds/enemies/dontrel/brad/save_the_last_dance.ogg
+dontrel/active2			sounds/enemies/dontrel/brad/yoohoo.ogg
+dontrel/active3			sounds/enemies/dontrel/brad/touch_me_dada.ogg
 
 dontrel/attack			sounds/enemies/dontrel/kore.ogg
 dontrel/shotx			sounds/sfx/booms/boom1.ogg
@@ -154,63 +156,12 @@ $random	dontrel/death
 	dontrel/death2
 }
 
-/*
-dontrel/sight1			sounds/enemies/dontrel/mionjaw.ogg
-dontrel/sight2			sounds/enemies/dontrel/pearbutt.ogg
-dontrel/sight3			sounds/enemies/dontrel/hello.ogg
-dontrel/sight4			sounds/enemies/dontrel/lol.ogg
-dontrel/sight5			sounds/enemies/dontrel/lol3.ogg
-
-dontrel/pain1			sounds/enemies/dontrel/no.ogg
-dontrel/pain2			sounds/enemies/dontrel/rude.ogg
-dontrel/pain3			sounds/enemies/dontrel/savethem.ogg
-dontrel/pain4			sounds/enemies/dontrel/shit.ogg
-
-dontrel/death1			sounds/enemies/dontrel/scream1.ogg
-dontrel/death2			sounds/enemies/dontrel/scream2.ogg
-dontrel/death3			sounds/enemies/dontrel/scream3.ogg
-
-dontrel/active1			sounds/enemies/dontrel/breathe.ogg
-dontrel/active2			sounds/enemies/dontrel/greybutthole.ogg
-dontrel/active3			sounds/enemies/dontrel/lastdance.ogg
-dontrel/active4			sounds/enemies/dontrel/butthole.ogg
-dontrel/active5			sounds/enemies/dontrel/whatu.ogg
-
-dontrel/attack			sounds/enemies/dontrel/kore.ogg
-dontrel/shotx			sounds/sfx/booms/boom1.ogg
-dontrel/melee			sounds/sfx/melee/claw.ogg
-$volume dontrel/attack 0.75
-$alias dontrel/active6 dontrel/sight3
-$random	dontrel/sight
-{
-	dontrel/sight1
-	dontrel/sight2
-	dontrel/sight3
-	dontrel/sight4
-	dontrel/sight5
-}
-$random	dontrel/pain
-{
-	dontrel/pain1
-	dontrel/pain2
-	dontrel/pain3
-	dontrel/pain4
-}
-$random	dontrel/death
-{
-	dontrel/death1
-	dontrel/death2
-	dontrel/death3
-}
 $random	dontrel/active
 {
 	dontrel/active1
 	dontrel/active2
 	dontrel/active3
-	dontrel/active4
-	dontrel/active5
-	dontrel/active6
-}*/
+}
 
 // Smokeyhead
 smokey/melee			sounds/enemies/smokey/roar.ogg

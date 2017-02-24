@@ -77,6 +77,12 @@ OptionValue VAOffOn
 	1, "On"
 }
 
+OptionValue RIPOffOn
+{
+	0, "Off"
+	1, "On"
+}
+
 OptionMenu "DDSoundOptions"
 {
 	Title "SOUND OPTIONS"
@@ -274,7 +280,7 @@ OptionMenu "DDramaExpMenu"
 	
 	Slider "Autoaim",			"Autoaim",			0, 35, 1
 	Option "Scale text HUD",	"con_scaletext", 	"ScaleValues"
-	Option "Cutscenes",			"dd_cutscene", 		"DD_CSOffOn"
+	Option "RIP In Peace",		"dd_rip", "RIPOffOn"
 }
 
 ListMenu "DDramaOptionsMenu"

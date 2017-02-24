@@ -40,9 +40,9 @@ maps
 			gridsize = 4f;
 		}
 		uselongtexturenames = false;
-		viewpositionx = -823.1827f;
-		viewpositiony = 4042.431f;
-		viewscale = 0.7774071f;
+		viewpositionx = -328.6423f;
+		viewpositiony = -125.6542f;
+		viewscale = 3.929377f;
 		
 		scriptlumps
 		{
@@ -99,6 +99,8 @@ maps
 				rotationceiling = 1;
 				xscaleceiling = 1;
 				yscaleceiling = 1;
+				floorglowcolor = 0;
+				floorglowheight = 1;
 			}
 			
 			thing
@@ -108,6 +110,7 @@ maps
 				alpha = 1;
 				fillcolor = 0;
 				gravity = 1;
+				conversation = 0;
 			}
 		}
 		
@@ -121,6 +124,8 @@ maps
 				resource;
 				tabtype = 0;
 				scripttype = 18;
+				caretposition = 952;
+				activetab = true;
 			}
 			
 			document1
@@ -130,7 +135,7 @@ maps
 				resource;
 				tabtype = 0;
 				scripttype = 1;
-				activetab = true;
+				caretposition = 301;
 			}
 		}
 	}

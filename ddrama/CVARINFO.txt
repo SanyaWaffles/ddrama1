@@ -3,7 +3,5 @@ user int	dd_hudhints	= 1;	// Hud Hints
 								// 1 = On Lower Difficulties
 								// 2 = Always
 
-user bool	dd_cutscene = false;	// Allow Cutscene Skip (hmm...)
-
 user int	dd_snd_oneliners = 1;
-
+user int	dd_rip = 1;				// RIP on/off
