@@ -101,7 +101,7 @@ Class DD_SmokeyHead : DD_Enemy
 			Goto Missile+1;
 			
 		Pain:
-			SHMO D 0 Bright { return A_Jump(256, "PainLeft", "PainRight"); }
+			SHMO H 1 Bright { return A_Jump(256, "PainLeft", "PainRight"); }
 			goto PainRight;
 		
 		PainRight:
