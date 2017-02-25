@@ -51,10 +51,10 @@ Class DD_BulkSportDrinkPack : CustomInventory
 				// player and not the item.
 				int blkdrink = CountInv("DD_BulkSportDrinkPack");
 				
-				// check if owner/invoker's health is 100
-				if (invoker.health < 100)
+				// check if health is less than 100
+				if (health < 100)
 				{
-					// play 'use' sound
+					// play 'use' sound if so
 					A_PlaySound("bulkpack/use", CHAN_ITEM);
 				}
 				

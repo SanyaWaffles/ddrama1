@@ -29,6 +29,7 @@ Class DD_Sanya : DD_PlayerPawn
 		Player.StartItem "DD_Pistol";
 		Player.StartItem "DD_SonicTabletpen";
 		Player.StartItem "DD_Bullets", 30;
+		Player.SoundClass "sanya";
 		Player.WeaponSlot 1, "DD_SonicTabletpen";
 		Player.WeaponSlot 2, "DD_Pistol";
 		Player.WeaponSlot 3, "DD_Shotgun";

@@ -39,7 +39,7 @@ Class DD_BouncySandals : PowerupGiver
 		Inventory.InterHubAmount 2;
 		Inventory.PickupMessage "$DD_GOTSHOES";
 		Inventory.PickupSound "pickups/powerup";
-		Inventory.UseSound "sandals/use";
+		Inventory.UseSound "pickups/powerup";
 		Inventory.Icon "STICSH";
 		Tag "$DD_TAGSHOES";
 		

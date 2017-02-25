@@ -37,7 +37,9 @@ Class DD_Decoration : DD_Prop
 Class DD_BreakableContainer : DD_Prop
 {
 	Default
-	{			
+	{
+		//$Arg0 "Object"
+		//$Arg0Str
 		+Shootable
 		+DontGib
 	}

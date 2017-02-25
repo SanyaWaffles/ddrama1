@@ -43,7 +43,7 @@ Class DD_BrokenJPEG : PowerupGiver
 		Inventory.InterHubAmount 2;
 		Inventory.PickupMessage "$DD_GOTJPG";
 		Inventory.PickupSound "pickups/powerup";
-		Inventory.UseSound "sanyavox/brokenjpg";
+		Inventory.UseSound "pickups/powerup";
 		Inventory.Icon "STICGH";
 		Powerup.Type "DD_PowerBrokenInvisibility";
 		Powerup.Duration -35;

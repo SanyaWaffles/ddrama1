@@ -54,6 +54,7 @@ Class DD_Enemy : DD_Actor
 	 *	***********************************************/
 	action void A_DDGivePlayerOneLiner(int index = 0)
 	{
+		/*
 		static const Class<Inventory> snarkobj[] =
 		{
 			"DD_VOX_SnarkEnemies",
@@ -74,6 +75,7 @@ Class DD_Enemy : DD_Actor
 				A_GiveToTarget(snarkobj[index], 1);
 			}
 		}
+		*/
 	}
 	
 	/*	***********************************************

@@ -40,9 +40,9 @@ maps
 		}
 		scriptcompiler = "zdoom_acs.cfg";
 		uselongtexturenames = false;
-		viewpositionx = 679.6143f;
-		viewpositiony = 651.6389f;
-		viewscale = 0.2702614f;
+		viewpositionx = 82.98615f;
+		viewpositiony = 1385.599f;
+		viewscale = 0.8481961f;
 		
 		scriptlumps
 		{

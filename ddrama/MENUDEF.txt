@@ -83,6 +83,12 @@ OptionValue RIPOffOn
 	1, "On"
 }
 
+OptionValue SkipAENoYes
+{
+	0, "No"
+	1, "Yes"
+}
+
 OptionMenu "DDSoundOptions"
 {
 	Title "SOUND OPTIONS"
@@ -281,6 +287,7 @@ OptionMenu "DDramaExpMenu"
 	Slider "Autoaim",			"Autoaim",			0, 35, 1
 	Option "Scale text HUD",	"con_scaletext", 	"ScaleValues"
 	Option "RIP In Peace",		"dd_rip", "RIPOffOn"
+	Option "Alter Ego Boot",	"dd_skipaeboot", "SkipAENoYes"
 }
 
 ListMenu "DDramaOptionsMenu"

@@ -22,7 +22,7 @@ Class DD_LudicrousGibsFx : DD_Spawner
 		+DropOff
 	}
 	
-	const GIBCOUNT = 5;
+	const GIBCOUNT = 12;
 	
 	const SPAWNGIBMAX = 1;
 	
