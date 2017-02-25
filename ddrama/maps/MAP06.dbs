@@ -40,9 +40,9 @@ maps
 			gridsize = 8f;
 		}
 		uselongtexturenames = false;
-		viewpositionx = -3287.068f;
-		viewpositiony = 1744.662f;
-		viewscale = 2.349949f;
+		viewpositionx = 1522.445f;
+		viewpositiony = 402.5055f;
+		viewscale = 10.79796f;
 		
 		scriptlumps
 		{
@@ -90,8 +90,8 @@ maps
 			{
 				xpanningfloor = 1;
 				ypanningfloor = 1;
-				rotationceiling = 1;
-				rotationfloor = 1;
+				rotationceiling = 17;
+				rotationfloor = 17;
 				xpanningceiling = 1;
 				xscaleceiling = 1;
 				xscalefloor = 1;

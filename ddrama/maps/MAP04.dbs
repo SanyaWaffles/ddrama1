@@ -36,13 +36,13 @@ maps
 			backoffsety = 0;
 			backscalex = 100;
 			backscaley = 100;
-			gridsize = 8f;
+			gridsize = 2f;
 		}
 		scriptcompiler = "zdoom_acs.cfg";
 		uselongtexturenames = false;
-		viewpositionx = 82.98615f;
-		viewpositiony = 1385.599f;
-		viewscale = 0.8481961f;
+		viewpositionx = 968.2958f;
+		viewpositiony = 1018.475f;
+		viewscale = 6.276861f;
 		
 		scriptlumps
 		{
@@ -94,12 +94,12 @@ maps
 				xpanningfloor = 1;
 				ypanningfloor = 1;
 				xpanningceiling = 1;
-				rotationceiling = 1;
+				rotationceiling = 17;
 				lightceiling = 0;
 				ypanningceiling = 1;
 				xscaleceiling = 1;
 				yscaleceiling = 1;
-				rotationfloor = 1;
+				rotationfloor = 17;
 				lightfloor = 0;
 				floorglowcolor = 0;
 				floorglowheight = 1;
