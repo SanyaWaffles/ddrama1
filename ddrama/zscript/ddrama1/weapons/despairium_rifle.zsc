@@ -211,6 +211,18 @@ Class DD_DespairiumRifle : DD_Weapon
 				A_FireProjectile(despairball[proji]);
 				// set the appropriate tics
 				A_SetTics(tix);
+				
+				if (!CheckForCoolant())
+				{
+					A_GiveInventory("DD_UnfungoCounter", Random[Despairium](1, 3));
+					
+					if (CheckDespairCounter() >= 32)
+					{
+						return ResolveState("Cooldown");
+					}
+				}
+				
+				return ResolveState(null);
 			}
 			DSPG A 3
 			{
