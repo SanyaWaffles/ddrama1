@@ -315,7 +315,7 @@ Class DD_DroppedAmmoRocket : DD_RocketAmmo
 {
 	Default
 	{
-		Scale 0.12;
+		Scale 0.20;
 		Radius 20;
 		Height 32;
 		Inventory.Amount 1;

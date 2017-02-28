@@ -381,7 +381,7 @@ Class DD_DroppedAmmoTrollBlood : CustomInventory
 {
 	Default
 	{
-		Scale 0.12;
+		Scale 0.20;
 		Radius 24;
 		Height 32;
 

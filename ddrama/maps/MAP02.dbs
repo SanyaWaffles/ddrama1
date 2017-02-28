@@ -40,7 +40,7 @@ maps
 		defaultbottomtexture = "SWMETL_A";
 		scriptcompiler = "zdoom_acs.cfg";
 		uselongtexturenames = false;
-		viewscale = 0.5590301f;
+		viewscale = 0.7440692f;
 		
 		scriptlumps
 		{
@@ -111,6 +111,8 @@ maps
 				health = 0;
 			}
 		}
+		viewpositionx = 1443.15f;
+		viewpositiony = -151.0578f;
 		
 		scriptdocuments
 		{
