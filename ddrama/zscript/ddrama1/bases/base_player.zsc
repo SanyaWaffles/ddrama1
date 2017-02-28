@@ -38,7 +38,6 @@ Class DD_PlayerPawn : PlayerPawn
 	int cscenehold;			// Hmmm...
 	int expandloop;			// Expand Count
 	int onelinercount;		// One Liner Counter
-	int tic_counter;		// Tic Counter
 	
 	// Make a rubbery expanding noise
 	void A_DDExpandDongStart()
@@ -81,7 +80,6 @@ Class DD_PlayerPawn : PlayerPawn
 			trollbloodstage = 0;
 		}
 		expandloop = 0;
-		tic_counter = 0;
 		
 		Super.BeginPlay();
 	}
@@ -99,8 +97,6 @@ Class DD_PlayerPawn : PlayerPawn
 			return;	// bailing out...
 		}
 		
-		tic_counter++;	// increment
-		
 		// This is mainly here to do things on every ~second or so.
 		// right now it's empty, but if I were, or someone else, were
 		// to do something like this, it's here for them to use.
@@ -109,11 +105,8 @@ Class DD_PlayerPawn : PlayerPawn
 		// reset the tic_counter to zero and do any second-sensitive
 		// functions (more for Daytime Drama 2 boilerplating)
 		// ----
-		if ((tic_counter % 35) == 0)
+		if (level.time % 35 == 0)
 		{
-			// reset tic_counter...
-			tic_counter = 0;
-			
 			// any per-second functions go here
 			PerSecondFunctions();
 		}
