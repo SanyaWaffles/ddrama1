@@ -692,7 +692,7 @@ function void func_CheckPowerups(void)
 	{
 		if ((_shouTime) == DD_TICS_SHOUTIME)
 		{
-			Log(s:"Genocider Jill Are Wearing Off...");
+			Log(s:"Jack and Jill Pepper Is Wearing Off...");
 		}
 		
 		if ((_shouTime) < (TICS_PER_SECOND * 5) && ((_shouTime) % TICS_PER_SECOND) == 0)
@@ -985,7 +985,10 @@ function void func_PlayerStatChecks(void)
 script "DDLib_Cycle" ENTER net
 {
 	func_InitScreen();	// Init Screen just in case.
-
+	GiveInventory("DD_Debug_ResetRoll", 1);
+	
+	func_Clear(HUDDISPID_USEKEY);
+	
 	// While the activator-player is alive...
 	while((GetActorProperty(0, APROP_Health) > 0))
 	{
@@ -1085,11 +1088,12 @@ script "DDLib_EndMap" (int secret, int cameraTID) net
 script "DDLib_PlayerDeath" DEATH net
 {
 	bool _dispmsg = false;
+	int l = 0;
 
 	func_InitScreen();
 	func_SetFontToBig();
 
-	while(TRUE)
+	while(l < 3)
 	{
 		_dispmsg = ~_dispmsg;
 
@@ -1103,6 +1107,7 @@ script "DDLib_PlayerDeath" DEATH net
 		}
 
 		Delay(TICS_PER_SECOND);
+		l++;
 	}
 }
 
