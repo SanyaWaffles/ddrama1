@@ -60,22 +60,22 @@ Class DD_CSSanya : DD_NPC
 	{
 		Spawn:
 		IdleTalk:
-			CSN1 A 5;
-			CSN1 B 5;
+			CSN1 A 7;
+			CSN1 B 7;
 			Loop;
 		
 		HandsInAir:
-			CSN2 A 5;
-			CSN2 B 5;
+			CSN2 A 7;
+			CSN2 B 7;
 			Loop;
 		
 		GunFlashing:
-			CSN3 A 5;
-			CSN3 B 5;
+			CSN3 A 7;
+			CSN3 B 7;
 			Loop;
 		
 		Peace:
-			CSN4 B 5;
+			CSN4 B 7;
 			Loop;
 	}
 }

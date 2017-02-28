@@ -67,34 +67,34 @@ Class DD_CSJunkoE : DD_Terrorist
 	States
 	{		
 		LeftArmUp:
-			CJK0 A 5;
-			CJK0 B 5;
+			CJK0 A 7;
+			CJK0 B 7;
 			Loop;
 		
 		RightArmUp:
-			CJK1 A 5;
-			CJK1 B 5;
+			CJK1 A 7;
+			CJK1 B 7;
 			Loop;
 		
 		BothArmsUp:
-			CJK2 A 5;
-			CJK2 B 5;
+			CJK2 A 7;
+			CJK2 B 7;
 			Loop;
 		
 		HandsOnHips:
-			CJK3 A 5;
-			CJK3 B 5;
+			CJK3 A 7;
+			CJK3 B 7;
 			Loop;
 		
 		WinkyFace:
-			CJK4 A 5;
-			CJK4 B 5;
+			CJK4 A 7;
+			CJK4 B 7;
 			Loop;
 		
 		Spawn:
 		Laff:
-			CJK5 A 5;
-			CJK5 B 5;
+			CJK5 A 7;
+			CJK5 B 7;
 			Loop;
 		
 		Ded:
