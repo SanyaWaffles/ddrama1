@@ -118,7 +118,7 @@ DoomEdNums
 	6843 = DD_JarTongueSticks
 	6844 = DD_CeilingLightHanging
 	6845 = DD_CeilingLightHangingSmall
-	
+	6846 = DD_PoliceLamp
 	6847 = DD_CrapPlop
 	6848 = DD_StreetLightPole
 	6849 = DD_PlantedTree

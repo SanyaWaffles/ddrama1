@@ -166,6 +166,9 @@ Class DD_TrollCorpseHook : DD_ChainHook
 {
 	Default
 	{
+		//$Title "Troll Corpse Hook"
+		//$Sprite TRC2A0
+		//$Category "Decoration"
 		Radius 10;
 		Height 40;
 		Health 10;
@@ -251,11 +254,15 @@ Class DD_TrollCorpse : DD_Prop
 {
 	Default
 	{
+		//$Title "Troll Corpse"
+		//$Sprite TRC1A0
+		//$Category "Decoration"
 		Radius 10;
 		Height 24;
 		Health 10;
 		Mass 800;
 		DeathSound "misc/gibbed";
+		Scale 0.12;
 
 		+Shootable
 		-Solid
