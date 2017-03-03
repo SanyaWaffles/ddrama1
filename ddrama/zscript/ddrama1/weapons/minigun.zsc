@@ -85,6 +85,7 @@ Class DD_Minigun : DD_Weapon
 		Weapon.AmmoGive 40;
 		Weapon.AmmoType "DD_AmmoBelt";
 		Weapon.Kickback 500;
+		Tag "$DD_GOTMINIGUN";
 	}
 	
 	action void A_DDMinigunReady()

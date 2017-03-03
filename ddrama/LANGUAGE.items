@@ -48,6 +48,7 @@ DD_GOTBLUCARD		= "Blue Access Card";
 DD_GOTYELCARD		= "Gold Access Card";
 
 // Weapons + Weapon pickups
+DD_WACOMPEN			= "Sonic Wacom Pen";
 DD_GOTPISTOL		= "Pistol";
 DD_GOTBULLETS		= "9mm Rounds";
 DD_GOTSHOTGUN		= "Shotgun";
@@ -61,7 +62,7 @@ DD_GOTBRONZEBLOOD	= "Bronze Blood Tube";
 DD_GOTOLIVEBLOOD	= "Olive Blood Tube";
 DD_GOTCOBALTBLOOD	= "Cobalt Blood Tube";
 DD_GOTBLOODBUCKET	= "Troll Blood Bucket";
-DD_GOTDESPGUN		= "Despair Rifle";
+DD_GOTDESPGUN		= "Despairium Rifle";
 DD_GOTDGCELLS		= "Despairium 45 Tank";
 
 DD_GOTSMALLBULLETS	=	" +5 Pistol Rounds";

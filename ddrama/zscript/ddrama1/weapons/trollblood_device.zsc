@@ -470,6 +470,7 @@ Class DD_TrollbloodDevice : DD_Weapon
 		Weapon.SlotPriority 0;
 		Weapon.ReadySound "weapons/trollhbeat";
 		Inventory.Icon "GUNXA0";
+		Tag "$DD_GOTTROLLGUN";
 
 		+Weapon.NoAutoFire
 	}

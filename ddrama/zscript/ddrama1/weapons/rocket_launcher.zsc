@@ -352,6 +352,7 @@ Class DD_RocketLauncher : DD_Weapon
 		Weapon.AmmoGive 2;
 		Weapon.AmmoType "DD_RocketAmmo";
 		Weapon.Kickback 750;
+		Tag "$DD_GOTRLAUNCH";
 	}
 	
 	bool heatseektoggle;	// this needs to be declared both on the missile launcher AND the player/invoker

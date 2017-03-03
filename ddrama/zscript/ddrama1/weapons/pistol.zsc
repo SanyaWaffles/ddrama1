@@ -83,6 +83,7 @@ Class DD_Pistol : DD_Weapon
 		Weapon.AmmoType "DD_Bullets";
 		Inventory.PickupMessage "$DD_GOTPISTOL";
 		Inventory.Icon "GUN2A0";
+		Tag "$DD_GOTPISTOL";
 	}
 	
 	States

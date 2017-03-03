@@ -93,6 +93,7 @@ Class DD_Shotgun : DD_Weapon
 		Weapon.AmmoGive 8;
 		Weapon.AmmoType "DD_Shells";
 		Weapon.Kickback 300;
+		Tag "$DD_GOTSHOTGUN";
 	}
 	
 	action state A_DDShotgunCheck()

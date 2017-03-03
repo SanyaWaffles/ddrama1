@@ -120,6 +120,7 @@ Class DD_DespairiumRifle : DD_Weapon
 		Weapon.BobSpeed 0.4;
 		Weapon.AmmoType "DD_Despairium";
 		Weapon.Kickback 250;
+		Tag "$DD_GOTDESPGUN";
 	}
 	
 	action bool CheckForCoolant()

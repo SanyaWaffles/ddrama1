@@ -64,14 +64,14 @@ map MAP04 lookup DD_MAP04
 map SECRET01 lookup DD_MAPSECRET01
 {
 	LevelNum = 13
-	Music = "D_MINUIT"
+	Music = "D_ANAEM"
 	Next = "MAP05"
 }
 
 map MAP05 lookup DD_MAP05
 {
 	LevelNum = 5
-	Music = "D_DRAMAT"
+	Music = "D_ANAEM"
 	Next = "MAP06"
 }
 
