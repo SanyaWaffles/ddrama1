@@ -19,6 +19,19 @@ Class DD_GladiatorSandalsBouncing : PowerHighJump
 	{
 		Powerup.Color "5A 73 66", 0.25;
 	}
+	
+	override void DoEffect ()
+	{
+		if (EffectTics == BLINKTHRESHOLD)
+		{
+			Console.Printf("Shoes are wearing off!");
+		}
+		if (isBlinking())
+		{
+			A_PlaySound("sandals/tick", (DDPLAYER_BODYCHAN), 1.0, false, ATTN_NONE);
+		}
+		Super.DoEffect();
+	}
 }
 
 // The powerup itself

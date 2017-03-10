@@ -38,7 +38,7 @@ maps
 		overrideceiltexture = false;
 		defaultwalltexture = "BRKRED";
 		defaultbottomtexture = "BRKRED";
-		scriptcompiler = "zdoom_acs.cfg";
+		scriptcompiler = "zdoom_gdcc.cfg";
 		uselongtexturenames = false;
 		viewpositionx = 194.6301f;
 		viewpositiony = -288.9864f;
@@ -87,6 +87,10 @@ maps
 			{
 				xpanningfloor = 1;
 				rotationfloor = 1;
+				color_floor = 0;
+				color_ceiling = 0;
+				color_walltop = 0;
+				color_wallbottom = 0;
 				xpanningceiling = 1;
 				ypanningceiling = 1;
 				ypanningfloor = 1;
@@ -121,7 +125,7 @@ maps
 				resource;
 				tabtype = 0;
 				scripttype = 18;
-				caretposition = 167;
+				caretposition = 258;
 			}
 			
 			document1
@@ -131,7 +135,8 @@ maps
 				resource;
 				tabtype = 0;
 				scripttype = 1;
-				caretposition = 213;
+				caretposition = 257;
+				firstvisibleline = 17;
 				activetab = true;
 			}
 		}

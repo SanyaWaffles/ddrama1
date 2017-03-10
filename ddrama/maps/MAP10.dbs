@@ -27,7 +27,7 @@ maps
 		overridefloorheight = false;
 		overrideceilheight = false;
 		overridebrightness = false;
-		scriptcompiler = "zdoom_acs.cfg";
+		scriptcompiler = "zdoom_gdcc.cfg";
 		
 		grid
 		{
@@ -40,9 +40,9 @@ maps
 			gridsize = 8f;
 		}
 		uselongtexturenames = false;
-		viewpositionx = -1184.122f;
-		viewpositiony = 0.2232132f;
-		viewscale = 0.1196244f;
+		viewpositionx = -634.9399f;
+		viewpositiony = 2723.655f;
+		viewscale = 0.4542736f;
 		
 		scriptlumps
 		{
@@ -55,6 +55,7 @@ maps
 				activetab = true;
 			}
 		}
+		useresourcesinreadonlymode = false;
 		
 		fieldtypes
 		{
@@ -97,7 +98,6 @@ maps
 				arg0str = 2;
 			}
 		}
-		useresourcesinreadonlymode = false;
 		
 		scriptdocuments
 		{
@@ -118,6 +118,8 @@ maps
 				resource;
 				tabtype = 0;
 				scripttype = 1;
+				caretposition = 517;
+				firstvisibleline = 9;
 				activetab = true;
 			}
 		}

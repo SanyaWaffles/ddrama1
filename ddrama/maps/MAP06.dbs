@@ -27,7 +27,7 @@ maps
 		overridefloorheight = false;
 		overrideceilheight = false;
 		overridebrightness = false;
-		scriptcompiler = "zdoom_acs.cfg";
+		scriptcompiler = "zdoom_gdcc.cfg";
 		
 		grid
 		{
@@ -102,6 +102,7 @@ maps
 				lightceilingabsolute = 3;
 				lightcolor = 0;
 				lightfloor = 0;
+				color_floor = 0;
 			}
 			
 			thing
@@ -124,7 +125,6 @@ maps
 				tabtype = 0;
 				scripttype = 18;
 				caretposition = 613;
-				activetab = true;
 			}
 			
 			document1
@@ -134,6 +134,7 @@ maps
 				resource;
 				tabtype = 0;
 				scripttype = 1;
+				activetab = true;
 			}
 		}
 	}

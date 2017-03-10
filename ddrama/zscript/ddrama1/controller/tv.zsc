@@ -48,32 +48,25 @@ Class DD_RegularTVController : DD_ShootableController
 		Height 40;
 	}
 	
-	void A_SmashRegTV()
+	
+	void A_ChangeTVTextureBroken(int lineid, int sid, int sidepos)
 	{
-		if (args[0] > 0 && (args[1] >= 0 && args[1] < 3))
-			ACS_NamedExecuteAlways("DDLib_BreakTVReg", 0, args[0], args[1]);
+		if (lineid <= 0 || !(sid == 1 || sid == 0) || !(sidepos >=0 || sidepos < 3))
+			return;
 		
-		if (args[2] > 0)
-			Thing_Remove(args[2]);
-		
-		Actor mo = null;
+		LineIdIterator TVLineIterator = LineIdIterator.Create(lineid);
+		Line li;
 		int i;
-
-		for(i = (random[TVDebris]()&3)+3; i; i--)
+		while ((i = TVLineIterator.Next()) >= 0)
 		{
-			mo = Spawn("DD_MetalJunk", Pos, ALLOW_REPLACE);
-			if (mo)
+			li = level.lines[i];
+			if (li)
 			{
-				mo.Vel.X = random2[TVDebris]() / 64.;
-				mo.Vel.Y = random2[TVDebris]() / 64.;
-				mo.Vel.Z = ((random[TVDebris]() & 7) + 5) * 0.75;
+				li.sidedef[sid].SetTexture(sidepos, TexMan.CheckForTexture("TVBROKEN", TexMan.Type_Wall));
 			}
-			A_PlaySound("misc/tcanbreak", CHAN_BODY, 0.7, false, 0.5);	//hmm
-			A_PlaySound("brony/dudebrotv", CHAN_VOICE);
 		}
 		
-		A_PlaySound("misc/tcanbreak", CHAN_BODY, 0.7, false, 0.5);
-	}
+	} 
 
 	States
 	{
@@ -85,7 +78,10 @@ Class DD_RegularTVController : DD_ShootableController
 			TNT1 A 0
 			{
 				if (args[0] > 0 && (args[1] >= 0 && args[1] < 3))
-					ACS_NamedExecuteAlways("DDLib_BreakTVReg", 0, args[0], args[1]);
+				{
+					//ACS_NamedExecuteAlways("DDLib_BreakTVReg", 0, args[0], args[1]);
+					A_ChangeTVTextureBroken(args[0], 0, args[1]);
+				}
 				
 				if (args[2] > 0)
 					Thing_Remove(args[2]);

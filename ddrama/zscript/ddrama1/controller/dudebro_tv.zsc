@@ -178,7 +178,7 @@ Class DD_DudebronyObservingController : DD_Controller
  *
  * It also causes the line ID (arg0) to "break"
 */
-Class DD_DudebroTVController : DD_ShootableController
+Class DD_DudebroTVController : DD_RegularTVController
 {
 	Default
 	{
@@ -202,7 +202,8 @@ Class DD_DudebroTVController : DD_ShootableController
 	{
 		if (args[0] > 0)
 		{
-			CallACS("DDLib_Dudebro_TVBreakOnly", args[0]);	// we can only change textures in ACS for now.
+			// CallACS("DDLib_Dudebro_TVBreakOnly", args[0]);	// we can only change textures in ACS for now.
+			A_ChangeTVTextureBroken(args[0], 0, Side.Mid);
 			
 			Actor mo = null;
 			int i;

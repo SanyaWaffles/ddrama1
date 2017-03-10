@@ -23,7 +23,7 @@ Class DD_RedKey : DD_Key
 		//$Color 13
 		
 		Inventory.PickupMessage "$DD_GOTREDKEY";
-		Inventory.Icon "RKEYA0";
+		Inventory.Icon "STKEYS4";
 	}
 
 	States
@@ -45,7 +45,7 @@ Class DD_GreenKey : DD_Key
 		//$Color 13
 		
 		Inventory.PickupMessage "$DD_GOTGRNKEY";
-		Inventory.Icon "GKEYA0";
+		Inventory.Icon "STKEYS5";
 	}
 
 	States
@@ -67,7 +67,7 @@ Class DD_BlueKey : DD_Key
 		//$Color 13
 		
 		Inventory.PickupMessage "$DD_GOTBLUKEY";
-		Inventory.Icon "BKEYA0";
+		Inventory.Icon "STKEYS6";
 	}
 
 	States
@@ -89,7 +89,7 @@ Class DD_GoldKey : DD_Key
 		//$Color 13
 		
 		Inventory.PickupMessage "$DD_GOTYELKEY";
-		Inventory.Icon "YKEYA0";
+		Inventory.Icon "STKEYS7";
 	}
 
 	States
@@ -111,7 +111,7 @@ Class DD_RedCard : DD_Key
 		//$Color 13
 		
 		Inventory.PickupMessage "$DD_GOTREDCARD";
-		Inventory.Icon "RCRDA0";
+		Inventory.Icon "STKEYS0";
 	}
 
 	States
@@ -133,7 +133,7 @@ Class DD_GreenCard : DD_Key
 		//$Color 13
 		
 		Inventory.PickupMessage "$DD_GOTGRNCARD";
-		Inventory.Icon "GCRDA0";
+		Inventory.Icon "STKEYS1";
 	}
 
 	States
@@ -155,7 +155,7 @@ Class DD_BlueCard : DD_Key
 		//$Color 13
 		
 		Inventory.PickupMessage "$DD_GOTBLUCARD";
-		Inventory.Icon "BCRDA0";
+		Inventory.Icon "STKEYS2";
 	}
 
 	States
@@ -177,7 +177,7 @@ Class DD_GoldCard : DD_Key
 		//$Color 13
 		
 		Inventory.PickupMessage "$DD_GOTYELCARD";
-		Inventory.Icon "YCRDA0";
+		Inventory.Icon "STKEYS3";
 	}
 
 	States

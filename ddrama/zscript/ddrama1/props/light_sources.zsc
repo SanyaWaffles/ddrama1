@@ -169,7 +169,7 @@ Class DD_PoliceLamp : DD_GlassObject
 
 		for(i = (Random[Trash]()&9)+9; i; i--)
 		{
-			mo = Spawn(POPOJUNK[Random[Trash](0, 3)], Pos, ALLOW_REPLACE);
+			mo = Spawn(POPOJUNK[Random[Trash](0, 1)], Pos, ALLOW_REPLACE);
 			if (mo)
 			{
 				mo.Vel.X = Random2[Trash]() / 64.;
@@ -191,11 +191,9 @@ Class DD_PoliceLamp : DD_GlassObject
 		Spawn:
 			POLI A -1 Bright;
 			Stop;
-	}
-	
-	override void Die(Actor source, Actor inflictor, int dmgflags = 0)
-	{
-		A_DestroyPLamp();
+		Death:
+			TNT1 A 5 A_DestroyPLamp;
+			Stop;
 	}
 }
 

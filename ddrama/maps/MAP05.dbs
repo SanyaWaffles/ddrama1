@@ -27,7 +27,7 @@ maps
 		overridefloorheight = false;
 		overrideceilheight = false;
 		overridebrightness = false;
-		scriptcompiler = "zdoom_acs.cfg";
+		scriptcompiler = "zdoom_gdcc.cfg";
 		
 		grid
 		{
@@ -40,9 +40,9 @@ maps
 			gridsize = 8f;
 		}
 		uselongtexturenames = false;
-		viewpositionx = -1103.331f;
-		viewpositiony = 2804.642f;
-		viewscale = 0.885142f;
+		viewpositionx = 660.9642f;
+		viewpositiony = -953.7903f;
+		viewscale = 0.4542178f;
 		
 		scriptlumps
 		{
@@ -91,6 +91,10 @@ maps
 				rotationceiling = 1;
 				rotationfloor = 1;
 				ypanningfloor = 1;
+				color_floor = 0;
+				color_ceiling = 0;
+				color_wallbottom = 0;
+				color_walltop = 0;
 				lightceiling = 0;
 				xpanningfloor = 1;
 				xscalefloor = 1;
@@ -123,7 +127,6 @@ maps
 				tabtype = 0;
 				scripttype = 18;
 				caretposition = 981;
-				activetab = true;
 			}
 			
 			document1
@@ -133,6 +136,7 @@ maps
 				resource;
 				tabtype = 0;
 				scripttype = 1;
+				activetab = true;
 			}
 		}
 	}

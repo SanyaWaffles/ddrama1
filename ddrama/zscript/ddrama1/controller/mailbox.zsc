@@ -32,6 +32,7 @@ Class DD_MailboxController : DD_SwitchableController
 		//$Arg0 "Item"
 		//$Arg0Default 0
 		//$Arg0Tooltip "Item to 'fetch' from in the mailbox."
+		//$Arg0Str
 		
 		Radius 24;
 		Height 48;

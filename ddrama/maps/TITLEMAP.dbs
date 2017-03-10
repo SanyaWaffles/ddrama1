@@ -134,7 +134,7 @@ maps
 		viewpositionx = -30.22248f;
 		viewpositiony = 1.641213f;
 		viewscale = 0.8857741f;
-		scriptcompiler = "zdoom_acs.cfg";
+		scriptcompiler = "zdoom_gdcc.cfg";
 		
 		grid
 		{
@@ -164,6 +164,9 @@ maps
 			{
 				lightcolor = 0;
 				floorglowheight = 1;
+				color_floor = 0;
+				color_ceiling = 0;
+				color_sprites = 0;
 				xpanningceiling = 1;
 				ypanningceiling = 1;
 				rotationceiling = 1;

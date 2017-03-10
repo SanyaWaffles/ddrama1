@@ -24,13 +24,6 @@ OptionValue Gender
 	2, "$OPTVAL_OTHER"
 }
 
-OptionValue DDHints
-{
-	0, "Always Off"
-	1, "On Lower Difficulties"
-	2, "Always On"
-}
-
 OptionValue TextColors
 {
 	0.0, "\c[DarkRed]brick"
@@ -281,13 +274,12 @@ OptionMenu "DDramaExpMenu"
 	Title "EXPERIENCE  OPTIONS"
 
 	StaticText " "
-	Option "Show Hints",		"dd_hudhints",		"DDHints"
 	Option "Crosshair",			"crosshair",		"CHairOnOff"
 	
 	Slider "Autoaim",			"Autoaim",			0, 35, 1
 	Option "Scale text HUD",	"con_scaletext", 	"ScaleValues"
 	Option "RIP In Peace",		"dd_rip", "RIPOffOn"
-	Option "Alter Ego Boot",	"dd_skipaeboot", "SkipAENoYes"
+	Option "Disable AE Boot",	"dd_skipaeboot", "SkipAENoYes"
 }
 
 ListMenu "DDramaOptionsMenu"

@@ -31,7 +31,7 @@ maps
 		viewpositionx = 1597.277f;
 		viewpositiony = 446.6465f;
 		viewscale = 0.4999896f;
-		scriptcompiler = "zdoom_acs.cfg";
+		scriptcompiler = "zdoom_gdcc.cfg";
 		
 		grid
 		{

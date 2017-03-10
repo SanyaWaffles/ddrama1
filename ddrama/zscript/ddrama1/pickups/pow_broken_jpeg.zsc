@@ -23,6 +23,19 @@ Class DD_PowerBrokenInvisibility : PowerInvisibility
 		+CantSeek
 		+Shadow
 	}
+	
+	override void DoEffect ()
+	{
+		if (EffectTics == BLINKTHRESHOLD)
+		{
+			Console.Printf("Broken JPEG Is Wearing Off!");
+		}
+		if (isBlinking())
+		{
+			A_PlaySound("jpeg/tick", (DDPLAYER_BODYCHAN), 1.0, false, ATTN_NONE);
+		}
+		Super.DoEffect();
+	}
 }
 
 // Actual Pickup Object

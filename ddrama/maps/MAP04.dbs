@@ -38,7 +38,7 @@ maps
 			backscaley = 100;
 			gridsize = 2f;
 		}
-		scriptcompiler = "zdoom_acs.cfg";
+		scriptcompiler = "zdoom_gdcc.cfg";
 		uselongtexturenames = false;
 		viewpositionx = 968.2958f;
 		viewpositiony = 1018.475f;
@@ -93,16 +93,20 @@ maps
 				yscalefloor = 1;
 				xpanningfloor = 1;
 				ypanningfloor = 1;
+				color_floor = 0;
+				color_wallbottom = 0;
 				xpanningceiling = 1;
-				rotationceiling = 17;
+				color_ceiling = 0;
+				rotationceiling = 1;
 				lightceiling = 0;
 				ypanningceiling = 1;
 				xscaleceiling = 1;
 				yscaleceiling = 1;
-				rotationfloor = 17;
+				rotationfloor = 1;
 				lightfloor = 0;
 				floorglowcolor = 0;
 				floorglowheight = 1;
+				color_walltop = 0;
 				alphaceiling = 1;
 				alphafloor = 1;
 				lightcolor = 0;
@@ -127,7 +131,6 @@ maps
 				tabtype = 0;
 				scripttype = 18;
 				caretposition = 749;
-				activetab = true;
 			}
 			
 			document1
@@ -138,6 +141,7 @@ maps
 				tabtype = 0;
 				scripttype = 1;
 				caretposition = 371;
+				activetab = true;
 			}
 		}
 	}

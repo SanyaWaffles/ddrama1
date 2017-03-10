@@ -1,7 +1,3 @@
-user int	dd_hudhints	= 1;	// Hud Hints
-								// 0 = Never
-								// 1 = On Lower Difficulties
-								// 2 = Always
 // Use Oneliners
 user int	dd_snd_oneliners = 1;
 user int	dd_rip = 1;			// RIP on and off

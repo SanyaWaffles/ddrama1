@@ -229,7 +229,7 @@ Class DD_ShrunkenPlayer : DD_Sanya
 		if (CheckMeleeRange())
 			return ResolveState("JustDie");
 		
-		return null;
+		return ResolveState(null);
 	}
 	
 	void DDFunc_ShrunkDeath()

@@ -38,11 +38,11 @@ maps
 		overrideceiltexture = false;
 		defaultwalltexture = "GRASSY0";
 		defaultbottomtexture = "GRASSY0";
-		scriptcompiler = "zdoom_acs.cfg";
+		scriptcompiler = "zdoom_gdcc.cfg";
 		uselongtexturenames = false;
-		viewpositionx = -952.5482f;
-		viewpositiony = -1570.95f;
-		viewscale = 2.829705f;
+		viewpositionx = -632.0863f;
+		viewpositiony = -532.152f;
+		viewscale = 0.462679f;
 		
 		plugins
 		{
@@ -145,7 +145,7 @@ maps
 				resource;
 				tabtype = 0;
 				scripttype = 1;
-				caretposition = 203;
+				caretposition = 194;
 				firstvisibleline = 69;
 				activetab = true;
 			}

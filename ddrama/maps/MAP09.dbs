@@ -27,7 +27,7 @@ maps
 		overridefloorheight = false;
 		overrideceilheight = false;
 		overridebrightness = false;
-		scriptcompiler = "zdoom_acs.cfg";
+		scriptcompiler = "zdoom_gdcc.cfg";
 		
 		grid
 		{
@@ -97,10 +97,13 @@ maps
 				xscalefloor = 1;
 				yscalefloor = 1;
 				rotationceiling = 1;
+				color_floor = 0;
+				color_wallbottom = 0;
 				xscaleceiling = 1;
 				yscaleceiling = 1;
 				floorglowcolor = 0;
 				floorglowheight = 1;
+				color_walltop = 0;
 			}
 			
 			thing
@@ -125,7 +128,6 @@ maps
 				tabtype = 0;
 				scripttype = 18;
 				caretposition = 952;
-				activetab = true;
 			}
 			
 			document1
@@ -136,6 +138,7 @@ maps
 				tabtype = 0;
 				scripttype = 1;
 				caretposition = 301;
+				activetab = true;
 			}
 		}
 	}

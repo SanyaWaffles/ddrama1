@@ -41,9 +41,7 @@ Class DD_Handbag : BackpackItem
 // Christmas Cracker
 // Like ill-conceived love:: one loud bang, 
 // a dissapointing trinket, and ultimately a joke
-// handled in ACS previously, I need to look into
-// how to make it remove itself all in ZScript
-Class DD_Cracker : Inventory
+Class DD_Cracker : CustomInventory
 {
 	Default
 	{
@@ -57,16 +55,41 @@ Class DD_Cracker : Inventory
 		Inventory.PickupMessage "$DD_GOTCRACKER";
 		Inventory.PickupSound "pickups/cracker";
 		Inventory.Amount 1;
-		Inventory.MaxAmount 1;
 
 		-Inventory.InvBar;
 	}
-
+	
 	States
 	{
 		Spawn:
 			CRKR A -1;
 			Stop;
+			
+		Pickup:
+			CRKR A 0
+			{
+				static const Class<Actor> trinkets[] =
+				{
+					"DD_DroppedPistolBullets",
+					"DD_DroppedShells",
+					"DD_RocketAmmo",
+					"DD_OliveBloodAmmo",
+					"DD_ChocolateBar",
+					"DD_SyoPepper",
+					"DD_AmmoBelt"
+				}
+				String sr;
+				
+				int joke = Random[CrackerJoke](1, 16);
+				
+				sr.AppendFormat("$%s%02d", "DD_CRACKERJOKE", joke);
+				
+				A_Print(StringTable.Localize(sr));
+				
+				A_SpawnItemEx(trinkets[Random[CrackerJoke](0, 6)], flags: SXF_NOCHECKPOSITION);
+				
+				return true;
+			}
+			Stop;
 	}
 }
-

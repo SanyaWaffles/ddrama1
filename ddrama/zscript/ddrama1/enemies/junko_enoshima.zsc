@@ -314,8 +314,34 @@ Class DD_JunkoEnoshimaBoss : DD_Boss
 			JKO2 F 5 A_FaceTarget;
 			JKO2 F 3
 			{
-				A_PlaySound("junkoboss/smart_ui", CHAN_WEAPON);
-				ACS_NamedExecute("DDLib_JunkoBossSpawn", 0, 666);
+				static const Class<Actor> DDSTR_JunkoEnemies[] =
+				{
+					"DD_BarfBag",
+					"DD_SmokeyHead",
+					"DD_Dontreldemon",
+					"DD_BonziBuddy",
+					"DD_SweetBro",
+					"DD_BronyOfDespair"
+				};
+				
+				ActorIterator dbspotfinder = ActorIterator.Create(666, "DD_DudebronySpot");
+				Actor dbs;
+				
+				// search for the tv controllers. Check to see if they are alive.
+				while (dbs = DD_DudebronySpot(dbspotfinder.Next()))
+				{
+					// if spot exists
+					if (dbs)
+					{
+						if (!(level.nomonsters || sv_nomonsters))
+						{
+							// Only spawn monsters if not -nomonsters
+							A_PlaySound("junkoboss/smart_ui", CHAN_WEAPON);
+							Spawn(DDSTR_JunkoEnemies[Random[JunkoEnemies](0, 5)], dbs.pos, ALLOW_REPLACE);
+							Spawn("TeleportFog", dbs.pos, ALLOW_REPLACE);
+						}
+					}
+				}
 			}
 			Goto TransformPostSmart;
 			

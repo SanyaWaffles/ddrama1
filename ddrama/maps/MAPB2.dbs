@@ -138,11 +138,11 @@ maps
 		overrideceiltexture = false;
 		defaultwalltexture = "METALPNL";
 		defaultbottomtexture = "METALPNL";
-		scriptcompiler = "zdoom_acs.cfg";
+		scriptcompiler = "zdoom_gdcc.cfg";
 		uselongtexturenames = false;
-		viewpositionx = 744.981f;
-		viewpositiony = -418.2921f;
-		viewscale = 0.1109164f;
+		viewpositionx = 255.2592f;
+		viewpositiony = -421.1608f;
+		viewscale = 0.122008f;
 		
 		scriptlumps
 		{
@@ -224,6 +224,8 @@ maps
 				resource;
 				tabtype = 0;
 				scripttype = 1;
+				caretposition = 1099;
+				firstvisibleline = 26;
 				activetab = true;
 			}
 		}
