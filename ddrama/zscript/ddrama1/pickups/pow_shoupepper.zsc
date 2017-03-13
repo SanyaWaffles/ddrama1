@@ -30,8 +30,8 @@ Class DD_SyoPepperPowerStrength : PowerDamage
 	override void DoEffect()
 	{
 		bDontMorph = true;	// set this
-		players[PlayerNumber()].morphtics = 1;
-		players[PlayerNumber()].UndoPlayerMorph(players[PlayerNumber()], 0, true);
+		players[consoleplayer].morphtics = 1;
+		players[consoleplayer].UndoPlayerMorph(players[consoleplayer], 0, true);
 		if (EffectTics == BLINKTHRESHOLD)
 		{
 			Console.Printf("Syo Power Is Wearing Off!");
