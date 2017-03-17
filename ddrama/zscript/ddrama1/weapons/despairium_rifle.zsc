@@ -170,7 +170,7 @@ Class DD_DespairiumRifle : DD_Weapon
 					"DD_DespairPlasmaBall",
 					"DD_DespairPlasmaBallV2",
 					"DD_DespairPlasmaBallV3"
-				}
+				};
 				
 				int tix = 3;	// default tics..
 				int proji = 0;	// set projectile index
@@ -348,8 +348,7 @@ Class DD_DespairPlasmaBallV3 : DD_DespairPlasmaBallV2
 		Scale 0.08;
 		RenderStyle "Add";
 		Alpha 0.6;
-	
-	
+		
 		+Ripper
 		+NoBossRip
 	}

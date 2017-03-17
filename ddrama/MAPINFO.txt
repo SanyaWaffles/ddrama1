@@ -29,7 +29,7 @@ map MAP01 lookup DD_MAP01
 map MAP02 lookup DD_MAP02
 {
 	LevelNum = 2
-	Music = "D_KRIEG"
+	Music = "D_SCROW"
 	Next = "MAP03"
 	SpecialAction = "DD_BonziBuddy", "Floor_LowerToNearest", 999, 32
 }
@@ -78,7 +78,7 @@ map MAP05 lookup DD_MAP05
 map MAP06 lookup DD_MAP06
 {
 	LevelNum = 6
-	Music = "D_KRIEG"
+	Music = "D_SCROW"
 	Next = "MAP07"
 	SecretNext = "SECRET02"
 }

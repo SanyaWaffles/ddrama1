@@ -77,7 +77,8 @@ Class DD_Cracker : CustomInventory
 					"DD_ChocolateBar",
 					"DD_SyoPepper",
 					"DD_AmmoBelt"
-				}
+				};
+				
 				String sr;
 				
 				int joke = Random[CrackerJoke](1, 16);

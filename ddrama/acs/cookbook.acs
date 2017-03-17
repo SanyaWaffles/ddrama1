@@ -79,30 +79,6 @@
 // -------------------------->>>>
 
 // --------------------------
-// floor: rounds arg 'num'
-// down to the nearest number
-// without fixed-point value
-// arg0 -> int num: value to
-//					process
-// --------------------------
-function int floor(int num)
-{
-   return (num>>16);
-}
-
-// --------------------------
-// ceiling: rounds arg 'num'
-// up to the nearest number
-// without fixed-point value
-// arg0 -> int num: value to
-//					process
-// --------------------------
-function int ceiling(int num)
-{
-   return ((num>>16)+1);
-}
-
-// --------------------------
 // integer: returns integer
 // part of fixed value only
 // arg0 -> int num: value
