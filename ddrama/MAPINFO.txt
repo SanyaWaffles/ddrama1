@@ -11,7 +11,7 @@ include "mapinfo/def_map.txt"
 // MAP STUFF BLOCK
 map START lookup DD_START
 {
-	Music = ""
+	Music = "D_TERMIN"
 	Next = "MAP01"
 }
 
@@ -47,6 +47,7 @@ map MAPB1 lookup DD_MAPB1
 	Music = "D_KRIEG"
 	Next = "MAP04"
 }
+
 adddefaultmap
 {
 	Cluster = 2

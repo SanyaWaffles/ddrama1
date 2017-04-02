@@ -234,7 +234,13 @@ function void func_BossMusic(void)
 // Set Statistic Music
 function void func_InterMusic(void)
 {
-	SetMusic("D_STATS");
+	SetMusic("D_TERMIN");
+}
+
+// Set Statistic Music
+function void func_VictoryMusic(void)
+{
+	SetMusic("D_BVICTOR");
 }
 
 // Set Felix Music
@@ -472,7 +478,7 @@ script "DDLib_EndMap" (int secret, int cameraTID) net
 	Delay(1);
 	func_clearHUDandGun();
 	
-	func_InterMusic();
+	func_VictoryMusic();
 	
 	do
 	{
@@ -484,7 +490,7 @@ script "DDLib_EndMap" (int secret, int cameraTID) net
 
 	func_Clear(HUDDISPID_ENDTALLY);
 	func_FadeInExit();
-	func_StopMusic();
+	func_InterMusic();
 
 	Delay((TICS_PER_SECOND - 2) * 1);
 
