@@ -478,7 +478,7 @@ Class DD_TrollbloodDevice : DD_Weapon
 	int trollbloodstage;
 	
 	// Fire the bouncing web projectile
-	void A_DDShootWeb()
+	action void A_DDShootWeb()
 	{
 		// Fire a shot but manually take ammo
 		A_FireProjectile("DD_Webshot", 0, false);
@@ -486,7 +486,7 @@ Class DD_TrollbloodDevice : DD_Weapon
 	}
 	
 	// Fire the expander puff
-	void A_DDShootExpandSpark()
+	action void A_DDShootExpandSpark()
 	{
 		// Fire a shot but manually take ammo
 		A_FireBullets(2.4, 1.2, 1, 14, "DD_HemoExpandSpark", FBF_NORANDOMPUFFZ);
@@ -494,7 +494,7 @@ Class DD_TrollbloodDevice : DD_Weapon
 	}
 	
 	// Fire the shrinker shot
-	void A_DDShootOliveShot()
+	action void A_DDShootOliveShot()
 	{
 		// Fire a shot but manually take ammo
 		A_FireProjectile("DD_ShrinkShot", 0, false);

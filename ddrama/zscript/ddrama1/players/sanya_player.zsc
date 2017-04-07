@@ -65,38 +65,6 @@ Class DD_Sanya : DD_PlayerPawn
 		+NoSkin
 	}
 	
-	private bool DDFunc_GetUserOL()
-	{
-		return GetCvar("dd_snd_oneliners");
-	}
-	
-	void DDFunc_PlayerOneLiner()
-	{
-		if (!DDFunc_GetUserOL())
-			return;
-		
-		A_StopSound(CHAN_VOICE);
-		A_GiveInventory("DD_VOX_RIPInPeace");
-	}
-	
-	void DDFunc_PlayerOneLiner2()
-	{
-		if (!DDFunc_GetUserOL())
-			return;
-		
-		A_StopSound(CHAN_VOICE);
-		A_GiveInventory("DD_VOX_RIPInPeace2");
-	}
-	
-	void DDFunc_PlayerOneLiner3()
-	{
-		if (!DDFunc_GetUserOL())
-			return;
-			
-		A_StopSound(CHAN_VOICE);
-		A_GiveInventory("DD_VOX_RIPInPeaceForSure");
-	}
-	
 	void DDFunc_PlayerDies()
 	{
 		A_NoBlocking();
@@ -146,7 +114,7 @@ Class DD_Sanya : DD_PlayerPawn
 			
 		Death:
 			SNYA L 3 DDFunc_PlayerDies;
-			SNYA M 8 DDFunc_PlayerOneLiner;
+			SNYA M 8;
 			SNYA N 5;
 			SNYA N -1;
 			Stop;
@@ -154,7 +122,7 @@ Class DD_Sanya : DD_PlayerPawn
 		XDeath:
 			GIBW A 5 DDFunc_PlayerDiesXTreem;
 			GIBW BC 4;
-			GIBW D 4 DDFunc_PlayerOneLiner2;
+			GIBW D 4;
 			GIBW E 5;
 			GIBW F 5;
 			GIBW F -1;
@@ -179,7 +147,6 @@ Class DD_Sanya : DD_PlayerPawn
 			BAR1 D 5 BRIGHT
 			{
 				A_Explode(128, 144);
-				DDFunc_PlayerOneLiner3();
 				A_DDSpawnLudicrousGibs();
 			}
 			BAR1 E 5 BRIGHT;			

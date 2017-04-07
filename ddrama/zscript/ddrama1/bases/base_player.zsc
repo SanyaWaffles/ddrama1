@@ -31,6 +31,15 @@ Class DD_PlayerPawn : PlayerPawn
 		TROLL_BLOOD_MAX,
 	};
 	
+	enum ERIPSoundObitTypes
+	{
+		RIP_Normal,
+		RIP_FelixHet,
+		RIP_DeepHurting,
+		RIP_LowtaxLoser,
+		RIP_Jeopardy,
+	};
+	
 	bool startepisode;		// starting episode?
 	bool heatseektoggle;	// Rocket Launcher Heatseek Toggle
 	int trollbloodstage;	// Trollblood Device Stage
@@ -38,6 +47,8 @@ Class DD_PlayerPawn : PlayerPawn
 	int cscenehold;			// Hmmm...
 	int expandloop;			// Expand Count
 	int onelinercount;		// One Liner Counter
+	int typeofrip;
+	int seconds;
 	
 	// Make a rubbery expanding noise
 	void A_DDExpandDongStart()
@@ -66,9 +77,57 @@ Class DD_PlayerPawn : PlayerPawn
 		A_SpawnItemEx("DD_LudicrousGibsFx", flags:DDFL_AMMOFLAGSFX);
 	}
 	
+	void A_RIPProcess()
+	{
+		if (health <= 0 && GetCvar("dd_rip"))
+		{			
+			if (seconds == 0)
+			{
+				typeofrip = Random[RIP_SoundObituary](RIP_Normal, RIP_Jeopardy);
+				
+				if (typeofrip == RIP_FelixHet)
+				{
+					S_ChangeMusic("", 0, false, true);
+					players[0].mo.A_Print("\cj[ OA ]        [ HET ]", 30, "BigFont");
+					players[0].mo.A_PlaySound("epitaph/felixsafe", (DDPLAYER_VOICECHAN), DDPLAYER_RIPVOL, false, ATTN_NONE);
+				}
+				if (typeofrip == RIP_DeepHurting)
+				{
+					players[0].mo.A_Print("\cgDEEP HURTING", 15, "BigFont");
+					players[0].mo.A_PlaySound("epitaph/deephurting", (DDPLAYER_VOICECHAN), DDPLAYER_RIPVOL, false, ATTN_NONE);
+				}
+				if (typeofrip == RIP_LowtaxLoser)
+				{
+					players[0].mo.A_Print("\cgloser", 2);
+					players[0].mo.A_PlaySound("epitaph/lowtax", (DDPLAYER_VOICECHAN), DDPLAYER_RIPVOL, false, ATTN_NONE);
+				}
+				if (typeofrip == RIP_Jeopardy)
+				{
+					S_ChangeMusic("D_JEOPTL", 0, false, true);
+					players[0].mo.A_Print("\cjYOU FUCKING IDIOT", 15, "BigFont");
+					players[0].mo.A_PlaySound("epitaph/joelidiot", (DDPLAYER_VOICECHAN), DDPLAYER_RIPVOL, false, ATTN_NONE);
+				}
+				if (typeofrip == RIP_Normal)
+				{
+					players[0].mo.A_PlaySound("epitaph/main", (DDPLAYER_VOICECHAN), DDPLAYER_RIPVOL, false, ATTN_NONE);
+				}
+			}
+			
+			if (seconds == 4)
+			{
+				if (typeofrip == RIP_FelixHet)
+				{
+					S_ChangeMusic("D_FLXOVR", 0, false, true);
+				}
+			}
+			
+			seconds++;
+		}
+	}
+	
 	void PerSecondFunctions()
 	{
-		// nada so far.
+		A_RIPProcess();
 	}
 	
 	override void BeginPlay()

@@ -80,7 +80,6 @@ version "2.4"
 #include "zscript/ddrama1/players/sanya_player.zsc"			// player.dec
 
 #include "zscript/ddrama1/vox/one_liners.zsc"				// oneliners.dec
-#include "zscript/ddrama1/vox/rest_in_peace.zsc"			// rip.dec
 #include "zscript/ddrama1/vox/pickup_tokens.zsc"			// inventory.dec
 #include "zscript/ddrama1/vox/hints.zsc"					// hints.dec
 #include "zscript/ddrama1/vox/debug.zsc"					// debug.dec
