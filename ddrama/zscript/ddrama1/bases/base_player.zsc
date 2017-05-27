@@ -47,8 +47,8 @@ Class DD_PlayerPawn : PlayerPawn
 	int cscenehold;			// Hmmm...
 	int expandloop;			// Expand Count
 	int onelinercount;		// One Liner Counter
-	int typeofrip;
-	int seconds;
+	int typeofrip;			// Type of high quality RIP
+	int seconds;			// Seconds elapsed
 	
 	// Make a rubbery expanding noise
 	void A_DDExpandDongStart()
