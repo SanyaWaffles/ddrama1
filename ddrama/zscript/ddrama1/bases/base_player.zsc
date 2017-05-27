@@ -77,10 +77,11 @@ Class DD_PlayerPawn : PlayerPawn
 		A_SpawnItemEx("DD_LudicrousGibsFx", flags:DDFL_AMMOFLAGSFX);
 	}
 	
+	// Perform High Quality RIPs
 	void A_RIPProcess()
 	{
 		if (health <= 0 && GetCvar("dd_rip"))
-		{			
+		{
 			if (seconds == 0)
 			{
 				typeofrip = Random[RIP_SoundObituary](RIP_Normal, RIP_Jeopardy);
@@ -122,6 +123,11 @@ Class DD_PlayerPawn : PlayerPawn
 			}
 			
 			seconds++;
+			
+			if (seconds > 30)
+			{
+				seconds = 30;	// To prevent overflow?
+			}
 		}
 	}
 	

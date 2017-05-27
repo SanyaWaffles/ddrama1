@@ -1,5 +1,3 @@
-alias test_rip		"take DD_VOX_RIPInPeace_Ctr 255; give DD_VOX_RIPInPeaceForSure; toggleconsole;"
-alias test_ol		"give DD_VOX_SnarkEnemiesGuarantee; toggleconsole;"
 alias berniesanders	"give all; give dd_heatseekcard; give dd_aircompressor; toggleconsole;"
 alias raycharles 	"testcolor Black 1.0; toggleconsole;"
 alias claridryl		"testcolor White 1.0; give dd_antidepressant; toggleconsole;"
