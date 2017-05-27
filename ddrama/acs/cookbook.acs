@@ -3,7 +3,7 @@
 
 // Waffle Iron Studios
 // Cookbook Library
-// (c) 2012-2015 Sanya K. Waffles
+// (c) 2012-2017 Sanya K. Waffles
 
 // Libdefines
 #libdefine DUDEBRO_TVNUM		8					// Max. MRA Television Breakers
@@ -198,12 +198,14 @@ function bool func_CheckButtonUp(int button)
 	return !(GetPlayerInput(-1, INPUT_BUTTONS) & button);
 }
 
+// Set Player Invulnerable and Totally Forzen
 function void func_SetPlayerImmune(void)
 {
 	SetPlayerProperty(1, 2, PROP_INVULNERABILITY);
 	SetPlayerProperty(1, 1, PROP_TOTALLYFROZEN);
 }
 
+// Unset Player Invulnerable and Totally Forzen
 function void func_UnSetPlayerImmune(void)
 {
 	SetPlayerProperty(1, 0, PROP_INVULNERABILITY);
@@ -220,6 +222,7 @@ function void func_StopMusic(void)
 	SetMusic("");
 }
 
+// Wrapper script for above
 script "DDLib_StopMusic" (void)
 {
 	func_StopMusic();
@@ -228,7 +231,7 @@ script "DDLib_StopMusic" (void)
 // Set Boss Battle Music
 function void func_BossMusic(void)
 {
-	SetMusic("D_HELRO");
+	SetMusic("D_HORSE");
 }
 
 // Set Statistic Music
@@ -262,35 +265,7 @@ function void func_DefaultMusic(void)
 	SetMusic("*");
 }
 
-script "DDLib_Het" (int _seconds1, int _seconds2)
-{
-	func_StopMusic();
-	
-	while (_seconds1 > 0)
-	{
-		Delay(TICS_PER_SECOND);
-		_seconds1--;
-	}
-	
-	GiveInventory("DD_VOX_RIPFelixHet", 1);
-	
-	if (_seconds2 <= 0)
-		_seconds2 = 1;
-	
-	Delay(TICS_PER_SECOND *_seconds2);
-	
-}
-
-script "DDLib_JeopardyGameOver" (void)
-{
-	func_StopMusic();
-	Delay(1);
-	func_JeopardyMusic();
-	Delay(TICS_PER_SECOND * 60);
-	func_StopMusic();
-	Delay(TICS_PER_SECOND * 2);
-}
-
+// Get the player gun and set it in the variable
 function void func_getGunAtExit(void)
 {
 	int pn = PlayerNumber();
@@ -298,6 +273,8 @@ function void func_getGunAtExit(void)
 	if (pn >= 0) _playerWeapon[pn] = StrParam(s:GetWeapon());
 }
 
+// Get the player gun
+// and clear the variable for later usage
 function void func_setGunAtExit(void)
 {
 	int pn = PlayerNumber();
@@ -308,6 +285,7 @@ function void func_setGunAtExit(void)
 	_playerWeapon[pn] = StrParam(s:"");
 }
 
+// HUD Disable + null weapon
 function void func_clearHUDandGun(void)
 {
 	GiveInventory("DD_DisableHudToken", 1);
@@ -315,6 +293,7 @@ function void func_clearHUDandGun(void)
 	SetWeapon("DD_WeaponBlank");
 }
 
+// Take HUD disable token + null weapon
 function void func_resetHUDandGun(void)
 {
 	TakeInventory("DD_DisableHudToken", 255);
@@ -327,14 +306,17 @@ function void func_Clear(int _id)
 	if (_id > 0) HudMessage(s:""; HUDMSG_PLAIN, _id, CR_UNTRANSLATED, 0.0, 0.0, 0);
 }
 
-// Clear a range of TIDs
+// Clear a range of TIDs. _id1 and _id2 can be reversed, the
+// code will compensate
 function void func_ClearRange(int _id1, int _id2)
 {
-    int _start_id = 0;
-    int _end_id = 0;
+    int _start_id = 0;	// Starting range
+    int _end_id = 0;	// Ending Range
 
+	// If any of them are zero or less than zero, bail out
 	if (_id1 <= 0 || _id2 <= 0) return;
 	
+	// Determine the starting range
     if (_id1 < _id2)
     {
         _start_id = _id1;
@@ -351,6 +333,7 @@ function void func_ClearRange(int _id1, int _id2)
         return;
 	}
 	
+	// Do the actual clearing
     for (int _ctr = _start_id; _ctr < _end_id; _ctr++)
     {
         func_Clear(_ctr);
@@ -414,11 +397,13 @@ function void func_SetGlassLine(int _lid)
 	SetLineSpecial(_lid, ACS_Execute, 999, 0, _lid);
 }
 
+// mute the hostage manually
 function void func_MuteHostage(int _hid)
 {
 	if(_hid > 0) SetActorState(_hid, "Mute");
 }
 
+// Wrapper script for func_MuteHostage
 script "DDLib_MuteHostage" (int _hid)
 {
 	func_MuteHostage(_hid);
@@ -469,17 +454,25 @@ function void func_FadeInExit(void)
 	FadeTo(0, 0, 0, 1.0, 1.0);
 }
 
+// This replaces the typical Exit_Normal/Exit_Secret
+// calls. It does an end level tally, sets the player
+// to be immune, and temporarily sets their weapon
+// to a null weapon (while storing current weapon
+// in a variable, which is set right before level exit
+// so it'll be the active weapon next map
 script "DDLib_EndMap" (int secret, int cameraTID) net
 {
 	func_InitScreen();
 	func_SetPlayerImmune();
 	
+	// Set their weapon to a 'null weapon'
 	func_getGunAtExit();
-	Delay(1);
+	Delay(1);	// Delay just in case
 	func_clearHUDandGun();
 	
 	func_VictoryMusic();
 	
+	// We wannna loop until the player presses +use
 	do
 	{
 		func_SetFontToBig();
@@ -487,19 +480,22 @@ script "DDLib_EndMap" (int secret, int cameraTID) net
 		Delay(1);
 	}
 	while (!(func_CheckButtonPressed(BT_USE)));
-
+	
 	func_Clear(HUDDISPID_ENDTALLY);
 	func_FadeInExit();
 	func_InterMusic();
-
+	
 	Delay((TICS_PER_SECOND - 2) * 1);
-
+	
+	// Give the player their weapon back
 	func_UnSetPlayerImmune();
 	func_setGunAtExit();
 	Delay(1);
 	func_resetHUDandGun();
 	Delay(1);
-
+	
+	// if secret is non-zero, we call
+	// the non-secret
 	if (secret)
 		Exit_Secret(0);
 	else
@@ -533,8 +529,9 @@ script "DDLib_PlayerDeath" DEATH net
 	func_Clear(HUDDISPID_USEKEY);
 }
 
+// We need to call this if the player uses ressurect or some other cheat
+// Even though we don't use multiplayer. Reported by Lud
 script "DDLib_PlayerRespawn" RESPAWN net
 {
 	ACS_NamedExecuteAlways("DDLib_Enter", 0);
 }
-
