@@ -40,7 +40,7 @@ maps
 		defaultbottomtexture = "SWMETL_A";
 		scriptcompiler = "zdoom_acs.cfg";
 		uselongtexturenames = false;
-		viewscale = 2.568727f;
+		viewscale = 1.169198f;
 		
 		scriptlumps
 		{
@@ -54,8 +54,8 @@ maps
 			}
 		}
 		useresourcesinreadonlymode = false;
-		viewpositionx = 1036.223f;
-		viewpositiony = -223.2791f;
+		viewpositionx = 896.7357f;
+		viewpositiony = 1006.245f;
 		
 		fieldtypes
 		{
@@ -128,8 +128,9 @@ maps
 				resource;
 				tabtype = 0;
 				scripttype = 18;
-				caretposition = 702;
-				firstvisibleline = 17;
+				caretposition = 726;
+				firstvisibleline = 14;
+				activetab = true;
 			}
 			
 			document1
@@ -139,7 +140,7 @@ maps
 				resource;
 				tabtype = 0;
 				scripttype = 1;
-				activetab = true;
+				caretposition = 307;
 			}
 		}
 	}

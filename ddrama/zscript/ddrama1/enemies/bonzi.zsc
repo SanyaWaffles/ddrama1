@@ -182,7 +182,7 @@ Class DD_BonziBuddy : DD_Boss
 			BNZI O 8 A_ScreamAndUnblock;
 			BNZI P 8;
 			BNZI Q 8;
-			BNZI R 35 A_DDGivePlayerOneLiner;
+			BNZI R 35 A_DDGivePlayerOneLiner(2);
 			BNZI R -1 A_BossDeath;
 			Stop;
 		

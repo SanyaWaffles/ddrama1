@@ -107,7 +107,7 @@ class DD_Gumball : DD_Enemy
 		Death:
 			GUMB J 5 A_GumballDropAmmo;
 			GUMB K 5;
-			GUMB L -1 A_DDGivePlayerOneLiner;
+			GUMB L -1 A_DDGivePlayerOneLiner(8);
 			Stop;
 		
 		Death.Expand:

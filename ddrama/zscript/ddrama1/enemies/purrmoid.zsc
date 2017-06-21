@@ -190,6 +190,7 @@ Class DD_Purrmoid : DD_Enemy
 		Death.Dorito:
 		Death.Shou:
 		Death.Extreme:
+			GIBX A 0 A_DDGivePlayerOneLiner(1);
 			GIBX A 4 A_DDLudicrousGibs;
 			Goto GibDeathLoop;
 		

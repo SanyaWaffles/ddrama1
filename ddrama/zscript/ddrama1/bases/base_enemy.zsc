@@ -52,30 +52,22 @@ Class DD_Enemy : DD_Actor
 	 *		that causes the player pawn to sound
 	 *		off a one liner.
 	 *	***********************************************/
-	action void A_DDGivePlayerOneLiner(int index = 0)
+	action void A_DDGivePlayerOneLiner(int r = 1)
 	{
-		/*
-		static const Class<Inventory> snarkobj[] =
+		if (r > 0)
 		{
-			"DD_VOX_SnarkEnemies",
-			"DD_VOX_SnarkEnemiesGibbed"
-		};
-		
-		// Check if the target is not null
-		if(target != null)
-		{
-			// Check if the target has health and is
-			// a player (we don't want to bother
-			// if another enemy killed this enemy...
-			if (target.health > 0 && target.player)
+			if (Random[VOX](0, r) == r)
 			{
-				// do some bounds checking...
-				if (index < 0 || index > 2) index = 0;
-				
-				A_GiveToTarget(snarkobj[index], 1);
+				if (target)
+				{
+					let pp = DD_PlayerPawn(target);
+					if (pp)
+					{
+						pp.A_OneLinerInit(VOX_Normal);
+					}
+				}
 			}
 		}
-		*/
 	}
 	
 	/*	***********************************************

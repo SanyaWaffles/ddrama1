@@ -74,7 +74,7 @@ class DD_BuddyBear : DD_Enemy
 					A_DropItem("DD_DroppedPistolBullets", -1, 256);
 			}
 			BEAR I 5;
-			BEAR J -1 A_DDGivePlayerOneLiner;
+			BEAR J -1 A_DDGivePlayerOneLiner(8);
 			Stop;
 			
 		Death.Expand:

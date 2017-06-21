@@ -95,49 +95,6 @@ OptionMenu "DDSoundOptions"
 	Slider "Sound channels",	"snd_channels", 8, 256, 8, 0
 	StaticText " "
 	
-	IfOption(FModEx)
-	{
-		IfOption(OpenAL)
-		{
-			Option "Sound backend",		"snd_backend", "SoundBackends"
-		}
-		else
-		{
-			Option "Sound backend",		"snd_backend", "SoundBackendsFModOnly"
-		}
-	}
-	else
-	{
-		IfOption(OpenAL)
-		{
-			Option "Sound backend",		"snd_backend", "SoundBackendsOpenALOnly"
-		}
-	}
-	
-	IfOption(FModEx)
-	{
-		Submenu "FMOD options",		"FMODSoundItems"
-	}
-	IfOption(OpenAL)
-	{
-		Submenu "OpenAL options",	"OpenALSoundItems"
-	}
-	
-	IfOption(Windows)
-	{
-		Option "Output system",		"snd_output", "SoundOutputsWindows"
-	}
-	
-	IfOption(Unix)
-	{
-		Option "Output system",		"snd_output", "SoundOutputsUnix"
-	}
-	
-	IfOption(Mac)
-	{
-		Option "Output system",		"snd_output", "SoundOutputsMac"
-	}
-	
 	StaticText " "
 	Command "Restart sound",	"snd_reset"
 
@@ -187,28 +144,6 @@ ListMenu "DDramaSaveGameMenu"
 	// StaticPatchCentered 160, -10, "M_SGTTL"
 	Position 80, 54
 	Class "SaveMenu"	// uses its own implementation
-}
-
-OptionMenu "DDramaMiscOptions"
-{
-	Title "Miscellaneous Options"
-	
-	Option "Enable autosaves",			"disableautosave",		"Autosave"
-	Slider "Number of autosaves",		"autosavecount",		1, 20, 1, 0
-}
-
-OptionMenu "CustomizeMouse"
-{
-	Title "MOUSE OPTIONS"
-
-	Option		"$MOUSEMNU_ENABLEMOUSE",		"use_mouse",		"YesNo"
-	Option		"$MOUSEMNU_MOUSEINMENU",		"freelook",			"OnOff"
-	Option		"$MOUSEMNU_INVERTMOUSE",		"invertmouse",		"OnOff"
-	StaticText 	""
-	Slider		"$MOUSEMNU_SENSITIVITY",		"mouse_sensitivity", 0.5, 2.5, 0.1
-	StaticText 	""
-	Option		"$MOUSEMNU_NOPRESCALE",			"m_noprescale",		"NoYes"
-	Option		"$MOUSEMNU_SMOOTHMOUSE",		"smooth_mouse",		"YesNo"
 }
 
 OptionMenu "CustomizeControls"
@@ -290,31 +225,5 @@ ListMenu "DDramaOptionsMenu"
 	TextItem "Input",		"i",	"DDInputMenu"
 	TextItem "Sound",		"s",	"DDSoundOptions"
 	TextItem "Experience",	"e",	"DDramaExpMenu"
-	TextItem "More...",		"a",	"DDAdvancedOptionsMenu"
-}
-
-OptionMenu "DDAdvancedOptionsMenu"
-{
-	Title "$OPTMNU_TITLE"
-	
-	//Submenu "$OPTMNU_CONTROLS",		"CustomizeControls"
-	//Submenu "$OPTMNU_MOUSE",			"MouseOptions"
-	//Submenu "$OPTMNU_JOYSTICK",		"JoystickOptions"
-	//StaticText " "
-	
-	Submenu "$OPTMNU_PLAYER",			"PlayerMenu"
-	
-	//Submenu "$OPTMNU_GAMEPLAY",		"GameplayOptions"
-	//Submenu "$OPTMNU_COMPATIBILITY",	"CompatibilityOptions"
-	
-	Submenu "$OPTMNU_AUTOMAP",			"AutomapOptions"
-	Submenu "$OPTMNU_HUD",				"HUDOptions"
-	Submenu "$OPTMNU_MISCELLANEOUS",	"MiscOptions"
-	Submenu "$OPTMNU_SOUND",			"SoundOptions"
-	Submenu "$OPTMNU_DISPLAY",			"VideoOptions"
-	Submenu "$OPTMNU_VIDEO",			"VideoModeMenu"
-	StaticText " "
-	SafeCommand "$OPTMNU_DEFAULTS",	"reset2defaults"
-	SafeCommand	"$OPTMNU_RESETTOSAVED",	"reset2saved"
-	Command "$OPTMNU_CONSOLE",			"menuconsole"
+	TextItem "More...",		"a",	"OptionsMenu"
 }
