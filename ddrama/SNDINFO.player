@@ -37,3 +37,7 @@ $playersound	sanya	other	*land		DSEMPTY
 $playersounddup	sanya	other	*jump		*land
 $playersounddup	sanya	other	*fist		*land
 $playersounddup	sanya	other	*usefail	*land
+
+sanya/vox1			sounds/vox/assphalt.ogg
+
+$alias sanya/vox	sanya/vox1

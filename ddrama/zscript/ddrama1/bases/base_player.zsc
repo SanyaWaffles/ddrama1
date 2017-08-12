@@ -164,8 +164,7 @@ Class DD_PlayerPawn : PlayerPawn
 			
 			if (onelinertype == VOX_Normal)
 			{
-				players[0].mo.A_Print("\cjLudicrous Gibs!", 3, "BigFont");	// To test
-				players[0].mo.A_PlaySound("sanya/voiceover", (DDPLAYER_VOICECHAN), 1.0, false, ATTN_NONE);
+				players[0].mo.A_PlaySound("sanya/vox", (DDPLAYER_VOICECHAN), 1.0, false, ATTN_NONE);
 			}
 		}
 		
