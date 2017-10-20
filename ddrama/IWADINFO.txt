@@ -1,0 +1,10 @@
+IWad
+{
+	Name = "Daytime Drama"
+	Autoname = "DaytimeDrama"
+	Game = "Doom"
+	IWADName = "ddrama.pk3"
+	Config = "DaytimeDrama"
+	MustContain = "CSUMA0", "MAP04", "DAYTIME", "STSHOES", "STJPEP", "D_DRAMAT"
+	BannerColors = "F0 50 9A", "11 11 11"
+}

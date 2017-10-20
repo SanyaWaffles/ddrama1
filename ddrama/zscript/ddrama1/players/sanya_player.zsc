@@ -92,7 +92,10 @@ Class DD_Sanya : DD_PlayerPawn
 	States
 	{
 		Spawn:
-			SNYA ABCDCB 6;
+			SNYA ABCDCB 6
+			{
+				A_SetRoll(0);
+			}
 			Loop;
 			
 		See:
