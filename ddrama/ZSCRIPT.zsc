@@ -19,7 +19,7 @@
  *		Copyright Sanya K. C. Waffles 2013-2017
  *
  * ****************************************************************** */
-version "2.4"
+version "3.2"
 #include "zscript/ddrama1/bases/base_actor.zsc"				// actor.dec
 #include "zscript/ddrama1/constants.zsc"					// constants.dec
 #include "zscript/ddrama1/functions.zsc"
