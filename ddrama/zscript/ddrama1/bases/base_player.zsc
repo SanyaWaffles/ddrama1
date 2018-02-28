@@ -119,7 +119,7 @@ Class DD_PlayerPawn : PlayerPawn
 	{
 		if (health <= 0 && GetCvar("dd_rip"))
 		{
-			if (seconds == 0)
+			if (seconds == 5)
 			{
 				typeofrip = Random[RIP_SoundObituary](RIP_Normal, RIP_Jeopardy);
 				
@@ -155,7 +155,7 @@ Class DD_PlayerPawn : PlayerPawn
 				}
 			}
 			
-			if (seconds == 4)
+			if (seconds == 9)
 			{
 				if (typeofrip == RIP_FelixHet)
 				{
@@ -165,10 +165,11 @@ Class DD_PlayerPawn : PlayerPawn
 			
 			seconds++;
 			
-			if (seconds > 30)
-			{
-				seconds = 30;	// To prevent overflow?
-			}
+			if (seconds > 30) seconds = 30;	// To prevent overflow
+		}
+		else
+		{
+			seconds = 0;	// just in case the player is resurrected.
 		}
 	}
 	
