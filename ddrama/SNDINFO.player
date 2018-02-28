@@ -1,43 +1,70 @@
 // Player sounds
-$playersound	sanya	male	*death		sounds/player/death.ogg
+$playersound	sanya	male	*death		sounds/sanya/death.ogg
 $playersounddup	sanya	male	*xdeath		*death
 $playersound	sanya	male	*gibbed		sounds/sfx/slop/gibslop2.ogg
-$playersound	sanya	male	*pain100	sounds/player/pain.ogg
+$playersound	sanya	male	*pain100	sounds/sanya/pain.ogg
 $playersounddup	sanya	male	*pain75		*pain100
 $playersounddup	sanya	male	*pain50		*pain100
 $playersounddup	sanya	male	*pain25		*pain100
-$playersound	sanya	male	*grunt		sounds/player/gasp.ogg
+$playersound	sanya	male	*grunt		DSEMPTY
 $playersound	sanya	male	*land		DSEMPTY
 $playersounddup	sanya	male	*jump		*land
 $playersounddup	sanya	male	*fist		*land
 $playersounddup	sanya	male	*usefail	*land
 
-$playersound	sanya	female	*death		sounds/player/death.ogg
+$playersound	sanya	female	*death		sounds/sanya/death.ogg
 $playersounddup	sanya	female	*xdeath		*death
 $playersound	sanya	female	*gibbed		sounds/sfx/slop/gibslop2.ogg
-$playersound	sanya	female	*pain100	sounds/player/pain.ogg
+$playersound	sanya	female	*pain100	sounds/sanya/pain.ogg
 $playersounddup	sanya	female	*pain75		*pain100
 $playersounddup	sanya	female	*pain50		*pain100
 $playersounddup	sanya	female	*pain25		*pain100
-$playersound	sanya	female	*grunt		sounds/player/gasp.ogg
+$playersound	sanya	female	*grunt		DSEMPTY
 $playersound	sanya	female	*land		DSEMPTY
 $playersounddup	sanya	female	*jump		*land
 $playersounddup	sanya	female	*fist		*land
 $playersounddup	sanya	female	*usefail	*land
 
-$playersound	sanya	other	*death		sounds/player/death.ogg
+$playersound	sanya	other	*death		sounds/sanya/death.ogg
 $playersounddup	sanya	other	*xdeath		*death
 $playersound	sanya	other	*gibbed		sounds/sfx/slop/gibslop2.ogg
-$playersound	sanya	other	*pain100	sounds/player/pain.ogg
+$playersound	sanya	other	*pain100	sounds/sanya/pain.ogg
 $playersounddup	sanya	other	*pain75		*pain100
 $playersounddup	sanya	other	*pain50		*pain100
 $playersounddup	sanya	other	*pain25		*pain100
-$playersound	sanya	other	*grunt		sounds/player/gasp.ogg
+$playersound	sanya	other	*grunt		DSEMPTY
 $playersound	sanya	other	*land		DSEMPTY
 $playersounddup	sanya	other	*jump		*land
 $playersounddup	sanya	other	*fist		*land
 $playersounddup	sanya	other	*usefail	*land
 
-sanya/vox1			sounds/vox/assphalt.ogg
+sanya/voiceover1			sounds/sanya/asphalt.ogg
+sanya/voiceover2			sounds/sanya/baby.ogg
+sanya/voiceover3			sounds/sanya/boat.ogg
+sanya/voiceover4			sounds/sanya/dead_one.ogg
+sanya/voiceover5			sounds/sanya/i_like_it.ogg
+sanya/voiceover6			sounds/sanya/id_be_rich.ogg
+sanya/voiceover7			sounds/sanya/jibs_morning.ogg
+sanya/voiceover8			sounds/sanya/large_explosion.ogg
+sanya/voiceover9			sounds/sanya/one_with_rocket.ogg
+sanya/voiceover10			sounds/sanya/punch.ogg
+sanya/voiceover11			sounds/sanya/russian_cursing.ogg
+sanya/voiceover12			sounds/sanya/stupid.ogg
+sanya/voiceover13			sounds/sanya/ugly_stick.ogg
 
-$alias sanya/vox	sanya/vox1
+$random sanya/voiceover
+{
+	sanya/voiceover1
+	sanya/voiceover2
+	sanya/voiceover3
+	sanya/voiceover4
+	sanya/voiceover5
+	sanya/voiceover6
+	sanya/voiceover7
+	sanya/voiceover8
+	sanya/voiceover9
+	sanya/voiceover10
+	sanya/voiceover11
+	sanya/voiceover12
+	sanya/voiceover13
+}

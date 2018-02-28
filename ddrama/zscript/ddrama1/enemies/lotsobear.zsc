@@ -91,7 +91,7 @@ Class DD_LotsoBear : DD_Enemy
 		Death:
 			LTSO J 3 A_DDLotsoDropAmmo;
 			LTSO K 6;
-			LTSO L -1 A_DDGivePlayerOneLiner(4);
+			LTSO L -1;
 			Stop;
 		
 		Death.Expand:

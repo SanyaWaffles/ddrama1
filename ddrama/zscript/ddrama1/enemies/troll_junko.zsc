@@ -107,7 +107,7 @@ Class DD_TrollJunko : DD_Enemy
 			JTRL M 5 A_DDTrollJunkoDeath;
 			JTRL N 5;
 			JTRL O 5;
-			JTRL P -1 A_DDGivePlayerOneLiner(2);
+			JTRL P -1;
 			Stop;
 		
 		Death.Expand:

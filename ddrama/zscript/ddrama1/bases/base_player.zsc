@@ -90,6 +90,30 @@ Class DD_PlayerPawn : PlayerPawn
 		A_SpawnItemEx("DD_LudicrousGibsFx", flags:DDFL_AMMOFLAGSFX);
 	}
 	
+	void DDFunc_PlayerDies()
+	{
+		A_NoBlocking();
+		A_PlayerScream();
+		A_SetRoll((roll + (RandomPick[PlayerRIP](-22, -11, 11, 22))), SPF_INTERPOLATE);
+		A_SetPitch((pitch + (Random[PlayerRIP](1,5))), SPF_INTERPOLATE);
+	}
+	
+	void DDFunc_PlayerDiesXTreem()
+	{
+		A_NoBlocking();
+		A_XScream();
+		A_SetRoll((roll + (randompick[DDPLAYER_ROLL](-22, -11, 11, 22))), SPF_INTERPOLATE);
+		A_SetPitch((pitch + (random[DDPLAYER_PITCH](1,3))), SPF_INTERPOLATE);
+		A_DDSpawnLudicrousGibs();
+	}
+	
+	void A_DDPlayerDiesGoesBig()
+	{
+		DDFunc_PlayerDiesXTreem();
+		A_PlaySound("world/barrelx", CHAN_BODY);
+		A_Explode(128, 144);
+	}
+	
 	// Perform High Quality RIPs
 	void A_RIPProcess()
 	{
@@ -103,31 +127,31 @@ Class DD_PlayerPawn : PlayerPawn
 				{
 					S_ChangeMusic("", 0, false, true);
 					players[0].mo.A_Print("\cj[ OA ]        [ HET ]", 30, "BigFont");
-					players[0].mo.A_PlaySound("epitaph/felixsafe", (DDPLAYER_VOICECHAN), DDPLAYER_RIPVOL, false, ATTN_NONE);
+					players[0].mo.A_PlaySound("epitaph/felixsafe", (DDPLAYER_BODYCHAN), DDPLAYER_RIPVOL, false, ATTN_NONE);
 				}
 				
 				if (typeofrip == RIP_DeepHurting)
 				{
 					players[0].mo.A_Print("\cgDEEP HURTING", 15, "BigFont");
-					players[0].mo.A_PlaySound("epitaph/deephurting", (DDPLAYER_VOICECHAN), DDPLAYER_RIPVOL, false, ATTN_NONE);
+					players[0].mo.A_PlaySound("epitaph/deephurting", (DDPLAYER_BODYCHAN), DDPLAYER_RIPVOL, false, ATTN_NONE);
 				}
 				
 				if (typeofrip == RIP_LowtaxLoser)
 				{
 					players[0].mo.A_Print("\cgloser", 2);
-					players[0].mo.A_PlaySound("epitaph/lowtax", (DDPLAYER_VOICECHAN), DDPLAYER_RIPVOL, false, ATTN_NONE);
+					players[0].mo.A_PlaySound("epitaph/lowtax", (DDPLAYER_BODYCHAN), DDPLAYER_RIPVOL, false, ATTN_NONE);
 				}
 				
 				if (typeofrip == RIP_Jeopardy)
 				{
 					S_ChangeMusic("D_JEOPTL", 0, false, true);
 					players[0].mo.A_Print("\cjYOU FUCKING IDIOT", 15, "BigFont");
-					players[0].mo.A_PlaySound("epitaph/joelidiot", (DDPLAYER_VOICECHAN), DDPLAYER_RIPVOL, false, ATTN_NONE);
+					players[0].mo.A_PlaySound("epitaph/joelidiot", (DDPLAYER_BODYCHAN), DDPLAYER_RIPVOL, false, ATTN_NONE);
 				}
 				
 				if (typeofrip == RIP_Normal)
 				{
-					players[0].mo.A_PlaySound("epitaph/main", (DDPLAYER_VOICECHAN), DDPLAYER_RIPVOL, false, ATTN_NONE);
+					players[0].mo.A_PlaySound("epitaph/main", (DDPLAYER_BODYCHAN), DDPLAYER_RIPVOL, false, ATTN_NONE);
 				}
 			}
 			
@@ -148,6 +172,11 @@ Class DD_PlayerPawn : PlayerPawn
 		}
 	}
 	
+	void A_NewPlayerPain()
+	{
+		A_PlaySound("*pain100", CHAN_6);
+	}
+	
 	void A_OneLinerInit(int olt)
 	{
 		onelinercount = 150;
@@ -164,7 +193,7 @@ Class DD_PlayerPawn : PlayerPawn
 			
 			if (onelinertype == VOX_Normal)
 			{
-				players[0].mo.A_PlaySound("sanya/vox", (DDPLAYER_VOICECHAN), 1.0, false, ATTN_NONE);
+				players[0].mo.A_PlaySound("sanya/voiceover", (DDPLAYER_VOICECHAN), 2.0, false, ATTN_NONE);
 			}
 		}
 		

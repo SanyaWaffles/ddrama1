@@ -203,7 +203,7 @@ Class DD_ChecksumUnicorn : DD_Enemy
 			CSUM N 7;
 			CSUM O 7 A_ScreamAndUnblock;
 			CSUM PQ 7;
-			CSUM R 35 A_DDGivePlayerOneLiner(1);
+			CSUM R 35;
 			CSUM R -1;
 			Stop;
 		

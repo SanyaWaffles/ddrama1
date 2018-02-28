@@ -65,30 +65,6 @@ Class DD_Sanya : DD_PlayerPawn
 		+NoSkin
 	}
 	
-	void DDFunc_PlayerDies()
-	{
-		A_NoBlocking();
-		A_PlayerScream();
-		A_SetRoll((roll + (RandomPick[PlayerRIP](-22, -11, 11, 22))), SPF_INTERPOLATE);
-		A_SetPitch((pitch + (Random[PlayerRIP](1,5))), SPF_INTERPOLATE);
-	}
-	
-	void DDFunc_PlayerDiesXTreem()
-	{
-		A_NoBlocking();
-		A_XScream();
-		A_SetRoll((roll + (randompick[DDPLAYER_ROLL](-22, -11, 11, 22))), SPF_INTERPOLATE);
-		A_SetPitch((pitch + (random[DDPLAYER_PITCH](1,3))), SPF_INTERPOLATE);
-		A_DDSpawnLudicrousGibs();
-	}
-	
-	void A_DDPlayerDiesGoesBig()
-	{
-		DDFunc_PlayerDiesXTreem();
-		A_PlaySound("world/barrelx", CHAN_BODY);
-		A_Explode(128, 144);
-	}
-	
 	States
 	{
 		Spawn:
@@ -112,7 +88,7 @@ Class DD_Sanya : DD_PlayerPawn
 			
 		Pain:
 			SNYA K 4;
-			SNYA K 4 A_Pain;
+			SNYA K 4 A_NewPlayerPain;
 			Goto Spawn;
 			
 		Death:

@@ -22,7 +22,7 @@ Class DD_SweetBro : DD_Enemy
 		Health 150;
 		PainChance 180;
 		Species "Gamebro";
-		Speed 10;
+		Speed 14;
 		Radius 22;
 		Height 54;
 		Mass 200;
@@ -59,7 +59,6 @@ Class DD_SweetBro : DD_Enemy
 	{
 		A_FaceTarget();
 		A_ScreamAndUnblock();
-		A_DDGivePlayerOneLiner(8);
 	}
 	
 	void A_DDSweetBroLoop()

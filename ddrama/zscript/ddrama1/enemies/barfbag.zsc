@@ -105,7 +105,7 @@ Class DD_BarfBag : DD_Enemy
 		Death:
 			BARF G 5 A_ScreamAndUnblock;
 			BARF H 5;
-			BARF I -1 A_DDGivePlayerOneLiner(6);
+			BARF I -1;
 			Stop;
 		
 		
@@ -123,7 +123,7 @@ Class DD_BarfBag : DD_Enemy
 			BAR1 D 5
 			{
 				A_XScream();
-				A_GiveToTarget("DD_VOX_SnarkEnemies", 1);
+				A_DDGivePlayerOneLiner(1);
 				A_SpawnItemEx("DD_LudicrousGibsBarfbagFx", flags:DDFL_AMMOFLAGSFX);
 				
 				A_DDSpawnAmmoLoot(false);

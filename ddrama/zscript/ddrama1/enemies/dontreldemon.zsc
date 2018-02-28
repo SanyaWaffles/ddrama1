@@ -175,7 +175,7 @@ Class DD_Dontreldemon : DD_Enemy
 			DONT H 8;
 			DONT I 8 A_ScreamAndUnblock;
 			DONT J 8 A_SetFloorClip;
-			DONT K 35 A_DDGivePlayerOneLiner;
+			DONT K 35;
 			DONT K -1;
 			Stop;
 		

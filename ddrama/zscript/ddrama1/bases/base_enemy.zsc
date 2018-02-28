@@ -114,6 +114,7 @@ Class DD_Enemy : DD_Actor
 		A_DDExtremeScreamAndUnblock();
 		A_DDSpawnAmmoLoot(true);
 		A_DDramaLudicrousGibs();
+		A_DDGivePlayerOneLiner(1);
 	}
 	
 	/*	***********************************************
