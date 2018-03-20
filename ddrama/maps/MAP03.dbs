@@ -40,9 +40,9 @@ maps
 		defaultbottomtexture = "GRASSY0";
 		scriptcompiler = "zdoom_gdcc.cfg";
 		uselongtexturenames = false;
-		viewpositionx = -632.0863f;
-		viewpositiony = -532.152f;
-		viewscale = 0.462679f;
+		viewpositionx = -22.73907f;
+		viewpositiony = -1059.043f;
+		viewscale = 0.6014825f;
 		
 		plugins
 		{

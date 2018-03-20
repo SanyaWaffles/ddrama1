@@ -1,4 +1,3 @@
-Resolution 320, 200;
 Height 32;
 LowerHealthCap true;
 CompleteBorder true;
@@ -134,8 +133,6 @@ StatusBar FullScreen, fullscreenoffsets, forcescaled
 		}
 		// # END AMMO + WEAPONS
 		// # END INVENTORY BLOCK
-		
-		DrawString "Smallfont", LightBlue, "Beta", -1, -200, 0, alignment(right);
 	}
 }
 
@@ -269,7 +266,5 @@ StatusBar Normal, forcescaled
 		{
 			DrawImage "STU_SEEK", 180, 182;
 		}
-		
-		DrawString "Smallfont", LightBlue, "Beta", 320, 160, 0, alignment(right);
 	}
 }

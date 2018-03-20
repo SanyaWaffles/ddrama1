@@ -76,6 +76,10 @@ MNU_DDRAMA_AMAPT	= "Toggle Automap";
 MNU_DDRAMA_SSHOT	= "Screenshot";
 MNU_DDRAMA_CONSOLET	= "Open Console";
 
+MNU_DDRAMA_RIPOBIT	= "RIP Sound Obituary";
+MNU_DDRAMA_AEBOOT	= "Skip AE Boot Sequence";
+MNU_DDRAMA_SANYAVT	= "Sanya Voice Type";
+
 DD_QUITMSG1			= "Play for Hope. Quit for Despair.";
 DD_QUITMSG2			= "Don't go now, there's bears to blast.";
 DD_QUITMSG3			= "If you quit playing, I'll feel bad.";

@@ -46,18 +46,6 @@ OptionValue TextColors
 	17.0, "\c[DarkGray]dark gray"
 }
 
-OptionValue PostProcessing
-{
-	0, "None"
-	1, "FXAA"
-}
-
-OptionValue MenuMouse
-{
-	0, "No"
-	1, "Yes"
-}
-
 OptionValue CHairOnOff
 {
 	0, "Off"
@@ -82,27 +70,11 @@ OptionValue SkipAENoYes
 	1, "Yes"
 }
 
-OptionMenu "DDSoundOptions"
+OptionValue ClassicSanyaChoices
 {
-	Title "SOUND OPTIONS"
-	Slider "Sounds volume",		"snd_sfxvolume", 0, 1, 0.05
-	Slider "Menu volume",		"snd_menuvolume", 0, 1, 0.05
-	Option "One Liners",		"dd_snd_oneliners", "VAOffOn"
-	StaticText " "
-	Slider "Music volume",		"snd_musicvolume", 0, 1, 0.05
-	Option "MIDI device",		"snd_mididevice", "MidiDevices"
-	StaticText " "
-	Slider "Sound channels",	"snd_channels", 8, 256, 8, 0
-	StaticText " "
-	
-	StaticText " "
-	Command "Restart sound",	"snd_reset"
-
-	StaticText " "
-	Submenu "Advanced options",			"AdvSoundOptions"
-	Submenu "Module replayer options",	"ModReplayerOptions"
+	0, "Russianesque"
+	1, "Classic"
 }
-
 
 ListMenu "MainMenu"
 {
@@ -110,7 +82,7 @@ ListMenu "MainMenu"
 	// StaticPatch 0, 0, "M_MAINBG"
 	TextItem "$MNU_DDRAMA_NEWGAME",		"n",	"PlayerclassMenu"
 	TextItem "$MNU_DDRAMA_SSTATES",		"s",	"DDramaGameFilesMenu"
-	TextItem "$MNU_DDRAMA_OPTIONS",		"o",	"DDramaOptionsMenu"
+	TextItem "$MNU_DDRAMA_OPTIONS",		"o",	"OptionsMenu"
 	TextItem "$MNU_DDRAMA_README",		"h",	"ReadThisMenu"
 	TextItem "$MNU_DDRAMA_QUIT", 		"e",	"QuitMenu"
 }
@@ -133,7 +105,6 @@ ListMenu "DDramaGameFilesMenu"
 ListMenu "DDramaLoadGameMenu"
 {
 	StaticTextCentered 160, -10, "$MNU_DDRAMA_LOADGAME"
-	// StaticPatchCentered 160, -10, "M_LGTTL"
 	Position 80, 54
 	Class "LoadMenu"	// uses its own implementation
 }
@@ -141,45 +112,12 @@ ListMenu "DDramaLoadGameMenu"
 ListMenu "DDramaSaveGameMenu"
 {
 	StaticTextCentered 160, -10, "$MNU_DDRAMA_SAVEGAME"
-	// StaticPatchCentered 160, -10, "M_SGTTL"
 	Position 80, 54
 	Class "SaveMenu"	// uses its own implementation
 }
 
-OptionMenu "CustomizeControls"
+AddOptionMenu "CustomizeControls"
 {
-	Title "$MNU_DDRAMA_HPLAYERC"
-	ScrollTop 2
-	StaticTextSwitchable	"$MNU_DDRAMA_CCSW1", "$MNU_DDRAMA_CCSW2", "ControlMessage"
-	StaticText 	""
-	StaticText 	"$MNU_DDRAMA_MOVEM", 1
-	Control 	"$MNU_DDRAMA_USEOPEN",		"+use"
-	Control 	"$MNU_DDRAMA_FORWARD",		"+forward"
-	Control 	"$MNU_DDRAMA_BACKWARD",		"+back"
-	Control 	"$MNU_DDRAMA_STRAFEL",		"+moveleft"
-	Control 	"$MNU_DDRAMA_STRAFER",		"+moveright"
-	Control 	"$MNU_DDRAMA_JUMP",			"+jump"
-	Control 	"$MNU_DDRAMA_CROUCH",		"+crouch"
-	Control 	"$MNU_DDRAMA_RUN",			"+speed"
-	Control 	"$MNU_DDRAMA_STRAFE",		"+strafe"
-	Control 	"$MNU_DDRAMA_TURNL",		"+left"
-	Control 	"$MNU_DDRAMA_TURNR",		"+right"
-	Control 	"$MNU_DDRAMA_KBLU",			"+lookup"
-	Control 	"$MNU_DDRAMA_KBLD",			"+lookdown"
-	Control 	"$NNU_DDRAMA_CROUCHT",		"crouch"
-	Control 	"$MNU_DDRAMA_RUNT",			"toggle cl_run"
-	StaticText	""
-	StaticText  "$MNU_DDRAMA_COMBAT", 1
-	Control 	"$MNU_DDRAMA_ATTACK",		"+attack"
-	Control		"$MNU_DDRAMA_WEAPONT",		"+user1"
-	Control 	"$MNU_DDRAMA_WEAPCF",		"weapprev"
-	Control 	"$MNU_DDRAMA_WEAPCB",		"weapnext"
-	StaticText 	""
-	StaticText 	"$MNU_DDRAMA_INVENT", 1
-	Control 	"$MNU_DDRAMA_INVUSE",		"invuse"
-	Control 	"$MNU_DDRAMA_INVNEXT",		"invnext"
-	Control 	"$MNU_DDRAMA_INVPREV",		"invprev"
-	Control 	"$MNU_DDRAMA_QUERY",		"invquery"
 	StaticText 	""
 	Control 	"$MNU_DDRAMA_GRENADE",		"use DD_AxxSpray"
 	Control 	"$MNU_DDRAMA_BULKHP",		"use DD_BulkSportDrinkPack"
@@ -187,43 +125,12 @@ OptionMenu "CustomizeControls"
 	Control 	"$MNU_DDRAMA_SHOES",		"use DD_BouncySandals"
 	Control 	"$MNU_DDRAMA_JNJPEPP",		"use DD_SyoPepper"
 	Control 	"$MNU_DDRAMA_CLARID",		"use DD_Antidepressant"
+}
+
+AddOptionMenu "OptionsMenu"
+{
 	StaticText 	""
-	StaticText 	"$MNU_DDRAMA_HOTHER", 1
-	Control 	"$MNU_DDRAMA_AMAPT",		"togglemap"
-	Control 	"$MNU_DDRAMA_SSHOT",		"screenshot"
-	Control		"$MNU_DDRAMA_CONSOLET",		"toggleconsole"
-}
-
-ListMenu "DDInputMenu"
-{
-	StaticText 122, 0, "Options"
-	Position 94, 25
-	
-	TextItem "Controls",		"c", 	"CustomizeControls"
-	TextItem "Mouse",			"m",	"CustomizeMouse"
-	TextItem "Joypad",			"j",	"JoystickOptions"
-}
-
-OptionMenu "DDramaExpMenu"
-{
-	Title "EXPERIENCE  OPTIONS"
-
-	StaticText " "
-	Option "Crosshair",			"crosshair",		"CHairOnOff"
-	
-	Slider "Autoaim",			"Autoaim",			0, 35, 1
-	Option "Scale text HUD",	"con_scaletext", 	"ScaleValues"
-	Option "RIP In Peace",		"dd_rip", "RIPOffOn"
-	Option "Disable AE Boot",	"dd_skipaeboot", "SkipAENoYes"
-}
-
-ListMenu "DDramaOptionsMenu"
-{
-	StaticText 122, 0, "Options"
-	Position 94, 25
-
-	TextItem "Input",		"i",	"DDInputMenu"
-	TextItem "Sound",		"s",	"DDSoundOptions"
-	TextItem "Experience",	"e",	"DDramaExpMenu"
-	TextItem "More...",		"a",	"OptionsMenu"
+	Option "$MNU_DDRAMA_RIPOBIT",		"dd_rip", 				"RIPOffOn"
+	Option "$MNU_DDRAMA_AEBOOT",		"dd_skipaeboot",		"SkipAENoYes"
+	Option "$MNU_DDRAMA_SANYAVT",		"dd_classicsanyavoice", "ClassicSanyaChoices"
 }

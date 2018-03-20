@@ -40,9 +40,9 @@ maps
 		}
 		scriptcompiler = "zdoom_gdcc.cfg";
 		uselongtexturenames = false;
-		viewpositionx = 968.2958f;
-		viewpositiony = 1018.475f;
-		viewscale = 6.276861f;
+		viewpositionx = -196.2502f;
+		viewpositiony = 3595.802f;
+		viewscale = 4.828353f;
 		
 		scriptlumps
 		{
@@ -97,12 +97,12 @@ maps
 				color_wallbottom = 0;
 				xpanningceiling = 1;
 				color_ceiling = 0;
-				rotationceiling = 1;
+				rotationceiling = 17;
 				lightceiling = 0;
 				ypanningceiling = 1;
 				xscaleceiling = 1;
 				yscaleceiling = 1;
-				rotationfloor = 1;
+				rotationfloor = 17;
 				lightfloor = 0;
 				floorglowcolor = 0;
 				floorglowheight = 1;

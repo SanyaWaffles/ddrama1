@@ -44,14 +44,14 @@ Class DD_Sanya : DD_PlayerPawn
 		Player.ColorSet 2, "Tamami", 	0x02, 0x0D, 0x07, 0x20, 0x2F, 0x40, 0x48, 0x01, 0x0C, 0xA0, 0xAB, 0x80, 0x8F, 0x80, 0x8A;
 		Player.ColorSet 3, "Scoots",	0x60, 0x6F, 0x64, 0x20, 0x2F, 0x71, 0x7E, 0x80, 0x8F, 0x80, 0x89, 0xA0, 0xAF, 0x70, 0x7F;
 		
-		Player.DamageScreenColor "F0509A", 0.20;
-		Player.DamageScreenColor "FFA500", 0.50, "Rocket";
-		Player.DamageScreenColor "F0509A", 0.30, "Despair";
+		Player.DamageScreenColor "F0509A", 0.70;
+		Player.DamageScreenColor "FFA500", 0.70, "Rocket";
+		Player.DamageScreenColor "F0509A", 0.70, "Despair";
 		Player.DamageScreenColor "F0509A", 0.70, "DespairSpores";
-		Player.DamageScreenColor "FF5800", 0.50, "Dorito";
-		Player.DamageScreenColor "FF5800", 0.66, "BurnPlayer";
-		Player.DamageScreenColor "CD7F32", 0.30, "Expand";
-		Player.DamageScreenColor "0047AB", 0.30, "Webbing";
+		Player.DamageScreenColor "FF5800", 0.70, "Dorito";
+		Player.DamageScreenColor "FF5800", 0.50, "BurnPlayer";
+		Player.DamageScreenColor "CD7F32", 0.70, "Expand";
+		Player.DamageScreenColor "0047AB", 0.70, "Webbing";
 		
 		Player.ForwardMove 1, 1;
 		Player.SideMove 1, 1;

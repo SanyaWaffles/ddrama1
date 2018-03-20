@@ -38,33 +38,33 @@ $playersounddup	sanya	other	*jump		*land
 $playersounddup	sanya	other	*fist		*land
 $playersounddup	sanya	other	*usefail	*land
 
-sanya/voiceover1			sounds/sanya/asphalt.ogg
-sanya/voiceover2			sounds/sanya/baby.ogg
-sanya/voiceover3			sounds/sanya/boat.ogg
-sanya/voiceover4			sounds/sanya/dead_one.ogg
-sanya/voiceover5			sounds/sanya/i_like_it.ogg
-sanya/voiceover6			sounds/sanya/id_be_rich.ogg
-sanya/voiceover7			sounds/sanya/jibs_morning.ogg
-sanya/voiceover8			sounds/sanya/large_explosion.ogg
-sanya/voiceover9			sounds/sanya/one_with_rocket.ogg
-sanya/voiceover10			sounds/sanya/punch.ogg
-sanya/voiceover11			sounds/sanya/russian_cursing.ogg
-sanya/voiceover12			sounds/sanya/stupid.ogg
-sanya/voiceover13			sounds/sanya/ugly_stick.ogg
+sanya/annavoiceover1			sounds/sanya/asphalt.ogg
+sanya/annavoiceover2			sounds/sanya/baby.ogg
+sanya/annavoiceover3			sounds/sanya/boat.ogg
+sanya/annavoiceover4			sounds/sanya/dead_one.ogg
+sanya/annavoiceover5			sounds/sanya/i_like_it.ogg
+sanya/annavoiceover6			sounds/sanya/id_be_rich.ogg
+sanya/annavoiceover7			sounds/sanya/jibs_morning.ogg
+sanya/annavoiceover8			sounds/sanya/large_explosion.ogg
+sanya/annavoiceover9			sounds/sanya/one_with_rocket.ogg
+sanya/annavoiceover10			sounds/sanya/punch.ogg
+sanya/annavoiceover11			sounds/sanya/russian_cursing.ogg
+sanya/annavoiceover12			sounds/sanya/stupid.ogg
+sanya/annavoiceover13			sounds/sanya/ugly_stick.ogg
 
-$random sanya/voiceover
+$random sanya/annavoiceover
 {
-	sanya/voiceover1
-	sanya/voiceover2
-	sanya/voiceover3
-	sanya/voiceover4
-	sanya/voiceover5
-	sanya/voiceover6
-	sanya/voiceover7
-	sanya/voiceover8
-	sanya/voiceover9
-	sanya/voiceover10
-	sanya/voiceover11
-	sanya/voiceover12
-	sanya/voiceover13
+	sanya/annavoiceover1
+	sanya/annavoiceover2
+	sanya/annavoiceover3
+	sanya/annavoiceover4
+	sanya/annavoiceover5
+	sanya/annavoiceover6
+	sanya/annavoiceover7
+	sanya/annavoiceover8
+	sanya/annavoiceover9
+	sanya/annavoiceover10
+	sanya/annavoiceover11
+	sanya/annavoiceover12
+	sanya/annavoiceover13
 }

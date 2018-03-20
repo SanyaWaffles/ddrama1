@@ -470,7 +470,7 @@ script "DDLib_EndMap" (int secret, int cameraTID) net
 	Delay(1);	// Delay just in case
 	func_clearHUDandGun();
 	
-	func_VictoryMusic();
+	// func_VictoryMusic();
 	
 	// We wannna loop until the player presses +use
 	do

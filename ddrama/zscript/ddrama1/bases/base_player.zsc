@@ -60,6 +60,7 @@ Class DD_PlayerPawn : PlayerPawn
 	int onelinercount;		// One Liner Counter
 	bool onelinerhit;		// One Liner Flag
 	int onelinertype;		// One Liner Type
+	int onelinercooldown;	// One Liner cooldown;
 	int typeofrip;			// Type of high quality RIP
 	int seconds;			// Seconds elapsed
 	
@@ -188,13 +189,21 @@ Class DD_PlayerPawn : PlayerPawn
 	// Perform Voice One Liner Actions
 	void A_OneLinerProcess()
 	{
-		if (onelinercount >= 150)
+		if (onelinercount >= 150 && onelinercooldown <= 0 && health > 0)
 		{
 			onelinerhit = true;
 			
 			if (onelinertype == VOX_Normal)
 			{
-				players[0].mo.A_PlaySound("sanya/voiceover", (DDPLAYER_VOICECHAN), 2.0, false, ATTN_NONE);
+				String sanyavox;
+				
+				if (!CVar.FindCVar('dd_classicsanyavoice').GetBool())
+					sanyavox = "sanya/annavoiceover";
+				else
+					sanyavox = "sanya/sarahvoiceover";
+				
+				players[0].mo.A_PlaySound(sanyavox, (DDPLAYER_VOICECHAN), 2.0, false, ATTN_NONE);
+				onelinercooldown = 200;
 			}
 		}
 		
@@ -255,6 +264,9 @@ Class DD_PlayerPawn : PlayerPawn
 			PerSecondFunctions();
 		}
 		
+		if (onelinercooldown > 0)
+			onelinercooldown--;
+			
 		Super.Tick();	// call any PlayerPawn Tick functionality
 	}
 }

@@ -46,8 +46,8 @@ sysrq screenshot
 t messagemode
 \ invquery
 f12 spynext
-mwheeldown weapnext
-mwheelup weapprev
+mwheeldown weapprev
+mwheelup weapnext
 ` toggleconsole
 
 g "use DD_AxxSpray"
