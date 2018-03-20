@@ -176,7 +176,13 @@ Class DD_PlayerPawn : PlayerPawn
 	
 	void A_NewPlayerPain()
 	{
-		A_PlaySound("*pain100", CHAN_6);
+		String sanyapain;
+		
+		if (!CVar.FindCVar('dd_classicsanyavoice').GetBool())
+			sanyapain = "*pain100";
+		else
+			sanyapain = "sanya/sarahpain";
+		A_PlaySound(sanyapain, CHAN_6);
 	}
 	
 	void A_OneLinerInit(int olt)

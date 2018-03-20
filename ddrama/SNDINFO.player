@@ -1,5 +1,5 @@
 // Player sounds
-$playersound	sanya	male	*death		sounds/sanya/death.ogg
+$playersound	sanya	male	*death		DSEMPTY
 $playersounddup	sanya	male	*xdeath		*death
 $playersound	sanya	male	*gibbed		sounds/sfx/slop/gibslop2.ogg
 $playersound	sanya	male	*pain100	sounds/sanya/pain.ogg
@@ -12,7 +12,7 @@ $playersounddup	sanya	male	*jump		*land
 $playersounddup	sanya	male	*fist		*land
 $playersounddup	sanya	male	*usefail	*land
 
-$playersound	sanya	female	*death		sounds/sanya/death.ogg
+$playersound	sanya	female	*death		DSEMPTY
 $playersounddup	sanya	female	*xdeath		*death
 $playersound	sanya	female	*gibbed		sounds/sfx/slop/gibslop2.ogg
 $playersound	sanya	female	*pain100	sounds/sanya/pain.ogg
@@ -25,7 +25,7 @@ $playersounddup	sanya	female	*jump		*land
 $playersounddup	sanya	female	*fist		*land
 $playersounddup	sanya	female	*usefail	*land
 
-$playersound	sanya	other	*death		sounds/sanya/death.ogg
+$playersound	sanya	other	*death		DSEMPTY
 $playersounddup	sanya	other	*xdeath		*death
 $playersound	sanya	other	*gibbed		sounds/sfx/slop/gibslop2.ogg
 $playersound	sanya	other	*pain100	sounds/sanya/pain.ogg
@@ -67,4 +67,23 @@ $random sanya/annavoiceover
 	sanya/annavoiceover11
 	sanya/annavoiceover12
 	sanya/annavoiceover13
+}
+
+sanya/sarahpain					sounds/sanya2/pain.ogg
+
+sanya/sarahvoiceover1			sounds/sanya2/die_mother.ogg
+sanya/sarahvoiceover2			sounds/sanya2/poor_baby.ogg
+sanya/sarahvoiceover3			sounds/sanya2/i_dont_recall.ogg
+sanya/sarahvoiceover4			sounds/sanya2/your_making_a_mess.ogg
+sanya/sarahvoiceover5			sounds/sanya2/rip_n_tear.ogg
+sanya/sarahvoiceover6			sounds/sanya2/splatatat.ogg
+
+$random sanya/sarahvoiceover
+{
+	sanya/sarahvoiceover1
+	sanya/sarahvoiceover2
+	sanya/sarahvoiceover3
+	sanya/sarahvoiceover4
+	sanya/sarahvoiceover5
+	sanya/sarahvoiceover6
 }
