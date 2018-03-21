@@ -118,7 +118,7 @@ TITLEMAP_SPEAK12 = "... For me!\n";
 
 TITLEMAP_SPEAK13 = "Cuz you just ruined my goddamn vacation, bitch!\n";
 
-ENDMAP_TALK1	 =  "You rescue your friends from the previous arena\n."
+ENDMAP_TALK1	 =  "You rescue your friends from the previous arena.\n"
 					"They've seen better and worse.";
 ENDMAP_TALK2	 = "Ice Bear is with them, he kept Junko's army\n"
 				   "at bay. He was loyal to you.";
@@ -151,17 +151,17 @@ ENDMAP_SPECIAL_THANKS = "Risa Hunt, Joel of Vinesauce\n"
 						"Ral22, Havocarious, MSPaintR0cks\n"
 						"Lud, ZZYZX, DavidPH, and many others!";
 
-CC_DD_BUDDYBEAR	 = "Buddy Bear (Garfield and Friends)\nVoiced By Butters From South Park";
-CC_DD_GUMBALL	 = "Gumball Watterson (The Amazing World of Gumball)";
-CC_DD_LOTSO		 = "Lotso-Shootan-Bear (Lotso from Toy Story 3)\nVoiced by Lotso from Toy Story 3\nand\nDuke Phillips From The Critic";
-CC_DD_BARFBAG	 = "Barfbag (Knockoff Garfield Backpack)\nVoiced by Jay Sherman from The Critic";
-CC_DD_SWEETBRO	 = "Sweet Bro Prisoner (Sweet Bro and Hella Jeff/Homestuck)\nVoiced by SanyaWaffles.";
+CC_DD_BUDDYBEAR	 = "Buddy Bear\nVoiced By Butters From South Park";
+CC_DD_GUMBALL	 = "Gumball Watterson";
+CC_DD_LOTSO		 = "Lotso-Shootan-Bear\nVoiced by Lotso from Toy Story 3and\nDuke Phillips From The Critic";
+CC_DD_BARFBAG	 = "Barfbag\nVoiced by Jay Sherman from The Critic";
+CC_DD_SWEETBRO	 = "Sweet Bro Prisoner \nVoiced by SanyaWaffles.";
 CC_DD_FLOWERCROWN	 = "Flaming Firecrown";
 CC_DD_DONTRELDEMON	 = "Dontreldemon (Dontrel the Dolphin)\nVoiced by Brad";
 CC_DD_BRONY		 = "Brony of Despair\nVoiced by Levi Stubbs (Audrey II)";
 CC_DD_CHECKSUM	 = "Checksum Unicorn\nVoiced by Mrs. MeVilda from The Christmas Tree";
-CC_DD_HELLAJEFF	 = "Hella Jeff (Sweet Bro and Hella Jeff/Homestuck)\nVoiced by Astley Similie";
-CC_DD_PURRMOID	 = "Purrmoid (Catfingers from Steven Universe)";
+CC_DD_HELLAJEFF	 = "Hella Jeff\nVoiced by Astley Similie";
+CC_DD_PURRMOID	 = "Purrmoid";
 CC_DD_BONZI	 	 = "BonziBuddy\nVoiced by Joel from Vinesauce";
 CC_DD_TROLLJUNKO = "Trollsona Junko\nVoiced by Kootie Pie Koopa from TAOSMB3";
 CC_DD_MONOKUMA	 = "Giant Monokuma";

@@ -134,7 +134,7 @@ map MAP10 lookup DD_MAP10
 map VICTORY lookup DD_MAP10
 {
 	Music = ""
-	Next = GotoTitle
+	Next = endsequence, "DD1Cast"
 	NoAutosaveHint
 }
 
@@ -186,7 +186,7 @@ Intermission DD1Cast
 	}
 	Cast
 	{
-		CastClass = "DD_BronyOfDespair"
+		CastClass = "DD_BronyOfDespairCast"
 		CastName = "$CC_DD_BRONY"
 		AttackSound = "Missile", 1, "brony/attack"
 	}
@@ -221,16 +221,6 @@ Intermission DD1Cast
 		CastClass = "DD_TrollJunko"
 		CastName = "$CC_DD_TROLLJUNKO"
 		AttackSound = "Missile", 1, "troll/hiss"
-	}
-	Cast
-	{
-		CastClass = "DD_Monokuma"
-		CastName = "$CC_DD_MONOKUMA"
-	}
-	Cast
-	{
-		CastClass = "DD_JunkoEnoshimaBoss"
-		CastName = "$CC_DD_JUNKO"
 	}
 	Link = Inter_Titlescreen	// restart to titlemap
 }

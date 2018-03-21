@@ -142,3 +142,13 @@ Class DD_BronyOfDespair : DD_Boss
 			Stop;
 	}
 }
+
+Class DD_BronyOfDespairCast : DD_BronyOfDespair
+{
+	States
+	{
+		Spawn:
+			BMRA A 1;
+			Goto SpawnActual;
+	}
+}
