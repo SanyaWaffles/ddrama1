@@ -454,6 +454,15 @@ Class DD_JunkoEnoshimaBoss : DD_Boss
 			{
 				A_ScreamAndUnblock();
 				A_DDGivePlayerOneLiner(1);
+				ThinkerIterator enemyfinder = ThinkerIterator.Create("DD_Enemy");
+				Actor mmo;
+				while (mmo = DD_Enemy(enemyfinder.Next()))
+				{
+					if (mmo.bIsMonster && mmo.health > 0)
+					{
+						mmo.A_Die();
+					}
+				}
 			}
 			JKOP BABABABBABABABBABABABBABABAB 5
 			{
@@ -494,7 +503,7 @@ Class DD_JunkoEnoshimaBoss : DD_Boss
 				A_SpawnItemEx("DD_LudicrousGibsFx", flags:DDFL_AMMOFLAGSFX);
 			}
 			GIBW BCDE 4;
-			GIBW F 305;
+			GIBW F 105;
 			GIBW F -1 A_BossDeath;
 			Stop;
 		

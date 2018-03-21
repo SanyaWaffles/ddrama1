@@ -32,6 +32,8 @@ Class DD_SyoPepperPowerStrength : PowerDamage
 		bDontMorph = true;	// set this
 		players[consoleplayer].morphtics = 1;
 		players[consoleplayer].UndoPlayerMorph(players[consoleplayer], 0, true);
+		players[consoleplayer].mo.bPickup = true;
+		
 		if (EffectTics == BLINKTHRESHOLD)
 		{
 			Console.Printf("Syo Power Is Wearing Off!");
