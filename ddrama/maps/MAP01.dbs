@@ -38,7 +38,7 @@ maps
 		overrideceiltexture = false;
 		defaultwalltexture = "BRKRED";
 		defaultbottomtexture = "BRKRED";
-		scriptcompiler = "zdoom_gdcc.cfg";
+		scriptcompiler = "zdoom_acs.cfg";
 		uselongtexturenames = false;
 		viewpositionx = 194.6301f;
 		viewpositiony = -288.9864f;
@@ -136,7 +136,7 @@ maps
 				tabtype = 0;
 				scripttype = 1;
 				caretposition = 257;
-				firstvisibleline = 17;
+				firstvisibleline = 12;
 				activetab = true;
 			}
 		}

@@ -1,0 +1,8 @@
+To build you need the following dependencies
+
+GDCC-ACC (https://forum.zdoom.org/viewtopic.php?f=44&t=32078)
+7zip/p7zip if you're on linux
+
+Put these in your PATH
+
+run compile.bat or compile.sh... I need people to test compile.sh

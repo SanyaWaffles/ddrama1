@@ -427,14 +427,14 @@ Class DD_JunkoEnoshimaBoss : DD_Boss
 				bInvulnerable = true;
 				bNoPain = true;
 			}
-			JKOP A 4
+			JKOP A 3
 			{
 				A_Pain();
 				A_SpawnItemEx("DD_JunkoStarsFx", 0, 0, 72);
 			}
-			JKOP BABABABABA 4;
-			JKOP BABABAB 4;
-			JKOP A 4
+			JKOP BABABA 3;
+			JKOP BABABA 3;
+			JKOP A 3
 			{
 				bInvulnerable = false;
 				bNoPain = false;
