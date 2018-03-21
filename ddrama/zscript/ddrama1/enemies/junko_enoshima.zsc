@@ -33,7 +33,7 @@ Class DD_JunkoStarsFx : DD_Actor
 	States
 	{
 		Spawn:
-			JKFX ABABABABABABABABABAB 4 NoDelay
+			JKFX ABABABABABAB 4 NoDelay
 			{
 				A_Warp(AAPTR_TARGET, 0, 0, 64, 0, WARPF_NOCHECKPOSITION | WARPF_STOP);
 			}
@@ -199,7 +199,7 @@ Class DD_JunkoEnoshimaBoss : DD_Boss
 		//$Title "Junko Enoshima"
 		//$Sprite JKO0A0
 		
-		Health 6000;
+		Health 4500;
 		Scale 0.12;
 		Radius 20;
 		Height 60;
@@ -358,7 +358,7 @@ Class DD_JunkoEnoshimaBoss : DD_Boss
 			}
 			JKOW A 4 Bright;
 			JKOW B 4 Bright;
-			JKOW B 0 Bright A_Jump(256, "TransformSyo", "TransformSmart", "TransformSad");
+			JKOW B 0 Bright A_Jump(256, "TransformSyo", "TransformSyo", "TransformSyo", "TransformSmart", "TransformSad",  "TransformSad", "TransformSad");
 			Goto SeeSad;
 		
 		TransformSyo:
@@ -432,8 +432,7 @@ Class DD_JunkoEnoshimaBoss : DD_Boss
 				A_Pain();
 				A_SpawnItemEx("DD_JunkoStarsFx", 0, 0, 72);
 			}
-			JKOP BABABA 3;
-			JKOP BABABA 3;
+			JKOP BABABABABABA 3;
 			JKOP A 3
 			{
 				bInvulnerable = false;
