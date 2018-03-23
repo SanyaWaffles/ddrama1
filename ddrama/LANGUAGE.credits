@@ -145,24 +145,28 @@ ENDMAP_CREDIT_TEXTURES = "Textures by\n\n"
 ENDMAP_CREDIT_SOUND = "Kelsie Armerding, SanyaWaffles\n"
 					  "RodScorpion, Astley Similie\n"
 					  "Revo794, and.\n"
-					  "Innocent-Darkside (Brad S.)";
+					  "Innocent-Darkside, Havocarius\n"
+					  "SpoopyScarySarah";
 
 ENDMAP_SPECIAL_THANKS = "Risa Hunt, Joel of Vinesauce\n"
-						"Ral22, Havocarious, MSPaintR0cks\n"
-						"Lud, ZZYZX, DavidPH, and many others!";
+						"Ral22, Havocarius, MSPaintR0cks\n"
+						"Lud, ZZYZX, DavidPH\n"
+						"Marisa Kirisame, LeoDoom85\n"
+						"Rachael Alexanderson\n"
+						"zhs2, Gutawer and many more!";
 
 CC_DD_BUDDYBEAR	 = "Buddy Bear\nVoiced By Butters From South Park";
 CC_DD_GUMBALL	 = "Gumball Watterson";
-CC_DD_LOTSO		 = "Lotso-Shootan-Bear\nVoiced by Lotso from Toy Story 3and\nDuke Phillips From The Critic";
-CC_DD_BARFBAG	 = "Barfbag\nVoiced by Jay Sherman from The Critic";
-CC_DD_SWEETBRO	 = "Sweet Bro Prisoner \nVoiced by SanyaWaffles.";
+CC_DD_LOTSO		 = "Lotso-Shootan-Bear";
+CC_DD_BARFBAG	 = "Barfield Barfbag";
+CC_DD_SWEETBRO	 = "Sweet Bro Prisoner";
 CC_DD_FLOWERCROWN	 = "Flaming Firecrown";
-CC_DD_DONTRELDEMON	 = "Dontreldemon (Dontrel the Dolphin)\nVoiced by Brad";
-CC_DD_BRONY		 = "Brony of Despair\nVoiced by Levi Stubbs (Audrey II)";
-CC_DD_CHECKSUM	 = "Checksum Unicorn\nVoiced by Mrs. MeVilda from The Christmas Tree";
-CC_DD_HELLAJEFF	 = "Hella Jeff\nVoiced by Astley Similie";
+CC_DD_DONTRELDEMON	 = "Dontrel the Dolphin";
+CC_DD_BRONY		 = "Brony of Despair";
+CC_DD_CHECKSUM	 = "Checksum Unicorn";
+CC_DD_HELLAJEFF	 = "Hella Jeff";
 CC_DD_PURRMOID	 = "Purrmoid";
-CC_DD_BONZI	 	 = "BonziBuddy\nVoiced by Joel from Vinesauce";
-CC_DD_TROLLJUNKO = "Trollsona Junko\nVoiced by Kootie Pie Koopa from TAOSMB3";
+CC_DD_BONZI	 	 = "BonziBuddy";
+CC_DD_TROLLJUNKO = "Trollsona Junko";
 CC_DD_MONOKUMA	 = "Giant Monokuma";
 CC_DD_JUNKO		 = "Junko Enoshima";
