@@ -148,7 +148,40 @@ Class DD_BronyOfDespairCast : DD_BronyOfDespair
 	States
 	{
 		Spawn:
-			BMRA A 1;
-			Goto SpawnActual;
+			BMRA A 10 A_DDramaLook;
+			Loop;
+			
+		See:
+			BMRA BCDEBCDE 3 A_DDramaChase;
+			Loop;
+			
+		Melee:
+			BMRA HI 6 A_FaceTarget;
+			BMRA J 6 A_CustomMeleeAttack(random[Brony](1, 8) * 10, "brony/meleehit", "brony/meleemiss");
+			Goto See;
+			
+		Missile:
+			BMRA EF 8 A_FaceTarget;
+			BMRA G 8 A_SpawnProjectile("DD_DudebronyBall", 48, 0);
+			Goto See;
+		
+		Pain:
+			BMRA K 2;
+			BMRA K 2 A_Pain;
+			Goto See;
+		
+		Death:
+		Death.Extreme:
+		Death.Rocket:
+		Death.Webbing:
+		Death.Expand:
+		Death.Shou:
+			BMRA L 8;
+			BMRA M 8 A_Scream;
+			BMRA N 8;
+			BMRA O 8 A_NoBlocking;
+			BMRA P 150;
+			BMRA P -1 A_BossDeath;
+			Stop;
 	}
 }

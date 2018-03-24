@@ -44,4 +44,44 @@ Class DD_MorphProjectile : MorphProjectile
 		-ActivatePCross
 		-ActivateImpact
 	}
+	
+		
+	// Thank FishyClockwork and Marisa Kirisame for this
+	override int DoSpecialDamage(Actor target, int damage, Name damagetype)
+	{
+		let armor = BasicArmor(target.FindInventory("BasicArmor"));
+		if ( !armor )
+			return Super.DoSpecialDamage(target, damage, damagetype);
+		
+		// Save armor info
+		let savepercent = armor.SavePercent;
+		let amount = armor.Amount;
+		let maxamount = armor.MaxAmount;
+		let icon = armor.Icon;
+		let maxabsorb = armor.MaxAbsorb;
+		let maxfullabsorb = armor.MaxFullAbsorb;
+		let armortype = armor.ArmorType;
+		let actualsaveamount = armor.ActualSaveAmount;
+		
+		if (target.player)
+		{
+			target.player.morphplayer(NULL, PlayerClass, Duration, MorphStyle, MorphFlash, UnMorphFlash);
+		}
+		else
+		{
+			target.morphmonster(MonsterClass, Duration, MorphStyle, MorphFlash, UnMorphFlash);
+		}
+		
+		//Restore information
+		armor.SavePercent = savepercent;
+		armor.Amount = amount;
+		armor.MaxAmount = maxamount;
+		armor.Icon = icon;
+		armor.MaxAbsorb = maxabsorb;
+		armor.MaxFullAbsorb = maxfullabsorb;
+		armor.ArmorType = armortype;
+		armor.ActualSaveAmount = actualsaveamount;
+		
+		return -1;
+	}
 }

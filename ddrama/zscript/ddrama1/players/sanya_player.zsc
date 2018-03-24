@@ -142,9 +142,9 @@ Class DD_ShrunkenPlayer : DD_Sanya
 	{
 		Speed 1;
 		
-		Player.MaxHealth 100;
+		Player.MaxHealth 15;
 		
-		Health 100;
+		Health 15;
 		Radius 14;
 		Height 24;
 		Mass 30;
