@@ -355,11 +355,6 @@ object DD_ShrinkShot
     frame TBL1A { light DD_SHRINKSHOT }
 }
 
-object DD_JunkoMorphShot
-{
-    frame TBL1A { light DD_SHRINKSHOT }
-}
-
 object DD_ShrinkFlash
 {
     frame SRFX { light DD_SHRINKFLASH_FX }

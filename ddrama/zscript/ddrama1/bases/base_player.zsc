@@ -118,7 +118,7 @@ Class DD_PlayerPawn : PlayerPawn
 	// Perform High Quality RIPs
 	void A_RIPProcess()
 	{
-		if (health <= 0 && GetCvar("dd_rip"))
+		if (health <= 0 && CVar.FindCVar('dd_rip').GetBool())
 		{
 			if (seconds == 5)
 			{
@@ -255,7 +255,7 @@ Class DD_PlayerPawn : PlayerPawn
 		// expand on it.
 		if (!player || !player.mo || player.mo != self)
 		{
-			// Onply perform the PlayerPawn functionality, nothing more...
+			// Only perform the PlayerPawn functionality, nothing more...
 			Super.Tick();
 			return;	// bailing out...
 		}
