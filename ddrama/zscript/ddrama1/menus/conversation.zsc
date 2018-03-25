@@ -1,12 +1,131 @@
+/* *******************************************************************
+ *		conversation.zsc
+ *
+ *		Conversation Menu
+ *
+ *		Me and FishyClockwork discovered independently
+ *		The initial code, but has since evolved into two
+ *		different codebases. I was able to workaround
+ *		a bug in GZDoom not handling my removal of
+ *		goodbyes, but Fishy's code is going a different
+ *		route. Still, I'll credit him to be sure.
+ *
+ *		As long as you attribute these functions to me in some
+ *		way I don't mind people using these. Considering how much
+ *		some people have caused an uproar over the lack of proper
+ *		examples and the like.
+ *
+ *		Copyright Sanya K. C. Waffles 2013-2018
+ *		Copyright FishyClockwork 2017-2018
+ *
+ * ****************************************************************** */
+
 class DD_ConversationMenu : ConversationMenu
 {
+    override int FormatReplies(int activereply)
+    {
+        mSelection = -1;
 
-	//============================================================================
-	//
-	// DrawConversationMenu
-	//
-	//============================================================================
+        StrifeDialogueReply reply;
+        int r = -1;
+        int i = 1,j;
+        for (reply = mCurNode.Children; reply != NULL; reply = reply.Next)
+        {
+            r++;
+            if (reply.ShouldSkipReply(mPlayer))
+            {
+                continue;
+            }
+            if (activereply == r) mSelection = i - 1;
 
+            mShowGold |= reply.NeedsGold;
+
+            let ReplyText = Stringtable.Localize(reply.Reply);
+            if (reply.NeedsGold) ReplyText.AppendFormat(" for %u", reply.PrintAmount);
+
+            let ReplyLines = SmallFont.BreakLines (ReplyText, ReplyWidth);
+
+            mResponses.Push(mResponseLines.Size());
+            for (j = 0; j < ReplyLines.Count(); ++j)
+            {
+                mResponseLines.Push(ReplyLines.StringAt(j));
+            }
+            
+            ++i;
+            ReplyLines.Destroy();
+        }
+        if (mSelection == -1)
+        {
+            mSelection = r < activereply ? r + 1 : 0;
+        }
+        
+        // We Don't need no stinkin' goodbyes!
+
+        // Determine where the top of the reply list should be positioned.
+        mYpos = MIN (140, 192 - mResponseLines.Size() * OptionMenuSettings.mLinespacing);
+        i = 44 + mResponseLines.Size() * OptionMenuSettings.mLinespacing;
+        if (mYpos - 100 < i - screen.GetHeight() / CleanYfac / 2)
+        {
+            mYpos = i - screen.GetHeight() / CleanYfac / 2 + 100;
+        }
+
+        if (mSelection >= mResponses.Size())
+        {
+            mSelection = mResponses.Size() - 1;
+        }
+        return mYpos;
+    }
+	
+	override void DrawReplies()
+	{
+		// Dim the screen behind the PC's choices.
+		screen.Dim(0, 0.45, (24 - 160) * CleanXfac + screen.GetWidth() / 2, (mYpos - 2 - 100) * CleanYfac + screen.GetHeight() / 2,
+			272 * CleanXfac, MIN(mResponseLines.Size() * OptionMenuSettings.mLinespacing + 4, 200 - mYpos) * CleanYfac);
+
+		int y = mYpos;
+		int fontheight = OptionMenuSettings.mLinespacing;
+
+		int response = 0;
+		for (int i = 0; i < mResponseLines.Size(); i++)
+		{
+			int width = SmallFont.StringWidth(mResponseLines[i]);
+			int x = 32;
+
+			screen.DrawText(SmallFont, Font.CR_GREEN, x, y, mResponseLines[i], DTA_Clean, true);
+			
+			// For some reason it crashes here, so we
+			// add -1 to compensate
+			if (i == mResponses[response] - 1)
+			{
+				if (response == mSelection + 1)
+				{
+					int colr = ((MenuTime() % 8) < 4) || GetCurrentMenu() != self ? Font.CR_RED : Font.CR_GREY;
+					int yy = (y + fontheight / 2 - 5 - 100) * CleanYfac + screen.GetHeight() / 2;
+					screen.DrawText(ConFont, colr, x, yy, "\xd", DTA_CellX, 8 * CleanXfac, DTA_CellY, 8 * CleanYfac);
+				}
+			}
+			y += fontheight;
+		}
+		
+		String strprint = StringTable.Localize("$DIALOGUE_ENTER");
+		int w = Smallfont.StringWidth(strprint);
+		
+		screen.DrawText(SmallFont, Font.CR_GREEN, 100 - w, 180, strprint, DTA_Clean, true);
+	}
+	
+	override bool OnUIEvent(UIEvent ev)
+	{
+		if (demoplayback)
+		{ // No interaction during demo playback
+			return false;
+		}
+		if (ev.type == UIEvent.Type_Char && ev.KeyChar == 13)
+		{
+			return MenuEvent(MKEY_Enter, false);
+		}
+		return false;
+	}
+	
 	override void Drawer()
 	{
 		if (mCurNode == NULL)
@@ -18,6 +137,5 @@ class DD_ConversationMenu : ConversationMenu
 		bool dimbg = DrawBackdrop();
 		DrawSpeakerText(dimbg);
 		DrawReplies();
-		//  DrawGold();
 	}
 }

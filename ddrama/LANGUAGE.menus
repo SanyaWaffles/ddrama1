@@ -88,6 +88,8 @@ DD_QUITMSG5			= "Don't let the door hit you\non the way out!";
 DD_QUITMSG6			= "You dare leave in our time of need!?";
 DD_QUITMSG7			= "Where are you going? Come back!";
 
+DIALOGUE_ENTER	= "Press Enter to Continue";
+
 DD_EP1STR		= "Metro Misery";
 
 DD_MAPSTART		= "Start";
