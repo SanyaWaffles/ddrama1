@@ -524,6 +524,20 @@ Class DD_TrollbloodDevice : DD_Weapon
 		return ResolveState(ReadyStates[TBDGetAmmoType()]);
 	}
 	
+	action state A_DDTBDLowerSwitch()
+	{
+		static const StateLabel LowerStates[] = { "Deselect.Shrink", "Deselect.Expand", "Deselect.Webber" };
+		
+		return ResolveState(LowerStates[TBDGetAmmoType()]);
+	}
+	
+	action state A_DDTBDRaiseSwitch()
+	{
+		static const StateLabel RaiseStates[] = { "Select.Shrink", "Select.Expand", "Select.Webber" };
+		
+		return ResolveState(RaiseStates[TBDGetAmmoType()]);
+	}
+	
 	action void A_DDTBDReadyLoop()
 	{
 		A_WeaponReady(WRF_ALLOWUSER1);
@@ -608,11 +622,43 @@ Class DD_TrollbloodDevice : DD_Weapon
 			Goto Ready;
 		
 		Deselect:
-			TRLG "#" 1 A_Lower;
+			TRLG A 0 A_DDTBDLowerSwitch;
+			Goto Deselect.Shrink;
+			
+		Deselect.Shrink:
+			TRLG A 0;
+			Goto Deselect.Real;
+		
+		Deselect.Expand:
+			TRLG B 0;
+			Goto Deselect.Real;
+		
+		Deselect.Webber:
+			TRLG C 0;
+			Goto Deselect.Real;
+		
+		Deselect.Real:
+			"####" "#" 1 A_Lower;
 			Loop;
 		
 		Select:
-			TRLG "#" 1 A_Raise;
+			TRLG A 0 A_DDTBDRaiseSwitch;
+			Goto Select.Shrink;
+			
+		Select.Shrink:
+			TRLG A 0;
+			Goto Select.Real;
+		
+		Select.Expand:
+			TRLG B 0;
+			Goto Select.Real;
+		
+		Select.Webber:
+			TRLG C 0;
+			Goto Select.Real;
+		
+		Select.Real:
+			"####" "#" 1 A_Raise;
 			Loop;
 		
 		Fire:

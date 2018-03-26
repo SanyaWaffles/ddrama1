@@ -32,7 +32,7 @@ Class DD_SyoPepperPowerStrength : PowerDamage
 		bDontMorph = true;	// set this
 		players[consoleplayer].morphtics = 1;
 		players[consoleplayer].UndoPlayerMorph(players[consoleplayer], 0, true);
-		players[consoleplayer].mo.bPickup = true;
+		players[consoleplayer].mo.bPickup = true; // and this
 		
 		if (EffectTics == BLINKTHRESHOLD)
 		{
@@ -120,6 +120,7 @@ Class DD_SyoPepper : CustomInventory
 			{
 				A_GiveInventory("DD_SyoPepperPowerStrength", 1);
 				bDontMorph = true;	// give this
+				bPickup = true;		// and this
 				A_PlaySound("syopepper/fanfare", (DDPLAYER_VOICECHAN), 1.0, false, ATTN_NONE);
 				A_GiveInventory("DD_SyoPepperPowerSpeed", 1);
 				A_GiveInventory("DD_SyoPepperPowerProtection", 1);
