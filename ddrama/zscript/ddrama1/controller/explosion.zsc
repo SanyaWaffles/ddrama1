@@ -195,7 +195,7 @@ Class DD_ExplosionSpot : DD_SwitchableController
 	void A_DDExplodeSpotDeath()
 	{
 		A_SetScale(0.22);
-		A_Scream();
+		A_PlaySound("misc/explosion2", CHAN_6);
 		A_Explode(32, 20, XF_NOTMISSILE);
 		A_QuakeEx(4, 4, 4, 24, 0, 1024, "world/rumble");
 	}

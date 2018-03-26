@@ -27,7 +27,7 @@ Class DD_ExplodingBarrel : DD_Prop
 		Radius 16;
 		Height 36;
 		Mass 1280;
-		DeathSound "world/barrelx";
+		DeathSound "misc/explosion2";
 		DamageType "Extreme";
 		Obituary "$OB_BARREL";
 
@@ -49,7 +49,7 @@ Class DD_ExplodingBarrel : DD_Prop
 			Stop;
 		
 		Death:
-			BAR1 B 5 Bright A_Scream;
+			BAR1 B 5 Bright;
 			BAR1 C 5 Bright A_ExplodeDDBarrel;
 			BAR1 C 2 A_FadeOut(0.2, true);
 			Wait;
@@ -68,7 +68,7 @@ Class DD_ExplosionFX1 : DD_Decoration
 		Gravity 0.0;
 		Scale 0.24;
 		Renderstyle "Add";
-		DeathSound "world/barrelx";
+		DeathSound "misc/explosion2";
 		DamageType "Extreme";
 		Alpha 0.7;
 
@@ -82,7 +82,7 @@ Class DD_ExplosionFX1 : DD_Decoration
 			Goto Death;
 			
 		Death:
-			EXPL A 3 Bright A_Scream;
+			EXPL A 3 Bright A_PlaySound("misc/explosion2", CHAN_6);
 			EXPL B 3 Bright A_Quake(4, 14, 0, 1096);
 			EXPL CDEFG 3 Bright;
 			EXPL I 1 A_FadeOut(0.3, true);

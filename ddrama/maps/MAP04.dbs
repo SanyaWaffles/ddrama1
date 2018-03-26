@@ -40,9 +40,9 @@ maps
 		}
 		scriptcompiler = "zdoom_acs.cfg";
 		uselongtexturenames = false;
-		viewpositionx = -196.2502f;
-		viewpositiony = 3595.802f;
-		viewscale = 4.828353f;
+		viewpositionx = 171.2572f;
+		viewpositiony = 859.7803f;
+		viewscale = 1.000319f;
 		
 		scriptlumps
 		{
@@ -65,8 +65,8 @@ maps
 			{
 				alpha = 1;
 				locknumber = 0;
-				renderstyle = 2;
 				arg0str = 2;
+				renderstyle = 2;
 			}
 			
 			sidedef
@@ -140,7 +140,8 @@ maps
 				resource;
 				tabtype = 0;
 				scripttype = 1;
-				caretposition = 371;
+				caretposition = 1815;
+				firstvisibleline = 61;
 				activetab = true;
 			}
 		}

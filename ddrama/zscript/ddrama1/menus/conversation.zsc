@@ -110,7 +110,7 @@ class DD_ConversationMenu : ConversationMenu
 		String strprint = StringTable.Localize("$DIALOGUE_ENTER");
 		int w = Smallfont.StringWidth(strprint);
 		
-		screen.DrawText(SmallFont, Font.CR_GREEN, 100 - w, 180, strprint, DTA_Clean, true);
+		screen.DrawText(SmallFont, Font.CR_GREEN, 160 - w/2, 180, strprint, DTA_Clean, true);
 	}
 	
 	override bool OnUIEvent(UIEvent ev)
