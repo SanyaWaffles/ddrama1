@@ -74,7 +74,7 @@ Class DD_Dontreldemon : DD_Enemy
 	{
 		A_FaceTarget();
 		
-		if (!(random[Dontreldemon](1, 5) % 2)) return ResolveState("AttackThrust");
+		if (!(random(1, 5) % 2)) return ResolveState("AttackThrust");
 		
 		return ResolveState("AttackKore");
 	}
@@ -82,7 +82,7 @@ Class DD_Dontreldemon : DD_Enemy
 	// Projectile Attack/Nomming attack
 	void DD_DontrelKorezAttack()
 	{
-		if (target && target.health > 0) A_CustomComboAttack("DD_KorezBall", 32, (random[Dontreldemon](1, 6) * 2), "dontrel/melee");
+		if (target && target.health > 0) A_CustomComboAttack("DD_KorezBall", 32, (random(1, 6) * 2), "dontrel/melee");
 	}
 	
 	// Do the scale.x flipping
@@ -94,7 +94,7 @@ Class DD_Dontreldemon : DD_Enemy
 	// Flip sprite left/right/left like toy soldier
 	void DD_DontrelChase()
 	{
-		int dontrelflip = random[Dontreldemon](1,8);
+		int dontrelflip = random(1,8);
 		
 		if (!(dontrelflip % 2) && dontrelflip <= 4)
 			DD_DontrelFlip();

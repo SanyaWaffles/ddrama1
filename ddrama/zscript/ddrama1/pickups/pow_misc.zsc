@@ -81,13 +81,13 @@ Class DD_Cracker : CustomInventory
 				
 				String sr;
 				
-				int joke = Random[CrackerJoke](1, 16);
+				int joke = Random(1, 16);
 				
 				sr.AppendFormat("$%s%02d", "DD_CRACKERJOKE", joke);
 				
 				A_Print(StringTable.Localize(sr));
 				
-				A_SpawnItemEx(trinkets[Random[CrackerJoke](0, 6)], flags: SXF_NOCHECKPOSITION);
+				A_SpawnItemEx(trinkets[Random(0, 6)], flags: SXF_NOCHECKPOSITION);
 				
 				return true;
 			}

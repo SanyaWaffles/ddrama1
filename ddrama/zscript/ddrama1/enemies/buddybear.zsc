@@ -52,7 +52,7 @@ class DD_BuddyBear : DD_Enemy
 			BEAR F 6 BRIGHT
 			{
 				A_FaceTarget();	// face target				
-				A_CustomBulletAttack(4.2, 0, 1, Random[BuddyBear](1, 3) * 2, "DD_BulletPuff", 1024, CBAF_NORANDOM);
+				A_CustomBulletAttack(4.2, 0, 1, Random(1, 3) * 2, "DD_BulletPuff", 1024, CBAF_NORANDOM);
 				A_PlaySound("bear/attack", CHAN_WEAPON);
 			}
 			BEAR E 6;

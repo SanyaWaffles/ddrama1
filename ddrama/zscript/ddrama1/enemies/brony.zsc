@@ -111,7 +111,7 @@ Class DD_BronyOfDespair : DD_Boss
 			
 		Melee:
 			"####" HI 6 A_FaceTarget;
-			"####" J 6 A_CustomMeleeAttack(random[Brony](1, 8) * 10, "brony/meleehit", "brony/meleemiss");
+			"####" J 6 A_CustomMeleeAttack(random(1, 8) * 10, "brony/meleehit", "brony/meleemiss");
 			Goto See;
 			
 		Missile:

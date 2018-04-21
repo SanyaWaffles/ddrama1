@@ -122,7 +122,7 @@ Class DD_PlayerPawn : PlayerPawn
 		{
 			if (seconds == 5)
 			{
-				typeofrip = Random[RIP_SoundObituary](RIP_Normal, RIP_Jeopardy);
+				typeofrip = Random(RIP_Normal, RIP_Jeopardy);
 				
 				if (typeofrip == RIP_FelixHet)
 				{

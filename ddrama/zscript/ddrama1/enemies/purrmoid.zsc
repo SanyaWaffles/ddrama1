@@ -177,7 +177,7 @@ Class DD_Purrmoid : DD_Enemy
 		Pain.Normal:
 			PURM H 3 A_DDPurrmoidPain;		// feign death...
 			PURM IJK 3;
-			PURM L 35 A_SetTics((35 * random[Purrmoid](10,24)) - 1);	// make it feign death for 10 to 24 seconds... gives the player time to get away if need be.
+			PURM L 35 A_SetTics((35 * random(10,24)) - 1);	// make it feign death for 10 to 24 seconds... gives the player time to get away if need be.
 			PURM L 1 A_DDPurrmoidUnPain;	// resurrect!
 			PURM KJIH 2;
 			Goto See;

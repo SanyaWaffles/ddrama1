@@ -95,14 +95,14 @@ Class DD_SonicTabletpen : DD_Weapon
 				if (CheckForPepperPowerup())
 				{
 					// Do more damage, heal player
-					A_CustomPunch((random(4, 7) * random[TabletPen](3, 4)), true, (CPF_NOTURN|CPF_NORANDOMPUFFZ|CPF_STEALARMOR) , "DD_SyoSonicPuff", 80, random[TabletPen](0, 3), 10, "ArmorBonus", "weapons/sonicpen", "weapons/sonicpenmiss");
+					A_CustomPunch((random(4, 7) * random(3, 4)), true, (CPF_NOTURN|CPF_NORANDOMPUFFZ|CPF_STEALARMOR) , "DD_SyoSonicPuff", 80, random(0, 3), 10, "ArmorBonus", "weapons/sonicpen", "weapons/sonicpenmiss");
 					ThrustThing(angle * 256 / 360, 5, 0, 0);	// we wanna thrust
 					A_SetTics(1);
 				}
 				else
 				{
 					// Do less damage
-					A_CustomPunch((random(3, 5) * random[TabletPen](2,3)), true, (CPF_NOTURN|CPF_NORANDOMPUFFZ) , "DD_SonicPuff", 64, 0, 0, "ArmorBonus", "weapons/sonicpen", "weapons/sonicpenmiss");
+					A_CustomPunch((random(3, 5) * random(2,3)), true, (CPF_NOTURN|CPF_NORANDOMPUFFZ) , "DD_SonicPuff", 64, 0, 0, "ArmorBonus", "weapons/sonicpen", "weapons/sonicpenmiss");
 					A_SetTics(3);
 				}
 			}

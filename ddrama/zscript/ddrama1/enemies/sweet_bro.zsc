@@ -41,7 +41,7 @@ Class DD_SweetBro : DD_Enemy
 		{
 			if (CheckMeleeRange())
 			{
-				int damage = random[SweetBro](1, 10) * dmgmod;
+				int damage = random(1, 10) * dmgmod;
 				int newdam = target.DamageMobj(self, self, damage, "Melee");
 				target.TraceBleed(newdam > 0 ? newdam : damage, self);
 				

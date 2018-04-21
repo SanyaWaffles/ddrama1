@@ -87,7 +87,7 @@ Class DD_HellaJeff : DD_Enemy
 	{
 		// keep firing unless target got out of sight
 		A_FaceTarget();
-		if (Random[HellaJeff](0, 100) >= 67)
+		if (Random(0, 100) >= 67)
 		{
 			if (!target || HitFriend() || target.health <= 0 || !CheckSight(target, SF_SEEPASTBLOCKEVERYTHING|SF_SEEPASTSHOOTABLELINES))
 			{
@@ -105,7 +105,7 @@ Class DD_HellaJeff : DD_Enemy
 				return ResolveState(null);
 			}
 			
-			if (CheckIfCloser(target, (radius + Random[HellaJeff](24,32)), false))
+			if (CheckIfCloser(target, (radius + Random(24,32)), false))
 			{
 				return ResolveState("DoritoBomb");
 			}
@@ -127,7 +127,7 @@ Class DD_HellaJeff : DD_Enemy
 	state A_DDHellaJeffPainSelect()
 	{
 		// keep firing unless target got out of sight
-		if ((Random[HellaJeff](1, 100) % 2) == 0)
+		if ((Random(1, 100) % 2) == 0)
 			return ResolveState("Pain1");
 		
 		return ResolveState("Pain2");

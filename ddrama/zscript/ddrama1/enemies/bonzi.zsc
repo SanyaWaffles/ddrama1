@@ -139,7 +139,7 @@ Class DD_BonziBuddy : DD_Boss
 				
 				if (target)
 				{
-					if (!CheckIfCloser(target, (radius + Random[HellaJeff](24,32)), false))
+					if (!CheckIfCloser(target, (radius + Random(24,32)), false))
 					{
 						return ResolveState("TorchEmEnd");
 					}

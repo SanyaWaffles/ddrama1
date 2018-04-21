@@ -550,15 +550,15 @@ Class DD_RocketLauncher : DD_Weapon
 			MS2G A 1 A_WeaponOffset(0, 34);
 			MS2G B 2
 			{
-				int i = -6;
+				int i = -4;
 				
-				bool takeornot = Random[ShoutimeSeek](0, 1);	// randomly we decide wether or not to take ammo
+				bool takeornot = Random(0, 1);	// randomly we decide wether or not to take ammo
 				
-				for (i = -6; i <= 6; i += 2)
+				for (i = -4; i <= 4; i += 2)
 				{
-					takeornot = takeornot & (Random[ShoutimeSeek](0, 127) % 2);		// randomize taking of ammo
+					takeornot = takeornot & (Random(0, 127) % 2);		// randomize taking of ammo
 					
-					A_FireProjectile("DD_DrunkRocket", 0, Random[ShoutimeSeek](0, 1), i, FPF_NOAUTOAIM);	// Fire drunken missiles
+					A_FireProjectile("DD_DrunkRocket", 0, Random(0, 1), i, FPF_NOAUTOAIM);	// Fire drunken missiles
 				}
 				
 				A_WeaponOffset(0, 38);

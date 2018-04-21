@@ -37,7 +37,7 @@ Class DD_LotsoBear : DD_Enemy
 	{
 		A_FaceTarget();
 		A_PlaySound("lotso/attack", CHAN_WEAPON);
-		A_CustomBulletAttack(4.6, 0, 3, Random[BuddyBear](1, 4), "DD_BulletPuff", 1024, CBAF_NORANDOM);
+		A_CustomBulletAttack(4.6, 0, 3, Random(1, 4), "DD_BulletPuff", 1024, CBAF_NORANDOM);
 	}
 	
 	private void A_DDLotsoDropAmmoInternal()

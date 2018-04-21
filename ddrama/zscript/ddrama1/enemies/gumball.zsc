@@ -37,7 +37,7 @@ class DD_Gumball : DD_Enemy
 	{
 		A_FaceTarget();
 		A_PlaySound("gumball/attack", CHAN_WEAPON);
-		A_CustomBulletAttack(4.6, 0, 3, Random[Gumball](1, 3), "DD_BulletPuff", 1024, CBAF_NORANDOM);
+		A_CustomBulletAttack(4.6, 0, 3, Random(1, 3), "DD_BulletPuff", 1024, CBAF_NORANDOM);
 	}
 	
 	private void A_GumballDropAmmoInternal()
