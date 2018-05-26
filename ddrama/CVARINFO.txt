@@ -2,4 +2,4 @@
 server int	dd_snd_oneliners = 1;
 server int	dd_rip = 1;			// RIP on and off
 server int	dd_skipaeboot = 0;	// Skip the Alter Ego bootup screen
-server 	bool	dd_classicsanyavoice = false;
+server 	bool	dd_classicsanyavoice = true;
