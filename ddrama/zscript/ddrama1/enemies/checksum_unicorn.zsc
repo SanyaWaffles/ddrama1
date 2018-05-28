@@ -207,6 +207,10 @@ Class DD_ChecksumUnicorn : DD_Enemy
 			CSUM R -1;
 			Stop;
 		
+		Death.Expand:
+			CSUM N 1 A_SetScale(abs(Scale.X), abs(Scale.Y));	// make the scale absolute (no flipping)
+			Goto Super::Death.Expand;
+			
 		Crush:
 			Stop;
 		

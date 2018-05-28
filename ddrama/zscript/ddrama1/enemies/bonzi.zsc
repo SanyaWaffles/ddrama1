@@ -176,7 +176,6 @@ Class DD_BonziBuddy : DD_Boss
 		Death:
 		Death.Rocket:
 		Death.Webbing:
-		Death.Expand:
 		Death.Shou:
 		Death.Extreme:
 			BNZI O 8 A_ScreamAndUnblock;
@@ -185,6 +184,10 @@ Class DD_BonziBuddy : DD_Boss
 			BNZI R 35;
 			BNZI R -1 A_BossDeath;
 			Stop;
+		
+		Death.Expand:
+			BNZI N 1 A_SetScale(abs(Scale.X), abs(Scale.Y));	// make the scale absolute (no flipping)
+			Goto Super::Death.Expand;
 		
 		Raise:
 		Crush:
