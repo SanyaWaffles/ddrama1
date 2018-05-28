@@ -46,7 +46,7 @@ Class DD_ShrinkShot : DD_MorphProjectile
 			TBL1 B 0 Bright A_SetRenderStyle(0.4,  STYLE_Translucent); // A_SetTranslucent(0.4);
 			TBL1 B 3 Bright A_SetScale(-0.12);
 			TBL1 B 0 Bright A_SetRenderStyle(0.25, STYLE_Translucent); // A_SetTranslucent(0.25);
-			TBL1 B 5 Bright
+			TBL1 B 5 Bright;
 			Stop;
 	}
 }
