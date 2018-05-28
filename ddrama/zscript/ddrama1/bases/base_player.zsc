@@ -44,12 +44,12 @@ Class DD_PlayerPawn : PlayerPawn
 	enum ERIPSoundObitTypes
 	{
 		RIP_Normal,
+		RIP_NormalEnd = 12,
 		RIP_FelixHet,
 		RIP_DeepHurting,
 		RIP_LowtaxLoser,
 		RIP_Jeopardy,
 	};
-
 	
 	bool startepisode;		// starting episode?
 	bool heatseektoggle;	// Rocket Launcher Heatseek Toggle
@@ -150,7 +150,7 @@ Class DD_PlayerPawn : PlayerPawn
 					players[0].mo.A_PlaySound("epitaph/joelidiot", (DDPLAYER_BODYCHAN), DDPLAYER_RIPVOL, false, ATTN_NONE);
 				}
 				
-				if (typeofrip == RIP_Normal)
+				if (typeofrip >= RIP_Normal && typeofrip <= RIP_NormalEnd)
 				{
 					players[0].mo.A_PlaySound("epitaph/main", (DDPLAYER_BODYCHAN), DDPLAYER_RIPVOL, false, ATTN_NONE);
 				}
