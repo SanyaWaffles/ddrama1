@@ -234,6 +234,11 @@ Class DD_PlayerPawn : PlayerPawn
 		A_OneLinerProcess();
 	}
 	
+	override bool CanCrouch() const
+	{
+		return player.morphTics <= 1 || bCrouchableMorph;
+	}
+	
 	override void BeginPlay()
 	{
 		if (!startepisode)

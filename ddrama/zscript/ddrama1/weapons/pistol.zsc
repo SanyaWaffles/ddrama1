@@ -122,7 +122,7 @@ Class DD_Pistol : DD_Weapon
 				A_PlaySound("weapons/pistolf", CHAN_WEAPON, 1);
 				A_FireBullets(3.8, 0, 1, 5, "DD_BulletPuff", 1);
 			}
-			PISG B 2;
+			PISG B 3;
 			PISG C 3;
 			PISG A 4 A_ReFire;
 			Goto Ready;

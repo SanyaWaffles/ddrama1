@@ -104,7 +104,7 @@ Class DD_Minigun : DD_Weapon
 	{
 		A_GunFlash("Flash");
 		A_PlaySound("weapons/minigunf", CHAN_WEAPON);		
-		A_FireBullets(1.2, 0, 1, random[Minigun](4,6), "DD_BulletPuff");
+		A_FireBullets(1.2, 0, 1, random(4,6), "DD_BulletPuff");
 		A_GiveInventory("DD_MinigunCount", 1);
 		
 		A_DDMinigunTics();

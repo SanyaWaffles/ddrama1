@@ -22,7 +22,7 @@ Class DD_Blood : DD_Actor replaces Blood
 		Speed 0;
 		FloatSpeed 0;
 		Gravity 0;
-		Scale 0.10;
+		Scale 0.14;
 		RenderStyle "Translucent";
 		Alpha 0.7;
 		
