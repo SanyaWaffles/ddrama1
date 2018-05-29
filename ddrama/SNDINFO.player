@@ -10,7 +10,7 @@ $playersound	sanya	male	*grunt		DSEMPTY
 $playersound	sanya	male	*land		DSEMPTY
 $playersounddup	sanya	male	*jump		*land
 $playersounddup	sanya	male	*fist		*land
-$playersounddup	sanya	male	*usefail	*land
+$playersound	sanya	male	*usefail	sounds/usefail.ogg
 
 $playersound	sanya	female	*death		DSEMPTY
 $playersounddup	sanya	female	*xdeath		*death
@@ -23,7 +23,7 @@ $playersound	sanya	female	*grunt		DSEMPTY
 $playersound	sanya	female	*land		DSEMPTY
 $playersounddup	sanya	female	*jump		*land
 $playersounddup	sanya	female	*fist		*land
-$playersounddup	sanya	female	*usefail	*land
+$playersound	sanya	female	*usefail	sounds/usefail.ogg
 
 $playersound	sanya	other	*death		DSEMPTY
 $playersounddup	sanya	other	*xdeath		*death
@@ -36,7 +36,7 @@ $playersound	sanya	other	*grunt		DSEMPTY
 $playersound	sanya	other	*land		DSEMPTY
 $playersounddup	sanya	other	*jump		*land
 $playersounddup	sanya	other	*fist		*land
-$playersounddup	sanya	other	*usefail	*land
+$playersound	sanya	other	*usefail	sounds/usefail.ogg
 
 sanya/annavoiceover1			sounds/sanya/asphalt.ogg
 sanya/annavoiceover2			sounds/sanya/baby.ogg
