@@ -65,6 +65,21 @@ Class DD_Enemy : DD_Actor
 					{
 						pp.A_OneLinerInit(VOX_Normal);
 					}
+					else
+					{
+						let eb = DD_ExplodingBarrel(target);
+						if (eb)
+						{
+							if (eb.target)
+							{
+								let ebpp = DD_PlayerPawn(eb.target);
+								if (ebpp)
+								{
+									ebpp.A_OneLinerInit(VOX_Normal);
+								}
+							}
+						}
+					}
 				}
 			}
 		}
