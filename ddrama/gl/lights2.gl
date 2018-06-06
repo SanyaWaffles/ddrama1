@@ -15,12 +15,10 @@ flickerlight2 DD_SANYA_ATK
     offset 0 44 0
 }
 
-/*
 object DD_Sanya
 {
     frame SNYAJ { light DD_SANYA_ATK }
 }
-*/
 
 flickerlight2 DD_BEAR_ATK
 {

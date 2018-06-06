@@ -78,13 +78,13 @@ Class DD_Sanya : DD_PlayerPawn
 			SNYA EFGH 4;
 			Loop;
 			
-		Missile:
+		Melee:
 			SNYA I 10;
 			Goto Spawn;
 			
-		Melee:
+		Missile:
 			SNYA J 5 BRIGHT;
-			Goto Missile;
+			Goto Melee;
 			
 		Pain:
 			SNYA K 4;
