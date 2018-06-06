@@ -79,11 +79,11 @@ Class DD_Sanya : DD_PlayerPawn
 			Loop;
 			
 		Melee:
-			SNYA I 10;
+			SNYA J 10;
 			Goto Spawn;
 			
 		Missile:
-			SNYA J 5 BRIGHT;
+			SNYA I 5 BRIGHT;
 			Goto Melee;
 			
 		Pain:
