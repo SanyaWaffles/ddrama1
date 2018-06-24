@@ -41,16 +41,6 @@ Class DD_PlayerPawn : PlayerPawn
 		TROLL_BLOOD_MAX,
 	};
 	
-	enum ERIPSoundObitTypes
-	{
-		RIP_Normal,
-		RIP_NormalEnd = 12,
-		RIP_FelixHet,
-		RIP_DeepHurting,
-		RIP_LowtaxLoser,
-		RIP_Jeopardy,
-	};
-	
 	bool startepisode;		// starting episode?
 	bool heatseektoggle;	// Rocket Launcher Heatseek Toggle
 	int trollbloodstage;	// Trollblood Device Stage
@@ -115,65 +105,6 @@ Class DD_PlayerPawn : PlayerPawn
 		A_Explode(128, 144);
 	}
 	
-	// Perform High Quality RIPs
-	void A_RIPProcess()
-	{
-		if (health <= 0 && CVar.FindCVar('dd_rip').GetBool())
-		{
-			if (seconds == 5)
-			{
-				typeofrip = Random(RIP_Normal, RIP_Jeopardy);
-				
-				if (typeofrip == RIP_FelixHet)
-				{
-					S_ChangeMusic("", 0, false, true);
-					players[0].mo.A_Print("\cj[ OA ]        [ HET ]", 30, "BigFont");
-					players[0].mo.A_PlaySound("epitaph/felixsafe", (DDPLAYER_BODYCHAN), DDPLAYER_RIPVOL, false, ATTN_NONE);
-				}
-				
-				if (typeofrip == RIP_DeepHurting)
-				{
-					players[0].mo.A_Print("\cgDEEP HURTING", 15, "BigFont");
-					players[0].mo.A_PlaySound("epitaph/deephurting", (DDPLAYER_BODYCHAN), DDPLAYER_RIPVOL, false, ATTN_NONE);
-				}
-				
-				if (typeofrip == RIP_LowtaxLoser)
-				{
-					players[0].mo.A_Print("\cgloser", 2);
-					players[0].mo.A_PlaySound("epitaph/lowtax", (DDPLAYER_BODYCHAN), DDPLAYER_RIPVOL, false, ATTN_NONE);
-				}
-				
-				if (typeofrip == RIP_Jeopardy)
-				{
-					S_ChangeMusic("D_JEOPTL", 0, false, true);
-					players[0].mo.A_Print("\cjYOU FUCKING IDIOT", 15, "BigFont");
-					players[0].mo.A_PlaySound("epitaph/joelidiot", (DDPLAYER_BODYCHAN), DDPLAYER_RIPVOL, false, ATTN_NONE);
-				}
-				
-				if (typeofrip >= RIP_Normal && typeofrip <= RIP_NormalEnd)
-				{
-					players[0].mo.A_PlaySound("epitaph/main", (DDPLAYER_BODYCHAN), DDPLAYER_RIPVOL, false, ATTN_NONE);
-				}
-			}
-			
-			if (seconds == 9)
-			{
-				if (typeofrip == RIP_FelixHet)
-				{
-					S_ChangeMusic("D_FLXOVR", 0, false, true);
-				}
-			}
-			
-			seconds++;
-			
-			if (seconds > 30) seconds = 30;	// To prevent overflow
-		}
-		else
-		{
-			seconds = 0;	// just in case the player is resurrected.
-		}
-	}
-	
 	void A_NewPlayerPain()
 	{
 		String sanyapain;
@@ -229,8 +160,7 @@ Class DD_PlayerPawn : PlayerPawn
 	}
 	
 	void PerSecondFunctions()
-	{
-		A_RIPProcess();
+	{;
 		A_OneLinerProcess();
 	}
 	

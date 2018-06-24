@@ -40,9 +40,9 @@ maps
 		defaultbottomtexture = "BRKRED";
 		scriptcompiler = "zdoom_acs.cfg";
 		uselongtexturenames = false;
-		viewpositionx = 1190.405f;
-		viewpositiony = 1259.035f;
-		viewscale = 1.613252f;
+		viewpositionx = 3029.975f;
+		viewpositiony = 771.5668f;
+		viewscale = 0.3342275f;
 		
 		scriptlumps
 		{
@@ -125,9 +125,8 @@ maps
 				resource;
 				tabtype = 0;
 				scripttype = 18;
-				caretposition = 861;
-				firstvisibleline = 33;
-				activetab = true;
+				caretposition = 877;
+				firstvisibleline = 18;
 			}
 			
 			document1
@@ -137,8 +136,8 @@ maps
 				resource;
 				tabtype = 0;
 				scripttype = 1;
-				caretposition = 257;
-				firstvisibleline = 12;
+				caretposition = 565;
+				activetab = true;
 			}
 		}
 	}

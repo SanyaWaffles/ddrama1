@@ -46,5 +46,7 @@ gameinfo
 	defaultconversationmenuclass = "DD_ConversationMenu"
 	
 	QuitMessages = "$DD_QUITMSG1", "$DD_QUITMSG2", "$DD_QUITMSG3", "$DD_QUITMSG4", "$DD_QUITMSG5", "$DD_QUITMSG6", "$DD_QUITMSG7"
+	
+	AddEventHandlers = "DD_RIPSoundObituary"
 }
 // End GameInfo Block

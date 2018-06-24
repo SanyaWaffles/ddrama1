@@ -134,7 +134,7 @@ maps
 		viewpositionx = -30.22248f;
 		viewpositiony = 1.641213f;
 		viewscale = 0.8857741f;
-		scriptcompiler = "zdoom_gdcc.cfg";
+		scriptcompiler = "zdoom_acs.cfg";
 		
 		grid
 		{
@@ -205,7 +205,8 @@ maps
 				resource;
 				tabtype = 0;
 				scripttype = 1;
-				caretposition = 427;
+				caretposition = 265;
+				firstvisibleline = 83;
 				activetab = true;
 			}
 		}

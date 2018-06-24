@@ -1,0 +1,173 @@
+/* *******************************************************************
+ *		ripsoundobit.zsc
+ *
+ *		RIP Sound Obituary Event Handler
+ *
+ *		As long as you attribute these functions to me in some
+ *		way I don't mind people using these. Considering how much
+ *		some people have caused an uproar over the lack of proper
+ *		examples and the like.
+ *
+ *		Copyright Sanya K. C. Waffles 2013-2018
+ *
+ * ****************************************************************** */
+
+class DD_RIPSoundObituary : EventHandler
+{
+	int tix;
+	int seconds;
+	int typeofrip;			// Type of high quality RIP
+	bool dorip;
+	const MAXNUMSECONDS = 30;
+	
+	override void WorldTick()
+	{
+		// Only run if not GS_TITLELEVEL and mode is not multiplayer
+		if (gamestate != GS_TITLELEVEL && !multiplayer)
+		{
+			tix++;
+			if (!(tix % 35))
+			{
+				A_ProcessRIP();
+				seconds++;
+				tix = 0;
+				
+				if (seconds > MAXNUMSECONDS) seconds = MAXNUMSECONDS;	// To prevent overflow
+			}
+		}
+	}
+	
+	void A_ProcessRIP()
+	{
+		// only do this if the seconds are 5. Don't do if the
+		// be cool about fire safety RIP is being done
+		if (seconds == 5 && dorip)
+		{
+			typeofrip = Random(RIP_Normal, RIP_Jeopardy);
+			
+			// Start the felix the cat RIP
+			if (typeofrip == RIP_FelixHet)
+			{
+				S_ChangeMusic("", 0, false, true);
+				S_Sound("epitaph/felixsafe", (DDPLAYER_BODYCHAN), DDPLAYER_RIPVOL, ATTN_NORM);
+			}
+			
+			// Start the Deep Hurting RIP
+			if (typeofrip == RIP_DeepHurting)
+			{
+				S_Sound("epitaph/deephurting", (DDPLAYER_BODYCHAN), DDPLAYER_RIPVOL, ATTN_NORM);
+			}
+			
+			// Start the Lowtax Loser RIP
+			if (typeofrip == RIP_LowtaxLoser)
+			{
+				S_Sound("epitaph/lowtax", (DDPLAYER_BODYCHAN), DDPLAYER_RIPVOL, ATTN_NORM);
+			}
+			
+			// Start Joel SMW64 Bootleg RIP
+			if (typeofrip == RIP_Jeopardy)
+			{
+				S_ChangeMusic("music/D_JEOPTL.vgz", 0, false, true);
+				S_Sound("epitaph/joelidiot", (DDPLAYER_BODYCHAN), DDPLAYER_RIPVOL, ATTN_NORM);
+			}
+			
+			// Other RIPs
+			if (typeofrip >= RIP_Normal && typeofrip <= RIP_NormalEnd)
+			{
+				S_Sound("epitaph/main", (DDPLAYER_BODYCHAN), DDPLAYER_RIPVOL, ATTN_NORM);
+			}
+		}
+		
+		// play game over music if the RIP is the Felix the Cat 'Het' rip
+		if (seconds == 9 && typeofrip == RIP_FelixHet)
+		{
+			S_ChangeMusic("music/D_FLXOVR.vgz", 0, false, true);
+		}
+	}
+
+	override void PlayerDied(PlayerEvent e)
+	{
+		PlayerInfo p = players[e.PlayerNumber];
+		
+		if (p && p.mo)
+		{
+			let pp = DD_PlayerPawn(p.mo);
+			if (pp && CVar.FindCVar('dd_rip').GetBool())
+			{
+				dorip = true;
+				seconds = 0;
+			}
+		}
+	}
+	// Reset music to normal music if the player is resurrected.
+	override void PlayerRespawned(PlayerEvent e)
+	{
+		PlayerInfo p = players[e.PlayerNumber];
+		
+		if (p && p.mo)
+		{
+			S_ChangeMusic("*", 0, true, true);
+			seconds = -1;
+			typeofrip = -1;
+			dorip = false;
+		}
+	}
+	
+	// Override the RenderOverlay
+	override void RenderOverlay(RenderEvent e)
+	{
+		PlayerInfo p = players[consoleplayer];
+		
+		if (p && p.mo && p.mo.health <= 0 && seconds < MAXNUMSECONDS - 1 && seconds > 0)
+		{
+			if (seconds >= 0 && seconds < 5)
+			{
+				// HudMessage(s:"Press ", k:"+use", s:" to start\nfrom most recent save."; HUDMSG_PLAIN, HUDDISPID_USEKEY, CR_RED, CB_HUD_X, CB_HUD_CRACKER_Y, 0.0);
+				String saverestart;
+				int k1, k2;
+				[k1, k2] = Bindings.GetKeysForCommand("+use");
+				saverestart = String.Format("%s %s %s",  Stringtable.Localize("$DD_RESTARTMSG1"), KeyBindings.NameKeys(k1, k2), Stringtable.Localize("$DD_RESTARTMSG2"));
+				DrawRIPText(p, saverestart, "BIGFONT", Font.CR_RED);
+			}
+			
+			if (dorip)
+			{
+				// Start the felix the cat RIP
+				if (typeofrip == RIP_FelixHet)
+				{
+					DrawRIPText(p, "[Da]        [Nyet]");
+				}
+				
+				// Start the Deep Hurting RIP
+				if (typeofrip == RIP_DeepHurting)
+				{
+					DrawRIPText(p, "DEEP HURTING", "BIGFONT", Font.CR_RED);
+				}
+				
+				// Start the Lowtax Loser RIP
+				if (typeofrip == RIP_LowtaxLoser)
+				{
+					DrawRIPText(p, "loser", "BIGFONT", Font.CR_RED);
+				}
+				
+				// Start Joel SMW64 Bootleg RIP
+				if (typeofrip == RIP_Jeopardy)
+				{
+					DrawRIPText(p, "YOU FUCKING IDIOT");
+				}
+			}
+		}
+	}
+	
+	// Draw text to the screen
+	ui void DrawRIPText(PlayerInfo CPlayer, String text, Font fnt = "BIGFONT", int fontcolor = Font.CR_WHITE)
+	{
+		if (CPlayer && CPlayer.mo && text.Length() > 0 && fnt)
+		{
+			int _x = Screen.GetWidth() / 2;
+			int _y = Screen.GetHeight() / 2;
+			_x -= fnt.StringWidth(text) / 2;
+			Screen.DrawText(fnt, fontcolor, _x, _y, text);
+		}
+	}
+}

@@ -366,37 +366,6 @@ function bool func_DDBreakTV(int _lid, int _portion)
 	return false;
 }
 
-// Function for breaking glass
-function void func_GlassBreakLine(int _lid)
-{
-	Line_SetBlocking(_lid, 0, DDFUNC_GLASS_FLAGS);
-	
-	SetLineTexture(_lid, SIDE_FRONT, TEXTURE_MIDDLE, "-");
-	SetLineTexture(_lid, SIDE_BACK,  TEXTURE_MIDDLE, "-");
-	
-	SectorSound("misc/glassbreak", 192);
-}
-
-// Glass break function front script
-// due to an oddity with gdcc-acc we
-// can't use a named script.
-script 999 (int _lid)
-{
-	func_GlassBreakLine(_lid);
-}
-
-// Call from inside maps with breakable glass
-// in an "OPEN" script. It will set all the
-// lines (in a for/while loop) to be breakable.
-// This is because breakable glass has other properties than
-// vents...
-function void func_SetGlassLine(int _lid)
-{
-	SetLineActivation(_lid, DDFUNC_GLASS_ACTFL);
-	Line_SetBlocking(_lid, DDFUNC_GLASS_FLAGS, 0);
-	SetLineSpecial(_lid, ACS_Execute, 999, 0, _lid);
-}
-
 // mute the hostage manually
 function void func_MuteHostage(int _hid)
 {
@@ -500,33 +469,6 @@ script "DDLib_EndMap" (int secret, int cameraTID) net
 		Exit_Secret(0);
 	else
 		Exit_Normal(0);
-}
-
-// When a player dies, this is used to display a message.
-// In DDrama, it displays instructions to press a key to
-// restart from the last save. This can be edited to
-// do things like stats
-script "DDLib_PlayerDeath" DEATH net
-{
-	bool _dispmsg = false;
-	int l = 0;
-
-	func_InitScreen();
-	func_SetFontToBig();
-
-	for (int l = 0; l < 3; l++)
-	{
-		_dispmsg = !(_dispmsg);
-
-		if(_dispmsg)
-			HudMessage(s:"Press ", k:"+use", s:" to start\nfrom most recent save."; HUDMSG_PLAIN, HUDDISPID_USEKEY, CR_RED, CB_HUD_X, CB_HUD_CRACKER_Y, 0.0);
-		else
-			func_Clear(HUDDISPID_USEKEY);
-
-		Delay(TICS_PER_SECOND);
-	}
-	
-	func_Clear(HUDDISPID_USEKEY);
 }
 
 // We need to call this if the player uses ressurect or some other cheat
