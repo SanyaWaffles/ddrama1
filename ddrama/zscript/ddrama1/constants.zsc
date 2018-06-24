@@ -52,3 +52,14 @@ enum EDDSnarkType
 
 const DBTHRUSTSHIFT_L	=	64;
 const DBTHRUSTSHIFT_R	=	128;
+
+	
+enum ERIPSoundObitTypes
+{
+	RIP_Normal,
+	RIP_NormalEnd = 12,
+	RIP_FelixHet,
+	RIP_DeepHurting,
+	RIP_LowtaxLoser,
+	RIP_Jeopardy,
+};

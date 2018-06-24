@@ -27,7 +27,7 @@ maps
 		overridefloorheight = false;
 		overrideceilheight = false;
 		overridebrightness = false;
-		scriptcompiler = "zdoom_gdcc.cfg";
+		scriptcompiler = "zdoom_acs.cfg";
 		
 		grid
 		{
@@ -40,9 +40,9 @@ maps
 			gridsize = 4f;
 		}
 		uselongtexturenames = false;
-		viewpositionx = -328.6423f;
-		viewpositiony = -125.6542f;
-		viewscale = 3.929377f;
+		viewpositionx = 1076.906f;
+		viewpositiony = 1042.291f;
+		viewscale = 1.788519f;
 		
 		scriptlumps
 		{
@@ -137,7 +137,7 @@ maps
 				resource;
 				tabtype = 0;
 				scripttype = 1;
-				caretposition = 301;
+				caretposition = 22;
 				activetab = true;
 			}
 		}

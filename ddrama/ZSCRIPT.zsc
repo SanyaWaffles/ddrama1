@@ -138,3 +138,5 @@ version "3.2.5"
 #include "zscript/ddrama1/props/urinal.zsc"					// urinal.dec
 
 #include "zscript/ddrama1/props/misc.zsc"					// everything else
+
+#include "zscript/ddrama1/events/ripsoundobit.zsc"			// RIP Sound obituary

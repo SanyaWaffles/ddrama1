@@ -40,9 +40,9 @@ maps
 		defaultbottomtexture = "GRASSY0";
 		scriptcompiler = "zdoom_acs.cfg";
 		uselongtexturenames = false;
-		viewpositionx = 1440.632f;
-		viewpositiony = 42.5619f;
-		viewscale = 0.6014825f;
+		viewpositionx = 1193.255f;
+		viewpositiony = -10.26234f;
+		viewscale = 4.906476f;
 		
 		plugins
 		{
@@ -145,8 +145,8 @@ maps
 				resource;
 				tabtype = 0;
 				scripttype = 1;
-				caretposition = 194;
-				firstvisibleline = 65;
+				caretposition = 1728;
+				firstvisibleline = 49;
 				activetab = true;
 			}
 		}

@@ -90,6 +90,9 @@ DD_QUITMSG7			= "Where are you going? Come back!";
 
 DIALOGUE_ENTER	= "Press Enter to Continue";
 
+DD_RESTARTMSG1 = "Press";
+DD_RESTARTMSG2 = "to start\nfrom most recent save.";
+
 DD_EP1STR		= "Metro Misery";
 
 DD_MAPSTART		= "Start";
@@ -125,67 +128,3 @@ DD_SKILL_DISCOURSE	= "This Path Selects The Discourse Skill.\n"
 						"too hard for you sweaty\n"
 						"\n"
 						"uwu\n";
-
-/*	End-episode text.
-	Do not let text go beyond this width below
-	Or you might have Story Cutoff Disorder...
-
-	"=======================================\n"
-*/
-
-DD_E1_TEXT =
-	"Blah Blah Blah Blah",
-	"Blah Blah Blah Blah",
-	"Blah Blah Blah Blah",
-	"Blah Blah Blah Blah",
-	"Blah Blah Blah Blah",
-	"Blah Blah Blah Blah",
-	"Blah Blah Blah Blah";
-
-// MUSEUM STUFF
-/* DD_MAP11_TEXT01 =    "The SGA is the glyphs used by some minority",
-					 "speaking groups, including the Damekko",
-					 "Klurvian, and Rhythmese people.",
-					 "",
-					 "It is a simple shift cypher, but the",
-					 "different languages and dialects may",
-					 "cause the words to sound different.";
-
-DD_MAP11_TEXT02 =    "The monarch of Boredomdai is a ceremonial",
-					 "representative of the power vested in the",
-					 "Dominion of Boredomdai and its provinces.";
-
-DD_MAP11_QUEEN01 =	 "Queen Haruhi [2008-2011]",
-					 "Her hidden power to manipulate certain realities",
-					 "was the reason a queen was made. However Haruhi",
-					 "vested great interest in protecting the people",
-					 "who fought for her, and thus their right to live",
-					 "at Romero I's hand. She was killed by a Hugboxskan",
-					 "assassin in October 2010";
-
-DD_MAP11_QUEEN02 = 	 "After Haruhi's assassination, the succession",
-					 "laws were amended, as Haruhi had no next of kin.",
-					 "",
-					 "However, Haruhi recommended Madoka Kaname, a rising",
-					 "member of the royal council, succeed her, in accordance",
-					 "to a legal document signed two months before her death.";
-
-DD_MAP11_QUEEN03 =   "Queen Madoka [2011-2013]",
-					 "Queen Madoka was the first queen to be elected",
-					 "as Haruhi's document had to be approved by council.",
-					 "",
-					 "Two great challenges faced Madoka during her tenure,"
-					 "including Rhythm Tengoku & Gensokyo Premiere Jaycee"
-					 "Angle's attempt at dividing the nation.";
-
-DD_MAP11_QUEEN04 =   "After finding out Jaycee was not a citizen of RTG and",
-					 "was impeached, Prime Minister Mihama and her cabinet",
-					 "allowed RTG to join, becoming the sixth province.",
-					 "Alas, Madoka's second crisis would end with her life,",
-					 "as a visit in Tumblria took a deadly turn.";
-
-DD_MAP11_QUEEN05 =	 "Despite her death, a line of succession had been formed,",
-					 "and Homura Akemi ascended the throne in 2013.";
-
-DD_MAP11_QUEEN06 =	 "Queen Homura [2013-]";
-*/
