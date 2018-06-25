@@ -20,10 +20,6 @@ defaultmap
 	// Trelyate!!!!!!!!!!!!111
 	Music = "D_AXELF"
 
-	// We use our own intermission
-	// scripting...
-	NoIntermission
-
 	// Lightning/Appearance of Level
 	SmoothLighting
 	ClipMidTextures

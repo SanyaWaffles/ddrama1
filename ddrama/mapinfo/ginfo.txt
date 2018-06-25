@@ -23,7 +23,7 @@ gameinfo
 	DefaultBloodColor = "f0 50 9a"
 	DefaultBloodParticleColor = "f0 50 9a"
 
-	IntermissionMusic = "D_STATS"
+	IntermissionMusic = ""
 
 	// TitleMusic = "D_DRAMAT"
 	TitleMusic = ""
@@ -46,6 +46,9 @@ gameinfo
 	defaultconversationmenuclass = "DD_ConversationMenu"
 	
 	QuitMessages = "$DD_QUITMSG1", "$DD_QUITMSG2", "$DD_QUITMSG3", "$DD_QUITMSG4", "$DD_QUITMSG5", "$DD_QUITMSG6", "$DD_QUITMSG7"
+	
+	statscreen_single = "DD_StatusScreen"
+	statscreen_coop = "DD_CoopStatusScreen"
 	
 	AddEventHandlers = "DD_RIPSoundObituary"
 }

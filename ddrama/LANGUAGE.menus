@@ -128,3 +128,9 @@ DD_SKILL_DISCOURSE	= "This Path Selects The Discourse Skill.\n"
 						"too hard for you sweaty\n"
 						"\n"
 						"uwu\n";
+						
+TXT_IMFINISHED	= "Finished";
+TXT_IMENTERING	= "Now Entering";
+TXT_IMTIME		= "Time";
+TXT_IMTOTALTIME = "Total Time";
+TXT_PRESSAKEY	= "Press any key to continue...";

@@ -1,0 +1,198 @@
+class DD_StatusScreen : DoomStatusScreen
+{
+	override void Ticker(void)
+	{
+		// counter for general background animation
+		bcnt++;  
+
+		if (bcnt == 1)
+		{
+			S_ChangeMusic("D_BVICT", 0, false);
+		}
+
+		checkForAccelerate();
+		bg.updateAnimatedBack();
+
+		switch (CurState)
+		{
+		case StatCount:
+			updateStats();
+			break;
+		
+		case ShowNextLoc:
+			updateShowNextLoc();
+			break;
+		
+		case NoState:
+			updateNoState();
+			break;
+
+		case LeavingIntermission:
+			// Hush, GCC.
+			break;
+		}
+	}
+	
+	override void initStats ()
+	{
+		CurState = StatCount;
+		acceleratestage = 0;
+		sp_state = 1;
+		cnt_kills[0] = cnt_items[0] = cnt_secret[0] = -1;
+		cnt_time = cnt_par = -1;
+		cnt_pause = Thinker.TICRATE;
+	
+		cnt_total_time = -1;
+	}
+	
+	override void updateStats()
+	{
+		if (acceleratestage && sp_state != 10)
+		{
+			acceleratestage = 0;
+			sp_state =  10;
+			PlaySound("intermission/nextstage");
+
+			cnt_kills[0] = Plrs[me].skills;
+			cnt_secret[0] = Plrs[me].ssecret;
+			cnt_time = Thinker.Tics2Seconds(Plrs[me].stime);
+			cnt_total_time = Thinker.Tics2Seconds(wbs.totaltime);
+		}
+
+		if (sp_state == 2)
+		{
+			cnt_kills[0] = Plrs[me].skills;
+			PlaySound("intermission/nextstage");
+			sp_state++;
+		}
+		else if (sp_state == 4)
+		{
+			cnt_secret[0] = Plrs[me].ssecret;
+			PlaySound("intermission/nextstage");
+			sp_state++;
+		}
+		else if (sp_state == 6)
+		{
+			cnt_time = Thinker.Tics2Seconds(Plrs[me].stime);
+			cnt_total_time = Thinker.Tics2Seconds(wbs.totaltime);
+			PlaySound("intermission/nextstage");
+			sp_state++;
+		}
+		else if (sp_state == 8)
+		{
+			PlaySound("intermission/nextstage");
+			sp_state++;
+		}
+		else if (sp_state == 10)
+		{
+			if (acceleratestage)
+			{
+				PlaySound("intermission/paststats");
+				initShowNextLoc();
+				S_ChangeMusic("D_TERMIN", true);
+			}
+		}
+		else if (sp_state & 1)
+		{
+			if (!--cnt_pause)
+			{
+				sp_state++;
+				cnt_pause = Thinker.TICRATE;
+			}
+		}
+	}
+	
+	int getXOffsetStringWidth(String s)
+	{
+		return screen.GetWidth() / 2 - BigFont.StringWidth(s) * CleanXfac/2;
+	}
+	
+	int GetBFontHeight()
+	{
+		return (BigFont.GetHeight() * CleanYfac);
+	}
+	
+	String R3DGetTimeStamp(int t)
+	{
+		int hours = t / 3600;
+		t -= hours * 3600;
+		
+		int minutes = t / 60;
+		t -= minutes * 60;
+		
+		int seconds = t;
+		
+		String strreturn = String.Format("%02d:%02d", minutes, seconds);
+			
+		if (hours)
+		{
+			strreturn = String.Format("%02d:%s", hours, strreturn);
+		}
+		
+		return strreturn;
+	}
+	
+	override void drawStats(void)
+	{
+		int y = TITLEY * CleanYfac;
+		int x;
+		
+		String str;
+		
+		str = lnametexts[0];
+		x = getXOffsetStringWidth(str);
+		screen.DrawText(BigFont, Font.CR_UNTRANSLATED, x, y, str, DTA_CleanNoMove, true);
+		
+		y += GetBFontHeight();
+		
+		str = Stringtable.Localize("$FINISHED");
+		x = getXOffsetStringWidth(str);
+		
+		// draw "Finished!"
+		screen.DrawText(BigFont, Font.CR_UNTRANSLATED, x, y, str, DTA_CleanNoMove, true);
+		
+		int midx = screen.GetWidth() / 2;
+		
+		y += GetBFontHeight() * 2;
+		
+		if (sp_state >= 2)
+		{
+			str = String.Format("%s :: %d / %d", Stringtable.Localize("$TXT_IMKILLS"), cnt_kills[0], wbs.maxkills);
+			x = getXOffsetStringWidth(str);
+			
+			screen.DrawText(BigFont, Font.CR_UNTRANSLATED, x, y, str, DTA_CleanNoMove, true);
+		}
+		
+		y += GetBFontHeight();
+		if (sp_state >= 4)
+		{
+			str =  String.Format("%s :: %d / %d", Stringtable.Localize("$TXT_IMSECRETS"), cnt_secret[0], wbs.maxsecret);
+			x = getXOffsetStringWidth(str);
+
+			screen.DrawText(BigFont, Font.CR_UNTRANSLATED, x, y, str, DTA_CleanNoMove, true);
+		}	
+		
+		y += GetBFontHeight();
+		if (sp_state >= 6)
+		{		
+			str =  String.Format("%s %s", Stringtable.Localize("$TXT_IMTIME"), R3DGetTimeStamp(cnt_time));
+			x = getXOffsetStringWidth(str);
+			
+			screen.DrawText(BigFont, Font.CR_UNTRANSLATED, x, y, str, DTA_CleanNoMove, true);
+			
+			str = String.Format("%s %s", Stringtable.Localize("$TXT_IMTOTALTIME"), R3DGetTimeStamp(cnt_total_time));
+			
+			x = getXOffsetStringWidth(str);
+			y += GetBFontHeight();
+			screen.DrawText(BigFont, Font.CR_UNTRANSLATED, x, y, str, DTA_CleanNoMove, true);
+		}
+		if (sp_state >= 8)
+		{		
+			str =  String.Format("%s", Stringtable.Localize("$TXT_PRESSAKEY"));
+			
+			x = getXOffsetStringWidth(str);
+			y += GetBFontHeight();
+			screen.DrawText(BigFont, Font.CR_UNTRANSLATED, x, y, str, DTA_CleanNoMove, true);
+		}
+	}
+}

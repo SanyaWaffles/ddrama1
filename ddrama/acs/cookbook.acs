@@ -213,8 +213,6 @@ function void func_UnSetPlayerImmune(void)
 }
 
 int ctrMRATVs = 0;				// Dudebro TV counter
-global str 1:_playerDir[];		// Global per-player string array
-global str 2:_playerWeapon[];	// Player Weapon
 
 // Stop Music
 function void func_StopMusic(void)
@@ -234,70 +232,10 @@ function void func_BossMusic(void)
 	SetMusic("D_HORSE");
 }
 
-// Set Statistic Music
-function void func_InterMusic(void)
-{
-	SetMusic("D_TERMIN");
-}
-
-// Set Statistic Music
-function void func_VictoryMusic(void)
-{
-	SetMusic("D_BVICT");
-}
-
-// Set Felix Music
-function void func_GameOverMusic(void)
-{
-	SetMusicVolume(1.5);
-	SetMusic("D_FLXOVR");
-}
-// Set Felix Music
-function void func_JeopardyMusic(void)
-{
-	SetMusicVolume(1.75);
-	SetMusic("D_JEOPTL");
-}
-
 // Resume default music
 function void func_DefaultMusic(void)
 {
 	SetMusic("*");
-}
-
-// Get the player gun and set it in the variable
-function void func_getGunAtExit(void)
-{
-	int pn = PlayerNumber();
-	
-	if (pn >= 0) _playerWeapon[pn] = StrParam(s:GetWeapon());
-}
-
-// Get the player gun
-// and clear the variable for later usage
-function void func_setGunAtExit(void)
-{
-	int pn = PlayerNumber();
-	int wep;
-	
-	if (pn >= 0) SetWeapon(_playerWeapon[pn]);
-	
-	_playerWeapon[pn] = StrParam(s:"");
-}
-
-// HUD Disable + null weapon
-function void func_clearHUDandGun(void)
-{
-	GiveInventory("DD_DisableHudToken", 1);
-	GiveInventory("DD_WeaponBlank", 1);
-	SetWeapon("DD_WeaponBlank");
-}
-
-// Take HUD disable token + null weapon
-function void func_resetHUDandGun(void)
-{
-	TakeInventory("DD_DisableHudToken", 255);
-	TakeInventory("DD_WeaponBlank", 255);
 }
 
 // Clear a message with _id
@@ -352,20 +290,6 @@ function void func_InitScreen(void)
 	SetHudSize(CB_HUDSIZE_W, CB_HUDSIZE_H, false);	// Init Screen just in case.
 }
 
-// Break TV screen function
-function bool func_DDBreakTV(int _lid, int _portion)
-{
-	if (checknotzero(_lid))
-	{
-		if (_portion < 0 || _portion >= 3) return false;
-		
-		SetLineTexture(_lid, SIDE_FRONT, _portion, "TVBROKEN");
-		
-		return true;
-	}
-	return false;
-}
-
 // mute the hostage manually
 function void func_MuteHostage(int _hid)
 {
@@ -376,104 +300,4 @@ function void func_MuteHostage(int _hid)
 script "DDLib_MuteHostage" (int _hid)
 {
 	func_MuteHostage(_hid);
-}
-
-// Fade into darkness
-function void func_FadeStart(void)
-{
-	FadeTo(0, 0, 0, 1.0, 0.0);
-}
-
-// Fade out from darkness
-function void func_FadeOutEnter(void)
-{
-	FadeTo(0, 0, 0, 0.0, 3.0);
-}
-
-// Player Cycle Script
-// For each player in game
-// this script is looped, and
-// repeats every tic (approx 1/35th of a second).
-// =====================================================
-// The script will terminate when the activator player
-// dies. It's entirely script side. For MP games, use
-// RESPAWN and an ACS_NamedExecuteAlways("*Lib_Enter", 0) call
-// to do it again
-script "DDLib_Enter" ENTER net
-{
-	func_InitScreen();	// Init Screen just in case.
-	func_FadeStart();
-	Delay(1);
-	func_FadeOutEnter();
-	GiveInventory("DD_Debug_ResetRoll", 1);
-	
-	func_Clear(HUDDISPID_USEKEY);
-}
-// Start out dark
-function void func_FadeInEpStart(void)
-{
-	FadeTo(0, 0, 0, 1.0, 0.0);
-}
-
-#define FADETIME_EXIT_DEC 1.0
-
-// Fade into darkness
-function void func_FadeInExit(void)
-{
-	FadeTo(0, 0, 0, 1.0, 1.0);
-}
-
-// This replaces the typical Exit_Normal/Exit_Secret
-// calls. It does an end level tally, sets the player
-// to be immune, and temporarily sets their weapon
-// to a null weapon (while storing current weapon
-// in a variable, which is set right before level exit
-// so it'll be the active weapon next map
-script "DDLib_EndMap" (int secret, int cameraTID) net
-{
-	func_InitScreen();
-	func_SetPlayerImmune();
-	
-	// Set their weapon to a 'null weapon'
-	func_getGunAtExit();
-	Delay(1);	// Delay just in case
-	func_clearHUDandGun();
-	
-	func_VictoryMusic();
-	
-	// We wannna loop until the player presses +use
-	do
-	{
-		func_SetFontToBig();
-		HudMessage(n:PRINTNAME_LEVELNAME, s:"\nCOMPLETE\n\nENEMIES KILLED: ", d:GetLevelInfo(LEVELINFO_KILLED_MONSTERS), s:" out of ", d:GetLevelInfo(LEVELINFO_TOTAL_MONSTERS), s:"\nSECRETS FOUND: ", d:GetLevelInfo(LEVELINFO_FOUND_SECRETS), s:" out of ", d:GetLevelInfo(LEVELINFO_TOTAL_SECRETS), s:"\n\n\nPress ", k:"+use", s:" to continue."; HUDMSG_PLAIN, HUDDISPID_ENDTALLY, CR_UNTRANSLATED, CB_HUD_X, CB_HUD_BOSSY, 0.0);
-		Delay(1);
-	}
-	while (!(func_CheckButtonPressed(BT_USE)));
-	
-	func_Clear(HUDDISPID_ENDTALLY);
-	func_FadeInExit();
-	func_InterMusic();
-	
-	Delay((TICS_PER_SECOND - 2) * 1);
-	
-	// Give the player their weapon back
-	func_UnSetPlayerImmune();
-	func_setGunAtExit();
-	Delay(1);
-	func_resetHUDandGun();
-	Delay(1);
-	
-	// if secret is non-zero, we call
-	// the non-secret
-	if (secret)
-		Exit_Secret(0);
-	else
-		Exit_Normal(0);
-}
-
-// We need to call this if the player uses ressurect or some other cheat
-// Even though we don't use multiplayer. Reported by Lud
-script "DDLib_PlayerRespawn" RESPAWN net
-{
-	ACS_NamedExecuteAlways("DDLib_Enter", 0);
 }

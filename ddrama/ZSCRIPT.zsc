@@ -140,3 +140,6 @@ version "3.2.5"
 #include "zscript/ddrama1/props/misc.zsc"					// everything else
 
 #include "zscript/ddrama1/events/ripsoundobit.zsc"			// RIP Sound obituary
+
+#include "zscript/ddrama1/statusscreen/stat_sp.zsc"			// Status Screen SP
+#include "zscript/ddrama1/statusscreen/stat_coop.zsc"		// Status Screen COOP

@@ -12,6 +12,7 @@ include "mapinfo/def_map.txt"
 map START lookup DD_START
 {
 	Music = "D_TERMIN"
+	NoIntermission
 	Next = "MAP01"
 }
 
@@ -127,6 +128,7 @@ map MAP10 lookup DD_MAP10
 	LevelNum = 12
 	Music = "D_HELL"
 	SpecialAction = "DD_JunkoEnoshimaBoss", "Exit_Normal", 0
+	NoIntermission
 	Next = "VICTORY"
 }
 // END MAP STUFF BLOCK
@@ -136,6 +138,7 @@ map VICTORY lookup DD_MAP10
 	Music = ""
 	Next = endsequence, "DD1Cast"
 	NoAutosaveHint
+	NoIntermission
 }
 
 Intermission DD1Cast

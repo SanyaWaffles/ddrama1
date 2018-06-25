@@ -40,9 +40,9 @@ maps
 			gridsize = 8f;
 		}
 		uselongtexturenames = false;
-		viewpositionx = 20.04517f;
-		viewpositiony = 844.2462f;
-		viewscale = 1.297451f;
+		viewpositionx = 113.3782f;
+		viewpositiony = 898.2252f;
+		viewscale = 0.7677225f;
 		
 		scriptlumps
 		{
@@ -118,7 +118,8 @@ maps
 				resource;
 				tabtype = 0;
 				scripttype = 1;
-				caretposition = 644;
+				caretposition = 340;
+				firstvisibleline = 5;
 				activetab = true;
 			}
 		}

@@ -40,9 +40,9 @@ maps
 		defaultbottomtexture = "BRKRED";
 		scriptcompiler = "zdoom_acs.cfg";
 		uselongtexturenames = false;
-		viewpositionx = 3029.975f;
-		viewpositiony = 771.5668f;
-		viewscale = 0.3342275f;
+		viewpositionx = 1691.209f;
+		viewpositiony = -435.0551f;
+		viewscale = 5.98989f;
 		
 		scriptlumps
 		{
@@ -62,7 +62,6 @@ maps
 			linedef
 			{
 				locknumber = 0;
-				arg0str = 2;
 			}
 			
 			sidedef
