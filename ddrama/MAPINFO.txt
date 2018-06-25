@@ -45,7 +45,7 @@ map MAP03 lookup DD_MAP03
 map MAPB1 lookup DD_MAPB1
 {
 	LevelNum = 3
-	Music = "D_KRIEG"
+	Music = "D_DROP"
 	Next = "MAP04"
 }
 
@@ -58,7 +58,7 @@ adddefaultmap
 map MAP04 lookup DD_MAP04
 {
 	LevelNum = 4
-	Music = "D_DRAMAT"
+	Music = "D_HOPE"
 	Next = "MAP05"
 	SecretNext = "SECRET01"
 }
