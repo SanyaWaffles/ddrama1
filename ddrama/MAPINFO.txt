@@ -143,7 +143,6 @@ map VICTORY lookup DD_MAP10
 
 Intermission DD1Cast
 {
-	Music = "D_HOPE"
 	Cast
 	{
 		CastClass = "DD_BuddyBear"
