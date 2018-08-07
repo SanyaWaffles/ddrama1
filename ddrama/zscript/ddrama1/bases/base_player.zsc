@@ -107,13 +107,7 @@ Class DD_PlayerPawn : PlayerPawn
 	
 	void A_NewPlayerPain()
 	{
-		String sanyapain;
-		
-		if (!CVar.FindCVar('dd_classicsanyavoice').GetBool())
-			sanyapain = "*pain100";
-		else
-			sanyapain = "sanya/sarahpain";
-		A_PlaySound(sanyapain, CHAN_6);
+		A_PlaySound(sanya/sarahpain, CHAN_6);
 	}
 	
 	void A_OneLinerInit(int olt)
@@ -131,15 +125,8 @@ Class DD_PlayerPawn : PlayerPawn
 			onelinerhit = true;
 			
 			if (onelinertype == VOX_Normal)
-			{
-				String sanyavox;
-				
-				if (!CVar.FindCVar('dd_classicsanyavoice').GetBool())
-					sanyavox = "sanya/annavoiceover";
-				else
-					sanyavox = "sanya/sarahvoiceover";
-				
-				players[0].mo.A_PlaySound(sanyavox, (DDPLAYER_VOICECHAN), 2.0, false, ATTN_NONE);
+			{				
+				players[0].mo.A_PlaySound("sanya/sarahvoiceover", (DDPLAYER_VOICECHAN), 2.0, false, ATTN_NONE);
 				onelinercooldown = 150;
 			}
 		}
