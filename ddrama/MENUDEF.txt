@@ -132,5 +132,4 @@ AddOptionMenu "OptionsMenu"
 	StaticText 	""
 	Option "$MNU_DDRAMA_RIPOBIT",		"dd_rip", 				"RIPOffOn"
 	Option "$MNU_DDRAMA_AEBOOT",		"dd_skipaeboot",		"SkipAENoYes"
-	Option "$MNU_DDRAMA_SANYAVT",		"dd_classicsanyavoice", "ClassicSanyaChoices"
 }
