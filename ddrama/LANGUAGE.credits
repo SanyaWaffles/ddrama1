@@ -145,17 +145,17 @@ ENDMAP_CREDIT_TEXTURES = "Textures by\n\n"
 ENDMAP_CREDIT_SOUND = "Kelsie Armerding, SanyaWaffles\n"
 					  "RodScorpion, Astley Similie\n"
 					  "Revo794, and.\n"
-					  "Innocent-Darkside, Havocarius\n"
+					  "Innocent-Darkside\n"
 					  "SpoopyScarySarah";
 
 ENDMAP_SPECIAL_THANKS = "Risa Hunt, Joel of Vinesauce\n"
-						"Ral22, Havocarius, MSPaintR0cks\n"
+						"Ral22, MSPaintR0cks\n"
 						"Lud, ZZYZX, DavidPH\n"
 						"Marisa Kirisame, LeoDoom85\n"
 						"Rachael Alexanderson\n"
 						"zhs2, Gutawer and many more!";
 
-CC_DD_BUDDYBEAR	 = "Buddy Bear\nVoiced By Butters From South Park";
+CC_DD_BUDDYBEAR	 = "Buddy Bear";
 CC_DD_GUMBALL	 = "Gumball Watterson";
 CC_DD_LOTSO		 = "Lotso-Shootan-Bear";
 CC_DD_BARFBAG	 = "Barfield Barfbag";
