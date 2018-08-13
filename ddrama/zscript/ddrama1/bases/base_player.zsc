@@ -107,7 +107,7 @@ Class DD_PlayerPawn : PlayerPawn
 	
 	void A_NewPlayerPain()
 	{
-		A_PlaySound(sanya/sarahpain, CHAN_6);
+		A_PlaySound("sanya/sarahpain", CHAN_6);
 	}
 	
 	void A_OneLinerInit(int olt)
