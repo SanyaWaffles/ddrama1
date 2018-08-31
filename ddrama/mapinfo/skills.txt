@@ -3,9 +3,9 @@ clearskills
 skill easy
 {
 	AutoUseHealth
-	Aggressiveness = 0.0
+	Aggressiveness = 0.5
 	AmmoFactor = 2
-	DamageFactor = 0.5
+	DamageFactor = 0.667
 	MonsterHealth = 0.75
 	DropAmmoFactor = 2
 	EasyBossBrain
@@ -19,7 +19,7 @@ skill easy
 skill medium
 {
 	DefaultSkill
-	DamageFactor = 0.8
+	DamageFactor = 0.5
 	Aggressiveness = 0.25
 	DropAmmoFactor = 1
 	SpawnFilter = 2
@@ -31,7 +31,7 @@ skill medium
 skill hard
 {
 	SpawnFilter = 3
-	DropAmmoFactor = 1
+	DropAmmoFactor = 0.8
 	ACSReturn = 2
 	Aggressiveness = 0.6
 	Name = ""
@@ -41,7 +41,7 @@ skill hard
 skill discourse
 {
 	Aggressiveness = 1.0
-	DamageFactor = 1.3
+	DamageFactor = 1.5
 	DropAmmoFactor = 1
 	SpawnFilter = 3
 	ACSReturn = 3

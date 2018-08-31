@@ -1,5 +1,5 @@
 // Player sounds
-$playersound	sanya	male	*death		DSEMPTY
+$playersound	sanya	male	*death		sounds/sanya2/pain.ogg
 $playersounddup	sanya	male	*xdeath		*death
 $playersound	sanya	male	*gibbed		sounds/sfx/slop/gibslop2.ogg
 $playersound	sanya	male	*pain100	sounds/sanya2/pain.ogg
@@ -12,7 +12,7 @@ $playersounddup	sanya	male	*jump		*land
 $playersounddup	sanya	male	*fist		*land
 $playersound	sanya	male	*usefail	sounds/usefail.ogg
 
-$playersound	sanya	female	*death		DSEMPTY
+$playersound	sanya	female	*death		sounds/sanya2/pain.ogg
 $playersounddup	sanya	female	*xdeath		*death
 $playersound	sanya	female	*gibbed		sounds/sfx/slop/gibslop2.ogg
 $playersound	sanya	female	*pain100	sounds/sanya2/pain.ogg
@@ -25,7 +25,7 @@ $playersounddup	sanya	female	*jump		*land
 $playersounddup	sanya	female	*fist		*land
 $playersound	sanya	female	*usefail	sounds/usefail.ogg
 
-$playersound	sanya	other	*death		DSEMPTY
+$playersound	sanya	other	*death		sounds/sanya2/pain.ogg
 $playersounddup	sanya	other	*xdeath		*death
 $playersound	sanya	other	*gibbed		sounds/sfx/slop/gibslop2.ogg
 $playersound	sanya	other	*pain100	sounds/sanya2/pain.ogg

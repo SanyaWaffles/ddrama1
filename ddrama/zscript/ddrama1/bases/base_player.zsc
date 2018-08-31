@@ -156,6 +156,17 @@ Class DD_PlayerPawn : PlayerPawn
 		return player.morphTics <= 1 || bCrouchableMorph;
 	}
 	
+	// This is for stomping action... seems a bit goofy at the moment
+	override bool CanCollideWith(Actor other, bool passive)
+	{
+		if (other && other.bIsMonster && other.pos.z < pos.z && !other.bBoss)
+		{
+			A_Explode(6, 6, XF_NOTMISSILE);
+		}
+		
+		return Super.CanCollideWith(other, passive);
+	}
+	
 	override void BeginPlay()
 	{
 		if (!startepisode)

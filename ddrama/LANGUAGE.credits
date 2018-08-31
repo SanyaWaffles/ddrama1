@@ -25,9 +25,9 @@ TITLEMAP_AE		  = "AE-1000 DOS\n"
 					"Version 2.9\n"
 					"Waffle Iron Shell (under license from Fujisama Industries, Ltd.)\n"
 					"................\n"
-					"Booting Up Waffle Iron Studios' Daytime Drama\n"
-					"(c) 2017 Waffle Iron Studios Ltd\n"
-					"Using GZDoom 2.x Series\n"
+					"Booting Up Waffle Iron Studios' Daytime Drama 1.00\n"
+					"(c) 2018 Waffle Iron Studios Ltd\n"
+					"Using GZDoom\n"
 					"................\n"
 					"R_Init: Init DDrama Refresh Damion Thorne\n"
 					"I_Nutcase: Losing all Marbles\n"
@@ -101,7 +101,7 @@ TITLEMAP_SPEAK07 = "Fat chance in hell. I know you can't\n"
 				   "in two different countries.";
 
 TITLEMAP_SPEAK08 = "Now if you change your mind and flee\n"
-				   "tospecial snowflake anal cavity you\n"
+				   "to the special snowflake anal cavity you\n"
 				   "came from, and release my friends...\n"
 				   "I'll let you be.";
 
@@ -133,7 +133,8 @@ ENDMAP_CREDIT_MAIN = "Main Mapping, Scripting, Coding,\n"
 					 "SanyaWaffles";
 
 ENDMAP_CREDIT_MUSIC = "Original Music by RodScorpion\n"
-						"Buy soon on Bandcamp!";
+						"Buy on Bandcamp!\n"
+						"http://rodscorpion.bandcamp.com/album/daytime-drama-official-soundtrack";
 
 ENDMAP_CREDIT_TEXTURES = "Textures by\n\n"
 						  "Kelsie Armerding\n"

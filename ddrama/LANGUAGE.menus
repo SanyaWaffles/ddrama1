@@ -94,7 +94,7 @@ DD_RESTARTMSG1 = "Press";
 DD_RESTARTMSG2 = "to start\nfrom most recent save.";
 
 DD_EP1STR		= "Metro Misery";
-
+DD_TITLEMAP		= "Titlemap";
 DD_MAPSTART		= "Start";
 
 DD_MAP01		= "Full Stop";
@@ -117,7 +117,7 @@ DD_MAPSECRET02	= "Fort O' Soggyknees";
 DD_CINEND		= "Ending";
 
 DD_SKILL_EASY	= "This Path Selects The Easy Skill.\n"
-					"For those who just wanna shoot shit.";
+					"For those who sell avon in their house.";
 DD_SKILL_MEDIUM	= "This Path Selects The Medium Skill.\n"
 					"For those who like a slight challenge.";
 DD_SKILL_HARD	= "This Path Selects The Hard Skill.\n"

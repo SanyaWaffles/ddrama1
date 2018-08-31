@@ -9,7 +9,12 @@ include "mapinfo/episode.txt"
 include "mapinfo/def_map.txt"
 
 // MAP STUFF BLOCK
-map START lookup DD_START
+map TITLEMAP lookup DD_TITLEMAP
+{
+	Music = ""
+}
+
+map START lookup DD_MAPSTART
 {
 	Music = "D_TERMIN"
 	NoIntermission
@@ -66,7 +71,7 @@ map MAP04 lookup DD_MAP04
 map SECRET01 lookup DD_MAPSECRET01
 {
 	LevelNum = 13
-	Music = "D_ANAEM"
+	Music = "D_NOEL"
 	Next = "MAP05"
 }
 
@@ -126,7 +131,7 @@ map MAP09 lookup DD_MAP09
 map MAP10 lookup DD_MAP10
 {
 	LevelNum = 12
-	Music = "D_HELL"
+	Music = "D_PENTIM"
 	SpecialAction = "DD_JunkoEnoshimaBoss", "Exit_Normal", 0
 	NoIntermission
 	Next = "VICTORY"

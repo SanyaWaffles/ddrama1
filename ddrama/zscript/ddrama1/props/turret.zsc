@@ -24,7 +24,7 @@ Class DD_DespairiumTurret : DD_SwitchableDecoration
 		
 		Health 160;
 		Radius 16;
-		Height 34;
+		Height 56;
 		Mass 1280;
 		DeathSound "world/barrelx";
 		Obituary "$DD_OB_TURRET";
@@ -32,7 +32,6 @@ Class DD_DespairiumTurret : DD_SwitchableDecoration
 		+Shootable
 		+NoBlood
 		+DontGib
-		+OldRadiusDMG
 		+DontThrust
 	}
 	
@@ -42,20 +41,21 @@ Class DD_DespairiumTurret : DD_SwitchableDecoration
 	
 	void DDFunc_TurretReset()
 	{
-		turretreact = DDDESPTUR_TIME;
+		turretreact = 0;
 	}
 	
 	state A_DDTurretShot()
 	{
-		turretreact--;
+		turretreact++;
 		
 		A_SpawnProjectile("DD_DespairPlasmaBallV2", 32);
 		
-		if (turretreact <= 0)
+		if (turretreact >= 12)
 		{
 			DDFunc_TurretReset();
 			return ResolveState("Spawn");
 		}
+		
 		return ResolveState(null);
 	}
 	
@@ -68,13 +68,13 @@ Class DD_DespairiumTurret : DD_SwitchableDecoration
 	{
 		Inactive:
 		Spawn:
-			DTUR A 5;
+			DTUR A 5 A_Look;
 			Loop;
 		
 		Active:
 			DTUR A 2;
-			DTUR B 3 Bright;
-			DTUR C 3 Bright A_DDTurretShot;
+			DTUR B 3 Bright A_DDTurretShot;
+			DTUR C 3 Bright;
 			Loop;
 		
 		Death:

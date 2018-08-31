@@ -140,9 +140,9 @@ maps
 		defaultbottomtexture = "METALPNL";
 		scriptcompiler = "zdoom_acs.cfg";
 		uselongtexturenames = false;
-		viewpositionx = 891.1997f;
-		viewpositiony = -270.5703f;
-		viewscale = 0.2680516f;
+		viewpositionx = 109.0451f;
+		viewpositiony = -43.19848f;
+		viewscale = 1.681983f;
 		
 		scriptlumps
 		{
