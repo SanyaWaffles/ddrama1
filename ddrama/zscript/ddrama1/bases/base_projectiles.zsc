@@ -65,7 +65,7 @@ Class DD_MorphProjectile : MorphProjectile
 		
 		if (target.player)
 		{
-			target.player.morphplayer(NULL, PlayerClass, Duration, MorphStyle, MorphFlash, UnMorphFlash);
+			target.player.mo.morphplayer(NULL, PlayerClass, Duration, MorphStyle, MorphFlash, UnMorphFlash);
 		}
 		else
 		{

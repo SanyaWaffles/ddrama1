@@ -126,7 +126,7 @@ Class DD_PlayerPawn : PlayerPawn
 			
 			if (onelinertype == VOX_Normal)
 			{				
-				players[0].mo.A_PlaySound("sanya/sarahvoiceover", (DDPLAYER_VOICECHAN), 2.0, false, ATTN_NONE);
+				A_PlaySound("sanya/sarahvoiceover", (DDPLAYER_VOICECHAN), 4.0, false, ATTN_NONE);
 				onelinercooldown = 150;
 			}
 		}
@@ -205,6 +205,9 @@ Class DD_PlayerPawn : PlayerPawn
 		
 		if (onelinercooldown > 0)
 			onelinercooldown--;
+			
+		if (!CountInv("DD_SyoPepperPowerStrength"))
+			bDontMorph = false;
 			
 		Super.Tick();	// call any PlayerPawn Tick functionality
 	}

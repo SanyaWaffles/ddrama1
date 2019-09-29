@@ -137,6 +137,7 @@ Class DD_HellaJeff : DD_Enemy
 	{
 		A_FaceTarget();
 		A_ScreamAndUnblock();
+		A_DDGivePlayerOneLiner(3);
 		A_DropItem("DD_DespairiumRifle", -1, 128);
 	}
 	

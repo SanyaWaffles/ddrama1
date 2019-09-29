@@ -40,9 +40,9 @@ maps
 		defaultbottomtexture = "BRKRED";
 		scriptcompiler = "zdoom_acs.cfg";
 		uselongtexturenames = false;
-		viewpositionx = 1691.209f;
-		viewpositiony = -435.0551f;
-		viewscale = 5.98989f;
+		viewpositionx = 1255.867f;
+		viewpositiony = 1124.882f;
+		viewscale = 0.7342974f;
 		
 		scriptlumps
 		{

@@ -68,6 +68,8 @@ class DD_BuddyBear : DD_Enemy
 			{
 				A_ScreamAndUnblock();
 				
+				A_DDGivePlayerOneLiner(3);
+				
 				if (Random[BuddyBear](0, 1))
 					A_DropItem("DD_Bullets", -1, 256);
 				else

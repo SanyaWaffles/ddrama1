@@ -201,7 +201,11 @@ Class DD_ChecksumUnicorn : DD_Enemy
 		Death.Expand:
 		Death.Shou:
 			CSUM N 7;
-			CSUM O 7 A_ScreamAndUnblock;
+			CSUM O 7
+			{
+				A_ScreamAndUnblock();
+				A_DDGivePlayerOneLiner(1);
+			}
 			CSUM PQ 7;
 			CSUM R 35;
 			CSUM R -1;

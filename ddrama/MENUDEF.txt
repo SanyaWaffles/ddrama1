@@ -17,13 +17,6 @@ OptionValue DD_CSOffOn
 	1, "On"
 }
 
-OptionValue Gender
-{
-	0, "$OPTVAL_MALE"
-	1, "$OPTVAL_FEMALE"
-	2, "$OPTVAL_OTHER"
-}
-
 OptionValue TextColors
 {
 	0.0, "\c[DarkRed]brick"

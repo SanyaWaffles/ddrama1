@@ -59,6 +59,7 @@ Class DD_SweetBro : DD_Enemy
 	{
 		A_FaceTarget();
 		A_ScreamAndUnblock();
+		A_DDGivePlayerOneLiner(3);
 	}
 	
 	void A_DDSweetBroLoop()

@@ -61,8 +61,8 @@ terrain PeptoLava
 	liquid
 	friction			1.2
 	damagetype			PeptoBloodSlime
-	damageamount		4
-	damagetimemask		31
+	damageamount		10
+	damagetimemask		7
 	AllowProtection
 }
 
@@ -73,7 +73,7 @@ terrain RegularNukage
 	liquid
 	friction			0.75
 	damagetype			RegularNukeSlime
-	damageamount		1
+	damageamount		3
 	damagetimemask		31
 	AllowProtection
 }
@@ -85,8 +85,8 @@ terrain LavaFlows
 	liquid
 	friction			0.8
 	damagetype			LavaFloor
-	damageamount		2
-	damagetimemask		31
+	damageamount		6
+	damagetimemask		15
 	AllowProtection
 }
 

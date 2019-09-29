@@ -62,6 +62,7 @@ Class DD_LotsoBear : DD_Enemy
 	void A_DDLotsoDropAmmoXtr()
 	{
 		A_DDExtremeScreamAndUnblock();
+		A_DDGivePlayerOneLiner(1);
 		A_DropItem("DD_Minigun", -1, 256);
 		A_DDGivePlayerOneLiner();
 	}

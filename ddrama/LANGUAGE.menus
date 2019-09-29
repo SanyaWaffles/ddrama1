@@ -26,10 +26,6 @@ MNU_DDRAMA_OPTIONS	= "Options";
 MNU_DDRAMA_README	= "Help Me";
 MNU_DDRAMA_QUIT		= "Exit To System";
 
-OPTVAL_MALE			= "Male";
-OPTVAL_FEMALE		= "Female";
-OPTVAL_OTHER		= "NB";
-
 MNU_DDRAMA_CCSW1	= "ENTER to change, BACKSPACE to clear";
 MNU_DDRAMA_CCSW2	= "Press new key for control, ESC to cancel"
 

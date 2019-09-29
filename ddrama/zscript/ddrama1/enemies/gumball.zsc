@@ -65,6 +65,9 @@ class DD_Gumball : DD_Enemy
 	void A_GumballDropAmmo()
 	{
 		A_ScreamAndUnblock();
+		
+		A_DDGivePlayerOneLiner(3);
+		
 		A_GumballDropAmmoInternal();
 	}
 	

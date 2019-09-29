@@ -173,7 +173,12 @@ Class DD_Dontreldemon : DD_Enemy
 		Death.Shou:
 		Death.Extreme:
 			DONT H 8;
-			DONT I 8 A_ScreamAndUnblock;
+			DONT I 8
+			{
+				A_ScreamAndUnblock();
+				
+				A_DDGivePlayerOneLiner(3);
+			}
 			DONT J 8 A_SetFloorClip;
 			DONT K 35;
 			DONT K -1;

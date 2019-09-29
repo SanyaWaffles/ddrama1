@@ -131,7 +131,12 @@ Class DD_BronyOfDespair : DD_Boss
 		Death.Expand:
 		Death.Shou:
 			"####" L 8;
-			"####" M 8 A_Scream;
+			"####" M 8
+			{
+				A_Scream();
+				
+				A_DDGivePlayerOneLiner(1);
+			}
 			"####" N 8;
 			"####" O 8 A_NoBlocking;
 			"####" P 150;

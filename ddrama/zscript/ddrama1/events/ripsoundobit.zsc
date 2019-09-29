@@ -164,10 +164,10 @@ class DD_RIPSoundObituary : EventHandler
 	{
 		if (CPlayer && CPlayer.mo && text.Length() > 0 && fnt)
 		{
-			int _x = Screen.GetWidth() / 2;
-			int _y = Screen.GetHeight() / 2;
-			_x -= fnt.StringWidth(text) / 2;
-			Screen.DrawText(fnt, fontcolor, _x, _y, text);
+			Screen.DrawText(fnt, fontcolor, 320 - int(fnt.StringWidth(text) / 2), 200, text,
+							DTA_KeepRatio,     true,
+							DTA_VirtualWidth,  640,
+							DTA_VirtualHeight, 400);
 		}
 	}
 }

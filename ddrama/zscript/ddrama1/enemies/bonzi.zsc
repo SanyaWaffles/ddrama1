@@ -178,7 +178,12 @@ Class DD_BonziBuddy : DD_Boss
 		Death.Webbing:
 		Death.Shou:
 		Death.Extreme:
-			BNZI O 8 A_ScreamAndUnblock;
+			BNZI O 8
+			{
+				A_ScreamAndUnblock();
+				
+				A_DDGivePlayerOneLiner(3);
+			}
 			BNZI P 8;
 			BNZI Q 8;
 			BNZI R 35;

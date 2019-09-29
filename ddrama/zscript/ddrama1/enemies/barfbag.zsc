@@ -103,7 +103,12 @@ Class DD_BarfBag : DD_Enemy
 			Goto See;
 		
 		Death:
-			BARF G 5 A_ScreamAndUnblock;
+			BARF G 5
+			{
+				A_ScreamAndUnblock();
+				
+				A_DDGivePlayerOneLiner(3);
+			}
 			BARF H 5;
 			BARF I -1;
 			Stop;

@@ -141,9 +141,20 @@ map MAP10 lookup DD_MAP10
 map VICTORY lookup DD_MAP10
 {
 	Music = "D_HOPE"
-	Next = endsequence, "DD1Cast"
+	Next = endsequence, "Inter_DD1Cast"
 	NoAutosaveHint
 	NoIntermission
+}
+
+Intermission Inter_DD1Cast
+{
+	Image
+	{
+		Background = "SOLIDBLK", 1
+		Time = -1
+		Music = "D_HOPE"
+	}
+	Link = DD1Cast
 }
 
 Intermission DD1Cast

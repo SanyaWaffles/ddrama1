@@ -49,7 +49,7 @@ Class DD_Sanya : DD_PlayerPawn
 		Player.DamageScreenColor "F0509A", 0.70, "Despair";
 		Player.DamageScreenColor "F0509A", 0.70, "DespairSpores";
 		Player.DamageScreenColor "FF5800", 0.70, "Dorito";
-		Player.DamageScreenColor "FF5800", 0.50, "BurnPlayer";
+		Player.DamageScreenColor "FF5800", 0.50, "Fire";
 		Player.DamageScreenColor "CD7F32", 0.70, "Expand";
 		Player.DamageScreenColor "0047AB", 0.70, "Webbing";
 		
