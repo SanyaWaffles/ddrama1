@@ -1,14 +1,14 @@
 
 [enu default]
 
-OB_SUICIDE		= "%o ate their own gun. It tasted salty";
+OB_SUICIDE		= "%o ate %p own gun. It tasted salty";
 OB_FALLING		= "I warned you about about heights. I told you %o";
 OB_CRUSH		= "%o got squashed";
 OB_EXIT			= "%o tried to leave";
 OB_WATER		= "%o forgot that oxygen is love, oxygen is life";
 OB_SLIME		= "%o caved into despair goop";
 OB_LAVA			= "%o forgot that walking on lava doesn't end well";
-OB_BARREL		= "%o spent their final moments gently carressing with an explosive thing";
+OB_BARREL		= "%o spent %p final moments gently carressing with an explosive thing";
 OB_SPLASH		= "%o shot themselves how the...";
 OB_R_SPLASH		= "Don't fire that rocket too close next time, %o";
 OB_ROCKET		= "%o, you asshole. Watch the freaking blast radius!";

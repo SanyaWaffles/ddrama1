@@ -78,7 +78,7 @@ pad_a +use
 pad_b +strafe
 pad_y +jump
 rtrigger +attack
-ltrigger +altattack
+ltrigger +user1
 lshoulder weapprev
 rshoulder weapnext
 dpadleft invprev

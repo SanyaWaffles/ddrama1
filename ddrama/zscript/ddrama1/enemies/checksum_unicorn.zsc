@@ -106,7 +106,7 @@ Class DD_ChecksumUnicorn : DD_Enemy
 	
 	void A_DDChecksumChase()
 	{
-		A_Chase("JumpBack", "Missile", CHF_FASTCHASE|CHF_RESURRECT);
+		A_Chase("JumpBack", "Missile", CHF_RESURRECT);
 	}
 	
 	void A_DDChecksumJumpBack()

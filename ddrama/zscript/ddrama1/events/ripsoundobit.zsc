@@ -20,6 +20,9 @@ class DD_RIPSoundObituary : EventHandler
 	bool dorip;
 	const MAXNUMSECONDS = 30;
 	
+	const RIP_START = 3;
+	const RIP_SAFE = 7;
+	
 	override void WorldTick()
 	{
 		// Only run if not GS_TITLELEVEL and mode is not multiplayer
@@ -41,7 +44,7 @@ class DD_RIPSoundObituary : EventHandler
 	{
 		// only do this if the seconds are 5. Don't do if the
 		// be cool about fire safety RIP is being done
-		if (seconds == 5 && dorip)
+		if (seconds == RIP_START && dorip)
 		{
 			typeofrip = Random(RIP_Normal, RIP_Jeopardy);
 			
@@ -79,7 +82,7 @@ class DD_RIPSoundObituary : EventHandler
 		}
 		
 		// play game over music if the RIP is the Felix the Cat 'Het' rip
-		if (seconds == 9 && typeofrip == RIP_FelixHet)
+		if (seconds == RIP_SAFE && typeofrip == RIP_FelixHet)
 		{
 			S_ChangeMusic("music/D_FLXOVR.vgz", 0, false, true);
 		}
@@ -120,7 +123,7 @@ class DD_RIPSoundObituary : EventHandler
 		
 		if (p && p.mo && p.mo.health <= 0 && seconds < MAXNUMSECONDS - 1 && seconds > 0)
 		{
-			if (seconds >= 0 && seconds < 5)
+			if (seconds >= 0 && seconds < RIP_START)
 			{
 				// HudMessage(s:"Press ", k:"+use", s:" to start\nfrom most recent save."; HUDMSG_PLAIN, HUDDISPID_USEKEY, CR_RED, CB_HUD_X, CB_HUD_CRACKER_Y, 0.0);
 				String saverestart;
