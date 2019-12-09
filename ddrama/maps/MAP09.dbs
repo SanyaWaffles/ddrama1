@@ -43,9 +43,9 @@ maps
 			gridoriginy = 0f;
 		}
 		uselongtexturenames = false;
-		viewpositionx = -1307.359f;
-		viewpositiony = 2220.869f;
-		viewscale = 2.325074f;
+		viewpositionx = -366.6147f;
+		viewpositiony = -106.8624f;
+		viewscale = 0.8140731f;
 		
 		scriptlumps
 		{

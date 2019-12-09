@@ -106,7 +106,7 @@ Class DD_BronyOfDespair : DD_Boss
 			Loop;
 			
 		See:
-			"####" BCDEBCDE 3 A_DDramaChase;
+			"####" ABCDABCD 3 A_DDramaChase;
 			Loop;
 			
 		Melee:
@@ -157,7 +157,7 @@ Class DD_BronyOfDespairCast : DD_BronyOfDespair
 			Loop;
 			
 		See:
-			BMRA BCDEBCDE 3 A_DDramaChase;
+			BMRA ABCDABCD 3 A_DDramaChase;
 			Loop;
 			
 		Melee:
