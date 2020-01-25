@@ -1,0 +1,4 @@
+version 219
+freelook true
+am_textured true
+wipetype 0
