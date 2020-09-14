@@ -12,7 +12,7 @@ skill easy
 	EasyKey
 	SpawnFilter = 1
 	ACSReturn = 0
-	Name = ""
+	Name = "$MNU_DDRAMA_SKILL1"
 	Key = "1"
 }
 
@@ -24,7 +24,7 @@ skill medium
 	DropAmmoFactor = 1
 	SpawnFilter = 2
 	ACSReturn = 1
-	Name = ""
+	Name = "$MNU_DDRAMA_SKILL2"
 	Key = "2"
 }
 
@@ -34,7 +34,7 @@ skill hard
 	DropAmmoFactor = 0.8
 	ACSReturn = 2
 	Aggressiveness = 0.6
-	Name = ""
+	Name = "$MNU_DDRAMA_SKILL3"
 	Key = "3"
 }
 
@@ -46,7 +46,7 @@ skill discourse
 	SpawnFilter = 3
 	ACSReturn = 3
 	MonsterHealth = 1.5
-	Name = ""
+	Name = "$MNU_DDRAMA_SKILL4"
 	Key = "4"
 	DisableCheats
 }

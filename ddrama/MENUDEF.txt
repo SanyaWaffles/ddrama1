@@ -82,6 +82,7 @@ ListMenu "MainMenu"
 
 ListMenu "SkillMenu"
 {
+	Font "BIGFONT", "White"
 	Linespacing 26
 	Selector "M_DRMARW", -40, 0
 	Position 96, 58
