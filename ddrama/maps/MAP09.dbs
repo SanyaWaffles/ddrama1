@@ -37,15 +37,15 @@ maps
 			backoffsety = 0;
 			backscalex = 100;
 			backscaley = 100;
-			gridsize = 4f;
-			gridrotate = 0f;
-			gridoriginx = 0f;
-			gridoriginy = 0f;
+			gridsize = 4;
+			gridrotate = 0;
+			gridoriginx = 0;
+			gridoriginy = 0;
 		}
 		uselongtexturenames = false;
-		viewpositionx = -366.6147f;
-		viewpositiony = -106.8624f;
-		viewscale = 0.8140731f;
+		viewpositionx = 1222.584f;
+		viewpositiony = 1260.584f;
+		viewscale = 0.814073f;
 		
 		scriptlumps
 		{

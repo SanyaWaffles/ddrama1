@@ -1,7 +1,6 @@
 clearepisodes
-episode START
+episode MAP01
 {
 	name = "$DD_EP1STR"
 	key = "m"
-	noskillmenu
 }
